@@ -12,7 +12,7 @@
 
 @interface MISQuery : NSObject
 
-+ (instancetype)queryForWith:(Class)cls;
++ (instancetype)queryWithClass:(Class)cls;
 - (instancetype)initWithClass:(Class)cls;
 
 - (void)addCriteria:(MISCriteria *)crit;

@@ -14,7 +14,7 @@
 
 @implementation MISQuery
 
-+ (instancetype)queryForWith:(Class)cls {
++ (instancetype)queryWithClass:(Class)cls {
     return [[[self alloc] initWithClass:cls] autorelease];
 }
 

@@ -9,14 +9,19 @@
 #import "MISCriteria.h"
 
 @interface MISCriteria ()
-@property (nonatomic, assign) MISCriteriaOperator operator;
-@property (nonatomic, retain) id argument;
+@property (nonatomic, assign, readwrite) MISCriteriaOperator operator;
+@property (nonatomic, retain, readwrite) id argument;
 @end
 
 @implementation MISCriteria
 
 + (instancetype)equalTo:(id)arg {
     return [[[self alloc] initWithOperator:MISCriteriaOperatorEqualTo argument:arg] autorelease];
+}
+
+
++ (instancetype)notEqualTo:(id)arg {
+    return [[[self alloc] initWithOperator:MISCriteriaOperatorNotEqualTo argument:arg] autorelease];
 }
 
 
@@ -37,6 +42,11 @@
 
 + (instancetype)greaterThanOrEqualTo:(id)arg {
     return [[[self alloc] initWithOperator:MISCriteriaOperatorGreaterThanOrEqualTo argument:arg] autorelease];
+}
+
+
++ (instancetype)like:(id)arg {
+    return [[[self alloc] initWithOperator:MISCriteriaOperatorLike argument:arg] autorelease];
 }
 
 
