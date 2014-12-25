@@ -1,2 +1,12 @@
 [.]
 scm = git
+
+[lib/TDTemplateEngine]
+repository = git@github.com:itod/tdtemplateengine.git
+scm = git
+path = lib/TDTemplateEngine
+
+[lib/PEGKit]
+repository = git@github.com:itod/pegkit.git
+scm = git
+path = lib/PEGKit
