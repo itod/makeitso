@@ -12,7 +12,10 @@
 @class FMResultSet;
 
 @interface MISMapper : NSObject
-- (id)findObject:(NSNumber *)objID;
+
+- (id)initWithDomainClass:(Class)cls;
+
+- (DomainObject *)findObject:(NSNumber *)objID;
 - (NSSet *)findObjectsWhere:(NSString *)whereClause;
 
 - (void)update:(DomainObject *)obj;
@@ -21,6 +24,7 @@
 
 - (DomainObject *)load:(FMResultSet *)rs;
 
+@property (nonatomic, retain) Class domainClass;
 @property (nonatomic, copy) NSString *tableName;
 @property (nonatomic, copy) NSString *columnList;
 @end

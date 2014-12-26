@@ -9,16 +9,37 @@
 #import "MISMapper.h"
 #import "MISUnitOfWork.h"
 
+#import "DomainObject.h"
+
 #import <fmdb/FMDatabase.h>
 #import <fmdb/FMResultSet.h>
 
+@interface DomainObject ()
+@property (nonatomic, retain, readwrite) NSNumber *objectID;
+@end
+
+@interface MISUnitOfWork ()
+@property (nonatomic, retain, readonly) FMDatabase *database;
+@end
+
 @interface MISMapper ()
+@property (nonatomic, retain, readonly) FMDatabase *database;
 @property (nonatomic, retain) MISUnitOfWork *unitOfWork;
 @end
 
 @implementation MISMapper
 
+- (id)initWithDomainClass:(Class)cls {
+    self = [super init];
+    if (self) {
+        self.domainClass = cls;
+    }
+    return self;
+}
+
+
 - (void)dealloc {
+    self.domainClass = Nil;
     self.tableName = nil;
     self.columnList = nil;
     self.unitOfWork = nil;
@@ -26,13 +47,37 @@
 }
 
 
+- (FMDatabase *)database {
+    FMDatabase *db = _unitOfWork.database;
+    TDAssert(db);
+    return db;
+}
+
 #pragma mark -
 #pragma mark SELECT
 
-- (id)findObject:(NSNumber *)objID {
+- (DomainObject *)findObject:(NSNumber *)objID {
     TDAssertDatabaseThread();
-    TDAssert(0);
-    return nil;
+    
+    DomainObject *obj = [_unitOfWork objectForID:objID];
+    if (obj) return obj;
+
+    NSString *sql = [NSString stringWithFormat:@"SELECT %@ FROM %@ WHERE ID = ?", self.columnList, self.tableName];
+    
+    FMResultSet *rs = nil;
+    @try {
+        rs = [self.database executeQuery:sql, objID];
+        [rs next];
+        obj = [self load:rs];
+    }
+    @catch (NSException *ex) {
+        NSLog(@"%@", ex);
+    }
+    @finally {
+
+    }
+
+    return obj;
 }
 
 
@@ -84,8 +129,18 @@
 
 - (DomainObject *)load:(FMResultSet *)rs {
     TDAssertDatabaseThread();
-    TDAssert(0);
-    return nil;
+    TDAssert(rs);
+    TDAssert(_unitOfWork);
+    TDAssert(_domainClass);
+    
+    NSNumber *objID = [rs objectForColumnName:@"objectID"];
+    DomainObject *obj = [_unitOfWork objectForID:objID];
+    if (obj) return obj;
+
+    obj = [[[self domainClass] new] autorelease];
+    obj.objectID = objID;
+    
+    return obj;
 }
 
 

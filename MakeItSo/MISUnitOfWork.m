@@ -11,9 +11,13 @@
 
 #import "DomainObject.h"
 
+#import <fmdb/FMDatabase.h>
+
 #define THREAD_LOCAL_KEY @"MISUnitOfWork"
 
 @interface MISUnitOfWork ()
+@property (nonatomic, retain) FMDatabase *database;
+
 @property (nonatomic, retain) NSMutableDictionary *objectTab;
 @property (nonatomic, retain) NSMutableDictionary *mapperTab;
 
@@ -27,6 +31,10 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
+        self.database = [FMDatabase databaseWithPath:@""];
+        TDAssert(_database);
+        [_database open];
+        
         self.objectTab = [NSMutableDictionary dictionary];
         self.mapperTab = [NSMutableDictionary dictionary];
         
@@ -39,6 +47,10 @@
 
 
 - (void)dealloc {
+    TDAssert(_database);
+    [_database close];
+    
+    self.database = nil;
     self.objectTab = nil;
     self.mapperTab = nil;
     

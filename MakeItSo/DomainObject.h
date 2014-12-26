@@ -10,7 +10,7 @@
 
 @interface DomainObject : NSObject
 
-@property (nonatomic, retain) NSNumber *objectID;
+@property (nonatomic, retain, readonly) NSNumber *objectID;
 
 // Protected
 - (void)markPristine;

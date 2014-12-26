@@ -10,6 +10,10 @@
 
 #import "MISUnitOfWork.h"
 
+@interface DomainObject ()
+@property (nonatomic, retain, readwrite) NSNumber *objectID;
+@end
+
 @implementation DomainObject
 
 - (void)dealloc {

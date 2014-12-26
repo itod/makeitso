@@ -28,5 +28,4 @@
 
 - (BOOL)isLoaded:(NSNumber *)objID;
 - (DomainObject *)objectForID:(NSNumber *)objID;
-
 @end
