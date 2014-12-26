@@ -7,12 +7,21 @@
 //
 
 #import "MISMapper.h"
+#import "MISUnitOfWork.h"
+
+#import <fmdb/FMDatabase.h>
+#import <fmdb/FMResultSet.h>
+
+@interface MISMapper ()
+@property (nonatomic, retain) MISUnitOfWork *unitOfWork;
+@end
 
 @implementation MISMapper
 
 - (void)dealloc {
     self.tableName = nil;
     self.columnList = nil;
+    self.unitOfWork = nil;
     [super dealloc];
 }
 
@@ -21,7 +30,7 @@
 #pragma mark SELECT
 
 - (id)findObject:(NSNumber *)key {
-    TDAssert(0);
+    
     return nil;
 }
 

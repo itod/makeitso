@@ -17,4 +17,11 @@
 - (MISMapper *)mapperForDomainClass:(Class)cls;
 
 - (void)registerClean:(DomainObject *)obj;
+- (void)registerDirty:(DomainObject *)obj;
+- (void)registerBrandNew:(DomainObject *)obj;
+- (void)registerRemoved:(DomainObject *)obj;
+
+- (BOOL)isLoaded:(NSNumber *)key;
+- (DomainObject *)objectForKey:(NSNumber *)key;
+
 @end
