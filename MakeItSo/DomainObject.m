@@ -8,11 +8,33 @@
 
 #import "DomainObject.h"
 
+#import "MISUnitOfWork.h"
+
 @implementation DomainObject
 
 - (void)dealloc {
     self.objectID = nil;
     [super dealloc];
+}
+
+
+- (void)markPristine {
+    [[MISUnitOfWork current] registerPristine:self];
+}
+
+
+- (void)markClean {
+    [[MISUnitOfWork current] registerClean:self];
+}
+
+
+- (void)markDirty {
+    [[MISUnitOfWork current] registerDirty:self];
+}
+
+
+- (void)markRemoved {
+    [[MISUnitOfWork current] registerRemoved:self];
 }
 
 @end
