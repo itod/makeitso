@@ -12,7 +12,7 @@
 @class FMResultSet;
 
 @interface MISMapper : NSObject
-- (id)findObject:(NSNumber *)key;
+- (id)findObject:(NSNumber *)objID;
 - (NSSet *)findObjectsWhere:(NSString *)whereClause;
 
 - (void)update:(DomainObject *)obj;

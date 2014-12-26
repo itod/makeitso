@@ -29,8 +29,8 @@
 #pragma mark -
 #pragma mark SELECT
 
-- (id)findObject:(NSNumber *)key {
-    
+- (id)findObject:(NSNumber *)objID {
+    TDAssert(0);
     return nil;
 }
 

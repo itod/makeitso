@@ -10,5 +10,5 @@
 
 @interface DomainObject : NSObject
 
-@property (nonatomic, assign) NSUInteger objectID;
+@property (nonatomic, retain) NSNumber *objectID;
 @end

@@ -10,4 +10,9 @@
 
 @implementation DomainObject
 
+- (void)dealloc {
+    self.objectID = nil;
+    [super dealloc];
+}
+
 @end

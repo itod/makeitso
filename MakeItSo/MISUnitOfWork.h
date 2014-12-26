@@ -16,12 +16,12 @@
 - (void)registerMapper:(MISMapper *)mapper forDomainClass:(Class)cls;
 - (MISMapper *)mapperForDomainClass:(Class)cls;
 
+- (void)registerBrandNew:(DomainObject *)obj;
 - (void)registerClean:(DomainObject *)obj;
 - (void)registerDirty:(DomainObject *)obj;
-- (void)registerBrandNew:(DomainObject *)obj;
 - (void)registerRemoved:(DomainObject *)obj;
 
-- (BOOL)isLoaded:(NSNumber *)key;
-- (DomainObject *)objectForKey:(NSNumber *)key;
+- (BOOL)isLoaded:(NSNumber *)objID;
+- (DomainObject *)objectForID:(NSNumber *)objID;
 
 @end
