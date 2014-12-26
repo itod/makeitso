@@ -103,6 +103,7 @@
 		D3F0F4A91A4CF721000F6F62 /* PEGKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PEGKit.xcodeproj; path = lib/PEGKit/PEGKit.xcodeproj; sourceTree = "<group>"; };
 		D3F0F4C51A4CF794000F6F62 /* MISQueryAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MISQueryAssembler.h; sourceTree = "<group>"; };
 		D3F0F4C61A4CF794000F6F62 /* MISQueryAssembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MISQueryAssembler.m; sourceTree = "<group>"; };
+		D3F0F4CD1A4D0465000F6F62 /* MakeItSoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MakeItSoTests.h; sourceTree = "<group>"; };
 		D3F4B02D1A4C6ADE001ACB0E /* MakeItSo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MakeItSo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3F4B0311A4C6ADE001ACB0E /* MakeItSo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MakeItSo-Info.plist"; sourceTree = "<group>"; };
 		D3F4B0321A4C6ADE001ACB0E /* MakeItSo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MakeItSo.h; sourceTree = "<group>"; };
@@ -218,6 +219,7 @@
 				D3F4B03F1A4C6ADE001ACB0E /* MakeItSoTests.m */,
 				D3F0F49B1A4CEFE1000F6F62 /* QueryParesrTests.m */,
 				D3F4B03D1A4C6ADE001ACB0E /* Supporting Files */,
+				D3F0F4CD1A4D0465000F6F62 /* MakeItSoTests.h */,
 			);
 			path = MakeItSoTests;
 			sourceTree = "<group>";

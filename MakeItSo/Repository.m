@@ -16,31 +16,47 @@
 #import "MISQuery.h"
 
 @interface Repository ()
+@property (nonatomic, retain) MISQueryAssembler *assembler;
+@property (nonatomic, retain) MISQueryParser *parser;
 @property (nonatomic, retain) MISUnitOfWork *unitOfWork;
 @end
 
 @implementation Repository
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.assembler = [[[MISQueryAssembler alloc] init] autorelease];
+        self.parser = [[[MISQueryParser alloc] initWithDelegate:_assembler] autorelease];
+    }
+    return self;
+}
+
+
 - (void)dealloc {
+    self.assembler = nil;
+    self.parser = nil;
     self.unitOfWork = nil;
     [super dealloc];
 }
 
 
 - (DomainObject *)find:(NSString *)queryStr {
-    
-    MISQueryAssembler *ass = [[[MISQueryAssembler alloc] init] autorelease];
-    MISQueryParser *parser = [[[MISQueryParser alloc] initWithDelegate:ass] autorelease];
-    
+    TDAssert([queryStr length]);
+    TDAssert(_assembler);
+    TDAssert(_parser);
+
     NSError *err = nil;
-    MISQuery *q = [parser parseString:queryStr error:&err];
+    MISQuery *q = [_parser parseString:queryStr error:&err];
     
     if (!q) {
         if (err) NSLog(@"%@", err);
         
     }
     
-    DomainObject *obj = [q execute:_unitOfWork];
+    NSSet *set = [q execute:_unitOfWork];
+    
+    DomainObject *obj = [set anyObject];
     
     return obj;
 }

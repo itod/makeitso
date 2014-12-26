@@ -6,18 +6,25 @@
 //  Copyright (c) 2014 Todd Ditchendorf. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-#import <XCTest/XCTest.h>
+#import "MakeItSoTests.h"
+
+#import "MISQueryParser.h"
+#import "MISQueryAssembler.h"
+#import "MISQuery.h"
+#import "MISCriteria.h"
 
 @interface MakeItSoTests : XCTestCase
-
+@property (nonatomic, retain) MISQueryAssembler *assembler;
+@property (nonatomic, retain) MISQueryParser *parser;
 @end
 
 @implementation MakeItSoTests
 
 - (void)setUp {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+
+    self.assembler = [[[MISQueryAssembler alloc] init] autorelease];
+    self.parser = [[[MISQueryParser alloc] initWithDelegate:_assembler] autorelease];
 }
 
 - (void)tearDown {
@@ -26,8 +33,17 @@
 }
 
 - (void)testExample {
-    // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
+    NSString *queryStr = @"foo == 'bar'";
+    
+    NSError *err = nil;
+    MISQuery *q = [_parser parseString:queryStr error:&err];
+    TDNotNil(q);
+    
+    MISCriteria *crit0 = q.criteria[0];
+    TDEquals(MISCriteriaTypeAnd, crit0.type);
+    TDEquals(MISCriteriaOperatorEqualTo, crit0.op);
+    TDEqualObjects(@"foo", crit0.lhs);
+    TDEqualObjects(@"'bar'", crit0.rhs);
 }
 
 - (void)testPerformanceExample {

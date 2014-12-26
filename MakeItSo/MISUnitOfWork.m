@@ -46,4 +46,9 @@
     return mapper;
 }
 
+
+- (void)registerClean:(DomainObject *)obj {
+    TDAssert(0);
+}
+
 @end

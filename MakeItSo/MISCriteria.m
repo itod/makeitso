@@ -103,7 +103,7 @@
             break;
     }
     
-    return sq;
+    return sql;
 }
 
 @end

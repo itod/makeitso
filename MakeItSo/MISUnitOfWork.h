@@ -9,9 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @class MISMapper;
+@class DomainObject;
 
 @interface MISUnitOfWork : NSObject
 
 - (void)registerMapper:(MISMapper *)mapper forDomainClass:(Class)cls;
 - (MISMapper *)mapperForDomainClass:(Class)cls;
+
+- (void)registerClean:(DomainObject *)obj;
 @end

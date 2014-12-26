@@ -6,8 +6,7 @@
 //  Copyright (c) 2014 Todd Ditchendorf. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-#import <XCTest/XCTest.h>
+#import "MakeItSoTests.h"
 
 @interface QueryParesrTests : XCTestCase
 
