@@ -25,6 +25,11 @@
 		D3F0F4C31A4CF751000F6F62 /* PEGKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F0F4B21A4CF721000F6F62 /* PEGKit.framework */; };
 		D3F0F4C71A4CF794000F6F62 /* MISQueryAssembler.h in Headers */ = {isa = PBXBuildFile; fileRef = D3F0F4C51A4CF794000F6F62 /* MISQueryAssembler.h */; };
 		D3F0F4C81A4CF794000F6F62 /* MISQueryAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F4C61A4CF794000F6F62 /* MISQueryAssembler.m */; };
+		D3F0F4D31A4D9E97000F6F62 /* FMDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = D3F0F4CF1A4D9E97000F6F62 /* FMDatabase.h */; };
+		D3F0F4D41A4D9E97000F6F62 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F4D01A4D9E97000F6F62 /* FMDatabase.m */; };
+		D3F0F4D51A4D9E97000F6F62 /* FMResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = D3F0F4D11A4D9E97000F6F62 /* FMResultSet.h */; };
+		D3F0F4D61A4D9E97000F6F62 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F4D21A4D9E97000F6F62 /* FMResultSet.m */; };
+		D3F0F4D81A4D9EAF000F6F62 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F0F4D71A4D9EAF000F6F62 /* libsqlite3.dylib */; };
 		D3F4B0331A4C6ADE001ACB0E /* MakeItSo.h in Headers */ = {isa = PBXBuildFile; fileRef = D3F4B0321A4C6ADE001ACB0E /* MakeItSo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3F4B0391A4C6ADE001ACB0E /* MakeItSo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F4B02D1A4C6ADE001ACB0E /* MakeItSo.framework */; };
 		D3F4B0401A4C6ADE001ACB0E /* MakeItSoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F4B03F1A4C6ADE001ACB0E /* MakeItSoTests.m */; };
@@ -104,6 +109,11 @@
 		D3F0F4C51A4CF794000F6F62 /* MISQueryAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MISQueryAssembler.h; sourceTree = "<group>"; };
 		D3F0F4C61A4CF794000F6F62 /* MISQueryAssembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MISQueryAssembler.m; sourceTree = "<group>"; };
 		D3F0F4CD1A4D0465000F6F62 /* MakeItSoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MakeItSoTests.h; sourceTree = "<group>"; };
+		D3F0F4CF1A4D9E97000F6F62 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabase.h; path = lib/FMDB/src/fmdb/FMDatabase.h; sourceTree = SOURCE_ROOT; };
+		D3F0F4D01A4D9E97000F6F62 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabase.m; path = lib/FMDB/src/fmdb/FMDatabase.m; sourceTree = SOURCE_ROOT; };
+		D3F0F4D11A4D9E97000F6F62 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMResultSet.h; path = lib/FMDB/src/fmdb/FMResultSet.h; sourceTree = SOURCE_ROOT; };
+		D3F0F4D21A4D9E97000F6F62 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMResultSet.m; path = lib/FMDB/src/fmdb/FMResultSet.m; sourceTree = SOURCE_ROOT; };
+		D3F0F4D71A4D9EAF000F6F62 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		D3F4B02D1A4C6ADE001ACB0E /* MakeItSo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MakeItSo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3F4B0311A4C6ADE001ACB0E /* MakeItSo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MakeItSo-Info.plist"; sourceTree = "<group>"; };
 		D3F4B0321A4C6ADE001ACB0E /* MakeItSo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MakeItSo.h; sourceTree = "<group>"; };
@@ -117,6 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3F0F4D81A4D9EAF000F6F62 /* libsqlite3.dylib in Frameworks */,
 				D3F0F4C31A4CF751000F6F62 /* PEGKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -171,12 +182,32 @@
 			name = Query;
 			sourceTree = "<group>";
 		};
+		D3F0F4CE1A4D9E8F000F6F62 /* FMDB */ = {
+			isa = PBXGroup;
+			children = (
+				D3F0F4CF1A4D9E97000F6F62 /* FMDatabase.h */,
+				D3F0F4D01A4D9E97000F6F62 /* FMDatabase.m */,
+				D3F0F4D11A4D9E97000F6F62 /* FMResultSet.h */,
+				D3F0F4D21A4D9E97000F6F62 /* FMResultSet.m */,
+			);
+			name = FMDB;
+			sourceTree = "<group>";
+		};
+		D3F0F4D91A4D9EC4000F6F62 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				D3F0F4D71A4D9EAF000F6F62 /* libsqlite3.dylib */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
 		D3F4B0231A4C6ADD001ACB0E = {
 			isa = PBXGroup;
 			children = (
 				D3F0F4A91A4CF721000F6F62 /* PEGKit.xcodeproj */,
 				D3F4B02F1A4C6ADE001ACB0E /* MakeItSo */,
 				D3F4B03C1A4C6ADE001ACB0E /* MakeItSoTests */,
+				D3F0F4D91A4D9EC4000F6F62 /* Libraries */,
 				D3F4B02E1A4C6ADE001ACB0E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -193,6 +224,7 @@
 		D3F4B02F1A4C6ADE001ACB0E /* MakeItSo */ = {
 			isa = PBXGroup;
 			children = (
+				D3F0F4CE1A4D9E8F000F6F62 /* FMDB */,
 				D3F4B0321A4C6ADE001ACB0E /* MakeItSo.h */,
 				D3E3D68F1A4C6CC9004103BD /* DomainObject.h */,
 				D3E3D6901A4C6CC9004103BD /* DomainObject.m */,
@@ -247,7 +279,9 @@
 				D3E3D6911A4C6CC9004103BD /* DomainObject.h in Headers */,
 				D3F0F49F1A4CF045000F6F62 /* Repository.h in Headers */,
 				D3F0F4C71A4CF794000F6F62 /* MISQueryAssembler.h in Headers */,
+				D3F0F4D51A4D9E97000F6F62 /* FMResultSet.h in Headers */,
 				D3E3D6961A4C6EF1004103BD /* MISQuery.h in Headers */,
+				D3F0F4D31A4D9E97000F6F62 /* FMDatabase.h in Headers */,
 				D3E3D69A1A4C6EFE004103BD /* MISCriteria.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,6 +430,8 @@
 				D3F0F4A61A4CF699000F6F62 /* MISQueryParser.m in Sources */,
 				D3E3D6971A4C6EF1004103BD /* MISQuery.m in Sources */,
 				D3F0F4A01A4CF045000F6F62 /* Repository.m in Sources */,
+				D3F0F4D41A4D9E97000F6F62 /* FMDatabase.m in Sources */,
+				D3F0F4D61A4D9E97000F6F62 /* FMResultSet.m in Sources */,
 				D3F0F4C81A4CF794000F6F62 /* MISQueryAssembler.m in Sources */,
 				D3E3D6921A4C6CC9004103BD /* DomainObject.m in Sources */,
 				D3E3D68E1A4C6CA4004103BD /* MISMapper.m in Sources */,
@@ -511,10 +547,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/lib/PEGKit/build/Debug",
-				);
 				FRAMEWORK_VERSION = A;
 				GCC_PREFIX_HEADER = "MakeItSo/MakeItSo-Prefix.pch";
 				INFOPLIST_FILE = "MakeItSo/MakeItSo-Info.plist";
@@ -533,10 +565,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/lib/PEGKit/build/Debug",
-				);
 				FRAMEWORK_VERSION = A;
 				GCC_PREFIX_HEADER = "MakeItSo/MakeItSo-Prefix.pch";
 				INFOPLIST_FILE = "MakeItSo/MakeItSo-Info.plist";

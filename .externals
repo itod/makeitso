@@ -10,3 +10,8 @@ path = lib/TDTemplateEngine
 repository = git@github.com:itod/pegkit.git
 scm = git
 path = lib/PEGKit
+
+[lib/FMDB]
+repository = git@github.com:ccgus/fmdb.git
+scm = git
+path = lib/FMDB
