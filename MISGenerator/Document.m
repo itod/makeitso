@@ -45,6 +45,9 @@
     self.dropTargetView = nil;
     self.tableContainerView = nil;
     self.tableView = nil;
+    self.topHorizontalLine = nil;
+    self.botHorizontalLine = nil;
+
     
     self.fileArrayController = nil;
     self.files = nil;
@@ -78,7 +81,14 @@
     [_dropTargetView.hintButton setAction:@selector(browse:)];
     [_dropTargetView.hintButton setHintText:NSLocalizedString(@"Add Objective-C Headers", @"")];
     [_dropTargetView registerForDraggedTypes:@[NSFilenamesPboardType]];
-    //[_dropTargetView setColor:[NSColor windowBackgroundColor]];
+    [_dropTargetView setColor:[NSColor windowBackgroundColor]];
+
+    NSColor *borderColor = [NSColor colorWithDeviceWhite:0.67 alpha:1.0];
+    
+    TDAssert(_topHorizontalLine);
+    TDAssert(_botHorizontalLine);
+    _topHorizontalLine.color = borderColor;
+    _botHorizontalLine.color = borderColor;
 }
 
 

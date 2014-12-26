@@ -11,6 +11,7 @@
 #import "SourceFilesTableView.h"
 
 @class TDDropTargetView;
+@class TDColorView;
 
 @interface Document : NSDocument <NSTableViewDataSource, NSTableViewDelegate, SourceFilesTableViewDelegate, QLPreviewPanelDataSource, QLPreviewPanelDelegate>
 
@@ -22,6 +23,8 @@
 @property (nonatomic, retain) IBOutlet TDDropTargetView *dropTargetView;
 @property (nonatomic, retain) IBOutlet NSView *tableContainerView;
 @property (nonatomic, retain) IBOutlet NSTableView *tableView;
+@property (nonatomic, retain) IBOutlet TDColorView *topHorizontalLine;
+@property (nonatomic, retain) IBOutlet TDColorView *botHorizontalLine;
 
 @property (nonatomic, retain) IBOutlet NSArrayController *fileArrayController;
 @property (nonatomic, retain) NSMutableArray *files;

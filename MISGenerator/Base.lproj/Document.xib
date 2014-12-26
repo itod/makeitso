@@ -7,10 +7,12 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="Document">
             <connections>
+                <outlet property="botHorizontalLine" destination="vlp-z9-mAz" id="SrG-hS-C83"/>
                 <outlet property="dropTargetView" destination="B8X-Mh-Ngt" id="dZY-ha-DXm"/>
                 <outlet property="fileArrayController" destination="HU1-vS-NrY" id="6Ji-Cs-nKF"/>
                 <outlet property="tableContainerView" destination="cUb-2b-cTC" id="h8W-1T-CwF"/>
                 <outlet property="tableView" destination="Xk8-rW-3dB" id="BQp-ki-vkt"/>
+                <outlet property="topHorizontalLine" destination="YQB-gW-kB0" id="wGY-E2-nYt"/>
                 <outlet property="window" destination="xOd-HO-29H" id="JIz-fz-R2o"/>
             </connections>
         </customObject>
@@ -19,15 +21,15 @@
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="xOd-HO-29H" userLabel="Window">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="133" y="235" width="418" height="504"/>
+            <rect key="contentRect" x="133" y="235" width="418" height="458"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1178"/>
-            <value key="minSize" type="size" width="94" height="86"/>
+            <value key="minSize" type="size" width="400" height="300"/>
             <view key="contentView" id="gIp-Ho-8D9">
-                <rect key="frame" x="0.0" y="5" width="418" height="504"/>
+                <rect key="frame" x="0.0" y="5" width="418" height="458"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <customView hidden="YES" id="cUb-2b-cTC" userLabel="tableContainerView">
-                        <rect key="frame" x="0.0" y="46" width="418" height="378"/>
+                        <rect key="frame" x="0.0" y="6" width="418" height="371"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button verticalHuggingPriority="750" id="6C2-TD-X44" userLabel="addButton">
@@ -47,7 +49,7 @@
                                 </buttonCell>
                             </button>
                             <scrollView focusRingType="none" borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="PPj-yt-Skw" userLabel="Bordered Scroll View - Table View">
-                                <rect key="frame" x="0.0" y="40" width="418" height="316"/>
+                                <rect key="frame" x="0.0" y="40" width="418" height="331"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <clipView key="contentView" id="Gi2-cf-kKj">
                                     <rect key="frame" x="1" y="17" width="238" height="117"/>
@@ -136,22 +138,30 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <customView id="YQB-gW-kB0" userLabel="topLeftHorizontalLine" customClass="TDColorView">
-                                <rect key="frame" x="0.0" y="356" width="418" height="1"/>
+                            <customView id="YQB-gW-kB0" userLabel="topHorizontalLine" customClass="TDColorView">
+                                <rect key="frame" x="0.0" y="370" width="418" height="1"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             </customView>
-                            <customView id="vlp-z9-mAz" userLabel="botLeftHorizontalLine" customClass="TDColorView">
+                            <customView id="vlp-z9-mAz" userLabel="botHorizontalLine" customClass="TDColorView">
                                 <rect key="frame" x="0.0" y="40" width="418" height="1"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </customView>
+                            <button verticalHuggingPriority="750" id="AZK-yv-NHh">
+                                <rect key="frame" x="308" y="7" width="95" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <buttonCell key="cell" type="push" title="Generate" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Q4O-fM-2GN">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                     </customView>
                     <customView id="B8X-Mh-Ngt" userLabel="dropTargetView" customClass="TDDropTargetView">
-                        <rect key="frame" x="0.0" y="46" width="418" height="378"/>
+                        <rect key="frame" x="0.0" y="0.0" width="418" height="393"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </customView>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="pEg-tZ-zCO">
-                        <rect key="frame" x="18" y="470" width="111" height="14"/>
+                        <rect key="frame" x="18" y="424" width="111" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="DB File Path:" id="PSw-aT-jRw">
                             <font key="font" metaFont="smallSystem"/>
@@ -160,7 +170,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="mdI-nK-ZPj">
-                        <rect key="frame" x="135" y="468" width="263" height="19"/>
+                        <rect key="frame" x="135" y="422" width="263" height="19"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="vCL-Cu-uPV">
                             <font key="font" metaFont="smallSystem"/>
@@ -169,7 +179,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="qAm-Gg-aCS">
-                        <rect key="frame" x="18" y="442" width="111" height="14"/>
+                        <rect key="frame" x="18" y="396" width="111" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Output Source Path:" id="QFw-dg-fsF">
                             <font key="font" metaFont="smallSystem"/>
@@ -178,7 +188,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="GO2-Mc-QYh">
-                        <rect key="frame" x="135" y="440" width="263" height="19"/>
+                        <rect key="frame" x="135" y="394" width="263" height="19"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="fkK-g2-wMg">
                             <font key="font" metaFont="smallSystem"/>
@@ -186,20 +196,12 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button verticalHuggingPriority="750" id="AZK-yv-NHh">
-                        <rect key="frame" x="308" y="14" width="95" height="28"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="push" title="Generate" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Q4O-fM-2GN">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="smallSystem"/>
-                        </buttonCell>
-                    </button>
                 </subviews>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-x8E"/>
             </connections>
-            <point key="canvasLocation" x="95" y="193"/>
+            <point key="canvasLocation" x="95" y="170"/>
         </window>
         <arrayController id="HU1-vS-NrY" userLabel="filesArrayController">
             <connections>
