@@ -10,11 +10,19 @@
 
 @implementation MISMapper
 
-
 - (void)dealloc {
     self.tableName = nil;
     self.columnList = nil;
     [super dealloc];
+}
+
+
+#pragma mark -
+#pragma mark SELECT
+
+- (id)findObject:(NSNumber *)key {
+    TDAssert(0);
+    return nil;
 }
 
 
@@ -30,5 +38,40 @@
     return result;
     
 }
+
+
+#pragma mark -
+#pragma mark UPDATE
+
+- (void)update:(DomainObject *)obj {
+    
+}
+
+
+#pragma mark -
+#pragma mark INSERT
+
+- (NSNumber *)insert:(DomainObject *)obj {
+    TDAssert(0);
+    return nil;
+}
+
+
+#pragma mark -
+#pragma mark DELETE
+
+- (void)delete:(DomainObject *)obj {
+    TDAssert(0);
+}
+
+
+#pragma mark -
+#pragma mark LOAD
+
+- (DomainObject *)load:(FMResultSet *)rs {
+    TDAssert(0);
+    return nil;
+}
+
 
 @end
