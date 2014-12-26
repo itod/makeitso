@@ -30,6 +30,32 @@
 		D3F0F4D51A4D9E97000F6F62 /* FMResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = D3F0F4D11A4D9E97000F6F62 /* FMResultSet.h */; };
 		D3F0F4D61A4D9E97000F6F62 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F4D21A4D9E97000F6F62 /* FMResultSet.m */; };
 		D3F0F4D81A4D9EAF000F6F62 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F0F4D71A4D9EAF000F6F62 /* libsqlite3.dylib */; };
+		D3F0F4E41A4DC165000F6F62 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F4E31A4DC165000F6F62 /* AppDelegate.m */; };
+		D3F0F4E61A4DC165000F6F62 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F4E51A4DC165000F6F62 /* main.m */; };
+		D3F0F4E91A4DC165000F6F62 /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F4E81A4DC165000F6F62 /* Document.m */; };
+		D3F0F4EC1A4DC165000F6F62 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3F0F4EA1A4DC165000F6F62 /* Document.xib */; };
+		D3F0F4EE1A4DC165000F6F62 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3F0F4ED1A4DC165000F6F62 /* Images.xcassets */; };
+		D3F0F4F11A4DC165000F6F62 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3F0F4EF1A4DC165000F6F62 /* MainMenu.xib */; };
+		D3F0F4FD1A4DC165000F6F62 /* MISGeneratorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F4FC1A4DC165000F6F62 /* MISGeneratorTests.m */; };
+		D3F0F5061A4DC1E6000F6F62 /* MISGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F5051A4DC1E6000F6F62 /* MISGenerator.m */; };
+		D3F0F50D1A4DC349000F6F62 /* SourceFilesTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F50C1A4DC349000F6F62 /* SourceFilesTableView.m */; };
+		D3F0F5101A4DC362000F6F62 /* FilePreviewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F50F1A4DC362000F6F62 /* FilePreviewItem.m */; };
+		D3F0F51C1A4DC3E5000F6F62 /* TDUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F51B1A4DC3E5000F6F62 /* TDUtils.m */; };
+		D3F0F5231A4DC3EB000F6F62 /* TDColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F51E1A4DC3EB000F6F62 /* TDColorView.m */; };
+		D3F0F5241A4DC3EB000F6F62 /* TDDropTargetView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F5201A4DC3EB000F6F62 /* TDDropTargetView.m */; };
+		D3F0F5251A4DC3EB000F6F62 /* TDView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F5221A4DC3EB000F6F62 /* TDView.m */; };
+		D3F0F5281A4DC491000F6F62 /* TDHintButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F5271A4DC491000F6F62 /* TDHintButton.m */; };
+		D3F0F5371A4DC5F6000F6F62 /* MakeItSo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F4B02D1A4C6ADE001ACB0E /* MakeItSo.framework */; };
+		D3F0F5381A4DC5F6000F6F62 /* PEGKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F0F4B21A4CF721000F6F62 /* PEGKit.framework */; };
+		D3F0F5391A4DC5F6000F6F62 /* TDTemplateEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F0F5301A4DC5E4000F6F62 /* TDTemplateEngine.framework */; };
+		D3F0F53B1A4DC611000F6F62 /* TDTemplateEngine.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = D3F0F5301A4DC5E4000F6F62 /* TDTemplateEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D3F0F53C1A4DC611000F6F62 /* PEGKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = D3F0F4B21A4CF721000F6F62 /* PEGKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D3F0F53D1A4DC612000F6F62 /* MakeItSo.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = D3F4B02D1A4C6ADE001ACB0E /* MakeItSo.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D3F0F5441A4DC68E000F6F62 /* Assembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F53F1A4DC68D000F6F62 /* Assembler.m */; };
+		D3F0F5451A4DC68E000F6F62 /* ObjCAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F5411A4DC68D000F6F62 /* ObjCAssembler.m */; };
+		D3F0F5461A4DC68E000F6F62 /* ObjCParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F5431A4DC68E000F6F62 /* ObjCParser.m */; };
+		D3F0F54B1A4DC6AE000F6F62 /* MISField.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F5481A4DC6AE000F6F62 /* MISField.m */; };
+		D3F0F54C1A4DC6AE000F6F62 /* MISClass.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F54A1A4DC6AE000F6F62 /* MISClass.m */; };
 		D3F4B0331A4C6ADE001ACB0E /* MakeItSo.h in Headers */ = {isa = PBXBuildFile; fileRef = D3F4B0321A4C6ADE001ACB0E /* MakeItSo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3F4B0391A4C6ADE001ACB0E /* MakeItSo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F4B02D1A4C6ADE001ACB0E /* MakeItSo.framework */; };
 		D3F4B0401A4C6ADE001ACB0E /* MakeItSoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F4B03F1A4C6ADE001ACB0E /* MakeItSoTests.m */; };
@@ -78,6 +104,41 @@
 			remoteGlobalIDString = D3F8A3DA175817DF00056188;
 			remoteInfo = PEGKit;
 		};
+		D3F0F4F71A4DC165000F6F62 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D3F4B0241A4C6ADD001ACB0E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D3F0F4DD1A4DC165000F6F62;
+			remoteInfo = MISGenerator;
+		};
+		D3F0F52F1A4DC5E4000F6F62 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D3F0F52A1A4DC5E4000F6F62 /* TDTemplateEngine.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D367DFB018E5EF6900F97BCC;
+			remoteInfo = TDTemplateEngine;
+		};
+		D3F0F5311A4DC5E4000F6F62 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D3F0F52A1A4DC5E4000F6F62 /* TDTemplateEngine.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D367DFC718E5EF6900F97BCC;
+			remoteInfo = TDTemplateEngineTests;
+		};
+		D3F0F5331A4DC5EE000F6F62 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D3F0F52A1A4DC5E4000F6F62 /* TDTemplateEngine.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D367DFAF18E5EF6900F97BCC;
+			remoteInfo = TDTemplateEngine;
+		};
+		D3F0F5351A4DC5EE000F6F62 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D3F0F4A91A4CF721000F6F62 /* PEGKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D3F8A3DA175817DF00056188;
+			remoteInfo = PEGKit;
+		};
 		D3F4B03A1A4C6ADE001ACB0E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D3F4B0241A4C6ADD001ACB0E /* Project object */;
@@ -86,6 +147,22 @@
 			remoteInfo = MakeItSo;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D3F0F53A1A4DC5FE000F6F62 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D3F0F53B1A4DC611000F6F62 /* TDTemplateEngine.framework in Copy Frameworks */,
+				D3F0F53C1A4DC611000F6F62 /* PEGKit.framework in Copy Frameworks */,
+				D3F0F53D1A4DC612000F6F62 /* MakeItSo.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		D3E3D6871A4C6C88004103BD /* MISUnitOfWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MISUnitOfWork.h; sourceTree = "<group>"; };
@@ -114,6 +191,46 @@
 		D3F0F4D11A4D9E97000F6F62 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMResultSet.h; path = lib/FMDB/src/fmdb/FMResultSet.h; sourceTree = SOURCE_ROOT; };
 		D3F0F4D21A4D9E97000F6F62 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMResultSet.m; path = lib/FMDB/src/fmdb/FMResultSet.m; sourceTree = SOURCE_ROOT; };
 		D3F0F4D71A4D9EAF000F6F62 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		D3F0F4DE1A4DC165000F6F62 /* MISGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MISGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3F0F4E11A4DC165000F6F62 /* MISGenerator-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MISGenerator-Info.plist"; sourceTree = "<group>"; };
+		D3F0F4E21A4DC165000F6F62 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D3F0F4E31A4DC165000F6F62 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D3F0F4E51A4DC165000F6F62 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D3F0F4E71A4DC165000F6F62 /* Document.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Document.h; sourceTree = "<group>"; };
+		D3F0F4E81A4DC165000F6F62 /* Document.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Document.m; sourceTree = "<group>"; };
+		D3F0F4EB1A4DC165000F6F62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Document.xib; sourceTree = "<group>"; };
+		D3F0F4ED1A4DC165000F6F62 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D3F0F4F01A4DC165000F6F62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		D3F0F4F61A4DC165000F6F62 /* MISGeneratorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MISGeneratorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3F0F4FB1A4DC165000F6F62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D3F0F4FC1A4DC165000F6F62 /* MISGeneratorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MISGeneratorTests.m; sourceTree = "<group>"; };
+		D3F0F5041A4DC1E6000F6F62 /* MISGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MISGenerator.h; sourceTree = "<group>"; };
+		D3F0F5051A4DC1E6000F6F62 /* MISGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MISGenerator.m; sourceTree = "<group>"; };
+		D3F0F50B1A4DC349000F6F62 /* SourceFilesTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceFilesTableView.h; sourceTree = "<group>"; };
+		D3F0F50C1A4DC349000F6F62 /* SourceFilesTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceFilesTableView.m; sourceTree = "<group>"; };
+		D3F0F50E1A4DC362000F6F62 /* FilePreviewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilePreviewItem.h; sourceTree = "<group>"; };
+		D3F0F50F1A4DC362000F6F62 /* FilePreviewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilePreviewItem.m; sourceTree = "<group>"; };
+		D3F0F51A1A4DC3E5000F6F62 /* TDUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDUtils.h; path = lib/TDAppKit/TDUtils.h; sourceTree = SOURCE_ROOT; };
+		D3F0F51B1A4DC3E5000F6F62 /* TDUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDUtils.m; path = lib/TDAppKit/TDUtils.m; sourceTree = SOURCE_ROOT; };
+		D3F0F51D1A4DC3EB000F6F62 /* TDColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDColorView.h; path = lib/TDAppKit/TDColorView.h; sourceTree = SOURCE_ROOT; };
+		D3F0F51E1A4DC3EB000F6F62 /* TDColorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDColorView.m; path = lib/TDAppKit/TDColorView.m; sourceTree = SOURCE_ROOT; };
+		D3F0F51F1A4DC3EB000F6F62 /* TDDropTargetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDDropTargetView.h; path = lib/TDAppKit/TDDropTargetView.h; sourceTree = SOURCE_ROOT; };
+		D3F0F5201A4DC3EB000F6F62 /* TDDropTargetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDDropTargetView.m; path = lib/TDAppKit/TDDropTargetView.m; sourceTree = SOURCE_ROOT; };
+		D3F0F5211A4DC3EB000F6F62 /* TDView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDView.h; path = lib/TDAppKit/TDView.h; sourceTree = SOURCE_ROOT; };
+		D3F0F5221A4DC3EB000F6F62 /* TDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDView.m; path = lib/TDAppKit/TDView.m; sourceTree = SOURCE_ROOT; };
+		D3F0F5261A4DC491000F6F62 /* TDHintButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDHintButton.h; path = lib/TDAppKit/TDHintButton.h; sourceTree = SOURCE_ROOT; };
+		D3F0F5271A4DC491000F6F62 /* TDHintButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDHintButton.m; path = lib/TDAppKit/TDHintButton.m; sourceTree = SOURCE_ROOT; };
+		D3F0F52A1A4DC5E4000F6F62 /* TDTemplateEngine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TDTemplateEngine.xcodeproj; path = lib/TDTemplateEngine/TDTemplateEngine.xcodeproj; sourceTree = "<group>"; };
+		D3F0F53E1A4DC68D000F6F62 /* Assembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Assembler.h; sourceTree = "<group>"; };
+		D3F0F53F1A4DC68D000F6F62 /* Assembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Assembler.m; sourceTree = "<group>"; };
+		D3F0F5401A4DC68D000F6F62 /* ObjCAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjCAssembler.h; sourceTree = "<group>"; };
+		D3F0F5411A4DC68D000F6F62 /* ObjCAssembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjCAssembler.m; sourceTree = "<group>"; };
+		D3F0F5421A4DC68D000F6F62 /* ObjCParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjCParser.h; sourceTree = "<group>"; };
+		D3F0F5431A4DC68E000F6F62 /* ObjCParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjCParser.m; sourceTree = "<group>"; };
+		D3F0F5471A4DC6AE000F6F62 /* MISField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MISField.h; sourceTree = "<group>"; };
+		D3F0F5481A4DC6AE000F6F62 /* MISField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MISField.m; sourceTree = "<group>"; };
+		D3F0F5491A4DC6AE000F6F62 /* MISClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MISClass.h; sourceTree = "<group>"; };
+		D3F0F54A1A4DC6AE000F6F62 /* MISClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MISClass.m; sourceTree = "<group>"; };
 		D3F4B02D1A4C6ADE001ACB0E /* MakeItSo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MakeItSo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3F4B0311A4C6ADE001ACB0E /* MakeItSo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MakeItSo-Info.plist"; sourceTree = "<group>"; };
 		D3F4B0321A4C6ADE001ACB0E /* MakeItSo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MakeItSo.h; sourceTree = "<group>"; };
@@ -123,6 +240,23 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D3F0F4DB1A4DC165000F6F62 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3F0F5371A4DC5F6000F6F62 /* MakeItSo.framework in Frameworks */,
+				D3F0F5381A4DC5F6000F6F62 /* PEGKit.framework in Frameworks */,
+				D3F0F5391A4DC5F6000F6F62 /* TDTemplateEngine.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D3F0F4F31A4DC165000F6F62 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D3F4B0291A4C6ADE001ACB0E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -201,13 +335,108 @@
 			name = Libraries;
 			sourceTree = "<group>";
 		};
+		D3F0F4DF1A4DC165000F6F62 /* MISGenerator */ = {
+			isa = PBXGroup;
+			children = (
+				D3F0F4E21A4DC165000F6F62 /* AppDelegate.h */,
+				D3F0F4E31A4DC165000F6F62 /* AppDelegate.m */,
+				D3F0F4E71A4DC165000F6F62 /* Document.h */,
+				D3F0F4E81A4DC165000F6F62 /* Document.m */,
+				D3F0F4EA1A4DC165000F6F62 /* Document.xib */,
+				D3F0F50B1A4DC349000F6F62 /* SourceFilesTableView.h */,
+				D3F0F50C1A4DC349000F6F62 /* SourceFilesTableView.m */,
+				D3F0F50E1A4DC362000F6F62 /* FilePreviewItem.h */,
+				D3F0F50F1A4DC362000F6F62 /* FilePreviewItem.m */,
+				D3F0F4ED1A4DC165000F6F62 /* Images.xcassets */,
+				D3F0F4EF1A4DC165000F6F62 /* MainMenu.xib */,
+				D3F0F5041A4DC1E6000F6F62 /* MISGenerator.h */,
+				D3F0F5051A4DC1E6000F6F62 /* MISGenerator.m */,
+				D3F0F54D1A4DC6B2000F6F62 /* Parsing */,
+				D3F0F5291A4DC49D000F6F62 /* TDAppKit */,
+				D3F0F4E01A4DC165000F6F62 /* Supporting Files */,
+			);
+			path = MISGenerator;
+			sourceTree = "<group>";
+		};
+		D3F0F4E01A4DC165000F6F62 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D3F0F4E11A4DC165000F6F62 /* MISGenerator-Info.plist */,
+				D3F0F4E51A4DC165000F6F62 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D3F0F4F91A4DC165000F6F62 /* MISGeneratorTests */ = {
+			isa = PBXGroup;
+			children = (
+				D3F0F4FC1A4DC165000F6F62 /* MISGeneratorTests.m */,
+				D3F0F4FA1A4DC165000F6F62 /* Supporting Files */,
+			);
+			path = MISGeneratorTests;
+			sourceTree = "<group>";
+		};
+		D3F0F4FA1A4DC165000F6F62 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D3F0F4FB1A4DC165000F6F62 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D3F0F5291A4DC49D000F6F62 /* TDAppKit */ = {
+			isa = PBXGroup;
+			children = (
+				D3F0F51A1A4DC3E5000F6F62 /* TDUtils.h */,
+				D3F0F51B1A4DC3E5000F6F62 /* TDUtils.m */,
+				D3F0F5211A4DC3EB000F6F62 /* TDView.h */,
+				D3F0F5221A4DC3EB000F6F62 /* TDView.m */,
+				D3F0F51D1A4DC3EB000F6F62 /* TDColorView.h */,
+				D3F0F51E1A4DC3EB000F6F62 /* TDColorView.m */,
+				D3F0F51F1A4DC3EB000F6F62 /* TDDropTargetView.h */,
+				D3F0F5201A4DC3EB000F6F62 /* TDDropTargetView.m */,
+				D3F0F5261A4DC491000F6F62 /* TDHintButton.h */,
+				D3F0F5271A4DC491000F6F62 /* TDHintButton.m */,
+			);
+			name = TDAppKit;
+			sourceTree = "<group>";
+		};
+		D3F0F52B1A4DC5E4000F6F62 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D3F0F5301A4DC5E4000F6F62 /* TDTemplateEngine.framework */,
+				D3F0F5321A4DC5E4000F6F62 /* TDTemplateEngineTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D3F0F54D1A4DC6B2000F6F62 /* Parsing */ = {
+			isa = PBXGroup;
+			children = (
+				D3F0F53E1A4DC68D000F6F62 /* Assembler.h */,
+				D3F0F53F1A4DC68D000F6F62 /* Assembler.m */,
+				D3F0F5401A4DC68D000F6F62 /* ObjCAssembler.h */,
+				D3F0F5411A4DC68D000F6F62 /* ObjCAssembler.m */,
+				D3F0F5421A4DC68D000F6F62 /* ObjCParser.h */,
+				D3F0F5431A4DC68E000F6F62 /* ObjCParser.m */,
+				D3F0F5491A4DC6AE000F6F62 /* MISClass.h */,
+				D3F0F54A1A4DC6AE000F6F62 /* MISClass.m */,
+				D3F0F5471A4DC6AE000F6F62 /* MISField.h */,
+				D3F0F5481A4DC6AE000F6F62 /* MISField.m */,
+			);
+			name = Parsing;
+			sourceTree = "<group>";
+		};
 		D3F4B0231A4C6ADD001ACB0E = {
 			isa = PBXGroup;
 			children = (
+				D3F0F52A1A4DC5E4000F6F62 /* TDTemplateEngine.xcodeproj */,
 				D3F0F4A91A4CF721000F6F62 /* PEGKit.xcodeproj */,
 				D3F4B02F1A4C6ADE001ACB0E /* MakeItSo */,
 				D3F4B03C1A4C6ADE001ACB0E /* MakeItSoTests */,
 				D3F0F4D91A4D9EC4000F6F62 /* Libraries */,
+				D3F0F4DF1A4DC165000F6F62 /* MISGenerator */,
+				D3F0F4F91A4DC165000F6F62 /* MISGeneratorTests */,
 				D3F4B02E1A4C6ADE001ACB0E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -217,6 +446,8 @@
 			children = (
 				D3F4B02D1A4C6ADE001ACB0E /* MakeItSo.framework */,
 				D3F4B0381A4C6ADE001ACB0E /* MakeItSoTests.xctest */,
+				D3F0F4DE1A4DC165000F6F62 /* MISGenerator.app */,
+				D3F0F4F61A4DC165000F6F62 /* MISGeneratorTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -289,6 +520,44 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		D3F0F4DD1A4DC165000F6F62 /* MISGenerator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D3F0F4FE1A4DC165000F6F62 /* Build configuration list for PBXNativeTarget "MISGenerator" */;
+			buildPhases = (
+				D3F0F4DA1A4DC165000F6F62 /* Sources */,
+				D3F0F4DB1A4DC165000F6F62 /* Frameworks */,
+				D3F0F4DC1A4DC165000F6F62 /* Resources */,
+				D3F0F53A1A4DC5FE000F6F62 /* Copy Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D3F0F5341A4DC5EE000F6F62 /* PBXTargetDependency */,
+				D3F0F5361A4DC5EE000F6F62 /* PBXTargetDependency */,
+			);
+			name = MISGenerator;
+			productName = MISGenerator;
+			productReference = D3F0F4DE1A4DC165000F6F62 /* MISGenerator.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D3F0F4F51A4DC165000F6F62 /* MISGeneratorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D3F0F5011A4DC165000F6F62 /* Build configuration list for PBXNativeTarget "MISGeneratorTests" */;
+			buildPhases = (
+				D3F0F4F21A4DC165000F6F62 /* Sources */,
+				D3F0F4F31A4DC165000F6F62 /* Frameworks */,
+				D3F0F4F41A4DC165000F6F62 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D3F0F4F81A4DC165000F6F62 /* PBXTargetDependency */,
+			);
+			name = MISGeneratorTests;
+			productName = MISGeneratorTests;
+			productReference = D3F0F4F61A4DC165000F6F62 /* MISGeneratorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		D3F4B02C1A4C6ADE001ACB0E /* MakeItSo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D3F4B0431A4C6ADE001ACB0E /* Build configuration list for PBXNativeTarget "MakeItSo" */;
@@ -335,6 +604,13 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Todd Ditchendorf";
 				TargetAttributes = {
+					D3F0F4DD1A4DC165000F6F62 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					D3F0F4F51A4DC165000F6F62 = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = D3F0F4DD1A4DC165000F6F62;
+					};
 					D3F4B02C1A4C6ADE001ACB0E = {
 						CreatedOnToolsVersion = 6.1;
 					};
@@ -349,6 +625,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = D3F4B0231A4C6ADD001ACB0E;
 			productRefGroup = D3F4B02E1A4C6ADE001ACB0E /* Products */;
@@ -358,11 +635,17 @@
 					ProductGroup = D3F0F4AA1A4CF721000F6F62 /* Products */;
 					ProjectRef = D3F0F4A91A4CF721000F6F62 /* PEGKit.xcodeproj */;
 				},
+				{
+					ProductGroup = D3F0F52B1A4DC5E4000F6F62 /* Products */;
+					ProjectRef = D3F0F52A1A4DC5E4000F6F62 /* TDTemplateEngine.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
 				D3F4B02C1A4C6ADE001ACB0E /* MakeItSo */,
 				D3F4B0371A4C6ADE001ACB0E /* MakeItSoTests */,
+				D3F0F4DD1A4DC165000F6F62 /* MISGenerator */,
+				D3F0F4F51A4DC165000F6F62 /* MISGeneratorTests */,
 			);
 		};
 /* End PBXProject section */
@@ -403,9 +686,40 @@
 			remoteRef = D3F0F4B91A4CF721000F6F62 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		D3F0F5301A4DC5E4000F6F62 /* TDTemplateEngine.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = TDTemplateEngine.framework;
+			remoteRef = D3F0F52F1A4DC5E4000F6F62 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D3F0F5321A4DC5E4000F6F62 /* TDTemplateEngineTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = TDTemplateEngineTests.xctest;
+			remoteRef = D3F0F5311A4DC5E4000F6F62 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D3F0F4DC1A4DC165000F6F62 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3F0F4EC1A4DC165000F6F62 /* Document.xib in Resources */,
+				D3F0F4EE1A4DC165000F6F62 /* Images.xcassets in Resources */,
+				D3F0F4F11A4DC165000F6F62 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D3F0F4F41A4DC165000F6F62 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D3F4B02B1A4C6ADE001ACB0E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -423,6 +737,37 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D3F0F4DA1A4DC165000F6F62 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3F0F54C1A4DC6AE000F6F62 /* MISClass.m in Sources */,
+				D3F0F5441A4DC68E000F6F62 /* Assembler.m in Sources */,
+				D3F0F4E91A4DC165000F6F62 /* Document.m in Sources */,
+				D3F0F51C1A4DC3E5000F6F62 /* TDUtils.m in Sources */,
+				D3F0F5231A4DC3EB000F6F62 /* TDColorView.m in Sources */,
+				D3F0F5061A4DC1E6000F6F62 /* MISGenerator.m in Sources */,
+				D3F0F5251A4DC3EB000F6F62 /* TDView.m in Sources */,
+				D3F0F50D1A4DC349000F6F62 /* SourceFilesTableView.m in Sources */,
+				D3F0F4E61A4DC165000F6F62 /* main.m in Sources */,
+				D3F0F5281A4DC491000F6F62 /* TDHintButton.m in Sources */,
+				D3F0F54B1A4DC6AE000F6F62 /* MISField.m in Sources */,
+				D3F0F4E41A4DC165000F6F62 /* AppDelegate.m in Sources */,
+				D3F0F5101A4DC362000F6F62 /* FilePreviewItem.m in Sources */,
+				D3F0F5451A4DC68E000F6F62 /* ObjCAssembler.m in Sources */,
+				D3F0F5461A4DC68E000F6F62 /* ObjCParser.m in Sources */,
+				D3F0F5241A4DC3EB000F6F62 /* TDDropTargetView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D3F0F4F21A4DC165000F6F62 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3F0F4FD1A4DC165000F6F62 /* MISGeneratorTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D3F4B0281A4C6ADE001ACB0E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -457,6 +802,21 @@
 			name = PEGKit;
 			targetProxy = D3F0F4C11A4CF74C000F6F62 /* PBXContainerItemProxy */;
 		};
+		D3F0F4F81A4DC165000F6F62 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D3F0F4DD1A4DC165000F6F62 /* MISGenerator */;
+			targetProxy = D3F0F4F71A4DC165000F6F62 /* PBXContainerItemProxy */;
+		};
+		D3F0F5341A4DC5EE000F6F62 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TDTemplateEngine;
+			targetProxy = D3F0F5331A4DC5EE000F6F62 /* PBXContainerItemProxy */;
+		};
+		D3F0F5361A4DC5EE000F6F62 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PEGKit;
+			targetProxy = D3F0F5351A4DC5EE000F6F62 /* PBXContainerItemProxy */;
+		};
 		D3F4B03B1A4C6ADE001ACB0E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D3F4B02C1A4C6ADE001ACB0E /* MakeItSo */;
@@ -464,7 +824,104 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		D3F0F4EA1A4DC165000F6F62 /* Document.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D3F0F4EB1A4DC165000F6F62 /* Base */,
+			);
+			name = Document.xib;
+			sourceTree = "<group>";
+		};
+		D3F0F4EF1A4DC165000F6F62 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D3F0F4F01A4DC165000F6F62 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		D3F0F4FF1A4DC165000F6F62 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREFIX_HEADER = "MakeItSo/MakeItSo-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				INFOPLIST_FILE = "MISGenerator/MISGenerator-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		D3F0F5001A4DC165000F6F62 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREFIX_HEADER = "MakeItSo/MakeItSo-Prefix.pch";
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				INFOPLIST_FILE = "MISGenerator/MISGenerator-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		D3F0F5021A4DC165000F6F62 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				INFOPLIST_FILE = MISGeneratorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MISGenerator.app/Contents/MacOS/MISGenerator";
+			};
+			name = Debug;
+		};
+		D3F0F5031A4DC165000F6F62 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				INFOPLIST_FILE = MISGeneratorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MISGenerator.app/Contents/MacOS/MISGenerator";
+			};
+			name = Release;
+		};
 		D3F4B0411A4C6ADE001ACB0E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -501,6 +958,7 @@
 					"$(inherited)",
 					"/Volumes/Macintosh\\ HD/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
 					lib/FMDB/src,
+					lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -541,6 +999,7 @@
 					"$(inherited)",
 					"/Volumes/Macintosh\\ HD/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
 					lib/FMDB/src,
+					lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -620,6 +1079,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D3F0F4FE1A4DC165000F6F62 /* Build configuration list for PBXNativeTarget "MISGenerator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D3F0F4FF1A4DC165000F6F62 /* Debug */,
+				D3F0F5001A4DC165000F6F62 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D3F0F5011A4DC165000F6F62 /* Build configuration list for PBXNativeTarget "MISGeneratorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D3F0F5021A4DC165000F6F62 /* Debug */,
+				D3F0F5031A4DC165000F6F62 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		D3F4B0271A4C6ADD001ACB0E /* Build configuration list for PBXProject "MakeItSo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
