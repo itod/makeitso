@@ -11,6 +11,8 @@
 
 #import "DomainObject.h"
 
+#define THREAD_LOCAL_KEY @"MISUnitOfWork"
+
 @interface MISUnitOfWork ()
 @property (nonatomic, retain) NSMutableDictionary *mapperTab;
 
@@ -42,6 +44,25 @@
     self.removedObjects = nil;
     
     [super dealloc];
+}
+
+
+#pragma mark -
+#pragma mark Setup
+
++ (void)makeCurrent {
+    MISUnitOfWork *uow = [[[MISUnitOfWork alloc] init] autorelease];
+
+    NSThread *thread = [NSThread currentThread];
+    thread.threadDictionary[THREAD_LOCAL_KEY] = uow;
+}
+
+
++ (MISUnitOfWork *)current {
+    NSThread *thread = [NSThread currentThread];
+    MISUnitOfWork *uow = thread.threadDictionary[THREAD_LOCAL_KEY];
+    TDAssert(uow);
+    return uow;
 }
 
 

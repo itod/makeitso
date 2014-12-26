@@ -13,6 +13,9 @@
 
 @interface MISUnitOfWork : NSObject
 
++ (void)makeCurrent;
++ (MISUnitOfWork *)current;
+
 - (void)registerMapper:(MISMapper *)mapper forDomainClass:(Class)cls;
 - (MISMapper *)mapperForDomainClass:(Class)cls;
 
