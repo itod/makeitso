@@ -42,16 +42,20 @@
     self.domainClass = Nil;
     self.tableName = nil;
     self.columnList = nil;
+    self.columnNames = nil;
     self.unitOfWork = nil;
     [super dealloc];
 }
 
 
 - (FMDatabase *)database {
+    TDAssertDatabaseThread();
+    TDAssert(_unitOfWork);
     FMDatabase *db = _unitOfWork.database;
     TDAssert(db);
     return db;
 }
+
 
 #pragma mark -
 #pragma mark SELECT
@@ -140,8 +144,19 @@
     obj = [[[self domainClass] new] autorelease];
     obj.objectID = objID;
     
+    [self loadFields:rs inObject:obj];
+    
     return obj;
 }
 
+
+- (void)loadFields:(FMResultSet *)rs inObject:(DomainObject *)obj {
+    TDAssert(_columnNames);
+    
+    for (NSString *colName in self.columnNames) {
+        id val = [rs objectForColumnName:colName];
+        [obj setValue:val forKey:colName];
+    }
+}
 
 @end
