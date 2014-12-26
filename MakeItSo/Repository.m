@@ -14,6 +14,7 @@
 #import "MISQueryParser.h"
 #import "MISQueryAssembler.h"
 #import "MISQuery.h"
+#import "MISCriteria.h"
 
 @interface Repository ()
 @property (nonatomic, retain) MISQueryAssembler *assembler;
@@ -41,11 +42,23 @@
 }
 
 
-- (DomainObject *)find:(NSString *)queryStr {
+- (DomainObject *)find:(NSNumber *)objID {
+    MISQuery *q = [[[MISQuery alloc] init] autorelease];
+    [q addCriteria:[MISCriteria criteriaWithType:MISCriteriaTypeAnd lhs:@"objectID" op:MISCriteriaOperatorEqualTo rhs:objID]];
+    
+    NSSet *set = [q execute:_unitOfWork];
+    
+    DomainObject *obj = [set anyObject];
+    
+    return obj;
+}
+
+
+- (NSSet *)findAll:(NSString *)queryStr {
     TDAssert([queryStr length]);
     TDAssert(_assembler);
     TDAssert(_parser);
-
+    
     NSError *err = nil;
     MISQuery *q = [_parser parseString:queryStr error:&err];
     
@@ -56,14 +69,7 @@
     
     NSSet *set = [q execute:_unitOfWork];
     
-    DomainObject *obj = [set anyObject];
-    
-    return obj;
-}
-
-
-- (NSArray *)findAll:(NSString *)q {
-    return nil;
+    return set;
 }
 
 @end

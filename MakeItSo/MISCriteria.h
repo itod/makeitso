@@ -24,14 +24,7 @@ typedef NS_ENUM(NSUInteger, MISCriteriaOperator) {
 };
 
 @interface MISCriteria : NSObject
-//+ (instancetype)equalTo:(id)arg;
-//+ (instancetype)notEqualTo:(id)arg;
-//+ (instancetype)lessThan:(id)arg;
-//+ (instancetype)greaterThan:(id)arg;
-//+ (instancetype)lessThanOrEqualTo:(id)arg;
-//+ (instancetype)greaterThanOrEqualTo:(id)arg;
-//+ (instancetype)like:(id)arg;
-
++ (instancetype)criteriaWithType:(MISCriteriaType)type lhs:(NSString *)lhs op:(MISCriteriaOperator)op rhs:(id)rhs;
 - (instancetype)initWithType:(MISCriteriaType)type lhs:(NSString *)lhs op:(MISCriteriaOperator)op rhs:(id)rhs;
 
 @property (nonatomic, assign, readonly) MISCriteriaType type;

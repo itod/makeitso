@@ -151,6 +151,7 @@
 
 
 - (void)loadFields:(FMResultSet *)rs inObject:(DomainObject *)obj {
+    TDAssertDatabaseThread();
     TDAssert(_columnNames);
     
     for (NSString *colName in self.columnNames) {

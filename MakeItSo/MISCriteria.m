@@ -17,39 +17,9 @@
 
 @implementation MISCriteria
 
-//+ (instancetype)equalTo:(id)arg {
-//    return [[[self alloc] initWithOperator:MISCriteriaOperatorEqualTo argument:arg] autorelease];
-//}
-//
-//
-//+ (instancetype)notEqualTo:(id)arg {
-//    return [[[self alloc] initWithOperator:MISCriteriaOperatorNotEqualTo argument:arg] autorelease];
-//}
-//
-//
-//+ (instancetype)lessThan:(id)arg {
-//    return [[[self alloc] initWithOperator:MISCriteriaOperatorLessThan argument:arg] autorelease];
-//}
-//
-//
-//+ (instancetype)greaterThan:(id)arg {
-//    return [[[self alloc] initWithOperator:MISCriteriaOperatorGreaterThan argument:arg] autorelease];
-//}
-//
-//
-//+ (instancetype)lessThanOrEqualTo:(id)arg {
-//    return [[[self alloc] initWithOperator:MISCriteriaOperatorLessThanOrEqualTo argument:arg] autorelease];
-//}
-//
-//
-//+ (instancetype)greaterThanOrEqualTo:(id)arg {
-//    return [[[self alloc] initWithOperator:MISCriteriaOperatorGreaterThanOrEqualTo argument:arg] autorelease];
-//}
-//
-//
-//+ (instancetype)like:(id)arg {
-//    return [[[self alloc] initWithOperator:MISCriteriaOperatorLike argument:arg] autorelease];
-//}
++ (instancetype)criteriaWithType:(MISCriteriaType)type lhs:(NSString *)lhs op:(MISCriteriaOperator)op rhs:(id)rhs {
+    return [[[self alloc] initWithType:type lhs:lhs op:op rhs:rhs] autorelease];
+}
 
 
 - (instancetype)initWithType:(MISCriteriaType)type lhs:(NSString *)lhs op:(MISCriteriaOperator)op rhs:(id)rhs {
