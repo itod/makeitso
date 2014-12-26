@@ -30,12 +30,14 @@
 #pragma mark SELECT
 
 - (id)findObject:(NSNumber *)objID {
+    TDAssertDatabaseThread();
     TDAssert(0);
     return nil;
 }
 
 
 - (NSSet *)findObjectsWhere:(NSString *)whereClause {
+    TDAssertDatabaseThread();
     TDAssert([self.tableName length]);
     TDAssert([self.columnList length]);
     
@@ -53,6 +55,7 @@
 #pragma mark UPDATE
 
 - (void)update:(DomainObject *)obj {
+    TDAssertDatabaseThread();
     
 }
 
@@ -61,6 +64,7 @@
 #pragma mark INSERT
 
 - (NSNumber *)insert:(DomainObject *)obj {
+    TDAssertDatabaseThread();
     TDAssert(0);
     return nil;
 }
@@ -70,6 +74,7 @@
 #pragma mark DELETE
 
 - (void)delete:(DomainObject *)obj {
+    TDAssertDatabaseThread();
     TDAssert(0);
 }
 
@@ -78,6 +83,7 @@
 #pragma mark LOAD
 
 - (DomainObject *)load:(FMResultSet *)rs {
+    TDAssertDatabaseThread();
     TDAssert(0);
     return nil;
 }

@@ -14,6 +14,7 @@
 #define THREAD_LOCAL_KEY @"MISUnitOfWork"
 
 @interface MISUnitOfWork ()
+@property (nonatomic, retain) NSMutableDictionary *objectTab;
 @property (nonatomic, retain) NSMutableDictionary *mapperTab;
 
 @property (nonatomic, retain) NSMutableSet *pristineObjects;
@@ -26,6 +27,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
+        self.objectTab = [NSMutableDictionary dictionary];
         self.mapperTab = [NSMutableDictionary dictionary];
         
         self.pristineObjects = [NSMutableSet set];
@@ -37,6 +39,7 @@
 
 
 - (void)dealloc {
+    self.objectTab = nil;
     self.mapperTab = nil;
     
     self.pristineObjects = nil;
@@ -51,6 +54,7 @@
 #pragma mark Setup
 
 + (void)makeCurrent {
+    TDAssertDatabaseThread();
     MISUnitOfWork *uow = [[[MISUnitOfWork alloc] init] autorelease];
 
     NSThread *thread = [NSThread currentThread];
@@ -59,6 +63,7 @@
 
 
 + (MISUnitOfWork *)current {
+    TDAssertDatabaseThread();
     NSThread *thread = [NSThread currentThread];
     MISUnitOfWork *uow = thread.threadDictionary[THREAD_LOCAL_KEY];
     TDAssert(uow);
@@ -70,6 +75,7 @@
 #pragma mark Mapper Registration
 
 - (void)registerMapper:(MISMapper *)mapper forDomainClass:(Class)cls {
+    TDAssertDatabaseThread();
     TDAssert([cls isSubclassOfClass:[DomainObject class]]);
     TDAssert(mapper);
     TDAssert(_mapperTab);
@@ -78,6 +84,7 @@
 
 
 - (MISMapper *)mapperForDomainClass:(Class)cls {
+    TDAssertDatabaseThread();
     TDAssert([cls isSubclassOfClass:[DomainObject class]]);
     TDAssert(_mapperTab);
     MISMapper *mapper = _mapperTab[NSStringFromClass(cls)];
@@ -90,6 +97,7 @@
 #pragma mark Object Registration
 
 - (void)registerPristine:(DomainObject *)obj {
+    TDAssertDatabaseThread();
     TDAssert(obj.objectID);
     TDAssert(![_pristineObjects containsObject:obj]);
     TDAssert(![_dirtyObjects containsObject:obj]);
@@ -105,6 +113,7 @@
 
 
 - (void)registerDirty:(DomainObject *)obj {
+    TDAssertDatabaseThread();
     TDAssert(obj.objectID);
     TDAssert(![_removedObjects containsObject:obj]);
     if (![_dirtyObjects containsObject:obj] && ![_pristineObjects containsObject:obj]) {
@@ -114,6 +123,7 @@
 
 
 - (void)registerRemoved:(DomainObject *)obj {
+    TDAssertDatabaseThread();
     TDAssert(obj.objectID);
     if ([_pristineObjects containsObject:obj]) {
         [_pristineObjects removeObject:obj];
@@ -128,6 +138,7 @@
 #pragma mark Commiting
 
 - (void)commit {
+    TDAssertDatabaseThread();
     [self insertPristine];
     [self updateDirty];
     [self deleteRemoved];
@@ -135,6 +146,7 @@
 
 
 - (void)insertPristine {
+    TDAssertDatabaseThread();
     for (DomainObject *obj in _pristineObjects) {
         MISMapper *mapper = [self mapperForDomainClass:[obj class]];
         TDAssert(mapper);
@@ -144,6 +156,7 @@
 
 
 - (void)updateDirty {
+    TDAssertDatabaseThread();
     for (DomainObject *obj in _dirtyObjects) {
         MISMapper *mapper = [self mapperForDomainClass:[obj class]];
         TDAssert(mapper);
@@ -153,6 +166,7 @@
 
 
 - (void)deleteRemoved {
+    TDAssertDatabaseThread();
     for (DomainObject *obj in _removedObjects) {
         MISMapper *mapper = [self mapperForDomainClass:[obj class]];
         TDAssert(mapper);
@@ -165,14 +179,16 @@
 #pragma mark Object Lookup
 
 - (BOOL)isLoaded:(NSNumber *)objID {
-    TDAssert(0);
-    return NO;
+    BOOL res = nil != [self objectForID:objID];
+    return res;
 }
 
 
 - (DomainObject *)objectForID:(NSNumber *)objID {
-    TDAssert(0);
-    return nil;
+    TDAssertDatabaseThread();
+    TDAssert(_objectTab);
+    DomainObject *obj = _objectTab[objID];
+    return obj;
 }
 
 @end
