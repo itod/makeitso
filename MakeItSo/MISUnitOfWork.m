@@ -7,12 +7,14 @@
 //
 
 #import "MISUnitOfWork.h"
+#import "MISMapper.h"
+
 #import "DomainObject.h"
 
 @interface MISUnitOfWork ()
 @property (nonatomic, retain) NSMutableDictionary *mapperTab;
 
-@property (nonatomic, retain) NSMutableSet *brandNewObjects;
+@property (nonatomic, retain) NSMutableSet *pristineObjects;
 @property (nonatomic, retain) NSMutableSet *dirtyObjects;
 @property (nonatomic, retain) NSMutableSet *removedObjects;
 @end
@@ -24,7 +26,7 @@
     if (self) {
         self.mapperTab = [NSMutableDictionary dictionary];
         
-        self.brandNewObjects = [NSMutableSet set];
+        self.pristineObjects = [NSMutableSet set];
         self.dirtyObjects = [NSMutableSet set];
         self.removedObjects = [NSMutableSet set];
     }
@@ -35,7 +37,7 @@
 - (void)dealloc {
     self.mapperTab = nil;
     
-    self.brandNewObjects = nil;
+    self.pristineObjects = nil;
     self.dirtyObjects = nil;
     self.removedObjects = nil;
     
@@ -66,12 +68,12 @@
 #pragma mark -
 #pragma mark Object Registration
 
-- (void)registerBrandNew:(DomainObject *)obj {
+- (void)registerPristine:(DomainObject *)obj {
     TDAssert(obj.objectID);
-    TDAssert(![_brandNewObjects containsObject:obj]);
+    TDAssert(![_pristineObjects containsObject:obj]);
     TDAssert(![_dirtyObjects containsObject:obj]);
     TDAssert(![_removedObjects containsObject:obj]);
-    [_brandNewObjects addObject:obj];
+    [_pristineObjects addObject:obj];
 }
 
 
@@ -84,7 +86,7 @@
 - (void)registerDirty:(DomainObject *)obj {
     TDAssert(obj.objectID);
     TDAssert(![_removedObjects containsObject:obj]);
-    if (![_dirtyObjects containsObject:obj] && ![_brandNewObjects containsObject:obj]) {
+    if (![_dirtyObjects containsObject:obj] && ![_pristineObjects containsObject:obj]) {
         [_dirtyObjects addObject:obj];
     }
 }
@@ -92,12 +94,49 @@
 
 - (void)registerRemoved:(DomainObject *)obj {
     TDAssert(obj.objectID);
-    if ([_brandNewObjects containsObject:obj]) {
-        [_brandNewObjects removeObject:obj];
+    if ([_pristineObjects containsObject:obj]) {
+        [_pristineObjects removeObject:obj];
         return;
     }
     [_dirtyObjects removeObject:obj];
     [_removedObjects addObject:obj];
+}
+
+
+#pragma mark -
+#pragma mark Commiting
+
+- (void)commit {
+    [self insertPristine];
+    [self updateDirty];
+    [self deleteRemoved];
+}
+
+
+- (void)insertPristine {
+    for (DomainObject *obj in _pristineObjects) {
+        MISMapper *mapper = [self mapperForDomainClass:[obj class]];
+        TDAssert(mapper);
+        [mapper insert:obj];
+    }
+}
+
+
+- (void)updateDirty {
+    for (DomainObject *obj in _dirtyObjects) {
+        MISMapper *mapper = [self mapperForDomainClass:[obj class]];
+        TDAssert(mapper);
+        [mapper update:obj];
+    }
+}
+
+
+- (void)deleteRemoved {
+    for (DomainObject *obj in _removedObjects) {
+        MISMapper *mapper = [self mapperForDomainClass:[obj class]];
+        TDAssert(mapper);
+        [mapper delete:obj];
+    }
 }
 
 
