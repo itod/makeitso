@@ -39,6 +39,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
+                                <connections>
+                                    <outlet property="nextKeyView" destination="iGR-O8-Zp5" id="8Ti-eW-UDX"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" id="iGR-O8-Zp5" userLabel="removeButton">
                                 <rect key="frame" x="34" y="10" width="24" height="24"/>
@@ -47,6 +50,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
+                                <connections>
+                                    <outlet property="nextKeyView" destination="AZK-yv-NHh" id="uUe-Om-AfD"/>
+                                </connections>
                             </button>
                             <scrollView focusRingType="none" borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="PPj-yt-Skw" userLabel="Bordered Scroll View - Table View">
                                 <rect key="frame" x="0.0" y="40" width="418" height="331"/>
@@ -124,6 +130,7 @@
                                             <connections>
                                                 <outlet property="dataSource" destination="-2" id="why-dW-Ecn"/>
                                                 <outlet property="delegate" destination="-2" id="8KT-l7-FqP"/>
+                                                <outlet property="nextKeyView" destination="6C2-TD-X44" id="6Tb-32-mrc"/>
                                             </connections>
                                         </tableView>
                                     </subviews>
@@ -153,6 +160,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
+                                <connections>
+                                    <outlet property="nextKeyView" destination="mdI-nK-ZPj" id="bcF-8E-Oz7"/>
+                                </connections>
                             </button>
                         </subviews>
                     </customView>
@@ -170,13 +180,16 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="mdI-nK-ZPj">
-                        <rect key="frame" x="135" y="422" width="263" height="19"/>
+                        <rect key="frame" x="135" y="422" width="190" height="19"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="vCL-Cu-uPV">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
+                        <connections>
+                            <outlet property="nextKeyView" destination="qjC-sa-FHd" id="DLY-x0-e5g"/>
+                        </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="qAm-Gg-aCS">
                         <rect key="frame" x="18" y="396" width="111" height="14"/>
@@ -188,18 +201,44 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="GO2-Mc-QYh">
-                        <rect key="frame" x="135" y="394" width="263" height="19"/>
+                        <rect key="frame" x="135" y="394" width="190" height="19"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="fkK-g2-wMg">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
+                        <connections>
+                            <outlet property="nextKeyView" destination="wLd-Co-Rr6" id="W15-G1-yKN"/>
+                        </connections>
                     </textField>
+                    <button verticalHuggingPriority="750" id="qjC-sa-FHd">
+                        <rect key="frame" x="328" y="416" width="75" height="28"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Browse…" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pKP-9C-7pM">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                        </buttonCell>
+                        <connections>
+                            <outlet property="nextKeyView" destination="GO2-Mc-QYh" id="8KN-nt-uUd"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" id="wLd-Co-Rr6">
+                        <rect key="frame" x="328" y="388" width="75" height="28"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Browse…" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3kj-m0-ktx">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                        </buttonCell>
+                        <connections>
+                            <outlet property="nextKeyView" destination="Xk8-rW-3dB" id="Unt-yf-EVs"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-x8E"/>
+                <outlet property="initialFirstResponder" destination="mdI-nK-ZPj" id="eXe-Yh-1uN"/>
             </connections>
             <point key="canvasLocation" x="95" y="170"/>
         </window>
