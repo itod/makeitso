@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class MISMapper;
+
 @interface MISUnitOfWork : NSObject
 
+- (void)registerMapper:(MISMapper *)mapper forDomainClass:(Class)cls;
+- (MISMapper *)mapperForDomainClass:(Class)cls;
 @end

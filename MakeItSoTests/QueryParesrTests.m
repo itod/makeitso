@@ -1,5 +1,5 @@
 //
-//  QueryParesrTests.m
+//  MakeItSoTests.m
 //  MakeItSoTests
 //
 //  Created by Todd Ditchendorf on 12/25/14.
@@ -9,11 +9,11 @@
 #import <Cocoa/Cocoa.h>
 #import <XCTest/XCTest.h>
 
-@interface QueryParesrTests : XCTestCase
+@interface MakeItSoTests : XCTestCase
 
 @end
 
-@implementation QueryParesrTests
+@implementation MakeItSoTests
 
 - (void)setUp {
     [super setUp];

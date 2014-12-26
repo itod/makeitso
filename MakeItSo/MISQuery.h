@@ -9,13 +9,17 @@
 #import <Foundation/Foundation.h>
 
 @class MISCriteria;
+@class MISUnitOfWork;
 
 @interface MISQuery : NSObject
 
-+ (instancetype)queryWithClass:(Class)cls;
-- (instancetype)initWithClass:(Class)cls;
++ (instancetype)queryWithDomainClass:(Class)cls;
+- (instancetype)initWithDomainClass:(Class)cls;
+
+@property (nonatomic, retain, readonly) Class domainClass;
 
 - (void)addCriteria:(MISCriteria *)crit;
-
 @property (nonatomic, copy, readonly) NSArray *criteria;
+
+- (NSSet *)execute:(MISUnitOfWork *)uow;
 @end

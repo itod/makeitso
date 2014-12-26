@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, MISCriteriaType) {
+    MISCriteriaTypeAnd = 0,
+    MISCriteriaTypeOr,
+};
+
 typedef NS_ENUM(NSUInteger, MISCriteriaOperator) {
     MISCriteriaOperatorEqualTo = 0,
     MISCriteriaOperatorNotEqualTo,
@@ -19,16 +24,20 @@ typedef NS_ENUM(NSUInteger, MISCriteriaOperator) {
 };
 
 @interface MISCriteria : NSObject
-+ (instancetype)equalTo:(id)arg;
-+ (instancetype)notEqualTo:(id)arg;
-+ (instancetype)lessThan:(id)arg;
-+ (instancetype)greaterThan:(id)arg;
-+ (instancetype)lessThanOrEqualTo:(id)arg;
-+ (instancetype)greaterThanOrEqualTo:(id)arg;
-+ (instancetype)like:(id)arg;
+//+ (instancetype)equalTo:(id)arg;
+//+ (instancetype)notEqualTo:(id)arg;
+//+ (instancetype)lessThan:(id)arg;
+//+ (instancetype)greaterThan:(id)arg;
+//+ (instancetype)lessThanOrEqualTo:(id)arg;
+//+ (instancetype)greaterThanOrEqualTo:(id)arg;
+//+ (instancetype)like:(id)arg;
 
-- (instancetype)initWithOperator:(MISCriteriaOperator)op argument:(id)arg;
+- (instancetype)initWithType:(MISCriteriaType)type lhs:(NSString *)lhs op:(MISCriteriaOperator)op rhs:(id)rhs;
 
-@property (nonatomic, assign, readonly) MISCriteriaOperator operator;
-@property (nonatomic, retain, readonly) id argument;
+@property (nonatomic, assign, readonly) MISCriteriaType type;
+@property (nonatomic, assign, readonly) MISCriteriaOperator op;
+@property (nonatomic, copy, readonly) NSString *lhs;
+@property (nonatomic, retain, readonly) NSString *rhs;
+
+- (NSString *)generateSql;
 @end

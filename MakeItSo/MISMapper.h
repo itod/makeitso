@@ -9,5 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface MISMapper : NSObject
+- (NSSet *)findObjectsWhere:(NSString *)whereClause;
 
+@property (nonatomic, copy) NSString *tableName;
+@property (nonatomic, copy) NSString *columnList;
 @end

@@ -10,4 +10,25 @@
 
 @implementation MISMapper
 
+
+- (void)dealloc {
+    self.tableName = nil;
+    self.columnList = nil;
+    [super dealloc];
+}
+
+
+- (NSSet *)findObjectsWhere:(NSString *)whereClause {
+    TDAssert([self.tableName length]);
+    TDAssert([self.columnList length]);
+    
+    //NSString *sql = [NSString stringWithFormat:@"SELECT %@ FROM %@ WHERE %@", self.columnList, self.tableName, whereClause];
+    
+    
+    NSMutableSet *result = [NSMutableSet set];
+    
+    return result;
+    
+}
+
 @end

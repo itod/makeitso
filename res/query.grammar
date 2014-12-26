@@ -1,0 +1,60 @@
+
+@before {
+    PKTokenizer *t = self.tokenizer;
+    
+    [t setTokenizerState:t.symbolState from:'\\' to:'\\'];
+    
+    [t.symbolState add:@"=="];
+    [t.symbolState add:@">="];
+    [t.symbolState add:@"=>"];
+    [t.symbolState add:@"<="];
+    [t.symbolState add:@"=<"];
+    [t.symbolState add:@"!="];
+    [t.symbolState add:@"<>"];
+    [t.symbolState add:@"&&"];
+    [t.symbolState add:@"||"];
+} 
+
+query = expr+;
+
+expr                 = orTerm orOrTerm*;
+orOrTerm             = orKeyword orTerm;
+orTerm               = andTerm andAndTerm*;
+andAndTerm           = andKeyword andTerm;
+andTerm              = negatedPrimaryExpr | primaryExpr;
+
+negatedPrimaryExpr   = notKeyword primaryExpr;
+
+primaryExpr          =  comparisonExpr | compoundExpr;
+compoundExpr         = '('! expr ')'!;
+
+comparisonExpr       = atom operatorAtom*;
+operatorAtom         = comparisonOperator atom;
+
+comparisonOperator   = eq | gt | lt | gtEq | ltEq | notEq | beginswith | contains | endswith | like | matches;
+
+eq      = '=' | '==';
+gt      = '>';
+lt      = '<';
+gtEq    = '>=' | '=>';
+ltEq    = '<=' | '=<';
+notEq   = '!=' | '<>';
+
+beginswith  = 'BEGINSWITH';
+contains    = 'CONTAINS';
+endswith    = 'ENDSWITH';
+like        = 'LIKE';
+matches     = 'MATCHES';
+
+andKeyword = 'AND'! | '&&'!;
+orKeyword  = 'OR'!  | '||'!;
+notKeyword = 'NOT'! | '!'!;
+
+atom   = keyPath | string | num | bool;
+
+keyPath = Word; // TODO
+string  = QuotedString;
+num     = Number;
+bool    = true | false;
+true    = 'true'!;
+false   = 'false'!;
