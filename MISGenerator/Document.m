@@ -237,7 +237,7 @@
 }
 
 
-- (IBAction)parse:(id)sender {
+- (IBAction)generate:(id)sender {
     TDAssertMainThread();
     
     if (![_databaseFilename length] || [_databaseDirPath length] || ![_outputSourceDirPath length] || ![_headerFiles count]) {

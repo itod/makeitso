@@ -17,7 +17,7 @@
 @interface Document : NSDocument <NSTableViewDataSource, NSTableViewDelegate, SourceFilesTableViewDelegate, QLPreviewPanelDataSource, QLPreviewPanelDelegate, MISGeneratorDelegate>
 
 - (IBAction)browseForHeaders:(id)sender;
-- (IBAction)parse:(id)sender;
+- (IBAction)generate:(id)sender;
 - (IBAction)revealSelectedFilePathsInFinder:(id)sender;
 - (IBAction)togglePreviewPanel:(id)sender;
 

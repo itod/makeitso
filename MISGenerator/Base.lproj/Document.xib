@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6249" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6249"/>
     </dependencies>
     <objects>
@@ -164,7 +163,8 @@ DQ
 </string>
                                 </buttonCell>
                                 <connections>
-                                    <outlet property="nextKeyView" destination="mdI-nK-ZPj" id="bcF-8E-Oz7"/>
+                                    <action selector="generate:" target="-2" id="0lM-Ic-UL5"/>
+                                    <outlet property="nextKeyView" destination="8Q7-Ds-ukR" id="1cf-hI-IIz"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -196,7 +196,7 @@ DQ
                                     <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                 </dictionary>
                             </binding>
-                            <outlet property="nextKeyView" destination="qjC-sa-FHd" id="DLY-x0-e5g"/>
+                            <outlet property="nextKeyView" destination="qjC-sa-FHd" id="Tpf-jp-Kvk"/>
                         </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="qAm-Gg-aCS">
@@ -272,14 +272,14 @@ DQ
                                     <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                 </dictionary>
                             </binding>
-                            <outlet property="nextKeyView" destination="qjC-sa-FHd" id="Auu-Rd-bNn"/>
+                            <outlet property="nextKeyView" destination="mdI-nK-ZPj" id="cKb-3f-1ol"/>
                         </connections>
                     </textField>
                 </subviews>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-x8E"/>
-                <outlet property="initialFirstResponder" destination="mdI-nK-ZPj" id="eXe-Yh-1uN"/>
+                <outlet property="initialFirstResponder" destination="8Q7-Ds-ukR" id="gM0-7f-tao"/>
             </connections>
             <point key="canvasLocation" x="168" y="323.5"/>
         </window>

@@ -33,10 +33,6 @@
 
 - (void)dealloc {
     self.delegate = nil;
-//    self.databaseFilename = nil;
-//    self.databaseDirPath = nil;
-//    self.outputSourceDirPath = nil;
-//    self.headerFilePaths = nil;
     
     self.parser = nil;
     self.assembler = nil;
@@ -99,20 +95,6 @@
         [classes addObjectsFromArray:newClasses];
     }
     
-    TDPerformOnMainThread(^{
-        if ([classes count]) {
-            
-            if ([classes count]) {
-                TDAssert(0); // DO SOMETHING
-            } else {
-
-            }
-            
-            
-        } else {
-
-        }
-    });
 }
 
 
