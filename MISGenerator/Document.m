@@ -49,8 +49,16 @@
     self.botHorizontalLine = nil;
 
     
-    self.fileArrayController = nil;
-    self.files = nil;
+    self.headerFilesArrayController = nil;
+    self.headerFiles = nil;
+    
+    self.browseForDatabaseURL = nil;
+    self.browseForOutputSourceURL = nil;
+    self.browseForHeadersURL = nil;
+    
+    self.databaseFilename = nil;
+    self.databaseDirPath = nil;
+    self.outputSourceDirPath = nil;
     
     self.parser = nil;
     self.assembler = nil;
@@ -78,7 +86,7 @@
     _dropTargetView.borderMarginSize = CGSizeMake(20.0, 20.0);
     _dropTargetView.buttonMarginSize = CGSizeMake(40.0, 40.0);
     [_dropTargetView.hintButton setTarget:self];
-    [_dropTargetView.hintButton setAction:@selector(browse:)];
+    [_dropTargetView.hintButton setAction:@selector(browseForHeaders:)];
     [_dropTargetView.hintButton setHintText:NSLocalizedString(@"Add Objective-C Headers", @"")];
     [_dropTargetView registerForDraggedTypes:@[NSFilenamesPboardType]];
     [_dropTargetView setColor:[NSColor windowBackgroundColor]];
@@ -108,18 +116,36 @@
 
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError {
-    // Insert code here to write your document to data of the specified type. If outError != NULL, ensure that you create and set an appropriate error when returning nil.
-    // You can also choose to override -fileWrapperOfType:error:, -writeToURL:ofType:error:, or -writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
-    [NSException raise:@"UnimplementedMethod" format:@"%@ is unimplemented", NSStringFromSelector(_cmd)];
-    return nil;
+    
+    NSMutableDictionary *plist = [NSMutableDictionary dictionary];
+    
+    if (_databaseFilename) plist[@"databaseFilename"] = _databaseFilename;
+    if (_databaseDirPath) plist[@"databaseDirPath"] = _databaseDirPath;
+    if (_outputSourceDirPath) plist[@"outputSourceDirPath"] = _outputSourceDirPath;
+
+    NSMutableArray *headerFilePaths = [NSMutableArray arrayWithCapacity:[_headerFiles count]];
+    for (NSDictionary *d in _headerFiles) {
+        NSString *headerFilePath = d[PATH_KEY];
+        [headerFilePaths addObject:headerFilePath];
+    }
+    plist[@"headerFilePaths"] = headerFilePaths;
+    
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:plist];
+    return data;
 }
 
 
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError {
-    // Insert code here to read your document from the given data of the specified type. If outError != NULL, ensure that you create and set an appropriate error when returning NO.
-    // You can also choose to override -readFromFileWrapper:ofType:error: or -readFromURL:ofType:error: instead.
-    // If you override either of these, you should also override -isEntireFileLoaded to return NO if the contents are lazily loaded.
-    [NSException raise:@"UnimplementedMethod" format:@"%@ is unimplemented", NSStringFromSelector(_cmd)];
+    
+    NSDictionary *plist = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    
+    self.databaseFilename = plist[@"databaseFilename"];
+    self.databaseDirPath = plist[@"databaseDirPath"];
+    self.outputSourceDirPath = plist[@"outputSourceDirPath"];
+    
+    NSArray *headerFilePaths = plist[@"headerFilePaths"];
+    self.headerFiles = [self headerFilesFromHeaderFilePaths:headerFilePaths];
+    
     return YES;
 }
 
@@ -127,10 +153,50 @@
 #pragma mark -
 #pragma mark Actions
 
-- (IBAction)browse:(id)sender {
+- (IBAction)browseForDatabase:(id)sender {
     TDAssertMainThread();
     
-    NSArray *exts = self.allowedFileExtensions;
+    NSOpenPanel *panel = [NSOpenPanel openPanel];
+    
+    [panel setCanChooseDirectories:YES];
+    [panel setCanChooseFiles:NO];
+    [panel setAllowsMultipleSelection:NO];
+    [panel setDirectoryURL:_browseForDatabaseURL];
+    
+    [panel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
+        if (NSOKButton == result) {
+            
+            NSURL *furl = [panel URL];
+            self.databaseDirPath = [furl relativePath];
+        }
+    }];
+}
+
+
+- (IBAction)browseForOutputSource:(id)sender {
+    TDAssertMainThread();
+    
+    NSOpenPanel *panel = [NSOpenPanel openPanel];
+    
+    [panel setCanChooseDirectories:YES];
+    [panel setCanChooseFiles:NO];
+    [panel setAllowsMultipleSelection:NO];
+    [panel setDirectoryURL:_browseForOutputSourceURL];
+    
+    [panel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
+        if (NSOKButton == result) {
+            
+            NSURL *furl = [panel URL];
+            self.outputSourceDirPath = [furl relativePath];
+        }
+    }];
+}
+
+
+- (IBAction)browseForHeaders:(id)sender {
+    TDAssertMainThread();
+    
+    NSArray *exts = self.allowedHeaderFileExtensions;
     TDAssert([exts count]);
     
     NSOpenPanel *panel = [NSOpenPanel openPanel];
@@ -139,6 +205,7 @@
     [panel setCanChooseDirectories:NO];
     [panel setCanChooseFiles:YES];
     [panel setAllowsMultipleSelection:YES];
+    [panel setDirectoryURL:_browseForHeadersURL];
     
     [panel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
         if (NSOKButton == result) {
@@ -160,13 +227,13 @@
 - (IBAction)parse:(id)sender {
     TDAssertMainThread();
     
-    if (![_files count]) {
+    if (![_headerFiles count]) {
         NSBeep();
         return;
     }
     
-    TDAssert(_files);
-    NSArray *files = [[_files copy] autorelease];
+    TDAssert(_headerFiles);
+    NSArray *files = [[_headerFiles copy] autorelease];
     
     TDPerformOnBackgroundThread(^{
         TDAssertNotMainThread();
@@ -210,7 +277,7 @@
 
 - (IBAction)copyFilePaths:(id)sender {
     TDAssertMainThread();
-    NSArray *items = [_fileArrayController selectedObjects];
+    NSArray *items = [_headerFilesArrayController selectedObjects];
     
     NSUInteger c = [items count];
     TDAssert(NSNotFound != c);
@@ -238,20 +305,20 @@
 
 - (IBAction)revealSelectedFilePathsInFinder:(id)sender {
     TDAssertMainThread();
-    NSArray *items = [_fileArrayController selectedObjects];
+    NSArray *items = [_headerFilesArrayController selectedObjects];
     [self revealFilePathsInFinder:items];
 }
 
 
 - (IBAction)filePathTableViewDoubleClick:(id)sender {
     TDAssertMainThread();
-    TDAssert(_fileArrayController);
+    TDAssert(_headerFilesArrayController);
     
-    NSInteger row = [_fileArrayController selectionIndex];
+    NSInteger row = [_headerFilesArrayController selectionIndex];
     TDAssert(row > -1);
-    TDAssert(row < [[_fileArrayController arrangedObjects] count]);
+    TDAssert(row < [[_headerFilesArrayController arrangedObjects] count]);
     
-    NSString *path = [_fileArrayController arrangedObjects][row];
+    NSString *path = [_headerFilesArrayController arrangedObjects][row];
     TDAssert([path length]);
     
     [self revealFilePathsInFinder:@[path]];
@@ -282,8 +349,8 @@
             [item setTitle:NSLocalizedString(@"Close Quick Look panel", @"")];
             enabled = YES;
         } else {
-            TDAssert(_fileArrayController);
-            NSUInteger c = [[_fileArrayController arrangedObjects] count];
+            TDAssert(_headerFilesArrayController);
+            NSUInteger c = [[_headerFilesArrayController arrangedObjects] count];
             NSString *title = nil;
             
             switch (c) {
@@ -293,7 +360,7 @@
                     break;
                 case 1:
                     enabled = YES;
-                    NSString *filename = [_fileArrayController.selectedObjects[0][PATH_KEY] lastPathComponent];
+                    NSString *filename = [_headerFilesArrayController.selectedObjects[0][PATH_KEY] lastPathComponent];
                     title = [NSString stringWithFormat:NSLocalizedString(@"Quick Look %@", @""), filename];
                     break;
                 default:
@@ -335,18 +402,18 @@
 
 
 - (NSInteger)numberOfPreviewItemsInPreviewPanel:(QLPreviewPanel *)panel {
-    NSUInteger c = [[_fileArrayController arrangedObjects] count];
+    NSUInteger c = [[_headerFilesArrayController arrangedObjects] count];
     return c;
 }
 
 
 - (id <QLPreviewItem>)previewPanel:(QLPreviewPanel *)panel previewItemAtIndex:(NSInteger)i {
     TDAssertMainThread();
-    TDAssert(_fileArrayController);
+    TDAssert(_headerFilesArrayController);
     
     FilePreviewItem *result = nil;
     
-    NSArray *objs = [_fileArrayController arrangedObjects];
+    NSArray *objs = [_headerFilesArrayController arrangedObjects];
     NSUInteger c = [objs count];
     
     if (i > -1 && i < c) {
@@ -377,7 +444,7 @@
 
 - (NSRect)previewPanel:(QLPreviewPanel *)panel sourceFrameOnScreenForPreviewItem:(id <QLPreviewItem>)item {
     TDAssertMainThread();
-    TDAssert(_fileArrayController);
+    TDAssert(_headerFilesArrayController);
     
     FilePreviewItem *previewItem = (FilePreviewItem *)item;
     NSInteger row = previewItem.row;
@@ -419,7 +486,7 @@
 #pragma mark -
 #pragma mark Private
 
-- (NSArray *)allowedFileExtensions {
+- (NSArray *)allowedHeaderFileExtensions {
     TDAssertMainThread();
     return @[@"h"];
 }
@@ -428,7 +495,7 @@
 - (void)handleAddedFilePaths:(NSArray *)filePaths {
     TDAssertMainThread();
     
-    NSArray *exts = self.allowedFileExtensions;
+    NSArray *exts = self.allowedHeaderFileExtensions;
     TDAssert([exts count]);
     
     if ([filePaths count]) {
@@ -445,31 +512,33 @@
             return;
         }
         
-        // build -files array
-        {
-            NSMutableArray *items = [NSMutableArray array];
-            
-            for (NSString *path in filteredFilePaths) {
-                NSImage *icon = [[NSWorkspace sharedWorkspace] iconForFile:path];
-                if (!icon) {
-                    icon = [[NSWorkspace sharedWorkspace] iconForFileType:@"txt"];
-                }
-                
-                TDAssert(icon);
-                TDAssert([path length]);
-                NSMutableDictionary *item = [[@{ICON_KEY: icon, PATH_KEY: path} mutableCopy] autorelease];
-                [items addObject:item];
-            }
-            
-            NSMutableArray *newFiles = [NSMutableArray arrayWithArray:_files];
-            [newFiles addObjectsFromArray:items];
-            self.files = newFiles;
-        }
+        NSMutableArray *newFiles = [NSMutableArray arrayWithArray:_headerFiles];
+        [newFiles addObjectsFromArray:[self headerFilesFromHeaderFilePaths:filteredFilePaths]];
+        self.headerFiles = newFiles;
         
         // hide drop target, show table
         [_dropTargetView setHidden:YES];
         [_tableContainerView setHidden:NO];
     }
+}
+
+
+- (NSMutableArray *)headerFilesFromHeaderFilePaths:(NSArray *)inFilePaths {
+    NSMutableArray *items = [NSMutableArray array];
+    
+    for (NSString *path in inFilePaths) {
+        NSImage *icon = [[NSWorkspace sharedWorkspace] iconForFile:path];
+        if (!icon) {
+            icon = [[NSWorkspace sharedWorkspace] iconForFileType:@"txt"];
+        }
+        
+        TDAssert(icon);
+        TDAssert([path length]);
+        NSMutableDictionary *item = [[@{ICON_KEY: icon, PATH_KEY: path} mutableCopy] autorelease];
+        [items addObject:item];
+    }
+    
+    return items;
 }
 
 
@@ -559,12 +628,12 @@
     TDAssertMainThread();
     TDAssert(row > -1);
     
-    NSUInteger c = [[_fileArrayController selectionIndexes] count];
+    NSUInteger c = [[_headerFilesArrayController selectionIndexes] count];
     if (0 == c) {
-        [_fileArrayController addSelectionIndexes:[NSIndexSet indexSetWithIndex:row]];
+        [_headerFilesArrayController addSelectionIndexes:[NSIndexSet indexSetWithIndex:row]];
     }
     
-    if (row > -1 /*&& [[_fileArrayController selectionIndexes] containsIndex:row]*/) {
+    if (row > -1 /*&& [[_headerFilesArrayController selectionIndexes] containsIndex:row]*/) {
         TDPerformOnMainThreadAfterDelay(0.0, ^{
             NSMenu *menu = [self resultTableContextMenu];
             [NSMenu popUpContextMenu:menu withEvent:[[self window] currentEvent] forView:tv];
@@ -574,11 +643,11 @@
 
 
 - (NSMenu *)resultTableContextMenu {
-    TDAssert(_fileArrayController);
+    TDAssert(_headerFilesArrayController);
     
     NSMenu *menu = [[[NSMenu alloc] init] autorelease];
     
-    NSUInteger c = [[_fileArrayController selectionIndexes] count];
+    NSUInteger c = [[_headerFilesArrayController selectionIndexes] count];
     BOOL hasMulti = c > 1;
     
     NSString *revealTitle = nil;

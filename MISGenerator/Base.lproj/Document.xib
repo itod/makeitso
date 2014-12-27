@@ -9,7 +9,7 @@
             <connections>
                 <outlet property="botHorizontalLine" destination="vlp-z9-mAz" id="SrG-hS-C83"/>
                 <outlet property="dropTargetView" destination="B8X-Mh-Ngt" id="dZY-ha-DXm"/>
-                <outlet property="fileArrayController" destination="HU1-vS-NrY" id="6Ji-Cs-nKF"/>
+                <outlet property="headerFilesArrayController" destination="HU1-vS-NrY" id="Atm-2f-qRk"/>
                 <outlet property="tableContainerView" destination="cUb-2b-cTC" id="h8W-1T-CwF"/>
                 <outlet property="tableView" destination="Xk8-rW-3dB" id="BQp-ki-vkt"/>
                 <outlet property="topHorizontalLine" destination="YQB-gW-kB0" id="wGY-E2-nYt"/>
@@ -159,6 +159,9 @@
                                 <buttonCell key="cell" type="push" title="Generate" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Q4O-fM-2GN">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
                                 </buttonCell>
                                 <connections>
                                     <outlet property="nextKeyView" destination="mdI-nK-ZPj" id="bcF-8E-Oz7"/>
@@ -220,6 +223,7 @@
                             <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                         <connections>
+                            <action selector="browseForDatabase:" target="-2" id="Mz0-r9-Ks6"/>
                             <outlet property="nextKeyView" destination="GO2-Mc-QYh" id="8KN-nt-uUd"/>
                         </connections>
                     </button>
@@ -231,6 +235,7 @@
                             <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                         <connections>
+                            <action selector="browseForOutputSource:" target="-2" id="Ewk-Lm-tZa"/>
                             <outlet property="nextKeyView" destination="Xk8-rW-3dB" id="Unt-yf-EVs"/>
                         </connections>
                     </button>
@@ -242,9 +247,9 @@
             </connections>
             <point key="canvasLocation" x="95" y="170"/>
         </window>
-        <arrayController id="HU1-vS-NrY" userLabel="filesArrayController">
+        <arrayController id="HU1-vS-NrY" userLabel="headerFilesArrayController">
             <connections>
-                <binding destination="-2" name="contentArray" keyPath="files" id="tfr-Zm-qEg"/>
+                <binding destination="-2" name="contentArray" keyPath="headerFiles" id="sKs-mi-0Jk"/>
             </connections>
         </arrayController>
     </objects>

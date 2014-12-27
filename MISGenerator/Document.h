@@ -15,7 +15,7 @@
 
 @interface Document : NSDocument <NSTableViewDataSource, NSTableViewDelegate, SourceFilesTableViewDelegate, QLPreviewPanelDataSource, QLPreviewPanelDelegate>
 
-- (IBAction)browse:(id)sender;
+- (IBAction)browseForHeaders:(id)sender;
 - (IBAction)parse:(id)sender;
 - (IBAction)revealSelectedFilePathsInFinder:(id)sender;
 - (IBAction)togglePreviewPanel:(id)sender;
@@ -26,7 +26,15 @@
 @property (nonatomic, retain) IBOutlet TDColorView *topHorizontalLine;
 @property (nonatomic, retain) IBOutlet TDColorView *botHorizontalLine;
 
-@property (nonatomic, retain) IBOutlet NSArrayController *fileArrayController;
-@property (nonatomic, retain) NSMutableArray *files;
+@property (nonatomic, retain) IBOutlet NSArrayController *headerFilesArrayController;
+@property (nonatomic, retain) NSMutableArray *headerFiles;
+
+@property (nonatomic, retain) NSURL *browseForDatabaseURL;
+@property (nonatomic, retain) NSURL *browseForOutputSourceURL;
+@property (nonatomic, retain) NSURL *browseForHeadersURL;
+
+@property (nonatomic, copy) NSString *databaseFilename;
+@property (nonatomic, copy) NSString *databaseDirPath;
+@property (nonatomic, copy) NSString *outputSourceDirPath;
 @end
 
