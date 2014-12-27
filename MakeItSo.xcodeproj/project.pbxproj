@@ -61,6 +61,9 @@
 		D3F0F55A1A4F1993000F6F62 /* sql.txt in Resources */ = {isa = PBXBuildFile; fileRef = D3F0F5591A4F1993000F6F62 /* sql.txt */; };
 		D3F0F55B1A4F2EA1000F6F62 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F4D01A4D9E97000F6F62 /* FMDatabase.m */; };
 		D3F0F55C1A4F2EA1000F6F62 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F4D21A4D9E97000F6F62 /* FMResultSet.m */; };
+		D3F0F55D1A4F2FF8000F6F62 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F4D01A4D9E97000F6F62 /* FMDatabase.m */; };
+		D3F0F55E1A4F2FF8000F6F62 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F4D21A4D9E97000F6F62 /* FMResultSet.m */; };
+		D3F0F55F1A4F3012000F6F62 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F0F4D71A4D9EAF000F6F62 /* libsqlite3.dylib */; };
 		D3F4B0331A4C6ADE001ACB0E /* MakeItSo.h in Headers */ = {isa = PBXBuildFile; fileRef = D3F4B0321A4C6ADE001ACB0E /* MakeItSo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3F4B0391A4C6ADE001ACB0E /* MakeItSo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F4B02D1A4C6ADE001ACB0E /* MakeItSo.framework */; };
 		D3F4B0401A4C6ADE001ACB0E /* MakeItSoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F4B03F1A4C6ADE001ACB0E /* MakeItSoTests.m */; };
@@ -255,6 +258,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3F0F55F1A4F3012000F6F62 /* libsqlite3.dylib in Frameworks */,
 				D3F0F5371A4DC5F6000F6F62 /* MakeItSo.framework in Frameworks */,
 				D3F0F5381A4DC5F6000F6F62 /* PEGKit.framework in Frameworks */,
 				D3F0F5391A4DC5F6000F6F62 /* TDTemplateEngine.framework in Frameworks */,
@@ -799,6 +803,8 @@
 				D3F0F4A61A4CF699000F6F62 /* MISQueryParser.m in Sources */,
 				D3E3D6971A4C6EF1004103BD /* MISQuery.m in Sources */,
 				D3F0F4A01A4CF045000F6F62 /* Repository.m in Sources */,
+				D3F0F55D1A4F2FF8000F6F62 /* FMDatabase.m in Sources */,
+				D3F0F55E1A4F2FF8000F6F62 /* FMResultSet.m in Sources */,
 				D3F0F4C81A4CF794000F6F62 /* MISQueryAssembler.m in Sources */,
 				D3E3D6921A4C6CC9004103BD /* DomainObject.m in Sources */,
 				D3E3D68E1A4C6CA4004103BD /* MISMapper.m in Sources */,
