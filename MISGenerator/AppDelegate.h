@@ -8,8 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class PreferencesWindowController;
+
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
-
+@property (nonatomic, retain) PreferencesWindowController *preferencesWindowController;
 @end
 

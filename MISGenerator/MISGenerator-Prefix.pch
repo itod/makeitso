@@ -17,3 +17,5 @@
 #define KEY_DB_DIR_PATH @"databaseDirPath"
 #define KEY_OUTPUT_SRC_DIR_PATH @"outputSourceDirPath"
 #define KEY_HEADER_FILE_PATHS @"headerFilePaths"
+
+#define DEFAULT_VALUES_FILENAME @"MISGenerator-DefaultValues"

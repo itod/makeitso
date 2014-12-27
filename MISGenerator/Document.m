@@ -576,11 +576,34 @@
 }
 
 
+- (void)playSuccessSound {
+    [self playSoundNamed:@"Hero"];
+}
+
+
+- (void)playErrorSound {
+    [self playSoundNamed:@"Basso"];
+}
+
+
+- (void)playWarningSound {
+    [self playSoundNamed:@"Morse"];
+}
+
+
+- (void)playSoundNamed:(NSString *)name {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"MISSoundEffectsEnabled"]) {
+        [[NSSound soundNamed:name] play];
+    }
+}
+
+
 #pragma mark -
 #pragma mark MISGeneratorDelegate
 
 - (void)generator:(MISGenerator *)gen didFail:(NSError *)err {
     TDAssertMainThread();
+    [self playErrorSound];
     [self presentParsingError:err];
     self.busy = NO;
 }
@@ -588,6 +611,7 @@
 
 - (void)generator:(MISGenerator *)gen didSucceed:(NSString *)msg {
     TDAssertMainThread();
+    [self playSuccessSound];
     self.statusText = msg;
     self.busy = NO;
 }

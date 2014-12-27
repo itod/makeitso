@@ -62,6 +62,9 @@
 		D3F0F55D1A4F2FF8000F6F62 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F4D01A4D9E97000F6F62 /* FMDatabase.m */; };
 		D3F0F55E1A4F2FF8000F6F62 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F4D21A4D9E97000F6F62 /* FMResultSet.m */; };
 		D3F0F55F1A4F3012000F6F62 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F0F4D71A4D9EAF000F6F62 /* libsqlite3.dylib */; };
+		D3F0F5651A4F354C000F6F62 /* MISGenerator-DefaultValues.plist in Resources */ = {isa = PBXBuildFile; fileRef = D3F0F5641A4F354C000F6F62 /* MISGenerator-DefaultValues.plist */; };
+		D3F0F5691A4F35DE000F6F62 /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F5671A4F35DE000F6F62 /* PreferencesWindowController.m */; };
+		D3F0F56A1A4F35DE000F6F62 /* PreferencesWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3F0F5681A4F35DE000F6F62 /* PreferencesWindowController.xib */; };
 		D3F4B0331A4C6ADE001ACB0E /* MakeItSo.h in Headers */ = {isa = PBXBuildFile; fileRef = D3F4B0321A4C6ADE001ACB0E /* MakeItSo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3F4B0391A4C6ADE001ACB0E /* MakeItSo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F4B02D1A4C6ADE001ACB0E /* MakeItSo.framework */; };
 		D3F4B0401A4C6ADE001ACB0E /* MakeItSoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F4B03F1A4C6ADE001ACB0E /* MakeItSoTests.m */; };
@@ -243,6 +246,10 @@
 		D3F0F5531A4F0847000F6F62 /* RepositoryTemplate.h.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = RepositoryTemplate.h.txt; path = res/RepositoryTemplate.h.txt; sourceTree = SOURCE_ROOT; };
 		D3F0F5541A4F0847000F6F62 /* RepositoryTemplate.m.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = RepositoryTemplate.m.txt; path = res/RepositoryTemplate.m.txt; sourceTree = SOURCE_ROOT; };
 		D3F0F5591A4F1993000F6F62 /* sql.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = sql.txt; path = res/sql.txt; sourceTree = SOURCE_ROOT; };
+		D3F0F5641A4F354C000F6F62 /* MISGenerator-DefaultValues.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MISGenerator-DefaultValues.plist"; path = "res/MISGenerator-DefaultValues.plist"; sourceTree = SOURCE_ROOT; };
+		D3F0F5661A4F35DE000F6F62 /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesWindowController.h; sourceTree = "<group>"; };
+		D3F0F5671A4F35DE000F6F62 /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesWindowController.m; sourceTree = "<group>"; };
+		D3F0F5681A4F35DE000F6F62 /* PreferencesWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindowController.xib; sourceTree = "<group>"; };
 		D3F4B02D1A4C6ADE001ACB0E /* MakeItSo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MakeItSo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3F4B0311A4C6ADE001ACB0E /* MakeItSo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MakeItSo-Info.plist"; sourceTree = "<group>"; };
 		D3F4B0321A4C6ADE001ACB0E /* MakeItSo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MakeItSo.h; sourceTree = "<group>"; };
@@ -360,6 +367,9 @@
 				D3F0F50C1A4DC349000F6F62 /* SourceFilesTableView.m */,
 				D3F0F50E1A4DC362000F6F62 /* FilePreviewItem.h */,
 				D3F0F50F1A4DC362000F6F62 /* FilePreviewItem.m */,
+				D3F0F5661A4F35DE000F6F62 /* PreferencesWindowController.h */,
+				D3F0F5671A4F35DE000F6F62 /* PreferencesWindowController.m */,
+				D3F0F5681A4F35DE000F6F62 /* PreferencesWindowController.xib */,
 				D3F0F4ED1A4DC165000F6F62 /* Images.xcassets */,
 				D3F0F4EF1A4DC165000F6F62 /* MainMenu.xib */,
 				D3F0F5041A4DC1E6000F6F62 /* MISGenerator.h */,
@@ -375,8 +385,9 @@
 			isa = PBXGroup;
 			children = (
 				D3F0F54E1A4EF878000F6F62 /* MISGenerator-Prefix.pch */,
-				D3F0F4E11A4DC165000F6F62 /* MISGenerator-Info.plist */,
 				D3F0F4E51A4DC165000F6F62 /* main.m */,
+				D3F0F4E11A4DC165000F6F62 /* MISGenerator-Info.plist */,
+				D3F0F5641A4F354C000F6F62 /* MISGenerator-DefaultValues.plist */,
 				D3F0F5511A4F0847000F6F62 /* MapperTemplate.h.txt */,
 				D3F0F5521A4F0847000F6F62 /* MapperTemplate.m.txt */,
 				D3F0F5531A4F0847000F6F62 /* RepositoryTemplate.h.txt */,
@@ -731,8 +742,10 @@
 				D3F0F5551A4F0847000F6F62 /* MapperTemplate.h.txt in Resources */,
 				D3F0F5581A4F0847000F6F62 /* RepositoryTemplate.m.txt in Resources */,
 				D3F0F4EE1A4DC165000F6F62 /* Images.xcassets in Resources */,
+				D3F0F5651A4F354C000F6F62 /* MISGenerator-DefaultValues.plist in Resources */,
 				D3F0F55A1A4F1993000F6F62 /* sql.txt in Resources */,
 				D3F0F5571A4F0847000F6F62 /* RepositoryTemplate.h.txt in Resources */,
+				D3F0F56A1A4F35DE000F6F62 /* PreferencesWindowController.xib in Resources */,
 				D3F0F4F11A4DC165000F6F62 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -774,6 +787,7 @@
 				D3F0F5251A4DC3EB000F6F62 /* TDView.m in Sources */,
 				D3F0F50D1A4DC349000F6F62 /* SourceFilesTableView.m in Sources */,
 				D3F0F4E61A4DC165000F6F62 /* main.m in Sources */,
+				D3F0F5691A4F35DE000F6F62 /* PreferencesWindowController.m in Sources */,
 				D3F0F5281A4DC491000F6F62 /* TDHintButton.m in Sources */,
 				D3F0F54B1A4DC6AE000F6F62 /* MISField.m in Sources */,
 				D3F0F4E41A4DC165000F6F62 /* AppDelegate.m in Sources */,
