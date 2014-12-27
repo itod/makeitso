@@ -40,6 +40,7 @@
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
                                 <connections>
+                                    <action selector="browseForHeaders:" target="-2" id="ecb-6G-z5g"/>
                                     <outlet property="nextKeyView" destination="iGR-O8-Zp5" id="8Ti-eW-UDX"/>
                                 </connections>
                             </button>
@@ -51,6 +52,7 @@
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
                                 <connections>
+                                    <action selector="remove:" target="HU1-vS-NrY" id="kQc-Gh-gu9"/>
                                     <outlet property="nextKeyView" destination="AZK-yv-NHh" id="uUe-Om-AfD"/>
                                 </connections>
                             </button>
