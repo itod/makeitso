@@ -7,27 +7,20 @@
 //
 
 #import "Document.h"
-
 #import "FilePreviewItem.h"
-#import "ObjCAssembler.h"
-#import "ObjCParser.h"
-
-//#import "MISClass.h"
-//#import "MISField.h"
 
 #import <TDAppKit/TDUtils.h>
 #import <TDAppKit/TDColorView.h>
 #import <TDAppKit/TDDropTargetView.h>
 #import <TDAppKit/TDHintButton.h>
 
+#import <PEGKit/PEGKit.h>
 #import <TDTemplateEngine/TDTemplateEngine.h>
 
 #define ICON_KEY @"iconImage"
 #define PATH_KEY @"filePath"
 
 @interface Document ()
-@property (nonatomic, retain) PKParser *parser;
-@property (nonatomic, retain) Assembler *assembler;
 @end
 
 @implementation Document
@@ -47,7 +40,6 @@
     self.tableView = nil;
     self.topHorizontalLine = nil;
     self.botHorizontalLine = nil;
-
     
     self.headerFilesArrayController = nil;
     self.headerFiles = nil;
@@ -59,9 +51,6 @@
     self.databaseFilename = nil;
     self.databaseDirPath = nil;
     self.outputSourceDirPath = nil;
-    
-    self.parser = nil;
-    self.assembler = nil;
 
     [super dealloc];
 }
@@ -119,16 +108,11 @@
     
     NSMutableDictionary *plist = [NSMutableDictionary dictionary];
     
-    if (_databaseFilename) plist[@"databaseFilename"] = _databaseFilename;
-    if (_databaseDirPath) plist[@"databaseDirPath"] = _databaseDirPath;
-    if (_outputSourceDirPath) plist[@"outputSourceDirPath"] = _outputSourceDirPath;
+    if (_databaseFilename) plist[KEY_DB_FILENAME] = _databaseFilename;
+    if (_databaseDirPath) plist[KEY_DB_DIR_PATH] = _databaseDirPath;
+    if (_outputSourceDirPath) plist[KEY_OUTPUT_SRC_DIR_PATH] = _outputSourceDirPath;
 
-    NSMutableArray *headerFilePaths = [NSMutableArray arrayWithCapacity:[_headerFiles count]];
-    for (NSDictionary *d in _headerFiles) {
-        NSString *headerFilePath = d[PATH_KEY];
-        [headerFilePaths addObject:headerFilePath];
-    }
-    plist[@"headerFilePaths"] = headerFilePaths;
+    plist[KEY_HEADER_FILE_PATHS] = [self headerFilePaths];
     
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:plist];
     return data;
@@ -139,14 +123,43 @@
     
     NSDictionary *plist = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     
-    self.databaseFilename = plist[@"databaseFilename"];
-    self.databaseDirPath = plist[@"databaseDirPath"];
-    self.outputSourceDirPath = plist[@"outputSourceDirPath"];
+    self.databaseFilename = plist[KEY_DB_FILENAME];
+    self.databaseDirPath = plist[KEY_DB_DIR_PATH];
+    self.outputSourceDirPath = plist[KEY_OUTPUT_SRC_DIR_PATH];
     
-    NSArray *headerFilePaths = plist[@"headerFilePaths"];
+    NSArray *headerFilePaths = plist[KEY_HEADER_FILE_PATHS];
     self.headerFiles = [self headerFilesFromHeaderFilePaths:headerFilePaths];
     
     return YES;
+}
+
+
+- (NSMutableArray *)headerFilesFromHeaderFilePaths:(NSArray *)inFilePaths {
+    NSMutableArray *items = [NSMutableArray array];
+    
+    for (NSString *path in inFilePaths) {
+        NSImage *icon = [[NSWorkspace sharedWorkspace] iconForFile:path];
+        if (!icon) {
+            icon = [[NSWorkspace sharedWorkspace] iconForFileType:@"txt"];
+        }
+        
+        TDAssert(icon);
+        TDAssert([path length]);
+        NSMutableDictionary *item = [[@{ICON_KEY: icon, PATH_KEY: path} mutableCopy] autorelease];
+        [items addObject:item];
+    }
+    
+    return items;
+}
+
+
+- (NSArray *)headerFilePaths {
+    NSMutableArray *headerFilePaths = [NSMutableArray arrayWithCapacity:[_headerFiles count]];
+    for (NSDictionary *d in _headerFiles) {
+        NSString *headerFilePath = d[PATH_KEY];
+        [headerFilePaths addObject:headerFilePath];
+    }
+    return headerFilePaths;
 }
 
 
@@ -227,51 +240,21 @@
 - (IBAction)parse:(id)sender {
     TDAssertMainThread();
     
-    if (![_headerFiles count]) {
+    if (![_databaseFilename length] || [_databaseDirPath length] || ![_outputSourceDirPath length] || ![_headerFiles count]) {
         NSBeep();
         return;
     }
     
-    TDAssert(_headerFiles);
-    NSArray *files = [[_headerFiles copy] autorelease];
+    MISGenerator *gen = [[[MISGenerator alloc] initWithDelegate:self] autorelease];
     
-    TDPerformOnBackgroundThread(^{
-        TDAssertNotMainThread();
-        NSMutableArray *classes = [NSMutableArray array];
-        
-        for (NSDictionary *d in files) {
-            NSString *filePath = d[PATH_KEY];
-            if (![filePath length]) {
-                TDAssert(0);
-                continue;
-            }
-            
-            NSError *err = nil;
-            NSString *source = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&err];
-            if (!source) {
-                if (err) NSLog(@"%@", err);
-                continue;
-            }
-            
-            NSArray *newClasses = [self parseSourceCode:source];
-            [classes addObjectsFromArray:newClasses];
-        }
-        
-        TDPerformOnMainThread(^{
-            if ([classes count]) {
-                
-                if ([classes count]) {
-                    TDAssert(0); // DO SOMETHING
-                } else {
-                    NSBeep();
-                }
-                
-                
-            } else {
-                NSBeep();
-            }
-        });
-    });
+    NSMutableDictionary *args = [NSMutableDictionary dictionaryWithCapacity:4];
+    
+    args[KEY_DB_FILENAME] = [[_databaseFilename copy] autorelease];
+    args[KEY_DB_DIR_PATH] = [[_databaseDirPath copy] autorelease];
+    args[KEY_OUTPUT_SRC_DIR_PATH] = [[_outputSourceDirPath copy] autorelease];
+    args[KEY_HEADER_FILE_PATHS] = [[[self headerFilePaths] copy] autorelease];
+    
+    [gen execute:args];
 }
 
 
@@ -523,52 +506,6 @@
 }
 
 
-- (NSMutableArray *)headerFilesFromHeaderFilePaths:(NSArray *)inFilePaths {
-    NSMutableArray *items = [NSMutableArray array];
-    
-    for (NSString *path in inFilePaths) {
-        NSImage *icon = [[NSWorkspace sharedWorkspace] iconForFile:path];
-        if (!icon) {
-            icon = [[NSWorkspace sharedWorkspace] iconForFileType:@"txt"];
-        }
-        
-        TDAssert(icon);
-        TDAssert([path length]);
-        NSMutableDictionary *item = [[@{ICON_KEY: icon, PATH_KEY: path} mutableCopy] autorelease];
-        [items addObject:item];
-    }
-    
-    return items;
-}
-
-
-- (NSArray *)parseSourceCode:(NSString *)source {
-    
-    self.assembler = [[[ObjCAssembler alloc] init] autorelease];
-    self.parser = [[[ObjCParser alloc] initWithDelegate:_assembler] autorelease];
-    
-    NSError *err = nil;
-    id res = [[[_parser parseString:source error:&err] retain] autorelease];
-    
-    NSArray *classes = [[_assembler.classes copy] autorelease];
-    
-    self.parser = nil;
-    self.assembler = nil;
-    
-    if (!res) {
-        if (err) {
-            NSLog(@"%@", err);
-            TDPerformOnMainThread(^{
-                NSBeep();
-                [self presentParsingError:err];
-            });
-        }
-    }
-    
-    return classes;
-}
-
-
 - (void)presentParsingError:(NSError *)err {
     TDAssertMainThread();
     TDAssert([PEGKitErrorDomain isEqualToString:[err domain]]);
@@ -615,6 +552,20 @@
         NSBeep();
     }
 }
+
+
+#pragma mark -
+#pragma mark MISGeneratorDelegate
+
+- (void)generator:(MISGenerator *)gen didFail:(NSError *)err {
+    [self presentParsingError:err];
+}
+
+
+- (void)generator:(MISGenerator *)gen didSucceed:(NSString *)displayDirPath {
+    
+}
+
 
 #pragma mark -
 #pragma mark SourceFilesTableViewDelegate

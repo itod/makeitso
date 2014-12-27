@@ -231,6 +231,7 @@
 		D3F0F5481A4DC6AE000F6F62 /* MISField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MISField.m; sourceTree = "<group>"; };
 		D3F0F5491A4DC6AE000F6F62 /* MISClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MISClass.h; sourceTree = "<group>"; };
 		D3F0F54A1A4DC6AE000F6F62 /* MISClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MISClass.m; sourceTree = "<group>"; };
+		D3F0F54E1A4EF878000F6F62 /* MISGenerator-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MISGenerator-Prefix.pch"; sourceTree = "<group>"; };
 		D3F4B02D1A4C6ADE001ACB0E /* MakeItSo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MakeItSo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3F4B0311A4C6ADE001ACB0E /* MakeItSo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MakeItSo-Info.plist"; sourceTree = "<group>"; };
 		D3F4B0321A4C6ADE001ACB0E /* MakeItSo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MakeItSo.h; sourceTree = "<group>"; };
@@ -361,6 +362,7 @@
 		D3F0F4E01A4DC165000F6F62 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D3F0F54E1A4EF878000F6F62 /* MISGenerator-Prefix.pch */,
 				D3F0F4E11A4DC165000F6F62 /* MISGenerator-Info.plist */,
 				D3F0F4E51A4DC165000F6F62 /* main.m */,
 			);
@@ -850,7 +852,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PREFIX_HEADER = "MakeItSo/MakeItSo-Prefix.pch";
+				GCC_PREFIX_HEADER = "MISGenerator/MISGenerator-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -869,7 +871,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PREFIX_HEADER = "MakeItSo/MakeItSo-Prefix.pch";
+				GCC_PREFIX_HEADER = "MISGenerator/MISGenerator-Prefix.pch";
 				INFOPLIST_FILE = "MISGenerator/MISGenerator-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;

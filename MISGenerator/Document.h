@@ -9,11 +9,12 @@
 #import <Cocoa/Cocoa.h>
 #import <Quartz/Quartz.h>   // Quartz framework provides the QLPreviewPanel public API
 #import "SourceFilesTableView.h"
+#import "MISGenerator.h"
 
 @class TDDropTargetView;
 @class TDColorView;
 
-@interface Document : NSDocument <NSTableViewDataSource, NSTableViewDelegate, SourceFilesTableViewDelegate, QLPreviewPanelDataSource, QLPreviewPanelDelegate>
+@interface Document : NSDocument <NSTableViewDataSource, NSTableViewDelegate, SourceFilesTableViewDelegate, QLPreviewPanelDataSource, QLPreviewPanelDelegate, MISGeneratorDelegate>
 
 - (IBAction)browseForHeaders:(id)sender;
 - (IBAction)parse:(id)sender;

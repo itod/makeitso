@@ -21,11 +21,11 @@
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="xOd-HO-29H" userLabel="Window">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="133" y="235" width="418" height="458"/>
+            <rect key="contentRect" x="133" y="235" width="418" height="485"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1178"/>
             <value key="minSize" type="size" width="400" height="300"/>
             <view key="contentView" id="gIp-Ho-8D9">
-                <rect key="frame" x="0.0" y="5" width="418" height="458"/>
+                <rect key="frame" x="0.0" y="0.0" width="418" height="485"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <customView hidden="YES" id="cUb-2b-cTC" userLabel="tableContainerView">
@@ -191,6 +191,11 @@ DQ
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
+                            <binding destination="-2" name="value" keyPath="databaseDirPath" id="cQ5-c0-Ihv">
+                                <dictionary key="options">
+                                    <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                </dictionary>
+                            </binding>
                             <outlet property="nextKeyView" destination="qjC-sa-FHd" id="DLY-x0-e5g"/>
                         </connections>
                     </textField>
@@ -212,6 +217,11 @@ DQ
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
+                            <binding destination="-2" name="value" keyPath="outputSourceDirPath" id="Qci-ue-dIG">
+                                <dictionary key="options">
+                                    <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                </dictionary>
+                            </binding>
                             <outlet property="nextKeyView" destination="wLd-Co-Rr6" id="W15-G1-yKN"/>
                         </connections>
                     </textField>
@@ -239,13 +249,39 @@ DQ
                             <outlet property="nextKeyView" destination="Xk8-rW-3dB" id="Unt-yf-EVs"/>
                         </connections>
                     </button>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="HE2-D5-Ofe">
+                        <rect key="frame" x="18" y="451" width="111" height="14"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="DB Filename:" id="GQX-ly-uPm">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" id="8Q7-Ds-ukR">
+                        <rect key="frame" x="135" y="449" width="190" height="19"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="V50-eo-zSf">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <binding destination="-2" name="value" keyPath="databaseFilename" id="urt-2N-iX8">
+                                <dictionary key="options">
+                                    <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                </dictionary>
+                            </binding>
+                            <outlet property="nextKeyView" destination="qjC-sa-FHd" id="Auu-Rd-bNn"/>
+                        </connections>
+                    </textField>
                 </subviews>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-x8E"/>
                 <outlet property="initialFirstResponder" destination="mdI-nK-ZPj" id="eXe-Yh-1uN"/>
             </connections>
-            <point key="canvasLocation" x="95" y="170"/>
+            <point key="canvasLocation" x="168" y="323.5"/>
         </window>
         <arrayController id="HU1-vS-NrY" userLabel="headerFilesArrayController">
             <connections>

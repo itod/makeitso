@@ -1,6 +1,6 @@
 //
-//  MISGenerator-Prefix.pch
-//  MISGenerator
+//  MakeItSo-Prefix.pch
+//  MakeItSo
 //
 //  Created by Todd Ditchendorf on 12/25/14.
 //  Copyright (c) 2014 Todd Ditchendorf. All rights reserved.
@@ -11,3 +11,8 @@
 #define TDAssertDatabaseThread() NSAssert1([NSThread isMainThread], @"%s should be called on the main thread only.", __PRETTY_FUNCTION__);
 #define TDAssert(expr) NSAssert((expr), @"assertion failure in %s.", __PRETTY_FUNCTION__);
 #define TDAssertToken(tok) NSAssert(([(tok) isKindOfClass:[PKToken class]]), @"%@ should be a token.", (tok));
+
+#define KEY_DB_FILENAME @"databaseFilename"
+#define KEY_DB_DIR_PATH @"databaseDirPath"
+#define KEY_OUTPUT_SRC_DIR_PATH @"outputSourceDirPath"
+#define KEY_HEADER_FILE_PATHS @"headerFilePaths"
