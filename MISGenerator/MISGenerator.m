@@ -22,7 +22,7 @@
 
 @implementation MISGenerator
 
-- (instancetype)initWithDelegate:(id<MISGeneratorDelegate>)d {
+- (instancetype)initWithDelegate:(id <MISGeneratorDelegate>)d {
     self = [super init];
     if (self) {
         self.delegate = d;
@@ -41,6 +41,7 @@
 - (void)execute:(NSDictionary *)args {
     TDAssert(_delegate);
     
+    //TDAssert(args[KEY_PROJ_NAME]);
     TDAssert(args[KEY_DB_FILENAME]);
     TDAssert(args[KEY_DB_DIR_PATH]);
     TDAssert(args[KEY_OUTPUT_SRC_DIR_PATH]);
@@ -51,31 +52,39 @@
         NSError *err = nil;
         NSArray *classes = [self classesForHeaderFiles:args error:&err];
         if (!classes) {
-            [self failWithMessage:[err localizedDescription]];
+            [self failWithError:err];
             return;
         }
         
         // generate source code
         err = nil;
         if (![self generateOutputSourceForClasses:classes args:args error:&err]) {
-            [self failWithMessage:[err localizedDescription]];
+            [self failWithError:err];
             return;
         }
         
+        // generate sql
+        err = nil;
+        if (![self generateSqlForClasses:classes args:args error:&err]) {
+            [self failWithError:err];
+            return;
+        }
+
         // create db
         err = nil;
         if (![self createDatabaseForClasses:classes args:args error:&err]) {
-            [self failWithMessage:[err localizedDescription]];
+            [self failWithError:err];
             return;
         }
     });
 }
 
 
-- (void)failWithMessage:(NSString *)msg {
+- (void)failWithError:(NSError *)err {
     TDAssertNotMainThread();
     TDPerformOnMainThread(^{
-        
+        TDAssert(_delegate);
+        [_delegate generator:self didFail:err];
     });
 }
 
@@ -227,6 +236,43 @@
         }
     }
     
+    return YES;
+}
+
+
+- (BOOL)generateSqlForClasses:(NSArray *)classes args:(NSDictionary *)args error:(NSError **)outErr {
+    TDAssertNotMainThread();
+    
+    NSString *templateFilePath = [[NSBundle mainBundle] pathForResource:@"sql" ofType:@"txt"];
+    
+    TDTemplateEngine *eng = [TDTemplateEngine templateEngine];
+    
+    // compile the template at a given file path to an AST
+    NSError *err = nil;
+    TDNode *sqlTree = [eng compileTemplateFile:templateFilePath encoding:NSUTF8StringEncoding error:&err];
+    if (!sqlTree) {
+        if (outErr) *outErr = err;
+        return NO;
+    }
+    
+    NSString *dbFilename = args[KEY_DB_FILENAME];
+    NSString *dbDirPath = args[KEY_DB_DIR_PATH];
+    
+    NSMutableDictionary *vars = [NSMutableDictionary dictionary];
+    vars[@"dbFilename"] = dbFilename;
+    vars[@"classes"] = classes;
+    
+    NSString *sqlFilePath = [[dbDirPath stringByAppendingPathComponent:dbFilename] stringByAppendingPathExtension:@"sql"];
+    
+    // provide a streaming output destination
+    NSOutputStream *sqlFileStream = [NSOutputStream outputStreamToFileAtPath:sqlFilePath append:NO];
+    
+    err = nil;
+    if (![eng renderTemplateTree:sqlTree withVariables:vars toStream:sqlFileStream error:&err]) {
+        if (outErr) *outErr = err;
+        return NO;
+    }
+
     return YES;
 }
 

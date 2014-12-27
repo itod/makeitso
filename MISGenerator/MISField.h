@@ -12,4 +12,7 @@
 @property (nonatomic, copy) NSString *sourceString;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *type;
+
+@property (nonatomic, assign) BOOL isPrimaryKey;
+@property (nonatomic, assign) BOOL isForeignKey;
 @end

@@ -60,6 +60,7 @@
 		D3F0F5561A4F0847000F6F62 /* MapperTemplate.m.txt in Resources */ = {isa = PBXBuildFile; fileRef = D3F0F5521A4F0847000F6F62 /* MapperTemplate.m.txt */; };
 		D3F0F5571A4F0847000F6F62 /* RepositoryTemplate.h.txt in Resources */ = {isa = PBXBuildFile; fileRef = D3F0F5531A4F0847000F6F62 /* RepositoryTemplate.h.txt */; };
 		D3F0F5581A4F0847000F6F62 /* RepositoryTemplate.m.txt in Resources */ = {isa = PBXBuildFile; fileRef = D3F0F5541A4F0847000F6F62 /* RepositoryTemplate.m.txt */; };
+		D3F0F55A1A4F1993000F6F62 /* sql.txt in Resources */ = {isa = PBXBuildFile; fileRef = D3F0F5591A4F1993000F6F62 /* sql.txt */; };
 		D3F4B0331A4C6ADE001ACB0E /* MakeItSo.h in Headers */ = {isa = PBXBuildFile; fileRef = D3F4B0321A4C6ADE001ACB0E /* MakeItSo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3F4B0391A4C6ADE001ACB0E /* MakeItSo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F4B02D1A4C6ADE001ACB0E /* MakeItSo.framework */; };
 		D3F4B0401A4C6ADE001ACB0E /* MakeItSoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F4B03F1A4C6ADE001ACB0E /* MakeItSoTests.m */; };
@@ -240,6 +241,7 @@
 		D3F0F5521A4F0847000F6F62 /* MapperTemplate.m.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MapperTemplate.m.txt; path = res/MapperTemplate.m.txt; sourceTree = SOURCE_ROOT; };
 		D3F0F5531A4F0847000F6F62 /* RepositoryTemplate.h.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = RepositoryTemplate.h.txt; path = res/RepositoryTemplate.h.txt; sourceTree = SOURCE_ROOT; };
 		D3F0F5541A4F0847000F6F62 /* RepositoryTemplate.m.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = RepositoryTemplate.m.txt; path = res/RepositoryTemplate.m.txt; sourceTree = SOURCE_ROOT; };
+		D3F0F5591A4F1993000F6F62 /* sql.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = sql.txt; path = res/sql.txt; sourceTree = SOURCE_ROOT; };
 		D3F4B02D1A4C6ADE001ACB0E /* MakeItSo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MakeItSo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3F4B0311A4C6ADE001ACB0E /* MakeItSo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MakeItSo-Info.plist"; sourceTree = "<group>"; };
 		D3F4B0321A4C6ADE001ACB0E /* MakeItSo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MakeItSo.h; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 				D3F0F5521A4F0847000F6F62 /* MapperTemplate.m.txt */,
 				D3F0F5531A4F0847000F6F62 /* RepositoryTemplate.h.txt */,
 				D3F0F5541A4F0847000F6F62 /* RepositoryTemplate.m.txt */,
+				D3F0F5591A4F1993000F6F62 /* sql.txt */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -726,6 +729,7 @@
 				D3F0F5551A4F0847000F6F62 /* MapperTemplate.h.txt in Resources */,
 				D3F0F5581A4F0847000F6F62 /* RepositoryTemplate.m.txt in Resources */,
 				D3F0F4EE1A4DC165000F6F62 /* Images.xcassets in Resources */,
+				D3F0F55A1A4F1993000F6F62 /* sql.txt in Resources */,
 				D3F0F5571A4F0847000F6F62 /* RepositoryTemplate.h.txt in Resources */,
 				D3F0F4F11A4DC165000F6F62 /* MainMenu.xib in Resources */,
 			);

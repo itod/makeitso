@@ -12,6 +12,7 @@
 #define TDAssert(expr) NSAssert((expr), @"assertion failure in %s.", __PRETTY_FUNCTION__);
 #define TDAssertToken(tok) NSAssert(([(tok) isKindOfClass:[PKToken class]]), @"%@ should be a token.", (tok));
 
+//#define KEY_PROJ_NAME @"projectName"
 #define KEY_DB_FILENAME @"databaseFilename"
 #define KEY_DB_DIR_PATH @"databaseDirPath"
 #define KEY_OUTPUT_SRC_DIR_PATH @"outputSourceDirPath"
