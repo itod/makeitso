@@ -19,6 +19,8 @@
 #import <fmdb/FMDatabase.h>
 #import <fmdb/FMResultSet.h>
 
+#define EXT_SQLITE @"sqlite"
+
 @interface MISGenerator ()
 
 @end
@@ -296,6 +298,10 @@
     
     NSString *dbFilename = args[KEY_DB_FILENAME];
     NSString *dbDirPath = args[KEY_DB_DIR_PATH];
+    
+    if (![[dbFilename pathExtension] isEqualToString:EXT_SQLITE]) {
+        dbFilename = [dbFilename stringByAppendingPathExtension:EXT_SQLITE];
+    }
     
     NSString *dbFilePath = [dbDirPath stringByAppendingPathComponent:dbFilename];
 
