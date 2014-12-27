@@ -64,6 +64,10 @@
 		D3F0F5651A4F354C000F6F62 /* MISGenerator-DefaultValues.plist in Resources */ = {isa = PBXBuildFile; fileRef = D3F0F5641A4F354C000F6F62 /* MISGenerator-DefaultValues.plist */; };
 		D3F0F5691A4F35DE000F6F62 /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F5671A4F35DE000F6F62 /* PreferencesWindowController.m */; };
 		D3F0F56A1A4F35DE000F6F62 /* PreferencesWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3F0F5681A4F35DE000F6F62 /* PreferencesWindowController.xib */; };
+		D3F0F5711A4F56D6000F6F62 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F5701A4F56D6000F6F62 /* Player.m */; };
+		D3F0F5721A4F5728000F6F62 /* MakeItSo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F4B02D1A4C6ADE001ACB0E /* MakeItSo.framework */; };
+		D3F0F5731A4F5728000F6F62 /* PEGKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F0F4B21A4CF721000F6F62 /* PEGKit.framework */; };
+		D3F0F5781A4F5778000F6F62 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F0F4D71A4D9EAF000F6F62 /* libsqlite3.dylib */; };
 		D3F4B0331A4C6ADE001ACB0E /* MakeItSo.h in Headers */ = {isa = PBXBuildFile; fileRef = D3F4B0321A4C6ADE001ACB0E /* MakeItSo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3F4B0391A4C6ADE001ACB0E /* MakeItSo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F4B02D1A4C6ADE001ACB0E /* MakeItSo.framework */; };
 		D3F4B0401A4C6ADE001ACB0E /* MakeItSoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F4B03F1A4C6ADE001ACB0E /* MakeItSoTests.m */; };
@@ -141,6 +145,20 @@
 			remoteInfo = TDTemplateEngine;
 		};
 		D3F0F5351A4DC5EE000F6F62 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D3F0F4A91A4CF721000F6F62 /* PEGKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D3F8A3DA175817DF00056188;
+			remoteInfo = PEGKit;
+		};
+		D3F0F5741A4F5734000F6F62 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D3F4B0241A4C6ADD001ACB0E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D3F4B02C1A4C6ADE001ACB0E;
+			remoteInfo = MakeItSo;
+		};
+		D3F0F5761A4F5734000F6F62 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D3F0F4A91A4CF721000F6F62 /* PEGKit.xcodeproj */;
 			proxyType = 1;
@@ -247,6 +265,8 @@
 		D3F0F5661A4F35DE000F6F62 /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesWindowController.h; sourceTree = "<group>"; };
 		D3F0F5671A4F35DE000F6F62 /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesWindowController.m; sourceTree = "<group>"; };
 		D3F0F5681A4F35DE000F6F62 /* PreferencesWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindowController.xib; sourceTree = "<group>"; };
+		D3F0F56F1A4F56D6000F6F62 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		D3F0F5701A4F56D6000F6F62 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		D3F4B02D1A4C6ADE001ACB0E /* MakeItSo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MakeItSo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3F4B0311A4C6ADE001ACB0E /* MakeItSo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MakeItSo-Info.plist"; sourceTree = "<group>"; };
 		D3F4B0321A4C6ADE001ACB0E /* MakeItSo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MakeItSo.h; sourceTree = "<group>"; };
@@ -271,6 +291,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3F0F5781A4F5778000F6F62 /* libsqlite3.dylib in Frameworks */,
+				D3F0F5721A4F5728000F6F62 /* MakeItSo.framework in Frameworks */,
+				D3F0F5731A4F5728000F6F62 /* PEGKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,6 +422,8 @@
 			children = (
 				D3F0F4FC1A4DC165000F6F62 /* MISGeneratorTests.m */,
 				D3F0F4FA1A4DC165000F6F62 /* Supporting Files */,
+				D3F0F56F1A4F56D6000F6F62 /* Player.h */,
+				D3F0F5701A4F56D6000F6F62 /* Player.m */,
 			);
 			path = MISGeneratorTests;
 			sourceTree = "<group>";
@@ -576,6 +601,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				D3F0F5751A4F5734000F6F62 /* PBXTargetDependency */,
+				D3F0F5771A4F5734000F6F62 /* PBXTargetDependency */,
 				D3F0F4F81A4DC165000F6F62 /* PBXTargetDependency */,
 			);
 			name = MISGeneratorTests;
@@ -796,6 +823,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3F0F5711A4F56D6000F6F62 /* Player.m in Sources */,
 				D3F0F4FD1A4DC165000F6F62 /* MISGeneratorTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -848,6 +876,16 @@
 			isa = PBXTargetDependency;
 			name = PEGKit;
 			targetProxy = D3F0F5351A4DC5EE000F6F62 /* PBXContainerItemProxy */;
+		};
+		D3F0F5751A4F5734000F6F62 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D3F4B02C1A4C6ADE001ACB0E /* MakeItSo */;
+			targetProxy = D3F0F5741A4F5734000F6F62 /* PBXContainerItemProxy */;
+		};
+		D3F0F5771A4F5734000F6F62 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PEGKit;
+			targetProxy = D3F0F5761A4F5734000F6F62 /* PBXContainerItemProxy */;
 		};
 		D3F4B03B1A4C6ADE001ACB0E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -919,11 +957,20 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
+				GCC_PREFIX_HEADER = "MISGenerator/MISGenerator-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/MakeItSoTests",
+					"$(PROJECT_DIR)",
+					"$(inherited)",
+					"/Volumes/Macintosh\\ HD/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					lib/FMDB/src,
+					lib,
+				);
 				INFOPLIST_FILE = MISGeneratorTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
@@ -942,7 +989,16 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
+				GCC_PREFIX_HEADER = "MISGenerator/MISGenerator-Prefix.pch";
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/MakeItSoTests",
+					"$(PROJECT_DIR)",
+					"$(inherited)",
+					"/Volumes/Macintosh\\ HD/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					lib/FMDB/src,
+					lib,
+				);
 				INFOPLIST_FILE = MISGeneratorTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;

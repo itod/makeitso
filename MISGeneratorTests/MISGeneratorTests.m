@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Todd Ditchendorf. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-#import <XCTest/XCTest.h>
+#import "MakeItSoTests.h"
+#import "MISGenerator.h"
 
 @interface MISGeneratorTests : XCTestCase
 
@@ -26,8 +26,17 @@
 }
 
 - (void)testExample {
-    // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
+    NSMutableDictionary *args = [NSMutableDictionary dictionary];
+    
+    args[KEY_DELETE_EXISTING] = @YES;
+    args[KEY_DB_FILENAME] = @"testdb";
+    args[KEY_DB_DIR_PATH] = NSTemporaryDirectory();
+    args[KEY_OUTPUT_SRC_DIR_PATH] = NSTemporaryDirectory();
+    args[KEY_HEADER_FILE_PATHS] = NSTemporaryDirectory();
+    
+    MISGenerator *gen = [[[MISGenerator alloc] initWithDelegate:nil] autorelease];
+    [gen execute:args];
+    
 }
 
 - (void)testPerformanceExample {
