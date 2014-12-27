@@ -1,9 +1,6 @@
 {%for class in classes %}
 create table {{class.name|lowercase}} 
-(
-{%for field in class.fields %}
-    {{field.name}} {{field.sqlType}}{%if field.isPrimaryKey %} primary key{%elif field.isForeignKey%} foreign key{%/if%}{%if !currentLoop.isLast %},{%/if%}
-{%/for%}
-)
-
+({%for field in class.fields %}
+    {{field.name}} {{field.sqlTypeString}}{%if field.isPrimaryKey %} primary key{%elif field.isForeignKey%} foreign key{%/if%}{%if !currentLoop.isLast %},{%/if%}{%/for%}
+);
 {%/for%}
