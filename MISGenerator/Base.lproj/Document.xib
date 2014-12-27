@@ -331,14 +331,14 @@ DQ
                         </connections>
                     </textField>
                     <button id="Pbf-Of-2Xj">
-                        <rect key="frame" x="300" y="448" width="107" height="20"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Delete if exists" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="Ncm-nF-x91">
+                        <rect key="frame" x="300" y="448" width="109" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Delete Existing" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="Ncm-nF-x91">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                         <connections>
-                            <binding destination="-2" name="value" keyPath="deleteIfExists" id="L9I-HJ-FM2"/>
+                            <binding destination="-2" name="value" keyPath="deleteExisting" id="fUh-Ai-txh"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" id="qjC-sa-FHd">

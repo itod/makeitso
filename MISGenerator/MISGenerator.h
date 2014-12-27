@@ -12,7 +12,7 @@
 
 @protocol MISGeneratorDelegate <NSObject>
 - (void)generator:(MISGenerator *)gen didFail:(NSError *)err;
-- (void)generator:(MISGenerator *)gen didSucceed:(NSString *)displayDirPath;
+- (void)generator:(MISGenerator *)gen didSucceed:(NSString *)msg databaseFilePath:(NSString *)dbFilePath;
 @end
 
 @interface MISGenerator : NSObject

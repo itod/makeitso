@@ -110,6 +110,7 @@
     
     NSMutableDictionary *plist = [NSMutableDictionary dictionary];
     
+    plist[KEY_DELETE_EXISTING] = @(_deleteExisting);
     if (_databaseFilename) plist[KEY_DB_FILENAME] = _databaseFilename;
     if (_databaseDirPath) plist[KEY_DB_DIR_PATH] = _databaseDirPath;
     if (_outputSourceDirPath) plist[KEY_OUTPUT_SRC_DIR_PATH] = _outputSourceDirPath;
@@ -125,6 +126,7 @@
     
     NSDictionary *plist = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     
+    self.deleteExisting = [plist[KEY_DELETE_EXISTING] boolValue];
     self.databaseFilename = plist[KEY_DB_FILENAME];
     self.databaseDirPath = plist[KEY_DB_DIR_PATH];
     self.outputSourceDirPath = plist[KEY_OUTPUT_SRC_DIR_PATH];
@@ -610,11 +612,14 @@
 }
 
 
-- (void)generator:(MISGenerator *)gen didSucceed:(NSString *)msg {
+- (void)generator:(MISGenerator *)gen didSucceed:(NSString *)msg databaseFilePath:(NSString *)dbFilePath {
     TDAssertMainThread();
+    TDAssert([dbFilePath length]);
     [self playSuccessSound];
     self.statusText = msg;
     self.busy = NO;
+    
+    [[NSWorkspace sharedWorkspace] selectFile:dbFilePath inFileViewerRootedAtPath:nil];
 }
 
 

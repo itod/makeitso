@@ -79,12 +79,13 @@
 
         // create db
         err = nil;
-        if (![self createDatabaseForSqlFilePath:sqlFilePath args:args error:&err]) {
+        NSString *dbFilePath = [self createDatabaseForSqlFilePath:sqlFilePath args:args error:&err];
+        if (![dbFilePath length]) {
             [self failWithError:err];
             return;
         }
         
-        [self succeedWithMessage:@"Yay!"];
+        [self succeedWithMessage:@"Yay!" databaseFilePath:dbFilePath];
     });
 }
 
@@ -98,11 +99,11 @@
 }
 
 
-- (void)succeedWithMessage:(NSString *)msg {
+- (void)succeedWithMessage:(NSString *)msg databaseFilePath:dbFilePath {
     TDAssertNotMainThread();
     TDPerformOnMainThread(^{
         TDAssert(_delegate);
-        [_delegate generator:self didSucceed:msg];
+        [_delegate generator:self didSucceed:msg databaseFilePath:dbFilePath];
     });
 }
 
@@ -287,7 +288,7 @@
 }
 
 
-- (BOOL)createDatabaseForSqlFilePath:(NSString *)sqlFilePath args:(NSDictionary *)args error:(NSError **)outErr {
+- (NSString *)createDatabaseForSqlFilePath:(NSString *)sqlFilePath args:(NSDictionary *)args error:(NSError **)outErr {
     TDAssertNotMainThread();
 
     NSError *err = nil;
@@ -332,7 +333,7 @@
     
     [db close];
     
-    return success;
+    return dbFilePath;
 }
 
 @end
