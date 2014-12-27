@@ -38,25 +38,25 @@
     
     switch (self.sqlType) {
         case MISFieldSqlTypeNull:
-            str = @"null";
+            str = @"NULL";
             break;
         case MISFieldSqlTypeText:
-            str = @"text";
+            str = @"TEXT";
             break;
         case MISFieldSqlTypeInteger:
-            str = @"integer";
+            str = @"INTEGER";
             break;
         case MISFieldSqlTypeReal:
-            str = @"real";
+            str = @"REAL";
             break;
         case MISFieldSqlTypeDate:
-            str = @"integer";
+            str = @"INTEGER";
             break;
         case MISFieldSqlTypeData:
-            str = @"blob";
+            str = @"BLOB";
             break;
         case MISFieldSqlTypeDomainObject:
-            str = @"integer";
+            str = @"INTEGER";
             break;
         default:
             TDAssert(0);
