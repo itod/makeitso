@@ -86,6 +86,10 @@
     TDAssert(_botHorizontalLine);
     _topHorizontalLine.color = borderColor;
     _botHorizontalLine.color = borderColor;
+    
+    if ([_headerFiles count]) {
+        [self hideDropTargetView];
+    }
 }
 
 
@@ -499,10 +503,19 @@
         [newFiles addObjectsFromArray:[self headerFilesFromHeaderFilePaths:filteredFilePaths]];
         self.headerFiles = newFiles;
         
-        // hide drop target, show table
-        [_dropTargetView setHidden:YES];
-        [_tableContainerView setHidden:NO];
+        [self hideDropTargetView];
     }
+}
+
+
+- (void)hideDropTargetView {
+    TDAssertMainThread();
+    TDAssert(_dropTargetView);
+    TDAssert(_tableContainerView);
+    
+    // hide drop target, show table
+    [_dropTargetView setHidden:YES];
+    [_tableContainerView setHidden:NO];
 }
 
 
