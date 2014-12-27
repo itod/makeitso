@@ -244,7 +244,7 @@
 - (IBAction)generate:(id)sender {
     TDAssertMainThread();
     
-    if (![_databaseFilename length] || [_databaseDirPath length] || ![_outputSourceDirPath length] || ![_headerFiles count]) {
+    if (![_databaseFilename length] || ![_databaseDirPath length] || ![_outputSourceDirPath length] || ![_headerFiles count]) {
         NSBeep();
         return;
     }
