@@ -96,6 +96,15 @@
     MISClass *cls = [[[MISClass alloc] init] autorelease];
     cls.name = tok.stringValue;
     
+    MISField *field = [[[MISField alloc] init] autorelease];
+    field.name = @"objectID";
+    field.type = @"NSNumber *";
+    field.sqlType = MISFieldSqlTypeInteger;
+    field.isPrimaryKey = YES;
+    field.sourceString = @"@property (nonatomic, copy) NSNumber *objectID";
+    
+    [cls addField:field];
+    
     self.currentClass = cls;
 }
 
@@ -171,7 +180,7 @@
     if ([_currentField.type hasPrefix:@"NSString"]) {
         sqlType = MISFieldSqlTypeString;
     } else if ([_currentField.type hasPrefix:@"NSNumber"]) {
-        sqlType = MISFieldSqlTypeNumber;
+        sqlType = MISFieldSqlTypeReal;
     } else if ([_currentField.type hasPrefix:@"NSDate"]) {
         sqlType = MISFieldSqlTypeDate;
     } else if ([_currentField.type hasPrefix:@"NSData"]) {

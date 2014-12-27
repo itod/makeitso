@@ -42,7 +42,10 @@
         case MISFieldSqlTypeString:
             str = @"string";
             break;
-        case MISFieldSqlTypeNumber:
+        case MISFieldSqlTypeInteger:
+            str = @"integer";
+            break;
+        case MISFieldSqlTypeReal:
             str = @"real";
             break;
         case MISFieldSqlTypeDate:

@@ -12,7 +12,8 @@ typedef NS_ENUM(NSInteger, MISFieldSqlType) {
     MISFieldSqlTypeInvalid = -1,
     MISFieldSqlTypeNull = 0,
     MISFieldSqlTypeString,
-    MISFieldSqlTypeNumber,
+    MISFieldSqlTypeInteger,
+    MISFieldSqlTypeReal,
     MISFieldSqlTypeDate,
     MISFieldSqlTypeData,
 };
