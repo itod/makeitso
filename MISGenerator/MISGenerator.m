@@ -16,6 +16,9 @@
 #import <TDAppKit/TDUtils.h>
 #import <TDTemplateEngine/TDTemplateEngine.h>
 
+#import <fmdb/FMDatabase.h>
+#import <fmdb/FMResultSet.h>
+
 @interface MISGenerator ()
 
 @end
@@ -65,14 +68,15 @@
         
         // generate sql
         err = nil;
-        if (![self generateSqlForClasses:classes args:args error:&err]) {
+        NSString *sqlFilePath = [self generateSqlForClasses:classes args:args error:&err];
+        if (![sqlFilePath length]) {
             [self failWithError:err];
             return;
         }
 
         // create db
         err = nil;
-        if (![self createDatabaseForClasses:classes args:args error:&err]) {
+        if (![self createDatabaseForSqlFilePath:sqlFilePath args:args error:&err]) {
             [self failWithError:err];
             return;
         }
@@ -240,7 +244,7 @@
 }
 
 
-- (BOOL)generateSqlForClasses:(NSArray *)classes args:(NSDictionary *)args error:(NSError **)outErr {
+- (NSString *)generateSqlForClasses:(NSArray *)classes args:(NSDictionary *)args error:(NSError **)outErr {
     TDAssertNotMainThread();
     
     NSString *templateFilePath = [[NSBundle mainBundle] pathForResource:@"sql" ofType:@"txt"];
@@ -270,17 +274,40 @@
     err = nil;
     if (![eng renderTemplateTree:sqlTree withVariables:vars toStream:sqlFileStream error:&err]) {
         if (outErr) *outErr = err;
-        return NO;
+        return nil;
     }
 
-    return YES;
+    return sqlFilePath;
 }
 
 
-- (BOOL)createDatabaseForClasses:(NSArray *)classes args:(NSDictionary *)args error:(NSError **)outErr {
+- (BOOL)createDatabaseForSqlFilePath:(NSString *)sqlFilePath args:(NSDictionary *)args error:(NSError **)outErr {
     TDAssertNotMainThread();
 
-    return YES;
+    NSError *err = nil;
+    NSString *sql = [NSString stringWithContentsOfFile:sqlFilePath encoding:NSUTF8StringEncoding error:&err];
+    if (![sql length]) {
+        if (outErr) *outErr = err;
+        return NO;
+    }
+    
+    NSString *dbFilename = args[KEY_DB_FILENAME];
+    NSString *dbDirPath = args[KEY_DB_DIR_PATH];
+    
+    NSString *dbFilePath = [dbDirPath stringByAppendingPathComponent:dbFilename];
+
+    FMDatabase *db = [FMDatabase databaseWithPath:dbFilePath];
+    [db open];
+    
+    BOOL success = [db executeStatements:sql];
+    
+    if (!success) {
+        if (outErr) *outErr = db.lastError;
+    }
+    
+    [db close];
+    
+    return success;
 }
 
 @end
