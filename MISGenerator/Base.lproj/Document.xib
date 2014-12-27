@@ -230,7 +230,7 @@ DQ
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="mdI-nK-ZPj">
-                        <rect key="frame" x="135" y="422" width="190" height="19"/>
+                        <rect key="frame" x="135" y="422" width="160" height="19"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="vCL-Cu-uPV">
                             <font key="font" metaFont="smallSystem"/>
@@ -261,7 +261,7 @@ DQ
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="GO2-Mc-QYh">
-                        <rect key="frame" x="135" y="394" width="190" height="19"/>
+                        <rect key="frame" x="135" y="394" width="160" height="19"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="fkK-g2-wMg">
                             <font key="font" metaFont="smallSystem"/>
@@ -282,25 +282,8 @@ DQ
                             <outlet property="nextKeyView" destination="wLd-Co-Rr6" id="W15-G1-yKN"/>
                         </connections>
                     </textField>
-                    <button verticalHuggingPriority="750" id="qjC-sa-FHd">
-                        <rect key="frame" x="328" y="416" width="75" height="28"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Browse…" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pKP-9C-7pM">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="smallSystem"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="browseForDatabase:" target="-2" id="Mz0-r9-Ks6"/>
-                            <binding destination="-2" name="enabled" keyPath="busy" id="MXe-cx-m8o">
-                                <dictionary key="options">
-                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                </dictionary>
-                            </binding>
-                            <outlet property="nextKeyView" destination="GO2-Mc-QYh" id="8KN-nt-uUd"/>
-                        </connections>
-                    </button>
                     <button verticalHuggingPriority="750" id="wLd-Co-Rr6">
-                        <rect key="frame" x="328" y="388" width="75" height="28"/>
+                        <rect key="frame" x="298" y="388" width="105" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Browse…" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3kj-m0-ktx">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -326,7 +309,7 @@ DQ
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="8Q7-Ds-ukR">
-                        <rect key="frame" x="135" y="449" width="190" height="19"/>
+                        <rect key="frame" x="135" y="449" width="160" height="19"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="V50-eo-zSf">
                             <font key="font" metaFont="smallSystem"/>
@@ -347,6 +330,34 @@ DQ
                             <outlet property="nextKeyView" destination="mdI-nK-ZPj" id="cKb-3f-1ol"/>
                         </connections>
                     </textField>
+                    <button id="Pbf-Of-2Xj">
+                        <rect key="frame" x="300" y="448" width="107" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Delete if exists" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="Ncm-nF-x91">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                        </buttonCell>
+                        <connections>
+                            <binding destination="-2" name="value" keyPath="deleteIfExists" id="L9I-HJ-FM2"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" id="qjC-sa-FHd">
+                        <rect key="frame" x="298" y="416" width="105" height="28"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Browse…" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pKP-9C-7pM">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="browseForDatabase:" target="-2" id="Mz0-r9-Ks6"/>
+                            <binding destination="-2" name="enabled" keyPath="busy" id="MXe-cx-m8o">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
+                            <outlet property="nextKeyView" destination="GO2-Mc-QYh" id="8KN-nt-uUd"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <connections>

@@ -30,6 +30,7 @@
 @property (nonatomic, retain) IBOutlet NSArrayController *headerFilesArrayController;
 @property (nonatomic, retain) NSMutableArray *headerFiles;
 
+@property (nonatomic, assign) BOOL deleteExisting;
 @property (nonatomic, copy) NSString *databaseFilename;
 @property (nonatomic, copy) NSString *databaseDirPath;
 @property (nonatomic, copy) NSString *outputSourceDirPath;

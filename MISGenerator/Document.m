@@ -253,6 +253,7 @@
     NSMutableDictionary *args = [NSMutableDictionary dictionaryWithCapacity:4];
     
     //args[KEY_PROJ_NAME] = [[[self window] title] stringByDeletingPathExtension];
+    args[KEY_DELETE_EXISTING] = @(_deleteExisting);
     args[KEY_DB_FILENAME] = [[_databaseFilename copy] autorelease];
     args[KEY_DB_DIR_PATH] = [[_databaseDirPath copy] autorelease];
     args[KEY_OUTPUT_SRC_DIR_PATH] = [[_outputSourceDirPath copy] autorelease];

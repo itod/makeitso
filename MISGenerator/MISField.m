@@ -32,29 +32,6 @@
 }
 
 
-- (MISFieldSqlType)sqlType {
-    if (MISFieldSqlTypeInvalid == _sqlType) {
-        MISFieldSqlType type = MISFieldSqlTypeInvalid;
-        
-        if ([self.type hasPrefix:@"NSString"]) {
-            type = MISFieldSqlTypeString;
-        } else if ([self.type hasPrefix:@"NSNumber"]) {
-            type = MISFieldSqlTypeNumber;
-        } else if ([self.type hasPrefix:@"NSDate"]) {
-            type = MISFieldSqlTypeDate;
-        } else if ([self.type hasPrefix:@"NSData"]) {
-            type = MISFieldSqlTypeData;
-        } else {
-            TDAssert(0);
-        }
-        
-        _sqlType = type;
-    }
-    TDAssert(MISFieldSqlTypeInvalid != _sqlType);
-    return _sqlType;
-}
-
-
 - (NSString *)sqlTypeString {
     NSString *str = nil;
     
@@ -66,10 +43,10 @@
             str = @"string";
             break;
         case MISFieldSqlTypeNumber:
-            str = @"int";
+            str = @"real";
             break;
         case MISFieldSqlTypeDate:
-            str = @"date";
+            str = @"integer";
             break;
         case MISFieldSqlTypeData:
             str = @"blob";

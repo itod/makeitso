@@ -47,6 +47,7 @@
     TDAssert(_delegate);
     
     //TDAssert(args[KEY_PROJ_NAME]);
+    TDAssert(args[KEY_DELETE_EXISTING]);
     TDAssert(args[KEY_DB_FILENAME]);
     TDAssert(args[KEY_DB_DIR_PATH]);
     TDAssert(args[KEY_OUTPUT_SRC_DIR_PATH]);
@@ -304,6 +305,21 @@
     }
     
     NSString *dbFilePath = [dbDirPath stringByAppendingPathComponent:dbFilename];
+    
+    if ([args[KEY_DELETE_EXISTING] boolValue]) {
+        NSFileManager *mgr = [NSFileManager defaultManager];
+        
+        if ([mgr fileExistsAtPath:dbFilePath]) {
+
+            NSError *err = nil;
+            NSURL *furl = [NSURL fileURLWithPath:dbFilePath];
+
+            if (![mgr trashItemAtURL:furl resultingItemURL:nil error:&err]) {
+                if (outErr) *outErr = err;
+                return NO;
+            }
+        }
+    }
 
     FMDatabase *db = [FMDatabase databaseWithPath:dbFilePath];
     [db open];

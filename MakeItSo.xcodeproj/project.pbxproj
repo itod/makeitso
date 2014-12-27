@@ -49,7 +49,6 @@
 		D3F0F53B1A4DC611000F6F62 /* TDTemplateEngine.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = D3F0F5301A4DC5E4000F6F62 /* TDTemplateEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D3F0F53C1A4DC611000F6F62 /* PEGKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = D3F0F4B21A4CF721000F6F62 /* PEGKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D3F0F53D1A4DC612000F6F62 /* MakeItSo.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = D3F4B02D1A4C6ADE001ACB0E /* MakeItSo.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D3F0F5441A4DC68E000F6F62 /* Assembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F53F1A4DC68D000F6F62 /* Assembler.m */; };
 		D3F0F5451A4DC68E000F6F62 /* ObjCAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F5411A4DC68D000F6F62 /* ObjCAssembler.m */; };
 		D3F0F5461A4DC68E000F6F62 /* ObjCParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F5431A4DC68E000F6F62 /* ObjCParser.m */; };
 		D3F0F54B1A4DC6AE000F6F62 /* MISField.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F5481A4DC6AE000F6F62 /* MISField.m */; };
@@ -230,8 +229,6 @@
 		D3F0F5261A4DC491000F6F62 /* TDHintButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDHintButton.h; path = lib/TDAppKit/TDHintButton.h; sourceTree = SOURCE_ROOT; };
 		D3F0F5271A4DC491000F6F62 /* TDHintButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDHintButton.m; path = lib/TDAppKit/TDHintButton.m; sourceTree = SOURCE_ROOT; };
 		D3F0F52A1A4DC5E4000F6F62 /* TDTemplateEngine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TDTemplateEngine.xcodeproj; path = lib/TDTemplateEngine/TDTemplateEngine.xcodeproj; sourceTree = "<group>"; };
-		D3F0F53E1A4DC68D000F6F62 /* Assembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Assembler.h; sourceTree = "<group>"; };
-		D3F0F53F1A4DC68D000F6F62 /* Assembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Assembler.m; sourceTree = "<group>"; };
 		D3F0F5401A4DC68D000F6F62 /* ObjCAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjCAssembler.h; sourceTree = "<group>"; };
 		D3F0F5411A4DC68D000F6F62 /* ObjCAssembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjCAssembler.m; sourceTree = "<group>"; };
 		D3F0F5421A4DC68D000F6F62 /* ObjCParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjCParser.h; sourceTree = "<group>"; };
@@ -358,6 +355,7 @@
 		D3F0F4DF1A4DC165000F6F62 /* MISGenerator */ = {
 			isa = PBXGroup;
 			children = (
+				D3F0F4EF1A4DC165000F6F62 /* MainMenu.xib */,
 				D3F0F4E21A4DC165000F6F62 /* AppDelegate.h */,
 				D3F0F4E31A4DC165000F6F62 /* AppDelegate.m */,
 				D3F0F4E71A4DC165000F6F62 /* Document.h */,
@@ -370,12 +368,11 @@
 				D3F0F5661A4F35DE000F6F62 /* PreferencesWindowController.h */,
 				D3F0F5671A4F35DE000F6F62 /* PreferencesWindowController.m */,
 				D3F0F5681A4F35DE000F6F62 /* PreferencesWindowController.xib */,
-				D3F0F4ED1A4DC165000F6F62 /* Images.xcassets */,
-				D3F0F4EF1A4DC165000F6F62 /* MainMenu.xib */,
 				D3F0F5041A4DC1E6000F6F62 /* MISGenerator.h */,
 				D3F0F5051A4DC1E6000F6F62 /* MISGenerator.m */,
 				D3F0F54D1A4DC6B2000F6F62 /* Parsing */,
 				D3F0F5291A4DC49D000F6F62 /* TDAppKit */,
+				D3F0F4ED1A4DC165000F6F62 /* Images.xcassets */,
 				D3F0F4E01A4DC165000F6F62 /* Supporting Files */,
 			);
 			path = MISGenerator;
@@ -443,8 +440,6 @@
 		D3F0F54D1A4DC6B2000F6F62 /* Parsing */ = {
 			isa = PBXGroup;
 			children = (
-				D3F0F53E1A4DC68D000F6F62 /* Assembler.h */,
-				D3F0F53F1A4DC68D000F6F62 /* Assembler.m */,
 				D3F0F5401A4DC68D000F6F62 /* ObjCAssembler.h */,
 				D3F0F5411A4DC68D000F6F62 /* ObjCAssembler.m */,
 				D3F0F5421A4DC68D000F6F62 /* ObjCParser.h */,
@@ -779,7 +774,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3F0F54C1A4DC6AE000F6F62 /* MISClass.m in Sources */,
-				D3F0F5441A4DC68E000F6F62 /* Assembler.m in Sources */,
 				D3F0F4E91A4DC165000F6F62 /* Document.m in Sources */,
 				D3F0F51C1A4DC3E5000F6F62 /* TDUtils.m in Sources */,
 				D3F0F5231A4DC3EB000F6F62 /* TDColorView.m in Sources */,

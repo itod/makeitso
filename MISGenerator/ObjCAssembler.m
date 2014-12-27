@@ -26,10 +26,9 @@
 @property (nonatomic, retain) PKToken *methodTok;
 @property (nonatomic, retain) PKToken *paramTok;
 
+@property (nonatomic, retain) MISClass *currentClass;
 @property (nonatomic, retain) MISField *currentField;
 @property (nonatomic, retain) NSMutableString *currentNameString;
-
-@property (nonatomic, retain) NSMutableArray *classes;
 @end
 
 @implementation ObjCAssembler
@@ -37,6 +36,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
+        self.classes = [NSMutableArray array];
         self.atTok = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"@" doubleValue:0.0];
         self.minusTok = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"-" doubleValue:0.0];
         self.plusTok = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"+" doubleValue:0.0];
@@ -55,6 +55,7 @@
 
 
 - (void)dealloc {
+    self.classes = nil;
     self.atTok = nil;
     self.minusTok = nil;
     self.plusTok = nil;
@@ -66,14 +67,11 @@
     self.returnTok = nil;
     self.methodTok = nil;
     self.paramTok = nil;
+    self.currentClass = nil;
     self.currentField = nil;
     self.currentNameString = nil;
     [super dealloc];
 }
-
-
-#pragma mark -
-#pragma mark PKParserDelegate
 
 
 #pragma mark -
@@ -82,12 +80,10 @@
 - (void)parser:(PKParser *)p didMatchClassDefn:(PKAssembly *)a {
     //NSLog(@"%s, %@", __PRETTY_FUNCTION__, a);
     
-    MISClass *cls = a.target;
-    TDAssert([cls isKindOfClass:[MISClass class]]);
-    
-    TDAssert(self.classes);
-    [self.classes addObject:cls];
-    
+    TDAssert(_classes);
+    TDAssert(_currentClass);
+    [_classes addObject:_currentClass];
+    self.currentClass = nil;
 }
 
 
@@ -100,7 +96,7 @@
     MISClass *cls = [[[MISClass alloc] init] autorelease];
     cls.name = tok.stringValue;
     
-    a.target = cls;
+    self.currentClass = cls;
 }
 
 
@@ -130,10 +126,9 @@
     attr.type = [typeBuf stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     attr.sourceString = [srcBuf stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
-    MISClass *cls = a.target;
-    TDAssert([cls isKindOfClass:[MISClass class]]);
+    TDAssert(_currentClass);
     
-    [cls addField:attr];
+    [_currentClass addField:attr];
 }
 
 
@@ -170,14 +165,31 @@
     }
     
     _currentField.type = [typeBuf stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    MISFieldSqlType sqlType = MISFieldSqlTypeInvalid;
+    
+    if ([_currentField.type hasPrefix:@"NSString"]) {
+        sqlType = MISFieldSqlTypeString;
+    } else if ([_currentField.type hasPrefix:@"NSNumber"]) {
+        sqlType = MISFieldSqlTypeNumber;
+    } else if ([_currentField.type hasPrefix:@"NSDate"]) {
+        sqlType = MISFieldSqlTypeDate;
+    } else if ([_currentField.type hasPrefix:@"NSData"]) {
+        sqlType = MISFieldSqlTypeData;
+    } else if ([_currentField.type hasPrefix:@"NSNull"]) {
+        sqlType = MISFieldSqlTypeNull;
+    } else {
+        [NSException raise:@"A property in class «%@» has a type that is unsupported by MakeItSo: «%@»." format:_currentClass.name, _currentField.type];
+    }
+    
+    _currentField.sqlType = sqlType;
 }
 
 
 - (void)parser:(PKParser *)p didMatchNonBlockProperty:(PKAssembly *)a {
     //NSLog(@"%s, %@", __PRETTY_FUNCTION__, a);
     
-    MISClass *cls = a.target;
-    TDAssert([cls isKindOfClass:[MISClass class]]);
+    TDAssert(_currentClass);
     
     NSMutableArray *suffixToks = [[[a objectsAbove:_closeParenTok] mutableCopy] autorelease];
 
@@ -205,7 +217,7 @@
     _currentField.sourceString = srcBuf;
     _currentField.name = name;
     
-    [cls addField:_currentField];
+    [_currentClass addField:_currentField];
 }
 
 
@@ -277,9 +289,8 @@
 
     _currentField.sourceString = srcBuf;
 
-    MISClass *cls = a.target;
-    TDAssert([cls isKindOfClass:[MISClass class]]);
-    [cls addField:_currentField];
+    TDAssert(_currentClass);
+    [_currentClass addField:_currentField];
     
     self.currentField = nil;
 }

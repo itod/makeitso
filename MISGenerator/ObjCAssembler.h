@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Todd Ditchendorf. All rights reserved.
 //
 
-#import "Assembler.h"
+#import <Foundation/Foundation.h>
 
-@interface ObjCAssembler : Assembler
-
+@interface ObjCAssembler : NSObject
+@property (nonatomic, retain) NSMutableArray *classes;
 @end
