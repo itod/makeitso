@@ -17,8 +17,7 @@
 #import <TDTemplateEngine/TDTemplateEngine.h>
 
 @interface MISGenerator ()
-@property (nonatomic, retain) PKParser *parser;
-@property (nonatomic, retain) Assembler *assembler;
+
 @end
 
 @implementation MISGenerator
@@ -35,9 +34,6 @@
 - (void)dealloc {
     self.delegate = nil;
     
-    self.parser = nil;
-    self.assembler = nil;
-
     [super dealloc];
 }
 
@@ -51,9 +47,27 @@
     TDAssert(args[KEY_HEADER_FILE_PATHS]);
     
     TDPerformOnBackgroundThread(^{
-        NSArray *classes = [self classesForHeaderFiles:args];
-        [self generateOutputSourceForClasses:classes args:args];
+        // parse source code
+        NSError *err = nil;
+        NSArray *classes = [self classesForHeaderFiles:args error:&err];
+        if (!classes) {
+            [self failWithMessage:[err localizedDescription]];
+            return;
+        }
         
+        // generate source code
+        err = nil;
+        if (![self generateOutputSourceForClasses:classes args:args error:&err]) {
+            [self failWithMessage:[err localizedDescription]];
+            return;
+        }
+        
+        // create db
+        err = nil;
+        if (![self createDatabaseForClasses:classes args:args error:&err]) {
+            [self failWithMessage:[err localizedDescription]];
+            return;
+        }
     });
 }
 
@@ -74,7 +88,7 @@
 }
 
 
-- (NSArray *)classesForHeaderFiles:(NSDictionary *)args {
+- (NSArray *)classesForHeaderFiles:(NSDictionary *)args error:(NSError **)outErr {
     TDAssertNotMainThread();
     NSMutableArray *classes = [NSMutableArray array];
     
@@ -89,12 +103,26 @@
         NSError *err = nil;
         NSString *source = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&err];
         if (!source) {
-            if (err) NSLog(@"%@", err);
-            continue;
+            if (outErr) *outErr = err;
+            return nil;
         }
         
+        ObjCAssembler *assembler = [[ObjCAssembler alloc] init]; // +1
+        ObjCParser *parser = [[ObjCParser alloc] initWithDelegate:assembler]; // +1
+        
         err = nil;
-        NSArray *newClasses = [self parseSourceCode:source error:&err];
+        [[[parser parseString:source error:&err] retain] autorelease];
+
+        NSArray *newClasses = [[assembler.classes copy] autorelease];
+        
+        [assembler release]; // -1
+        [parser release]; // -1
+        
+        if (!newClasses) {
+            if (outErr) *outErr = err;
+            return nil;
+        }
+        
         [classes addObjectsFromArray:newClasses];
     }
     
@@ -102,7 +130,7 @@
 }
 
 
-- (void)generateOutputSourceForClasses:(NSArray *)classes args:(NSDictionary *)args {
+- (BOOL)generateOutputSourceForClasses:(NSArray *)classes args:(NSDictionary *)args error:(NSError **)outErr {
     TDAssertNotMainThread();
     
     NSString *mapHeaderPath = [[NSBundle mainBundle] pathForResource:@"MapperTemplate.h" ofType:@"txt"];
@@ -117,12 +145,31 @@
     
     err = nil;
     TDNode *mapHeaderTree = [eng compileTemplateFile:mapHeaderPath encoding:NSUTF8StringEncoding error:&err];
+    if (!mapHeaderTree) {
+        if (outErr) *outErr = err;
+        return NO;
+    }
     err = nil;
+    
     TDNode *mapImplTree = [eng compileTemplateFile:mapImplPath encoding:NSUTF8StringEncoding error:&err];
+    if (!mapImplTree) {
+        if (outErr) *outErr = err;
+        return NO;
+    }
+
     err = nil;
     TDNode *repoHeaderTree = [eng compileTemplateFile:repoHeaderPath encoding:NSUTF8StringEncoding error:&err];
+    if (!repoHeaderTree) {
+        if (outErr) *outErr = err;
+        return NO;
+    }
+    
     err = nil;
     TDNode *repoImplTree = [eng compileTemplateFile:repoImplPath encoding:NSUTF8StringEncoding error:&err];
+    if (!repoImplTree) {
+        if (outErr) *outErr = err;
+        return NO;
+    }
     
     NSString *outputDir = args[KEY_OUTPUT_SRC_DIR_PATH];
     
@@ -134,7 +181,7 @@
         NSUInteger i = 0;
         NSUInteger c = [fields count];
         for (MISField *field in fields) {
-            NSString *fmt = c-1 == i ? @"%@ " : @"%@,";
+            NSString *fmt = c-1 == i ? @"%@" : @"%@, ";
             [colList appendFormat:fmt, field.name];
             ++i;
         }
@@ -145,9 +192,9 @@
         vars[@"columnList"] = [[colList mutableCopy] autorelease];
         
         NSString *mapHeaderPath = [outputDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%@Mapper.h", cls.name]];
-        NSString *mapImplPath = [outputDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%@Mapper.h", cls.name]];
+        NSString *mapImplPath = [outputDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%@Mapper.m", cls.name]];
         NSString *repoHeaderPath = [outputDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%@Repository.h", cls.name]];
-        NSString *repoImplPath = [outputDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%@Repository.h", cls.name]];
+        NSString *repoImplPath = [outputDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%@Repository.m", cls.name]];
         
         // provide a streaming output destination
         NSOutputStream *mapHeaderStream = [NSOutputStream outputStreamToFileAtPath:mapHeaderPath append:NO];
@@ -156,42 +203,38 @@
         NSOutputStream *repoImplStream = [NSOutputStream outputStreamToFileAtPath:repoImplPath append:NO];
         
         err = nil;
-        [eng renderTemplateTree:mapHeaderTree withVariables:vars toStream:mapHeaderStream error:&err];
-        err = nil;
-        [eng renderTemplateTree:mapImplTree withVariables:vars toStream:mapImplStream error:&err];
-        err = nil;
-        [eng renderTemplateTree:repoHeaderTree withVariables:vars toStream:repoHeaderStream error:&err];
-        err = nil;
-        [eng renderTemplateTree:repoImplTree withVariables:vars toStream:repoImplStream error:&err];
-        
-    }
-
-}
-
-- (NSArray *)parseSourceCode:(NSString *)source error:(NSError **)outErr {
-    
-    self.assembler = [[[ObjCAssembler alloc] init] autorelease];
-    self.parser = [[[ObjCParser alloc] initWithDelegate:_assembler] autorelease];
-    
-    NSError *err = nil;
-    id res = [[[_parser parseString:source error:&err] retain] autorelease];
-    
-    NSArray *classes = [[_assembler.classes copy] autorelease];
-    
-    self.parser = nil;
-    self.assembler = nil;
-    
-    if (!res) {
-        if (err) {
-            NSLog(@"%@", err);
+        if (![eng renderTemplateTree:mapHeaderTree withVariables:vars toStream:mapHeaderStream error:&err]) {
             if (outErr) *outErr = err;
-            return nil;
+            return NO;
+        }
+        
+        err = nil;
+        if (![eng renderTemplateTree:mapImplTree withVariables:vars toStream:mapImplStream error:&err]) {
+            if (outErr) *outErr = err;
+            return NO;
+        }
+        
+        err = nil;
+        if (![eng renderTemplateTree:repoHeaderTree withVariables:vars toStream:repoHeaderStream error:&err]) {
+            if (outErr) *outErr = err;
+            return NO;
+        }
+        
+        err = nil;
+        if (![eng renderTemplateTree:repoImplTree withVariables:vars toStream:repoImplStream error:&err]) {
+            if (outErr) *outErr = err;
+            return NO;
         }
     }
     
-    return classes;
+    return YES;
 }
 
 
+- (BOOL)createDatabaseForClasses:(NSArray *)classes args:(NSDictionary *)args error:(NSError **)outErr {
+    TDAssertNotMainThread();
+
+    return YES;
+}
 
 @end

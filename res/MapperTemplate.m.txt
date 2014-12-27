@@ -6,10 +6,9 @@
     self = [super init];
     if (self) {
         self.tableName = {{tableName}};
-        self.columnList = {{columnList}};
-        self.columnNames = @[
-{%for prop in class.properties%}
-            @"{{prop.name}}",{%/for%}
+        self.columnList = @"{{columnList}}";
+        self.columnNames = @[{%for field in class.fields%}
+            @"{{field.name}}",{%/for%}
         ];
     }
     return self;
