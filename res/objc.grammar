@@ -1,0 +1,143 @@
+@before {
+    PKTokenizer *t = self.tokenizer;
+    [t.symbolState add:@"||"];
+    [t.symbolState add:@"&&"];
+    [t.symbolState add:@"!="];
+    [t.symbolState add:@"!=="];
+    [t.symbolState add:@"=="];
+    [t.symbolState add:@"==="];
+    [t.symbolState add:@"<="];
+    [t.symbolState add:@">="];
+    [t.symbolState add:@"++"];
+    [t.symbolState add:@"--"];
+    [t.symbolState add:@"+="];
+    [t.symbolState add:@"-="];
+    [t.symbolState add:@"*="];
+    [t.symbolState add:@"/="];
+    [t.symbolState add:@"%="];
+    [t.symbolState add:@"<<"];
+    [t.symbolState add:@">>"];
+    [t.symbolState add:@">>>"];
+    [t.symbolState add:@"<<="];
+    [t.symbolState add:@">>="];
+    [t.symbolState add:@">>>="];
+    [t.symbolState add:@"&="];
+    [t.symbolState add:@"^="];
+    [t.symbolState add:@"|="];
+
+    self.silentlyConsumesWhitespace = YES;
+    t.whitespaceState.reportsWhitespaceTokens = YES;
+    self.assembly.preservesWhitespaceTokens = YES;
+
+    [t setTokenizerState:t.wordState from:'_' to:'_'];
+    [t.wordState setWordChars:YES from:'_' to:'_'];
+
+    // setup comments
+    t.commentState.reportsCommentTokens = NO;
+    [t setTokenizerState:t.commentState from:'/' to:'/'];
+    [t.commentState addSingleLineStartMarker:@"//"];
+    [t.commentState addMultiLineStartMarker:@"/*" endMarker:@"*/"];
+
+    // preprocessor directives
+    [t setTokenizerState:t.delimitState from:'#' to:'#'];
+    [t.delimitState addStartMarker:@"#" endMarker:nil allowedCharacterSet:[[NSCharacterSet newlineCharacterSet] invertedSet]];
+    
+//    while ([self predicts:TOKEN_KIND_BUILTIN_ANY, 0])
+}
+
+file = (classDefn | p | typedef | enum | extern | static | const | protocolDecl | classDecl)*;
+
+p = %{'#', ''}!;
+typedef = 'typedef' ~semi* semi;
+enum = 'enum' ~semi* semi;
+extern = 'extern' ~semi* semi;
+static = 'static' ~semi* semi;
+const = 'const' ~semi* semi;
+protocolDecl = at 'protocol' identifier semi;
+classDecl = at 'class' identifier semi;
+
+classDefn = classHeader classBody classFooter;
+
+classHeader = atInterface classDefnName colon superclassName protocolList?;
+classFooter = at 'end';
+
+atInterface = at 'interface';
+
+classDefnName = className;
+className = identifier;
+superclassName = identifier;
+
+protocolList = '<' className (',' className)* '>';
+
+classBody = ivarList? (property | method | p)*;
+
+// TYPES
+type
+    = anonBlockType
+    | nonBlockType
+    ;
+    
+nonBlockType 
+    = unionType
+    | structType
+    | pointerType
+    | primitiveType
+    ;
+
+namedBlockType = nonBlockType '(' '^' blockName ')' '(' (funcParam (',' funcParam)*)? ')';
+anonBlockType = nonBlockType '(' '^' ')' '(' (funcParam (',' funcParam)*)? ')';
+blockName = identifier;
+
+funcParam = namedBlockType | anonBlockType | type identifier?;
+pointerType = identifier '*';
+primitiveType = identifier;
+structType = 'struct' identifier;
+unionType = 'union' identifier;
+
+// IVARS
+ivarList = '{' ivar* '}';
+ivar = arrayIvar | scalarIvar;
+
+arrayIvar = type identifier ('[' size? ']')+ semi;
+size = Number | identifier;
+
+scalarIvar = ibOutlet? type identifier semi;
+
+// PROPERTIES
+property = nonBlockProperty | blockProperty;
+
+nonBlockProperty = at 'property' '(' propertySpecList ')' ibOutlet? nonBlockPropertyType propertyName semi;
+nonBlockPropertyType = type;
+
+blockProperty = at 'property' '(' propertySpecList ')' blockPropertyType semi;
+blockPropertyType = nonBlockType '(' '^' blockPropertyName ')' '(' (funcParam (',' funcParam)*)? ')';
+blockPropertyName = blockName;
+
+propertySpecList = propertySpec (',' propertySpec)*;
+propertySpec = (atomicity | strength | magnitiude | getter | setter)+;
+strength = 'strong' | 'weak' | 'copy' | 'retain' | 'assign';
+atomicity = 'nonatomic';
+magnitiude = 'readonly' | 'readwrite';
+getter = 'getter' '=' identifier;
+setter = 'setter' '=' identifier colon;
+propertyName = identifier;
+
+// METHODS
+method = methodSpec methodReturnType (methodNamePart (methodColon methodParam)?)+ semi;
+methodSpec = '-' | '+';
+methodNamePart = identifier;
+methodColon = ':';
+
+methodReturnType = parenType;
+
+methodParam = methodParamType methodParamName;
+methodParamType = parenType;
+methodParamName = identifier;
+
+parenType = '(' type ')';
+
+identifier = Word;
+at = '@';
+colon = ':';
+semi = ';'!;
+ibOutlet = 'IBOutlet'!;
