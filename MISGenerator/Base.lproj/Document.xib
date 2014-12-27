@@ -41,6 +41,11 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="browseForHeaders:" target="-2" id="ecb-6G-z5g"/>
+                                    <binding destination="-2" name="enabled" keyPath="busy" id="P5A-jU-nHr">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
                                     <outlet property="nextKeyView" destination="iGR-O8-Zp5" id="8Ti-eW-UDX"/>
                                 </connections>
                             </button>
@@ -53,9 +58,38 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="remove:" target="HU1-vS-NrY" id="kQc-Gh-gu9"/>
+                                    <binding destination="-2" name="enabled" keyPath="busy" id="dZA-r0-n1E">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
                                     <outlet property="nextKeyView" destination="AZK-yv-NHh" id="uUe-Om-AfD"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="vM5-13-Pcg">
+                                <rect key="frame" x="64" y="14" width="205" height="14"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="RSY-YI-Wj1">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="statusText" id="Kg9-Ap-gaM">
+                                        <dictionary key="options">
+                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </textField>
+                            <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" id="h6c-nB-3Fm">
+                                <rect key="frame" x="289" y="14" width="16" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <binding destination="-2" name="animate" keyPath="busy" id="op8-Yi-pDI"/>
+                                    <binding destination="-2" name="hidden" keyPath="busy" id="VvP-6a-c15"/>
+                                </connections>
+                            </progressIndicator>
                             <scrollView focusRingType="none" borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="PPj-yt-Skw" userLabel="Bordered Scroll View - Table View">
                                 <rect key="frame" x="0.0" y="40" width="418" height="331"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -130,6 +164,11 @@
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
+                                                <binding destination="-2" name="enabled" keyPath="busy" id="Q27-xj-hmf">
+                                                    <dictionary key="options">
+                                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                    </dictionary>
+                                                </binding>
                                                 <outlet property="dataSource" destination="-2" id="why-dW-Ecn"/>
                                                 <outlet property="delegate" destination="-2" id="8KT-l7-FqP"/>
                                                 <outlet property="nextKeyView" destination="6C2-TD-X44" id="6Tb-32-mrc"/>
@@ -167,6 +206,11 @@ DQ
                                 </buttonCell>
                                 <connections>
                                     <action selector="generate:" target="-2" id="0lM-Ic-UL5"/>
+                                    <binding destination="-2" name="enabled" keyPath="busy" id="8XW-Lp-U5Z">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
                                     <outlet property="nextKeyView" destination="8Q7-Ds-ukR" id="1cf-hI-IIz"/>
                                 </connections>
                             </button>
@@ -199,6 +243,11 @@ DQ
                                     <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                 </dictionary>
                             </binding>
+                            <binding destination="-2" name="enabled" keyPath="busy" id="YeB-TD-q1F">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
                             <outlet property="nextKeyView" destination="qjC-sa-FHd" id="Tpf-jp-Kvk"/>
                         </connections>
                     </textField>
@@ -220,6 +269,11 @@ DQ
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
+                            <binding destination="-2" name="enabled" keyPath="busy" id="cpP-XQ-9k4">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
                             <binding destination="-2" name="value" keyPath="outputSourceDirPath" id="Qci-ue-dIG">
                                 <dictionary key="options">
                                     <bool key="NSContinuouslyUpdatesValue" value="YES"/>
@@ -237,6 +291,11 @@ DQ
                         </buttonCell>
                         <connections>
                             <action selector="browseForDatabase:" target="-2" id="Mz0-r9-Ks6"/>
+                            <binding destination="-2" name="enabled" keyPath="busy" id="MXe-cx-m8o">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
                             <outlet property="nextKeyView" destination="GO2-Mc-QYh" id="8KN-nt-uUd"/>
                         </connections>
                     </button>
@@ -249,6 +308,11 @@ DQ
                         </buttonCell>
                         <connections>
                             <action selector="browseForOutputSource:" target="-2" id="Ewk-Lm-tZa"/>
+                            <binding destination="-2" name="enabled" keyPath="busy" id="PNR-hH-jkC">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
                             <outlet property="nextKeyView" destination="Xk8-rW-3dB" id="Unt-yf-EVs"/>
                         </connections>
                     </button>
@@ -273,6 +337,11 @@ DQ
                             <binding destination="-2" name="value" keyPath="databaseFilename" id="urt-2N-iX8">
                                 <dictionary key="options">
                                     <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                </dictionary>
+                            </binding>
+                            <binding destination="-2" name="enabled" keyPath="busy" id="t9I-Fc-13l">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
                                 </dictionary>
                             </binding>
                             <outlet property="nextKeyView" destination="mdI-nK-ZPj" id="cKb-3f-1ol"/>

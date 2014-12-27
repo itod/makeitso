@@ -80,6 +80,8 @@
             [self failWithError:err];
             return;
         }
+        
+        [self succeedWithMessage:@"Yay!"];
     });
 }
 
@@ -96,7 +98,8 @@
 - (void)succeedWithMessage:(NSString *)msg {
     TDAssertNotMainThread();
     TDPerformOnMainThread(^{
-        
+        TDAssert(_delegate);
+        [_delegate generator:self didSucceed:msg];
     });
 }
 

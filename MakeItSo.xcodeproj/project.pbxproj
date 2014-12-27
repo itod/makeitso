@@ -25,8 +25,8 @@
 		D3F0F4C31A4CF751000F6F62 /* PEGKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F0F4B21A4CF721000F6F62 /* PEGKit.framework */; };
 		D3F0F4C71A4CF794000F6F62 /* MISQueryAssembler.h in Headers */ = {isa = PBXBuildFile; fileRef = D3F0F4C51A4CF794000F6F62 /* MISQueryAssembler.h */; };
 		D3F0F4C81A4CF794000F6F62 /* MISQueryAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F4C61A4CF794000F6F62 /* MISQueryAssembler.m */; };
-		D3F0F4D31A4D9E97000F6F62 /* FMDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = D3F0F4CF1A4D9E97000F6F62 /* FMDatabase.h */; };
-		D3F0F4D51A4D9E97000F6F62 /* FMResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = D3F0F4D11A4D9E97000F6F62 /* FMResultSet.h */; };
+		D3F0F4D31A4D9E97000F6F62 /* FMDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = D3F0F4CF1A4D9E97000F6F62 /* FMDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D3F0F4D51A4D9E97000F6F62 /* FMResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = D3F0F4D11A4D9E97000F6F62 /* FMResultSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3F0F4D81A4D9EAF000F6F62 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F0F4D71A4D9EAF000F6F62 /* libsqlite3.dylib */; };
 		D3F0F4E41A4DC165000F6F62 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F4E31A4DC165000F6F62 /* AppDelegate.m */; };
 		D3F0F4E61A4DC165000F6F62 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F4E51A4DC165000F6F62 /* main.m */; };
@@ -59,8 +59,6 @@
 		D3F0F5571A4F0847000F6F62 /* RepositoryTemplate.h.txt in Resources */ = {isa = PBXBuildFile; fileRef = D3F0F5531A4F0847000F6F62 /* RepositoryTemplate.h.txt */; };
 		D3F0F5581A4F0847000F6F62 /* RepositoryTemplate.m.txt in Resources */ = {isa = PBXBuildFile; fileRef = D3F0F5541A4F0847000F6F62 /* RepositoryTemplate.m.txt */; };
 		D3F0F55A1A4F1993000F6F62 /* sql.txt in Resources */ = {isa = PBXBuildFile; fileRef = D3F0F5591A4F1993000F6F62 /* sql.txt */; };
-		D3F0F55B1A4F2EA1000F6F62 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F4D01A4D9E97000F6F62 /* FMDatabase.m */; };
-		D3F0F55C1A4F2EA1000F6F62 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F4D21A4D9E97000F6F62 /* FMResultSet.m */; };
 		D3F0F55D1A4F2FF8000F6F62 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F4D01A4D9E97000F6F62 /* FMDatabase.m */; };
 		D3F0F55E1A4F2FF8000F6F62 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F4D21A4D9E97000F6F62 /* FMResultSet.m */; };
 		D3F0F55F1A4F3012000F6F62 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F0F4D71A4D9EAF000F6F62 /* libsqlite3.dylib */; };
@@ -771,9 +769,7 @@
 				D3F0F5441A4DC68E000F6F62 /* Assembler.m in Sources */,
 				D3F0F4E91A4DC165000F6F62 /* Document.m in Sources */,
 				D3F0F51C1A4DC3E5000F6F62 /* TDUtils.m in Sources */,
-				D3F0F55B1A4F2EA1000F6F62 /* FMDatabase.m in Sources */,
 				D3F0F5231A4DC3EB000F6F62 /* TDColorView.m in Sources */,
-				D3F0F55C1A4F2EA1000F6F62 /* FMResultSet.m in Sources */,
 				D3F0F5061A4DC1E6000F6F62 /* MISGenerator.m in Sources */,
 				D3F0F5251A4DC3EB000F6F62 /* TDView.m in Sources */,
 				D3F0F50D1A4DC349000F6F62 /* SourceFilesTableView.m in Sources */,

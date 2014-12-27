@@ -44,13 +44,11 @@
     self.headerFilesArrayController = nil;
     self.headerFiles = nil;
     
-    self.browseForDatabaseURL = nil;
-    self.browseForOutputSourceURL = nil;
-    self.browseForHeadersURL = nil;
-    
     self.databaseFilename = nil;
     self.databaseDirPath = nil;
     self.outputSourceDirPath = nil;
+    
+    self.statusText = nil;
 
     [super dealloc];
 }
@@ -178,7 +176,6 @@
     [panel setCanChooseDirectories:YES];
     [panel setCanChooseFiles:NO];
     [panel setAllowsMultipleSelection:NO];
-    [panel setDirectoryURL:_browseForDatabaseURL];
     
     [panel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
         if (NSOKButton == result) {
@@ -198,7 +195,6 @@
     [panel setCanChooseDirectories:YES];
     [panel setCanChooseFiles:NO];
     [panel setAllowsMultipleSelection:NO];
-    [panel setDirectoryURL:_browseForOutputSourceURL];
     
     [panel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
         if (NSOKButton == result) {
@@ -222,7 +218,6 @@
     [panel setCanChooseDirectories:NO];
     [panel setCanChooseFiles:YES];
     [panel setAllowsMultipleSelection:YES];
-    [panel setDirectoryURL:_browseForHeadersURL];
     
     [panel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
         if (NSOKButton == result) {
@@ -244,11 +239,15 @@
 - (IBAction)generate:(id)sender {
     TDAssertMainThread();
     
+    self.statusText = nil;
+    
     if (![_databaseFilename length] || ![_databaseDirPath length] || ![_outputSourceDirPath length] || ![_headerFiles count]) {
         NSBeep();
         return;
     }
     
+    self.busy = YES;
+
     MISGenerator *gen = [[[MISGenerator alloc] initWithDelegate:self] autorelease];
     
     NSMutableDictionary *args = [NSMutableDictionary dictionaryWithCapacity:4];
@@ -523,7 +522,17 @@
 - (void)presentParsingError:(NSError *)err {
     TDAssertMainThread();
     
-    NSString *title = NSLocalizedString(@"A parsing error occured.", @"");
+    NSString *title = nil;
+    if ([PEGKitErrorDomain isEqualToString:[err domain]]) {
+        title = NSLocalizedString(@"A source header parsing error occured.", @"");
+    } else if ([TDTemplateEngineErrorDomain isEqualToString:[err domain]]) {
+        title = NSLocalizedString(@"A template rendering error occured.", @"");
+    } else if ([@"FMDatabase" isEqualToString:[err domain]]) {
+        title = NSLocalizedString(@"A database SQL error occured.", @"");
+    } else {
+        title = NSLocalizedString(@"A file I/O error occured.", @"");
+    }
+    
     NSString *reason = [err localizedDescription];
     NSString *desc = [err localizedFailureReason];
     
@@ -571,12 +580,16 @@
 #pragma mark MISGeneratorDelegate
 
 - (void)generator:(MISGenerator *)gen didFail:(NSError *)err {
+    TDAssertMainThread();
     [self presentParsingError:err];
+    self.busy = NO;
 }
 
 
-- (void)generator:(MISGenerator *)gen didSucceed:(NSString *)displayDirPath {
-    
+- (void)generator:(MISGenerator *)gen didSucceed:(NSString *)msg {
+    TDAssertMainThread();
+    self.statusText = msg;
+    self.busy = NO;
 }
 
 

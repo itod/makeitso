@@ -30,12 +30,10 @@
 @property (nonatomic, retain) IBOutlet NSArrayController *headerFilesArrayController;
 @property (nonatomic, retain) NSMutableArray *headerFiles;
 
-@property (nonatomic, retain) NSURL *browseForDatabaseURL;
-@property (nonatomic, retain) NSURL *browseForOutputSourceURL;
-@property (nonatomic, retain) NSURL *browseForHeadersURL;
-
 @property (nonatomic, copy) NSString *databaseFilename;
 @property (nonatomic, copy) NSString *databaseDirPath;
 @property (nonatomic, copy) NSString *outputSourceDirPath;
-@end
 
+@property (nonatomic, assign) BOOL busy;
+@property (nonatomic, copy) NSString *statusText;
+@end

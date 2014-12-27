@@ -20,3 +20,6 @@ FOUNDATION_EXPORT const unsigned char MakeItSoVersionString[];
 #import <MakeItSo/DomainObject.h>
 #import <MakeItSo/Repository.h>
 #import <MakeItSo/MISMapper.h>
+
+#import <fmdb/FMResultSet.h>
+#import <fmdb/FMDatabase.h>
