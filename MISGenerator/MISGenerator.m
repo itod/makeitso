@@ -112,39 +112,60 @@
     TDAssertNotMainThread();
     NSMutableArray *classes = [NSMutableArray array];
     
-    NSArray *headerFilePaths = args[KEY_HEADER_FILE_PATHS];
-    TDAssert([headerFilePaths count]);
-    for (NSString *filePath in headerFilePaths) {
-        if (![filePath length]) {
-            TDAssert(0);
-            continue;
+    // parse headers
+    {
+        NSArray *headerFilePaths = args[KEY_HEADER_FILE_PATHS];
+        TDAssert([headerFilePaths count]);
+        
+        for (NSString *filePath in headerFilePaths) {
+            if (![filePath length]) {
+                TDAssert(0);
+                continue;
+            }
+            
+            NSError *err = nil;
+            NSString *source = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&err];
+            if (!source) {
+                if (outErr) *outErr = err;
+                return nil;
+            }
+            
+            ObjCAssembler *assembler = [[ObjCAssembler alloc] init]; // +1
+            ObjCParser *parser = [[ObjCParser alloc] initWithDelegate:assembler]; // +1
+            
+            err = nil;
+            [[[parser parseString:source error:&err] retain] autorelease];
+            
+            NSArray *newClasses = [[assembler.classes copy] autorelease];
+            
+            [assembler release]; // -1
+            [parser release]; // -1
+            
+            if (![newClasses count]) {
+                if (outErr) *outErr = err;
+                return nil;
+            }
+            
+            [classes addObjectsFromArray:newClasses];
         }
-        
-        NSError *err = nil;
-        NSString *source = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&err];
-        if (!source) {
-            if (outErr) *outErr = err;
-            return nil;
-        }
-        
-        ObjCAssembler *assembler = [[ObjCAssembler alloc] init]; // +1
-        ObjCParser *parser = [[ObjCParser alloc] initWithDelegate:assembler]; // +1
-        
-        err = nil;
-        [[[parser parseString:source error:&err] retain] autorelease];
-
-        NSArray *newClasses = [[assembler.classes copy] autorelease];
-        
-        [assembler release]; // -1
-        [parser release]; // -1
-        
-        if (!newClasses) {
-            if (outErr) *outErr = err;
-            return nil;
-        }
-        
-        [classes addObjectsFromArray:newClasses];
     }
+    
+    // notate foreign key fields
+//    {
+//        NSMutableDictionary *classTab = [NSMutableDictionary dictionary];
+//        for (MISClass *cls in classes) {
+//            classTab[cls.name] = cls;
+//        }
+//        
+//        for (MISClass *cls in classes) {
+//            for (MISField *field in cls.fields) {
+//                MISClass *foreignClass = classTab[field.rawType];
+//                if (foreignClass) {
+//                    field.isForeignKey = YES;
+//                }
+//            }
+//        }
+//    }
     
     return classes;
 }

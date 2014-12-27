@@ -99,6 +99,7 @@
     MISField *field = [[[MISField alloc] init] autorelease];
     field.name = @"objectID";
     field.type = @"NSNumber *";
+    field.rawType = @"NSNumber *";
     field.sqlType = MISFieldSqlTypeInteger;
     field.isPrimaryKey = YES;
     field.sourceString = @"@property (nonatomic, copy) NSNumber *objectID";
@@ -110,55 +111,19 @@
 
 
 #pragma mark -
-#pragma mark Ivars
-
-- (void)parser:(PKParser *)p didMatchScalarIvar:(PKAssembly *)a {
-    //NSLog(@"%s, %@", __PRETTY_FUNCTION__, a);
-    
-    NSMutableString *srcBuf = [NSMutableString string];
-    
-    PKToken *nameTok = [a pop];
-    TDAssertToken(nameTok);
-    
-    NSArray *typeToks = [a objectsAbove:_openCurlyTok];
-    NSMutableString *typeBuf = [NSMutableString string];
-    for (PKToken *typeTok in [typeToks reverseObjectEnumerator]) {
-        TDAssertToken(typeTok);
-        [typeBuf appendString:typeTok.stringValue];
-        [srcBuf appendString:typeTok.stringValue];
-    }
-    
-    [srcBuf appendString:nameTok.stringValue];
-    
-    MISField *attr = [[[MISField alloc] init] autorelease];
-    attr.name = nameTok.stringValue;
-    attr.type = [typeBuf stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    attr.sourceString = [srcBuf stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
-    TDAssert(_currentClass);
-    
-    [_currentClass addField:attr];
-}
-
-
-- (BOOL)nextNonWhitespaceToken:(PKAssembly *)a isEqual:(PKToken *)targetTok {
-    NSMutableArray *toks = [NSMutableArray array];
-    PKToken *nextTok = nil;
-    do {
-        nextTok = [a pop];
-        [toks addObject:nextTok];
-    } while (nextTok.isWhitespace);
-    
-    for (PKToken *tok in [toks reverseObjectEnumerator]) {
-        [a push:tok];
-    }
-    
-    return [nextTok isEqual:targetTok]; // TODO
-}
-
-
-#pragma mark -
 #pragma mark Properties
+
+- (NSString *)rawTypeFromType:(NSString *)type {
+    NSString *rawType = type;
+    
+    NSRange spaceRange = [type rangeOfCharacterFromSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if (spaceRange.length) {
+        rawType = [type substringToIndex:spaceRange.location];
+    }
+    
+    return rawType;
+}
+
 
 - (void)parser:(PKParser *)p didMatchNonBlockPropertyType:(PKAssembly *)a {
     //NSLog(@"%s, %@", __PRETTY_FUNCTION__, a);
@@ -174,11 +139,12 @@
     }
     
     _currentField.type = [typeBuf stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    _currentField.rawType = [self rawTypeFromType:_currentField.type];
     
     MISFieldSqlType sqlType = MISFieldSqlTypeInvalid;
     
     if ([_currentField.type hasPrefix:@"NSString"]) {
-        sqlType = MISFieldSqlTypeString;
+        sqlType = MISFieldSqlTypeText;
     } else if ([_currentField.type hasPrefix:@"NSNumber"]) {
         sqlType = MISFieldSqlTypeReal;
     } else if ([_currentField.type hasPrefix:@"NSDate"]) {
@@ -188,7 +154,9 @@
     } else if ([_currentField.type hasPrefix:@"NSNull"]) {
         sqlType = MISFieldSqlTypeNull;
     } else {
-        [NSException raise:@"A property in class «%@» has a type that is unsupported by MakeItSo: «%@»." format:_currentClass.name, _currentField.type];
+        sqlType = MISFieldSqlTypeDomainObject;
+        _currentField.isForeignKey = YES;
+        //[NSException raise:@"A property in class «%@» has a type that is unsupported by MakeItSo: «%@»." format:_currentClass.name, _currentField.type];
     }
     
     _currentField.sqlType = sqlType;

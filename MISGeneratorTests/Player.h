@@ -8,8 +8,12 @@
 
 #import <MakeItSo/DomainObject.h>
 
+@class Team;
+
 @interface Player : DomainObject
 
 @property (nonatomic, copy) NSString *firstName;
 @property (nonatomic, copy) NSString *lastName;
+
+@property (nonatomic, retain) Team *team;
 @end

@@ -23,6 +23,7 @@
     self.sourceString = nil;
     self.name = nil;
     self.type = nil;
+    self.rawType = nil;
     [super dealloc];
 }
 
@@ -39,8 +40,8 @@
         case MISFieldSqlTypeNull:
             str = @"null";
             break;
-        case MISFieldSqlTypeString:
-            str = @"string";
+        case MISFieldSqlTypeText:
+            str = @"text";
             break;
         case MISFieldSqlTypeInteger:
             str = @"integer";
@@ -53,6 +54,9 @@
             break;
         case MISFieldSqlTypeData:
             str = @"blob";
+            break;
+        case MISFieldSqlTypeDomainObject:
+            str = @"integer";
             break;
         default:
             TDAssert(0);

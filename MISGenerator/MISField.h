@@ -11,17 +11,19 @@
 typedef NS_ENUM(NSInteger, MISFieldSqlType) {
     MISFieldSqlTypeInvalid = -1,
     MISFieldSqlTypeNull = 0,
-    MISFieldSqlTypeString,
+    MISFieldSqlTypeText,
     MISFieldSqlTypeInteger,
     MISFieldSqlTypeReal,
     MISFieldSqlTypeDate,
     MISFieldSqlTypeData,
+    MISFieldSqlTypeDomainObject,
 };
 
 @interface MISField : NSObject
 @property (nonatomic, copy) NSString *sourceString;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *type;
+@property (nonatomic, copy) NSString *rawType;
 
 @property (nonatomic, assign) MISFieldSqlType sqlType;
 @property (nonatomic, copy) NSString *sqlTypeString;
