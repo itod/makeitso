@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		D3E3D6891A4C6C88004103BD /* MISUnitOfWork.h in Headers */ = {isa = PBXBuildFile; fileRef = D3E3D6871A4C6C88004103BD /* MISUnitOfWork.h */; };
 		D3E3D68A1A4C6C88004103BD /* MISUnitOfWork.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E3D6881A4C6C88004103BD /* MISUnitOfWork.m */; };
-		D3E3D68D1A4C6CA4004103BD /* MISMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = D3E3D68B1A4C6CA4004103BD /* MISMapper.h */; };
+		D3E3D68D1A4C6CA4004103BD /* MISMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = D3E3D68B1A4C6CA4004103BD /* MISMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3E3D68E1A4C6CA4004103BD /* MISMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E3D68C1A4C6CA4004103BD /* MISMapper.m */; };
 		D3E3D6911A4C6CC9004103BD /* DomainObject.h in Headers */ = {isa = PBXBuildFile; fileRef = D3E3D68F1A4C6CC9004103BD /* DomainObject.h */; };
 		D3E3D6921A4C6CC9004103BD /* DomainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E3D6901A4C6CC9004103BD /* DomainObject.m */; };
@@ -56,6 +56,10 @@
 		D3F0F5461A4DC68E000F6F62 /* ObjCParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F5431A4DC68E000F6F62 /* ObjCParser.m */; };
 		D3F0F54B1A4DC6AE000F6F62 /* MISField.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F5481A4DC6AE000F6F62 /* MISField.m */; };
 		D3F0F54C1A4DC6AE000F6F62 /* MISClass.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F54A1A4DC6AE000F6F62 /* MISClass.m */; };
+		D3F0F5551A4F0847000F6F62 /* MapperTemplate.h.txt in Resources */ = {isa = PBXBuildFile; fileRef = D3F0F5511A4F0847000F6F62 /* MapperTemplate.h.txt */; };
+		D3F0F5561A4F0847000F6F62 /* MapperTemplate.m.txt in Resources */ = {isa = PBXBuildFile; fileRef = D3F0F5521A4F0847000F6F62 /* MapperTemplate.m.txt */; };
+		D3F0F5571A4F0847000F6F62 /* RepositoryTemplate.h.txt in Resources */ = {isa = PBXBuildFile; fileRef = D3F0F5531A4F0847000F6F62 /* RepositoryTemplate.h.txt */; };
+		D3F0F5581A4F0847000F6F62 /* RepositoryTemplate.m.txt in Resources */ = {isa = PBXBuildFile; fileRef = D3F0F5541A4F0847000F6F62 /* RepositoryTemplate.m.txt */; };
 		D3F4B0331A4C6ADE001ACB0E /* MakeItSo.h in Headers */ = {isa = PBXBuildFile; fileRef = D3F4B0321A4C6ADE001ACB0E /* MakeItSo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3F4B0391A4C6ADE001ACB0E /* MakeItSo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F4B02D1A4C6ADE001ACB0E /* MakeItSo.framework */; };
 		D3F4B0401A4C6ADE001ACB0E /* MakeItSoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F4B03F1A4C6ADE001ACB0E /* MakeItSoTests.m */; };
@@ -232,6 +236,10 @@
 		D3F0F5491A4DC6AE000F6F62 /* MISClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MISClass.h; sourceTree = "<group>"; };
 		D3F0F54A1A4DC6AE000F6F62 /* MISClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MISClass.m; sourceTree = "<group>"; };
 		D3F0F54E1A4EF878000F6F62 /* MISGenerator-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MISGenerator-Prefix.pch"; sourceTree = "<group>"; };
+		D3F0F5511A4F0847000F6F62 /* MapperTemplate.h.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MapperTemplate.h.txt; path = res/MapperTemplate.h.txt; sourceTree = SOURCE_ROOT; };
+		D3F0F5521A4F0847000F6F62 /* MapperTemplate.m.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MapperTemplate.m.txt; path = res/MapperTemplate.m.txt; sourceTree = SOURCE_ROOT; };
+		D3F0F5531A4F0847000F6F62 /* RepositoryTemplate.h.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = RepositoryTemplate.h.txt; path = res/RepositoryTemplate.h.txt; sourceTree = SOURCE_ROOT; };
+		D3F0F5541A4F0847000F6F62 /* RepositoryTemplate.m.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = RepositoryTemplate.m.txt; path = res/RepositoryTemplate.m.txt; sourceTree = SOURCE_ROOT; };
 		D3F4B02D1A4C6ADE001ACB0E /* MakeItSo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MakeItSo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3F4B0311A4C6ADE001ACB0E /* MakeItSo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MakeItSo-Info.plist"; sourceTree = "<group>"; };
 		D3F4B0321A4C6ADE001ACB0E /* MakeItSo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MakeItSo.h; sourceTree = "<group>"; };
@@ -365,6 +373,10 @@
 				D3F0F54E1A4EF878000F6F62 /* MISGenerator-Prefix.pch */,
 				D3F0F4E11A4DC165000F6F62 /* MISGenerator-Info.plist */,
 				D3F0F4E51A4DC165000F6F62 /* main.m */,
+				D3F0F5511A4F0847000F6F62 /* MapperTemplate.h.txt */,
+				D3F0F5521A4F0847000F6F62 /* MapperTemplate.m.txt */,
+				D3F0F5531A4F0847000F6F62 /* RepositoryTemplate.h.txt */,
+				D3F0F5541A4F0847000F6F62 /* RepositoryTemplate.m.txt */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -710,7 +722,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3F0F4EC1A4DC165000F6F62 /* Document.xib in Resources */,
+				D3F0F5561A4F0847000F6F62 /* MapperTemplate.m.txt in Resources */,
+				D3F0F5551A4F0847000F6F62 /* MapperTemplate.h.txt in Resources */,
+				D3F0F5581A4F0847000F6F62 /* RepositoryTemplate.m.txt in Resources */,
 				D3F0F4EE1A4DC165000F6F62 /* Images.xcassets in Resources */,
+				D3F0F5571A4F0847000F6F62 /* RepositoryTemplate.h.txt in Resources */,
 				D3F0F4F11A4DC165000F6F62 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

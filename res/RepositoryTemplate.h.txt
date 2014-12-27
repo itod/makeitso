@@ -1,0 +1,7 @@
+#import <MakeItSo/Repository.h>
+
+@interface {{class.name}}Repository : Repository
+
+{%for prop in class.property %}
+@property (nonatomic, retain) {{prop.type}} {{prop.name}};{%/for%}
+@end

@@ -17,3 +17,6 @@ FOUNDATION_EXPORT const unsigned char MakeItSoVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <MakeItSo/PublicHeader.h>
 
 
+#import <MakeItSo/DomainObject.h>
+#import <MakeItSo/Repository.h>
+#import <MakeItSo/MISMapper.h>

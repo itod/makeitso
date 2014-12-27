@@ -1,0 +1,18 @@
+#import "{{class.name}}Mapper.h"
+
+@implementation {{class.name}}Mapper
+
+- (id)initWithDomainClass:(Class)cls {
+    self = [super init];
+    if (self) {
+        self.tableName = {{tableName}};
+        self.columnList = {{columnList}};
+        self.columnNames = @[
+{%for prop in class.properties%}
+            @"{{prop.name}}",{%/for%}
+        ];
+    }
+    return self;
+}
+
+@end
