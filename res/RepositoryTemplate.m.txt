@@ -2,4 +2,8 @@
 
 @implementation {{class.name}}Repository
 
+- ({{class.name}} *)find{{class.name}}:(NSNumber *)objID {
+    return ({{class.name}} *)[self find:objID];
+}
+
 @end

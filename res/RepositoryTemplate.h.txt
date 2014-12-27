@@ -2,4 +2,5 @@
 
 @interface {{class.name}}Repository : Repository
 
+- ({{class.name}} *)find{{class.name}}:(NSNumber *)objID;
 @end
