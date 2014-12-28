@@ -99,7 +99,7 @@
     MISField *field = [[[MISField alloc] init] autorelease];
     field.name = @"objectID";
     field.type = @"NSNumber *";
-    field.rawType = @"NSNumber *";
+    field.rawType = @"NSNumber";
     field.sqlType = MISFieldSqlTypeInteger;
     field.isPrimaryKey = YES;
     field.sourceString = @"@property (nonatomic, copy) NSNumber *objectID";

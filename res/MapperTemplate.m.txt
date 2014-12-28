@@ -1,4 +1,5 @@
 #import "{{class.name}}Mapper.h"
+#import "{{class.name}}.h"
 
 @implementation {{class.name}}Mapper
 
@@ -7,11 +8,28 @@
     if (self) {
         self.tableName = {{tableName}};
         self.columnList = @"{{columnList}}";
-        self.columnNames = @[{%for field in class.fields%}
-            @"{{field.name}}",{%/for%}
-        ];
     }
     return self;
 }
+
+
+- (void)loadFields:(FMResultSet *)rs inObject:(DomainObject *)obj {
+    TDAssertDatabaseThread();
+{%for field in class.fields %}
+    {{%if 'NSString' == field.rawType %}
+        NSString *val = [rs stringForColumnName:@"{{field.name}}"];
+    {%elif 'NSNumber' == field.rawType %}
+        NSNumber *val = [rs objectForColumnName:@"{{field.name}}"];
+    {%elif 'NSDate' == field.rawType %}
+        long long timestamp = [rs longLongForColumnName:@"{{field.name}}"];
+        NSDate *val = [NSDate dateWithTimeIntervalSince1970:timestamp];
+    {%elif 'NSData' == field.rawType %}
+        NSData *val = [rs dataForColumnName:@"{{field.name}}"];
+    {%else%}
+        DomainObject *val = [rs objectForColumnName:@"{{field.name}}"];
+    {%/if%}    [obj setValue:val forKey:@"{{field.name}}"];
+    }{%/for%}
+}
+
 
 @end
