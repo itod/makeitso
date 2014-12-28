@@ -42,6 +42,7 @@
     self.domainClass = Nil;
     self.tableName = nil;
     self.columnList = nil;
+    self.columnNames = nil;
     self.unitOfWork = nil;
     [super dealloc];
 }
@@ -151,6 +152,13 @@
 
 - (void)loadFields:(FMResultSet *)rs inObject:(DomainObject *)obj {
     NSAssert2(0, @"%s is an abstract method and must be implemented in %@", __PRETTY_FUNCTION__, [self class]);
+//    TDAssertDatabaseThread();
+//    TDAssert(_columnNames);
+//    
+//    for (NSString *colName in self.columnNames) {
+//        id val = [rs objectForColumnName:colName];
+//        [obj setValue:val forKey:colName];
+//    }
 }
 
 @end
