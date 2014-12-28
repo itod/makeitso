@@ -1,12 +1,15 @@
 #import "{{class.name}}Mapper.h"
 #import "{{class.name}}.h"
 
+#import <fmdb/FMResultSet.h>
+#import <fmdb/FMDatabase.h>
+
 @implementation {{class.name}}Mapper
 
 - (id)initWithDomainClass:(Class)cls {
     self = [super init];
     if (self) {
-        self.tableName = {{tableName}};
+        self.tableName = @"{{tableName}}";
         self.selectColumnList = @"{{selectColumnList}}";
         self.columnNames = @[{%for field in class.fields%}
             @"{{field.name}}",{%/for%}
@@ -20,7 +23,7 @@
     TDAssertDatabaseThread();
 {%for field in class.fields %}
     {{%if 'NSString' == field.rawType %}
-        NSString *val = [rs stringForColumnName:@"{{field.name}}"];
+        NSString *val = [rs stringForColumn:@"{{field.name}}"];
     {%elif 'NSNumber' == field.rawType %}
         NSNumber *val = [rs objectForColumnName:@"{{field.name}}"];
     {%elif 'NSDate' == field.rawType %}
@@ -37,7 +40,7 @@
 
 - (NSNumber *)insert:(DomainObject *)obj {
     TDAssertDatabaseThread();
-    if (!obj.objectID) return;
+    if (!obj.objectID) return nil;;
     
     NSString *sql = @"INSERT INTO {{tableName}} ({{selectColumnList}}) VALUES ({{insertColumnList}})";
     

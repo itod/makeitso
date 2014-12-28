@@ -1,4 +1,5 @@
 #import "{{class.name}}Repository.h"
+#import "{{class.name}}.h"
 
 @implementation {{class.name}}Repository
 

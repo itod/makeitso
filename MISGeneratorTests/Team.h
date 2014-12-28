@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Todd Ditchendorf. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <MakeItSo/DomainObject.h>
 
-@interface Team : NSObject
+@interface Team : DomainObject
 
 @property (nonatomic, copy) NSString *name;
 @end

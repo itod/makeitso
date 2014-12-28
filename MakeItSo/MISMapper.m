@@ -23,7 +23,6 @@
 @end
 
 @interface MISMapper ()
-@property (nonatomic, retain, readonly) FMDatabase *database;
 @property (nonatomic, retain) MISUnitOfWork *unitOfWork;
 @end
 

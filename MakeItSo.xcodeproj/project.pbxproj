@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D30DDD9B1A4F90C300448BB9 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = D30DDD901A4F90C300448BB9 /* Player.m */; };
+		D30DDD9C1A4F90C300448BB9 /* PlayerMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D30DDD921A4F90C300448BB9 /* PlayerMapper.m */; };
+		D30DDD9D1A4F90C300448BB9 /* PlayerRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = D30DDD941A4F90C300448BB9 /* PlayerRepository.m */; };
+		D30DDD9E1A4F90C300448BB9 /* Team.m in Sources */ = {isa = PBXBuildFile; fileRef = D30DDD961A4F90C300448BB9 /* Team.m */; };
+		D30DDD9F1A4F90C300448BB9 /* TeamMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D30DDD981A4F90C300448BB9 /* TeamMapper.m */; };
+		D30DDDA01A4F90C300448BB9 /* TeamRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = D30DDD9A1A4F90C300448BB9 /* TeamRepository.m */; };
 		D3E3D6891A4C6C88004103BD /* MISUnitOfWork.h in Headers */ = {isa = PBXBuildFile; fileRef = D3E3D6871A4C6C88004103BD /* MISUnitOfWork.h */; };
 		D3E3D68A1A4C6C88004103BD /* MISUnitOfWork.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E3D6881A4C6C88004103BD /* MISUnitOfWork.m */; };
 		D3E3D68D1A4C6CA4004103BD /* MISMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = D3E3D68B1A4C6CA4004103BD /* MISMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -64,11 +70,9 @@
 		D3F0F5651A4F354C000F6F62 /* MISGenerator-DefaultValues.plist in Resources */ = {isa = PBXBuildFile; fileRef = D3F0F5641A4F354C000F6F62 /* MISGenerator-DefaultValues.plist */; };
 		D3F0F5691A4F35DE000F6F62 /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F5671A4F35DE000F6F62 /* PreferencesWindowController.m */; };
 		D3F0F56A1A4F35DE000F6F62 /* PreferencesWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3F0F5681A4F35DE000F6F62 /* PreferencesWindowController.xib */; };
-		D3F0F5711A4F56D6000F6F62 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F5701A4F56D6000F6F62 /* Player.m */; };
 		D3F0F5721A4F5728000F6F62 /* MakeItSo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F4B02D1A4C6ADE001ACB0E /* MakeItSo.framework */; };
 		D3F0F5731A4F5728000F6F62 /* PEGKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F0F4B21A4CF721000F6F62 /* PEGKit.framework */; };
 		D3F0F5781A4F5778000F6F62 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F0F4D71A4D9EAF000F6F62 /* libsqlite3.dylib */; };
-		D3F0F57B1A4F5C92000F6F62 /* Team.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F57A1A4F5C92000F6F62 /* Team.m */; };
 		D3F4B0331A4C6ADE001ACB0E /* MakeItSo.h in Headers */ = {isa = PBXBuildFile; fileRef = D3F4B0321A4C6ADE001ACB0E /* MakeItSo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3F4B0391A4C6ADE001ACB0E /* MakeItSo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F4B02D1A4C6ADE001ACB0E /* MakeItSo.framework */; };
 		D3F4B0401A4C6ADE001ACB0E /* MakeItSoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F4B03F1A4C6ADE001ACB0E /* MakeItSoTests.m */; };
@@ -192,6 +196,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D30DDD8F1A4F90C300448BB9 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		D30DDD901A4F90C300448BB9 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		D30DDD911A4F90C300448BB9 /* PlayerMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerMapper.h; sourceTree = "<group>"; };
+		D30DDD921A4F90C300448BB9 /* PlayerMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerMapper.m; sourceTree = "<group>"; };
+		D30DDD931A4F90C300448BB9 /* PlayerRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerRepository.h; sourceTree = "<group>"; };
+		D30DDD941A4F90C300448BB9 /* PlayerRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerRepository.m; sourceTree = "<group>"; };
+		D30DDD951A4F90C300448BB9 /* Team.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Team.h; sourceTree = "<group>"; };
+		D30DDD961A4F90C300448BB9 /* Team.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Team.m; sourceTree = "<group>"; };
+		D30DDD971A4F90C300448BB9 /* TeamMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamMapper.h; sourceTree = "<group>"; };
+		D30DDD981A4F90C300448BB9 /* TeamMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamMapper.m; sourceTree = "<group>"; };
+		D30DDD991A4F90C300448BB9 /* TeamRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamRepository.h; sourceTree = "<group>"; };
+		D30DDD9A1A4F90C300448BB9 /* TeamRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamRepository.m; sourceTree = "<group>"; };
 		D3E3D6871A4C6C88004103BD /* MISUnitOfWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MISUnitOfWork.h; sourceTree = "<group>"; };
 		D3E3D6881A4C6C88004103BD /* MISUnitOfWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MISUnitOfWork.m; sourceTree = "<group>"; };
 		D3E3D68B1A4C6CA4004103BD /* MISMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MISMapper.h; sourceTree = "<group>"; };
@@ -266,10 +282,6 @@
 		D3F0F5661A4F35DE000F6F62 /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesWindowController.h; sourceTree = "<group>"; };
 		D3F0F5671A4F35DE000F6F62 /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesWindowController.m; sourceTree = "<group>"; };
 		D3F0F5681A4F35DE000F6F62 /* PreferencesWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindowController.xib; sourceTree = "<group>"; };
-		D3F0F56F1A4F56D6000F6F62 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
-		D3F0F5701A4F56D6000F6F62 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
-		D3F0F5791A4F5C92000F6F62 /* Team.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Team.h; sourceTree = "<group>"; };
-		D3F0F57A1A4F5C92000F6F62 /* Team.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Team.m; sourceTree = "<group>"; };
 		D3F4B02D1A4C6ADE001ACB0E /* MakeItSo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MakeItSo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3F4B0311A4C6ADE001ACB0E /* MakeItSo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MakeItSo-Info.plist"; sourceTree = "<group>"; };
 		D3F4B0321A4C6ADE001ACB0E /* MakeItSo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MakeItSo.h; sourceTree = "<group>"; };
@@ -424,11 +436,19 @@
 			isa = PBXGroup;
 			children = (
 				D3F0F4FC1A4DC165000F6F62 /* MISGeneratorTests.m */,
+				D30DDD8F1A4F90C300448BB9 /* Player.h */,
+				D30DDD901A4F90C300448BB9 /* Player.m */,
+				D30DDD911A4F90C300448BB9 /* PlayerMapper.h */,
+				D30DDD921A4F90C300448BB9 /* PlayerMapper.m */,
+				D30DDD931A4F90C300448BB9 /* PlayerRepository.h */,
+				D30DDD941A4F90C300448BB9 /* PlayerRepository.m */,
+				D30DDD951A4F90C300448BB9 /* Team.h */,
+				D30DDD961A4F90C300448BB9 /* Team.m */,
+				D30DDD971A4F90C300448BB9 /* TeamMapper.h */,
+				D30DDD981A4F90C300448BB9 /* TeamMapper.m */,
+				D30DDD991A4F90C300448BB9 /* TeamRepository.h */,
+				D30DDD9A1A4F90C300448BB9 /* TeamRepository.m */,
 				D3F0F4FA1A4DC165000F6F62 /* Supporting Files */,
-				D3F0F56F1A4F56D6000F6F62 /* Player.h */,
-				D3F0F5701A4F56D6000F6F62 /* Player.m */,
-				D3F0F5791A4F5C92000F6F62 /* Team.h */,
-				D3F0F57A1A4F5C92000F6F62 /* Team.m */,
 			);
 			path = MISGeneratorTests;
 			sourceTree = "<group>";
@@ -828,9 +848,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3F0F5711A4F56D6000F6F62 /* Player.m in Sources */,
-				D3F0F57B1A4F5C92000F6F62 /* Team.m in Sources */,
+				D30DDD9E1A4F90C300448BB9 /* Team.m in Sources */,
+				D30DDDA01A4F90C300448BB9 /* TeamRepository.m in Sources */,
+				D30DDD9B1A4F90C300448BB9 /* Player.m in Sources */,
 				D3F0F4FD1A4DC165000F6F62 /* MISGeneratorTests.m in Sources */,
+				D30DDD9D1A4F90C300448BB9 /* PlayerRepository.m in Sources */,
+				D30DDD9C1A4F90C300448BB9 /* PlayerMapper.m in Sources */,
+				D30DDD9F1A4F90C300448BB9 /* TeamMapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

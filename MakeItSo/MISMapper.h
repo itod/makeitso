@@ -5,11 +5,12 @@
 //  Created by Todd Ditchendorf on 12/25/14.
 //  Copyright (c) 2014 Todd Ditchendorf. All rights reserved.
 //
-
+    
 #import <Foundation/Foundation.h>
 
 @class DomainObject;
 @class FMResultSet;
+@class FMDatabase;
 
 @interface MISMapper : NSObject
 
@@ -30,4 +31,6 @@
 @property (nonatomic, copy) NSString *selectColumnList;
 @property (nonatomic, copy) NSString *udpateColumnList;
 @property (nonatomic, copy) NSArray *columnNames;
+
+@property (nonatomic, retain, readonly) FMDatabase *database;
 @end
