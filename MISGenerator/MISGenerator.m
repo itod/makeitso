@@ -215,7 +215,9 @@
     NSString *outputDir = args[KEY_OUTPUT_SRC_DIR_PATH];
     
     for (MISClass *cls in classes) {
-        NSMutableString *colList = [NSMutableString string];
+        NSMutableString *selectColList = [NSMutableString string];
+        NSMutableString *insertColList = [NSMutableString string];
+        NSMutableString *updateColList = [NSMutableString string];
         
         NSArray *fields = cls.fields;
         
@@ -223,14 +225,22 @@
         NSUInteger c = [fields count];
         for (MISField *field in fields) {
             NSString *fmt = c-1 == i ? @"%@" : @"%@, ";
-            [colList appendFormat:fmt, field.name];
+            [selectColList appendFormat:fmt, field.name];
+            
+            fmt = c-1 == i ? @"?" : @"?, ";
+            [insertColList appendString:fmt];
+
+            fmt = c-1 == i ? @"%@ = ?" : @"%@ = ?, ";
+            [updateColList appendFormat:fmt, field.name];
             ++i;
         }
         
         NSMutableDictionary *vars = [NSMutableDictionary dictionary];
         vars[@"class"] = cls;
         vars[@"tableName"] = [cls.name lowercaseString];
-        vars[@"columnList"] = [[colList mutableCopy] autorelease];
+        vars[@"selectColumnList"] = [[selectColList mutableCopy] autorelease];
+        vars[@"insertColumnList"] = [[insertColList mutableCopy] autorelease];
+        vars[@"updateColumnList"] = [[updateColList mutableCopy] autorelease];
         
         NSString *mapHeaderPath = [outputDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%@Mapper.h", cls.name]];
         NSString *mapImplPath = [outputDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%@Mapper.m", cls.name]];

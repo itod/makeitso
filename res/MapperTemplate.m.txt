@@ -7,7 +7,7 @@
     self = [super init];
     if (self) {
         self.tableName = {{tableName}};
-        self.columnList = @"{{columnList}}";
+        self.selectColumnList = @"{{selectColumnList}}";
         self.columnNames = @[{%for field in class.fields%}
             @"{{field.name}}",{%/for%}
         ];
@@ -33,5 +33,78 @@
     {%/if%}    [obj setValue:val forKey:@"{{field.name}}"];
     }{%/for%}
 }
+
+
+- (NSNumber *)insert:(DomainObject *)obj {
+    TDAssertDatabaseThread();
+    if (!obj.objectID) return;
+    
+    NSString *sql = @"INSERT INTO {{tableName}} ({{selectColumnList}}) VALUES ({{insertColumnList}})";
+    
+    NSMutableArray *args = [NSMutableArray arrayWithCapacity:[self.columnNames count]];
+{%for field in class.fields %}
+    {{%if 'NSString' == field.rawType %}
+        NSString *val = [obj valueForKey:@"{{field.name}}"];
+    {%elif 'NSNumber' == field.rawType %}
+        NSNumber *val = [obj valueForKey:@"{{field.name}}"];
+    {%elif 'NSDate' == field.rawType %}
+        NSDate *date = [obj valueForKey:@"{{field.name}}"];
+        NSNumber *val = @([date timeIntervalSince1970]);
+    {%elif 'NSData' == field.rawType %}
+        NSData *val = [obj valueForKey:@"{{field.name}}"];
+    {%else%}
+        DomainObject *val = [obj valueForKey:@"{{field.name}}"];
+    {%/if%}    [args addObject:val];
+    }{%/for%}
+    
+    BOOL success = NO;
+    @try {
+        success = [self.database executeUpdate:sql withArgumentsInArray:args];
+    }
+    @catch (NSException *ex) {
+        NSLog(@"%@", ex);
+    }
+    @finally {
+        
+    }
+    
+    return nil;
+}
+
+
+- (void)update:(DomainObject *)obj {
+    TDAssertDatabaseThread();
+    if (!obj.objectID) return;
+    
+    NSString *sql = @"UPDATE {{tableName}} SET {{updateColumnList}} WHERE objectID = ?";
+    
+    NSMutableArray *args = [NSMutableArray arrayWithCapacity:[self.columnNames count]];
+{%for field in class.fields %}
+    {{%if 'NSString' == field.rawType %}
+        NSString *val = [obj valueForKey:@"{{field.name}}"];
+    {%elif 'NSNumber' == field.rawType %}
+        NSNumber *val = [obj valueForKey:@"{{field.name}}"];
+    {%elif 'NSDate' == field.rawType %}
+        NSDate *date = [obj valueForKey:@"{{field.name}}"];
+        NSNumber *val = @([date timeIntervalSince1970]);
+    {%elif 'NSData' == field.rawType %}
+        NSData *val = [obj valueForKey:@"{{field.name}}"];
+    {%else%}
+        DomainObject *val = [obj valueForKey:@"{{field.name}}"];
+    {%/if%}    [args addObject:val];
+    }{%/for%}
+    
+    BOOL success = NO;
+    @try {
+        success = [self.database executeUpdate:sql withArgumentsInArray:args];
+    }
+    @catch (NSException *ex) {
+        NSLog(@"%@", ex);
+    }
+    @finally {
+        
+    }
+}
+
 
 @end

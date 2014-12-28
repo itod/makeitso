@@ -41,7 +41,7 @@
 - (void)dealloc {
     self.domainClass = Nil;
     self.tableName = nil;
-    self.columnList = nil;
+    self.selectColumnList = nil;
     self.columnNames = nil;
     self.unitOfWork = nil;
     [super dealloc];
@@ -66,7 +66,7 @@
     DomainObject *obj = [_unitOfWork objectForID:objID];
     if (obj) return obj;
 
-    NSString *sql = [NSString stringWithFormat:@"SELECT %@ FROM %@ WHERE ID = ?", self.columnList, self.tableName];
+    NSString *sql = [NSString stringWithFormat:@"SELECT %@ FROM %@ WHERE objectID = ?", self.selectColumnList, self.tableName];
     
     FMResultSet *rs = nil;
     @try {
@@ -88,9 +88,9 @@
 - (NSSet *)findObjectsWhere:(NSString *)whereClause {
     TDAssertDatabaseThread();
     TDAssert([self.tableName length]);
-    TDAssert([self.columnList length]);
+    TDAssert([self.selectColumnList length]);
     
-    //NSString *sql = [NSString stringWithFormat:@"SELECT %@ FROM %@ WHERE %@", self.columnList, self.tableName, whereClause];
+    //NSString *sql = [NSString stringWithFormat:@"SELECT %@ FROM %@ WHERE %@", self.selectColumnList, self.tableName, whereClause];
     
     
     NSMutableSet *result = [NSMutableSet set];
@@ -104,8 +104,7 @@
 #pragma mark UPDATE
 
 - (void)update:(DomainObject *)obj {
-    TDAssertDatabaseThread();
-    
+    NSAssert2(0, @"%s is an abstract method and must be implemented in %@", __PRETTY_FUNCTION__, [self class]);
 }
 
 
@@ -113,8 +112,7 @@
 #pragma mark INSERT
 
 - (NSNumber *)insert:(DomainObject *)obj {
-    TDAssertDatabaseThread();
-    TDAssert(0);
+    NSAssert2(0, @"%s is an abstract method and must be implemented in %@", __PRETTY_FUNCTION__, [self class]);
     return nil;
 }
 
@@ -124,7 +122,23 @@
 
 - (void)delete:(DomainObject *)obj {
     TDAssertDatabaseThread();
-    TDAssert(0);
+    TDAssert(obj.objectID);
+    if (!obj.objectID) return;
+    
+    NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@ WHERE objectID = ?", self.tableName];
+    
+    FMResultSet *rs = nil;
+    @try {
+        rs = [self.database executeQuery:sql, obj.objectID];
+        [rs next];
+        obj = [self load:rs];
+    }
+    @catch (NSException *ex) {
+        NSLog(@"%@", ex);
+    }
+    @finally {
+        
+    }
 }
 
 

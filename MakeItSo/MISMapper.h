@@ -27,6 +27,7 @@
 
 @property (nonatomic, retain) Class domainClass;
 @property (nonatomic, copy) NSString *tableName;
-@property (nonatomic, copy) NSString *columnList;
+@property (nonatomic, copy) NSString *selectColumnList;
+@property (nonatomic, copy) NSString *udpateColumnList;
 @property (nonatomic, copy) NSArray *columnNames;
 @end
