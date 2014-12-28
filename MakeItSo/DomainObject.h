@@ -10,6 +10,8 @@
 
 @interface DomainObject : NSObject
 
++ (NSString *)collectionName;
+
 @property (nonatomic, retain, readonly) NSNumber *objectID;
 
 // Protected

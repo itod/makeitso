@@ -16,6 +16,13 @@
 
 @implementation DomainObject
 
++ (NSString *)collectionName {
+    NSString *str = NSStringFromClass(self);
+    str = [NSString stringWithFormat:@"%@%@", [[str substringToIndex:1] lowercaseString], [str substringFromIndex:1]];
+    return str;
+}
+
+
 - (void)dealloc {
     self.objectID = nil;
     [super dealloc];
