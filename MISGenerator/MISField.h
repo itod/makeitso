@@ -19,6 +19,12 @@ typedef NS_ENUM(NSInteger, MISFieldSqlType) {
     MISFieldSqlTypeDomainObject,
 };
 
+typedef NS_ENUM(NSInteger, MISFieldRelationship) {
+    MISFieldRelationshipOneToOne = 0,
+    MISFieldRelationshipOneToMany,
+    MISFieldRelationshipManyToMany,
+};
+
 @interface MISField : NSObject
 @property (nonatomic, copy) NSString *sourceString;
 @property (nonatomic, copy) NSString *name;
@@ -29,4 +35,5 @@ typedef NS_ENUM(NSInteger, MISFieldSqlType) {
 @property (nonatomic, copy) NSString *sqlTypeString;
 @property (nonatomic, assign) BOOL isPrimaryKey;
 @property (nonatomic, assign) BOOL isForeignKey;
+@property (nonatomic, assign) MISFieldRelationship relationship;
 @end
