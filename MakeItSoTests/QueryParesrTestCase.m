@@ -1,24 +1,24 @@
 //
-//  MakeItSoTests.m
+//  QueryParesrTestCase.m
 //  MakeItSoTests
 //
 //  Created by Todd Ditchendorf on 12/25/14.
 //  Copyright (c) 2014 Todd Ditchendorf. All rights reserved.
 //
 
-#import "MakeItSoTests.h"
+#import "MISBaseTest.h"
 
 #import "MISQueryParser.h"
 #import "MISQueryAssembler.h"
 #import "MISQuery.h"
 #import "MISCriteria.h"
 
-@interface MakeItSoTests : XCTestCase
+@interface QueryParesrTestCase : MISBaseTest
 @property (nonatomic, retain) MISQueryAssembler *assembler;
 @property (nonatomic, retain) MISQueryParser *parser;
 @end
 
-@implementation MakeItSoTests
+@implementation QueryParesrTestCase
 
 - (void)setUp {
     [super setUp];

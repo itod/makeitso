@@ -6,14 +6,15 @@
 //  Copyright (c) 2014 Todd Ditchendorf. All rights reserved.
 //
 
-#import "MakeItSoTests.h"
+#import "MISBaseTest.h"
 #import "MISGenerator.h"
 
-@interface MISGeneratorTests : XCTestCase
+@interface MISGeneratorTests : MISBaseTest
 
 @end
 
 @implementation MISGeneratorTests
+
 
 - (void)setUp {
     [super setUp];
@@ -34,7 +35,9 @@
     args[KEY_OUTPUT_SRC_DIR_PATH] = NSTemporaryDirectory();
     args[KEY_HEADER_FILE_PATHS] = NSTemporaryDirectory();
     
-    MISGenerator *gen = [[[MISGenerator alloc] initWithDelegate:nil] autorelease];
+    id <MISGeneratorDelegate>mock = [OCMockObject mockForProtocol:@protocol(MISGeneratorDelegate)];
+    
+    MISGenerator *gen = [[[MISGenerator alloc] initWithDelegate:mock] autorelease];
     [gen execute:args];
     
 }

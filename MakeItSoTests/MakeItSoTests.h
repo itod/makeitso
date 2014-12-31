@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <XCTest/XCTest.h>
+#import <OCMock/OCMock.h>
 
 #define TDTrue(e) XCTAssertTrue((e), @"")
 #define TDFalse(e) XCTAssertFalse((e), @"")
@@ -18,3 +19,5 @@
 #define TDEqualObjects(e1, e2) XCTAssertEqualObjects((e1), (e2), @"")
 
 #define ACC 0.00001
+
+#define VERIFY()     @try { [_mock verify]; } @catch (NSException *ex) { NSString *msg = [ex reason]; XCTAssertTrue(0, @"%@", msg); }

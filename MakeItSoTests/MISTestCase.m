@@ -1,18 +1,18 @@
 //
-//  QueryParesrTests.m
+//  MISTestCase.m
 //  MakeItSoTests
 //
 //  Created by Todd Ditchendorf on 12/25/14.
 //  Copyright (c) 2014 Todd Ditchendorf. All rights reserved.
 //
 
-#import "MakeItSoTests.h"
+#import "MISBaseTest.h"
 
-@interface QueryParesrTests : XCTestCase
+@interface MISTestCase : MISBaseTest
 
 @end
 
-@implementation QueryParesrTests
+@implementation MISTestCase
 
 - (void)setUp {
     [super setUp];

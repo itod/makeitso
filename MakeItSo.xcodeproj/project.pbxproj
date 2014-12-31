@@ -15,6 +15,12 @@
 		D30DDDA01A4F90C300448BB9 /* TeamRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = D30DDD9A1A4F90C300448BB9 /* TeamRepository.m */; };
 		D366C1E31A5389CE00D69669 /* MISKeyGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = D366C1E11A5389CE00D69669 /* MISKeyGenerator.h */; };
 		D366C1E41A5389CE00D69669 /* MISKeyGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = D366C1E21A5389CE00D69669 /* MISKeyGenerator.m */; };
+		D366C1EB1A544BD500D69669 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D366C1EA1A544BD500D69669 /* OCMock.framework */; };
+		D366C1EE1A544CAB00D69669 /* OCMock.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D366C1EA1A544BD500D69669 /* OCMock.framework */; };
+		D366C1F01A544D4900D69669 /* MISBaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D366C1EF1A544D4900D69669 /* MISBaseTest.m */; };
+		D366C1F21A544D8300D69669 /* MISBaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D366C1EF1A544D4900D69669 /* MISBaseTest.m */; };
+		D366C1F41A544F4100D69669 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D366C1EA1A544BD500D69669 /* OCMock.framework */; };
+		D366C1F61A544F5900D69669 /* OCMock.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D366C1EA1A544BD500D69669 /* OCMock.framework */; };
 		D3E3D6891A4C6C88004103BD /* MISUnitOfWork.h in Headers */ = {isa = PBXBuildFile; fileRef = D3E3D6871A4C6C88004103BD /* MISUnitOfWork.h */; };
 		D3E3D68A1A4C6C88004103BD /* MISUnitOfWork.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E3D6881A4C6C88004103BD /* MISUnitOfWork.m */; };
 		D3E3D68D1A4C6CA4004103BD /* MISMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = D3E3D68B1A4C6CA4004103BD /* MISMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -25,7 +31,7 @@
 		D3E3D6971A4C6EF1004103BD /* MISQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E3D6951A4C6EF1004103BD /* MISQuery.m */; };
 		D3E3D69A1A4C6EFE004103BD /* MISCriteria.h in Headers */ = {isa = PBXBuildFile; fileRef = D3E3D6981A4C6EFE004103BD /* MISCriteria.h */; };
 		D3E3D69B1A4C6EFE004103BD /* MISCriteria.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E3D6991A4C6EFE004103BD /* MISCriteria.m */; };
-		D3F0F49C1A4CEFE1000F6F62 /* QueryParesrTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F49B1A4CEFE1000F6F62 /* QueryParesrTests.m */; };
+		D3F0F49C1A4CEFE1000F6F62 /* QueryParesrTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F49B1A4CEFE1000F6F62 /* QueryParesrTestCase.m */; };
 		D3F0F49F1A4CF045000F6F62 /* Repository.h in Headers */ = {isa = PBXBuildFile; fileRef = D3F0F49D1A4CF045000F6F62 /* Repository.h */; };
 		D3F0F4A01A4CF045000F6F62 /* Repository.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F49E1A4CF045000F6F62 /* Repository.m */; };
 		D3F0F4A51A4CF699000F6F62 /* MISQueryParser.h in Headers */ = {isa = PBXBuildFile; fileRef = D3F0F4A31A4CF699000F6F62 /* MISQueryParser.h */; };
@@ -77,7 +83,7 @@
 		D3F0F5781A4F5778000F6F62 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F0F4D71A4D9EAF000F6F62 /* libsqlite3.dylib */; };
 		D3F4B0331A4C6ADE001ACB0E /* MakeItSo.h in Headers */ = {isa = PBXBuildFile; fileRef = D3F4B0321A4C6ADE001ACB0E /* MakeItSo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3F4B0391A4C6ADE001ACB0E /* MakeItSo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F4B02D1A4C6ADE001ACB0E /* MakeItSo.framework */; };
-		D3F4B0401A4C6ADE001ACB0E /* MakeItSoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F4B03F1A4C6ADE001ACB0E /* MakeItSoTests.m */; };
+		D3F4B0401A4C6ADE001ACB0E /* MISTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F4B03F1A4C6ADE001ACB0E /* MISTestCase.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -182,6 +188,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		D366C1ED1A544C9700D69669 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				D366C1EE1A544CAB00D69669 /* OCMock.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D366C1F51A544F4E00D69669 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				D366C1F61A544F5900D69669 /* OCMock.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D3F0F53A1A4DC5FE000F6F62 /* Copy Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -212,6 +238,9 @@
 		D30DDD9A1A4F90C300448BB9 /* TeamRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamRepository.m; sourceTree = "<group>"; };
 		D366C1E11A5389CE00D69669 /* MISKeyGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MISKeyGenerator.h; sourceTree = "<group>"; };
 		D366C1E21A5389CE00D69669 /* MISKeyGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MISKeyGenerator.m; sourceTree = "<group>"; };
+		D366C1EA1A544BD500D69669 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = lib/OCMock/OSX/OCMock.framework; sourceTree = "<group>"; };
+		D366C1EF1A544D4900D69669 /* MISBaseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MISBaseTest.m; sourceTree = "<group>"; };
+		D366C1F11A544D7C00D69669 /* MISBaseTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MISBaseTest.h; sourceTree = "<group>"; };
 		D3E3D6871A4C6C88004103BD /* MISUnitOfWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MISUnitOfWork.h; sourceTree = "<group>"; };
 		D3E3D6881A4C6C88004103BD /* MISUnitOfWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MISUnitOfWork.m; sourceTree = "<group>"; };
 		D3E3D68B1A4C6CA4004103BD /* MISMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MISMapper.h; sourceTree = "<group>"; };
@@ -223,7 +252,7 @@
 		D3E3D6981A4C6EFE004103BD /* MISCriteria.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MISCriteria.h; sourceTree = "<group>"; };
 		D3E3D6991A4C6EFE004103BD /* MISCriteria.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MISCriteria.m; sourceTree = "<group>"; };
 		D3E3D69C1A4C709D004103BD /* MakeItSo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MakeItSo-Prefix.pch"; path = "MakeItSo/MakeItSo-Prefix.pch"; sourceTree = SOURCE_ROOT; };
-		D3F0F49B1A4CEFE1000F6F62 /* QueryParesrTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryParesrTests.m; sourceTree = "<group>"; };
+		D3F0F49B1A4CEFE1000F6F62 /* QueryParesrTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryParesrTestCase.m; sourceTree = "<group>"; };
 		D3F0F49D1A4CF045000F6F62 /* Repository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Repository.h; sourceTree = "<group>"; };
 		D3F0F49E1A4CF045000F6F62 /* Repository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Repository.m; sourceTree = "<group>"; };
 		D3F0F4A11A4CF0E2000F6F62 /* query.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = query.grammar; path = res/query.grammar; sourceTree = SOURCE_ROOT; };
@@ -291,7 +320,7 @@
 		D3F4B0321A4C6ADE001ACB0E /* MakeItSo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MakeItSo.h; sourceTree = "<group>"; };
 		D3F4B0381A4C6ADE001ACB0E /* MakeItSoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MakeItSoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3F4B03E1A4C6ADE001ACB0E /* MakeItSoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MakeItSoTests-Info.plist"; sourceTree = "<group>"; };
-		D3F4B03F1A4C6ADE001ACB0E /* MakeItSoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MakeItSoTests.m; sourceTree = "<group>"; };
+		D3F4B03F1A4C6ADE001ACB0E /* MISTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MISTestCase.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -311,6 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3F0F5781A4F5778000F6F62 /* libsqlite3.dylib in Frameworks */,
+				D366C1EB1A544BD500D69669 /* OCMock.framework in Frameworks */,
 				D3F0F5721A4F5728000F6F62 /* MakeItSo.framework in Frameworks */,
 				D3F0F5731A4F5728000F6F62 /* PEGKit.framework in Frameworks */,
 			);
@@ -330,6 +360,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3F4B0391A4C6ADE001ACB0E /* MakeItSo.framework in Frameworks */,
+				D366C1F41A544F4100D69669 /* OCMock.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,6 +423,7 @@
 			isa = PBXGroup;
 			children = (
 				D3F0F4D71A4D9EAF000F6F62 /* libsqlite3.dylib */,
+				D366C1EA1A544BD500D69669 /* OCMock.framework */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -441,6 +473,8 @@
 		D3F0F4F91A4DC165000F6F62 /* MISGeneratorTests */ = {
 			isa = PBXGroup;
 			children = (
+				D366C1F11A544D7C00D69669 /* MISBaseTest.h */,
+				D366C1EF1A544D4900D69669 /* MISBaseTest.m */,
 				D3F0F4FC1A4DC165000F6F62 /* MISGeneratorTests.m */,
 				D30DDD8F1A4F90C300448BB9 /* Player.h */,
 				D30DDD901A4F90C300448BB9 /* Player.m */,
@@ -560,10 +594,10 @@
 		D3F4B03C1A4C6ADE001ACB0E /* MakeItSoTests */ = {
 			isa = PBXGroup;
 			children = (
-				D3F4B03F1A4C6ADE001ACB0E /* MakeItSoTests.m */,
-				D3F0F49B1A4CEFE1000F6F62 /* QueryParesrTests.m */,
-				D3F4B03D1A4C6ADE001ACB0E /* Supporting Files */,
 				D3F0F4CD1A4D0465000F6F62 /* MakeItSoTests.h */,
+				D3F4B03F1A4C6ADE001ACB0E /* MISTestCase.m */,
+				D3F0F49B1A4CEFE1000F6F62 /* QueryParesrTestCase.m */,
+				D3F4B03D1A4C6ADE001ACB0E /* Supporting Files */,
 			);
 			path = MakeItSoTests;
 			sourceTree = "<group>";
@@ -629,6 +663,7 @@
 				D3F0F4F21A4DC165000F6F62 /* Sources */,
 				D3F0F4F31A4DC165000F6F62 /* Frameworks */,
 				D3F0F4F41A4DC165000F6F62 /* Resources */,
+				D366C1ED1A544C9700D69669 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -668,6 +703,7 @@
 				D3F4B0341A4C6ADE001ACB0E /* Sources */,
 				D3F4B0351A4C6ADE001ACB0E /* Frameworks */,
 				D3F4B0361A4C6ADE001ACB0E /* Resources */,
+				D366C1F51A544F4E00D69669 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -859,6 +895,7 @@
 				D30DDDA01A4F90C300448BB9 /* TeamRepository.m in Sources */,
 				D30DDD9B1A4F90C300448BB9 /* Player.m in Sources */,
 				D3F0F4FD1A4DC165000F6F62 /* MISGeneratorTests.m in Sources */,
+				D366C1F01A544D4900D69669 /* MISBaseTest.m in Sources */,
 				D30DDD9D1A4F90C300448BB9 /* PlayerRepository.m in Sources */,
 				D30DDD9C1A4F90C300448BB9 /* PlayerMapper.m in Sources */,
 				D30DDD9F1A4F90C300448BB9 /* TeamMapper.m in Sources */,
@@ -887,8 +924,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3F4B0401A4C6ADE001ACB0E /* MakeItSoTests.m in Sources */,
-				D3F0F49C1A4CEFE1000F6F62 /* QueryParesrTests.m in Sources */,
+				D3F4B0401A4C6ADE001ACB0E /* MISTestCase.m in Sources */,
+				D3F0F49C1A4CEFE1000F6F62 /* QueryParesrTestCase.m in Sources */,
+				D366C1F21A544D8300D69669 /* MISBaseTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -994,6 +1032,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
+					"$(PROJECT_DIR)/lib/OCMock/OSX",
 				);
 				GCC_PREFIX_HEADER = "MISGenerator/MISGenerator-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1026,6 +1065,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
+					"$(PROJECT_DIR)/lib/OCMock/OSX",
 				);
 				GCC_PREFIX_HEADER = "MISGenerator/MISGenerator-Prefix.pch";
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -1140,6 +1180,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/lib/OCMock/OSX",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_PREFIX_HEADER = "MakeItSo/MakeItSo-Prefix.pch";
 				INFOPLIST_FILE = "MakeItSo/MakeItSo-Info.plist";
@@ -1158,6 +1202,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/lib/OCMock/OSX",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_PREFIX_HEADER = "MakeItSo/MakeItSo-Prefix.pch";
 				INFOPLIST_FILE = "MakeItSo/MakeItSo-Info.plist";
@@ -1175,6 +1223,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
+					"$(PROJECT_DIR)/lib/OCMock/OSX",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1193,6 +1242,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
+					"$(PROJECT_DIR)/lib/OCMock/OSX",
 				);
 				INFOPLIST_FILE = "MakeItSoTests/MakeItSoTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
