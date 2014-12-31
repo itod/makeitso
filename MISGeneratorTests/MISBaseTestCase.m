@@ -1,14 +1,14 @@
 //
-//  MISBaseTest.m
+//  MISBaseTestCase.m
 //  MakeItSoTests
 //
 //  Created by Todd Ditchendorf on 12/26/14.
 //  Copyright (c) 2014 Todd Ditchendorf. All rights reserved.
 //
 
-#import "MISBaseTest.h"
+#import "MISBaseTestCase.h"
 
-@implementation MISBaseTest
+@implementation MISBaseTestCase
 
 - (void)dealloc {
     self.mock = nil;

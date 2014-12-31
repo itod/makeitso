@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Todd Ditchendorf. All rights reserved.
 //
 
-#import "MISBaseTest.h"
+#import "MISBaseTestCase.h"
 #import "MISGenerator.h"
 
-@interface MISGeneratorTests : MISBaseTest
+@interface MISGeneratorTests : MISBaseTestCase
 
 @end
 

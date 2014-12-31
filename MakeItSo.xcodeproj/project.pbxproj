@@ -17,8 +17,8 @@
 		D366C1E41A5389CE00D69669 /* MISKeyGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = D366C1E21A5389CE00D69669 /* MISKeyGenerator.m */; };
 		D366C1EB1A544BD500D69669 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D366C1EA1A544BD500D69669 /* OCMock.framework */; };
 		D366C1EE1A544CAB00D69669 /* OCMock.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D366C1EA1A544BD500D69669 /* OCMock.framework */; };
-		D366C1F01A544D4900D69669 /* MISBaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D366C1EF1A544D4900D69669 /* MISBaseTest.m */; };
-		D366C1F21A544D8300D69669 /* MISBaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D366C1EF1A544D4900D69669 /* MISBaseTest.m */; };
+		D366C1F01A544D4900D69669 /* MISBaseTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = D366C1EF1A544D4900D69669 /* MISBaseTestCase.m */; };
+		D366C1F21A544D8300D69669 /* MISBaseTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = D366C1EF1A544D4900D69669 /* MISBaseTestCase.m */; };
 		D366C1F41A544F4100D69669 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D366C1EA1A544BD500D69669 /* OCMock.framework */; };
 		D366C1F61A544F5900D69669 /* OCMock.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D366C1EA1A544BD500D69669 /* OCMock.framework */; };
 		D3E3D6891A4C6C88004103BD /* MISUnitOfWork.h in Headers */ = {isa = PBXBuildFile; fileRef = D3E3D6871A4C6C88004103BD /* MISUnitOfWork.h */; };
@@ -239,8 +239,8 @@
 		D366C1E11A5389CE00D69669 /* MISKeyGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MISKeyGenerator.h; sourceTree = "<group>"; };
 		D366C1E21A5389CE00D69669 /* MISKeyGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MISKeyGenerator.m; sourceTree = "<group>"; };
 		D366C1EA1A544BD500D69669 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = lib/OCMock/OSX/OCMock.framework; sourceTree = "<group>"; };
-		D366C1EF1A544D4900D69669 /* MISBaseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MISBaseTest.m; sourceTree = "<group>"; };
-		D366C1F11A544D7C00D69669 /* MISBaseTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MISBaseTest.h; sourceTree = "<group>"; };
+		D366C1EF1A544D4900D69669 /* MISBaseTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MISBaseTestCase.m; sourceTree = "<group>"; };
+		D366C1F11A544D7C00D69669 /* MISBaseTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MISBaseTestCase.h; sourceTree = "<group>"; };
 		D3E3D6871A4C6C88004103BD /* MISUnitOfWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MISUnitOfWork.h; sourceTree = "<group>"; };
 		D3E3D6881A4C6C88004103BD /* MISUnitOfWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MISUnitOfWork.m; sourceTree = "<group>"; };
 		D3E3D68B1A4C6CA4004103BD /* MISMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MISMapper.h; sourceTree = "<group>"; };
@@ -473,8 +473,8 @@
 		D3F0F4F91A4DC165000F6F62 /* MISGeneratorTests */ = {
 			isa = PBXGroup;
 			children = (
-				D366C1F11A544D7C00D69669 /* MISBaseTest.h */,
-				D366C1EF1A544D4900D69669 /* MISBaseTest.m */,
+				D366C1F11A544D7C00D69669 /* MISBaseTestCase.h */,
+				D366C1EF1A544D4900D69669 /* MISBaseTestCase.m */,
 				D3F0F4FC1A4DC165000F6F62 /* MISGeneratorTests.m */,
 				D30DDD8F1A4F90C300448BB9 /* Player.h */,
 				D30DDD901A4F90C300448BB9 /* Player.m */,
@@ -895,7 +895,7 @@
 				D30DDDA01A4F90C300448BB9 /* TeamRepository.m in Sources */,
 				D30DDD9B1A4F90C300448BB9 /* Player.m in Sources */,
 				D3F0F4FD1A4DC165000F6F62 /* MISGeneratorTests.m in Sources */,
-				D366C1F01A544D4900D69669 /* MISBaseTest.m in Sources */,
+				D366C1F01A544D4900D69669 /* MISBaseTestCase.m in Sources */,
 				D30DDD9D1A4F90C300448BB9 /* PlayerRepository.m in Sources */,
 				D30DDD9C1A4F90C300448BB9 /* PlayerMapper.m in Sources */,
 				D30DDD9F1A4F90C300448BB9 /* TeamMapper.m in Sources */,
@@ -926,7 +926,7 @@
 			files = (
 				D3F4B0401A4C6ADE001ACB0E /* MISTestCase.m in Sources */,
 				D3F0F49C1A4CEFE1000F6F62 /* QueryParesrTestCase.m in Sources */,
-				D366C1F21A544D8300D69669 /* MISBaseTest.m in Sources */,
+				D366C1F21A544D8300D69669 /* MISBaseTestCase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

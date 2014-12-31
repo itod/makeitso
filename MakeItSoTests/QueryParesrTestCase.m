@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 Todd Ditchendorf. All rights reserved.
 //
 
-#import "MISBaseTest.h"
+#import "MISBaseTestCase.h"
 
 #import "MISQueryParser.h"
 #import "MISQueryAssembler.h"
 #import "MISQuery.h"
 #import "MISCriteria.h"
 
-@interface QueryParesrTestCase : MISBaseTest
+@interface QueryParesrTestCase : MISBaseTestCase
 @property (nonatomic, retain) MISQueryAssembler *assembler;
 @property (nonatomic, retain) MISQueryParser *parser;
 @end

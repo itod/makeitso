@@ -1,5 +1,5 @@
 //
-//  MISBaseTest.h
+//  MISBaseTestCase.h
 //  MakeItSoTests
 //
 //  Created by Todd Ditchendorf on 12/27/14.
@@ -8,6 +8,6 @@
 
 #import "MakeItSoTests.h"
 
-@interface MISBaseTest : XCTestCase
+@interface MISBaseTestCase : XCTestCase
 @property (nonatomic, retain) OCMockObject *mock;
 @end
