@@ -8,6 +8,11 @@
 
 #import "MISBaseTestCase.h"
 #import "MISKeyGenerator.h"
+#import <fmdb/FMDatabase.h>
+
+@interface MISKeyGenerator ()
+- (instancetype)initWithDatabase:(FMDatabase *)db keyName:(NSString *)name incrementBy:(NSUInteger)inc;
+@end
 
 @interface MISKeyGeneratorTestCase : MISBaseTestCase
 @property (nonatomic, retain) MISKeyGenerator *generator;
@@ -27,20 +32,18 @@
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    self.generator = nil;
     [super tearDown];
 }
 
 - (void)testExample {
-    // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
-}
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+    id mockDB = [OCMockObject mockForClass:[FMDatabase class]];
+    
+    self.generator = [[[MISKeyGenerator alloc] initWithDatabase:mockDB keyName:@"name" incrementBy:5] autorelease];
+    
+    for (NSUInteger i = 1; i < 27; ++i) {
+        TDEqualObjects(@(i), [self.generator nextKey]);
+    }
 }
 
 @end

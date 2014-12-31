@@ -28,17 +28,13 @@ static MISKeyGenerator *sInstance = nil;
 
 @implementation MISKeyGenerator
 
-+ (void)initialize {
-    if ([MISKeyGenerator class] == self) {
-        TDAssertDatabaseThread();
-        TDAssert(!sInstance);
-        
++ (instancetype)instance {
+    TDAssertDatabaseThread();
+    
+    if (!sInstance) {
         sInstance = [[MISKeyGenerator alloc] initWithDatabase:[[MISUnitOfWork current] database] keyName:@"global" incrementBy:5];
     }
-}
-
-
-+ (instancetype)instance {
+    
     return sInstance;
 }
 
