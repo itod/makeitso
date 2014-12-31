@@ -112,14 +112,16 @@
 #pragma mark INSERT
 
 - (NSNumber *)insert:(DomainObject *)obj {
-    NSNumber *objId = [self nextDatabaseKey];
-    return [self insert:obj withObjectID:objId];
+    NSNumber *objID = [self nextDatabaseKey];
+    obj.objectID = objID;
+    [self performInsert:obj];
+    TDAssert([objID isEqualToNumber:obj.objectID]);
+    return objID;
 }
 
 
-- (NSNumber *)insert:(DomainObject *)obj withObjectID:(NSNumber *)objID {
+- (void)performInsert:(DomainObject *)obj {
     NSAssert2(0, @"%s is an abstract method and must be implemented in %@", __PRETTY_FUNCTION__, [self class]);
-    return nil;
 }
 
 

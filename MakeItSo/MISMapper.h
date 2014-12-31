@@ -21,7 +21,6 @@
 
 - (void)update:(DomainObject *)obj;
 - (NSNumber *)insert:(DomainObject *)obj;
-- (NSNumber *)insert:(DomainObject *)obj withObjectID:(NSNumber *)objID;
 - (void)delete:(DomainObject *)obj;
 
 - (DomainObject *)load:(FMResultSet *)rs;

@@ -44,10 +44,9 @@
 }
 
 
-- (NSNumber *)insert:(DomainObject *)obj withObjectID:(NSNumber *)objID {
+- (void)performInsert:(DomainObject *)obj {
     TDAssertDatabaseThread();
-    TDAssert(!obj.objectID);
-    if (!objID) return nil;;
+    if (!obj.objectID) return;
     
     NSString *sql = @"INSERT INTO player (objectID, firstName, lastName, team) VALUES (?, ?, ?, ?)";
     
@@ -58,13 +57,11 @@
         [args addObject:val];
     }
     {
-        obj.objectID = objID;
-        NSString *val = objID;
+        NSString *val = [obj valueForKey:@"firstName"];
         [args addObject:val];
     }
     {
-        obj.objectID = objID;
-        NSString *val = objID;
+        NSString *val = [obj valueForKey:@"lastName"];
         [args addObject:val];
     }
     {
@@ -82,8 +79,6 @@
     @finally {
         
     }
-    
-    return obj.objectID;
 }
 
 
