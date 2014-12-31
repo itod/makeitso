@@ -46,7 +46,6 @@
     }
 }
 
-
 - (void)testIncremembyBy1 {
     id mockDB = [OCMockObject mockForClass:[FMDatabase class]];
     
@@ -56,7 +55,6 @@
         TDEqualObjects(@(i), [self.generator nextKey]);
     }
 }
-
 
 //- (void)testIncremembyBy0 {
 //    id mockDB = [OCMockObject mockForClass:[FMDatabase class]];
