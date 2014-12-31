@@ -195,6 +195,31 @@
     _currentField.name = name;
     
     [_currentClass addField:_currentField];
+    
+    // don't set -currentField to nil here. wait for relationship
+}
+
+
+- (void)parser:(PKParser *)p didMatchRelationship:(PKAssembly *)a {
+    //NSLog(@"%s, %@", __PRETTY_FUNCTION__, a);
+    
+    PKToken *relTok = [a pop];
+    TDAssertToken(relTok);
+    
+    MISFieldRelationship rel = MISFieldRelationshipOneToOne;
+    
+    if ([@"MIS_ONE_TO_ONE" isEqualToString:relTok.stringValue]) {
+        rel = MISFieldRelationshipOneToOne;
+    } else if ([@"MIS_ONE_TO_MANY" isEqualToString:relTok.stringValue]) {
+        rel = MISFieldRelationshipOneToMany;
+    } else if ([@"MIS_MANY_TO_MANY" isEqualToString:relTok.stringValue]) {
+        rel = MISFieldRelationshipManyToMany;
+    } else {
+        TDAssert(0);
+    }
+    
+    TDAssert(_currentField);
+    _currentField.relationship = rel;
 }
 
 
