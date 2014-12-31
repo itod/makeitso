@@ -36,14 +36,34 @@
     [super tearDown];
 }
 
-- (void)testExample {
+- (void)testIncremembyBy5 {
     id mockDB = [OCMockObject mockForClass:[FMDatabase class]];
     
     self.generator = [[[MISKeyGenerator alloc] initWithDatabase:mockDB keyName:@"name" incrementBy:5] autorelease];
     
-    for (NSUInteger i = 1; i < 27; ++i) {
+    for (NSUInteger i = 1; i < 247; ++i) {
         TDEqualObjects(@(i), [self.generator nextKey]);
     }
 }
+
+
+- (void)testIncremembyBy1 {
+    id mockDB = [OCMockObject mockForClass:[FMDatabase class]];
+    
+    self.generator = [[[MISKeyGenerator alloc] initWithDatabase:mockDB keyName:@"name" incrementBy:1] autorelease];
+    
+    for (NSUInteger i = 1; i < 102; ++i) {
+        TDEqualObjects(@(i), [self.generator nextKey]);
+    }
+}
+
+
+//- (void)testIncremembyBy0 {
+//    id mockDB = [OCMockObject mockForClass:[FMDatabase class]];
+//    
+//    self.generator = [[[MISKeyGenerator alloc] initWithDatabase:mockDB keyName:@"name" incrementBy:0] autorelease];
+//    XCTAssertThrows([self.generator nextKey]);
+//    XCTFail(@"should not reach");
+//}
 
 @end
