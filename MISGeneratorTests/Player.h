@@ -15,5 +15,5 @@
 @property (nonatomic, copy) NSString *firstName;
 @property (nonatomic, copy) NSString *lastName;
 
-@property (nonatomic, retain) Team *team;
+@property (nonatomic, retain) Team *team MIS_ONE_TO_ONE;
 @end

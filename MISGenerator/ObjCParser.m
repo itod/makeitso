@@ -38,6 +38,7 @@
 @property (nonatomic, retain) NSMutableDictionary *size_memo;
 @property (nonatomic, retain) NSMutableDictionary *scalarIvar_memo;
 @property (nonatomic, retain) NSMutableDictionary *property_memo;
+@property (nonatomic, retain) NSMutableDictionary *relationship_memo;
 @property (nonatomic, retain) NSMutableDictionary *nonBlockProperty_memo;
 @property (nonatomic, retain) NSMutableDictionary *nonBlockPropertyType_memo;
 @property (nonatomic, retain) NSMutableDictionary *blockProperty_memo;
@@ -82,8 +83,8 @@
         self.tokenKindTab[@"assign"] = @(OBJCPARSER_TOKEN_KIND_ASSIGN);
         self.tokenKindTab[@"getter"] = @(OBJCPARSER_TOKEN_KIND_GETTER);
         self.tokenKindTab[@"#,"] = @(OBJCPARSER_TOKEN_KIND_P);
-        self.tokenKindTab[@"extern"] = @(OBJCPARSER_TOKEN_KIND_EXTERN);
         self.tokenKindTab[@"weak"] = @(OBJCPARSER_TOKEN_KIND_WEAK);
+        self.tokenKindTab[@"extern"] = @(OBJCPARSER_TOKEN_KIND_EXTERN);
         self.tokenKindTab[@":"] = @(OBJCPARSER_TOKEN_KIND_METHODCOLON);
         self.tokenKindTab[@"enum"] = @(OBJCPARSER_TOKEN_KIND_ENUM);
         self.tokenKindTab[@";"] = @(OBJCPARSER_TOKEN_KIND_SEMI);
@@ -94,11 +95,13 @@
         self.tokenKindTab[@"="] = @(OBJCPARSER_TOKEN_KIND_EQUALS);
         self.tokenKindTab[@"setter"] = @(OBJCPARSER_TOKEN_KIND_SETTER);
         self.tokenKindTab[@">"] = @(OBJCPARSER_TOKEN_KIND_GT_SYM);
+        self.tokenKindTab[@"MIS_MANY_TO_MANY"] = @(OBJCPARSER_TOKEN_KIND_MIS_MANY_TO_MANY);
         self.tokenKindTab[@"property"] = @(OBJCPARSER_TOKEN_KIND_PROPERTY);
         self.tokenKindTab[@"static"] = @(OBJCPARSER_TOKEN_KIND_STATIC);
         self.tokenKindTab[@"("] = @(OBJCPARSER_TOKEN_KIND_OPEN_PAREN);
         self.tokenKindTab[@")"] = @(OBJCPARSER_TOKEN_KIND_CLOSE_PAREN);
         self.tokenKindTab[@"@"] = @(OBJCPARSER_TOKEN_KIND_AT);
+        self.tokenKindTab[@"MIS_ONE_TO_ONE"] = @(OBJCPARSER_TOKEN_KIND_MIS_ONE_TO_ONE);
         self.tokenKindTab[@"*"] = @(OBJCPARSER_TOKEN_KIND_STAR);
         self.tokenKindTab[@"strong"] = @(OBJCPARSER_TOKEN_KIND_STRONG);
         self.tokenKindTab[@"+"] = @(OBJCPARSER_TOKEN_KIND_PLUS);
@@ -106,8 +109,9 @@
         self.tokenKindTab[@","] = @(OBJCPARSER_TOKEN_KIND_COMMA);
         self.tokenKindTab[@"copy"] = @(OBJCPARSER_TOKEN_KIND_COPY);
         self.tokenKindTab[@"retain"] = @(OBJCPARSER_TOKEN_KIND_RETAIN);
-        self.tokenKindTab[@"-"] = @(OBJCPARSER_TOKEN_KIND_MINUS);
+        self.tokenKindTab[@"MIS_ONE_TO_MANY"] = @(OBJCPARSER_TOKEN_KIND_MIS_ONE_TO_MANY);
         self.tokenKindTab[@"]"] = @(OBJCPARSER_TOKEN_KIND_CLOSE_BRACKET);
+        self.tokenKindTab[@"-"] = @(OBJCPARSER_TOKEN_KIND_MINUS);
         self.tokenKindTab[@"struct"] = @(OBJCPARSER_TOKEN_KIND_STRUCT);
         self.tokenKindTab[@"^"] = @(OBJCPARSER_TOKEN_KIND_CARET);
         self.tokenKindTab[@"typedef"] = @(OBJCPARSER_TOKEN_KIND_TYPEDEF);
@@ -124,8 +128,8 @@
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_ASSIGN] = @"assign";
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_GETTER] = @"getter";
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_P] = @"#,";
-        self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_EXTERN] = @"extern";
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_WEAK] = @"weak";
+        self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_EXTERN] = @"extern";
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_METHODCOLON] = @":";
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_ENUM] = @"enum";
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_SEMI] = @";";
@@ -136,11 +140,13 @@
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_EQUALS] = @"=";
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_SETTER] = @"setter";
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_GT_SYM] = @">";
+        self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_MIS_MANY_TO_MANY] = @"MIS_MANY_TO_MANY";
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_PROPERTY] = @"property";
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_STATIC] = @"static";
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_OPEN_PAREN] = @"(";
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_CLOSE_PAREN] = @")";
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_AT] = @"@";
+        self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_MIS_ONE_TO_ONE] = @"MIS_ONE_TO_ONE";
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_STAR] = @"*";
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_STRONG] = @"strong";
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_PLUS] = @"+";
@@ -148,8 +154,9 @@
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_COMMA] = @",";
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_COPY] = @"copy";
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_RETAIN] = @"retain";
-        self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_MINUS] = @"-";
+        self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_MIS_ONE_TO_MANY] = @"MIS_ONE_TO_MANY";
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_CLOSE_BRACKET] = @"]";
+        self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_MINUS] = @"-";
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_STRUCT] = @"struct";
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_CARET] = @"^";
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_TYPEDEF] = @"typedef";
@@ -192,6 +199,7 @@
         self.size_memo = [NSMutableDictionary dictionary];
         self.scalarIvar_memo = [NSMutableDictionary dictionary];
         self.property_memo = [NSMutableDictionary dictionary];
+        self.relationship_memo = [NSMutableDictionary dictionary];
         self.nonBlockProperty_memo = [NSMutableDictionary dictionary];
         self.nonBlockPropertyType_memo = [NSMutableDictionary dictionary];
         self.blockProperty_memo = [NSMutableDictionary dictionary];
@@ -259,6 +267,7 @@
     self.size_memo = nil;
     self.scalarIvar_memo = nil;
     self.property_memo = nil;
+    self.relationship_memo = nil;
     self.nonBlockProperty_memo = nil;
     self.nonBlockPropertyType_memo = nil;
     self.blockProperty_memo = nil;
@@ -325,6 +334,7 @@
     [_size_memo removeAllObjects];
     [_scalarIvar_memo removeAllObjects];
     [_property_memo removeAllObjects];
+    [_relationship_memo removeAllObjects];
     [_nonBlockProperty_memo removeAllObjects];
     [_nonBlockPropertyType_memo removeAllObjects];
     [_blockProperty_memo removeAllObjects];
@@ -886,9 +896,9 @@
 
 - (void)__ivar {
     
-    if ([self speculate:^{ [self arrayIvar_]; }]) {
+    if ([self predicts:OBJCPARSER_TOKEN_KIND_STRUCT, OBJCPARSER_TOKEN_KIND_UNION, TOKEN_KIND_BUILTIN_WORD, 0]) {
         [self arrayIvar_]; 
-    } else if ([self speculate:^{ [self scalarIvar_]; }]) {
+    } else if ([self predicts:OBJCPARSER_TOKEN_KIND_IBOUTLET, 0]) {
         [self scalarIvar_]; 
     } else {
         [self raise:@"No viable alternative found in rule 'ivar'."];
@@ -963,12 +973,35 @@
     } else {
         [self raise:@"No viable alternative found in rule 'property'."];
     }
+    if ([self predicts:OBJCPARSER_TOKEN_KIND_MIS_MANY_TO_MANY, OBJCPARSER_TOKEN_KIND_MIS_ONE_TO_MANY, OBJCPARSER_TOKEN_KIND_MIS_ONE_TO_ONE, 0]) {
+        [self relationship_]; 
+    }
+    [self semi_]; 
 
     [self fireDelegateSelector:@selector(parser:didMatchProperty:)];
 }
 
 - (void)property_ {
     [self parseRule:@selector(__property) withMemo:_property_memo];
+}
+
+- (void)__relationship {
+    
+    if ([self predicts:OBJCPARSER_TOKEN_KIND_MIS_ONE_TO_ONE, 0]) {
+        [self match:OBJCPARSER_TOKEN_KIND_MIS_ONE_TO_ONE discard:NO]; 
+    } else if ([self predicts:OBJCPARSER_TOKEN_KIND_MIS_ONE_TO_MANY, 0]) {
+        [self match:OBJCPARSER_TOKEN_KIND_MIS_ONE_TO_MANY discard:NO]; 
+    } else if ([self predicts:OBJCPARSER_TOKEN_KIND_MIS_MANY_TO_MANY, 0]) {
+        [self match:OBJCPARSER_TOKEN_KIND_MIS_MANY_TO_MANY discard:NO]; 
+    } else {
+        [self raise:@"No viable alternative found in rule 'relationship'."];
+    }
+
+    [self fireDelegateSelector:@selector(parser:didMatchRelationship:)];
+}
+
+- (void)relationship_ {
+    [self parseRule:@selector(__relationship) withMemo:_relationship_memo];
 }
 
 - (void)__nonBlockProperty {
@@ -983,7 +1016,6 @@
     }
     [self nonBlockPropertyType_]; 
     [self propertyName_]; 
-    [self semi_]; 
 
     [self fireDelegateSelector:@selector(parser:didMatchNonBlockProperty:)];
 }
@@ -1011,7 +1043,6 @@
     [self propertySpecList_]; 
     [self match:OBJCPARSER_TOKEN_KIND_CLOSE_PAREN discard:NO]; 
     [self blockPropertyType_]; 
-    [self semi_]; 
 
     [self fireDelegateSelector:@selector(parser:didMatchBlockProperty:)];
 }

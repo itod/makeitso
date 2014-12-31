@@ -10,10 +10,11 @@
     self = [super init];
     if (self) {
         self.tableName = @"team";
-        self.selectColumnList = @"objectID, name";
+        self.selectColumnList = @"objectID, name, players";
         self.columnNames = @[
             @"objectID",
             @"name",
+            @"players",
         ];
     }
     return self;
@@ -31,6 +32,10 @@
         NSString *val = [rs stringForColumn:@"name"];
         [obj setValue:val forKey:@"name"];
     }
+    {
+        DomainObject *val = [rs objectForColumnName:@"players"];
+        [obj setValue:val forKey:@"players"];
+    }
 }
 
 
@@ -38,7 +43,7 @@
     TDAssertDatabaseThread();
     if (!obj.objectID) return;
     
-    NSString *sql = @"INSERT INTO team (objectID, name) VALUES (?, ?)";
+    NSString *sql = @"INSERT INTO team (objectID, name, players) VALUES (?, ?, ?)";
     
     NSMutableArray *args = [NSMutableArray arrayWithCapacity:[self.columnNames count]];
 
@@ -48,6 +53,10 @@
     }
     {
         NSString *val = [obj valueForKey:@"name"];
+        [args addObject:val];
+    }
+    {
+        DomainObject *val = [obj valueForKey:@"players"];
         [args addObject:val];
     }
     
@@ -68,7 +77,7 @@
     TDAssertDatabaseThread();
     if (!obj.objectID) return;
     
-    NSString *sql = @"UPDATE team SET objectID = ?, name = ? WHERE objectID = ?";
+    NSString *sql = @"UPDATE team SET objectID = ?, name = ?, players = ? WHERE objectID = ?";
     
     NSMutableArray *args = [NSMutableArray arrayWithCapacity:[self.columnNames count]];
 
@@ -78,6 +87,10 @@
     }
     {
         NSString *val = [obj valueForKey:@"name"];
+        [args addObject:val];
+    }
+    {
+        DomainObject *val = [obj valueForKey:@"players"];
         [args addObject:val];
     }
     

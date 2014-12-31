@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+#define MIS_ONE_TO_ONE
+#define MIS_ONE_TO_MANY
+#define MIS_MANY_TO_MANY
+
 @interface DomainObject : NSObject
 
 + (NSString *)collectionName;
