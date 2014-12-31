@@ -151,9 +151,18 @@
 
 - (void)commit {
     TDAssertDatabaseThread();
+    TDAssert(_database);
+    
+    [_database beginTransaction];
+    
     [self insertPristine];
     [self updateDirty];
     [self deleteRemoved];
+    
+    BOOL result = [_database commit];
+    if (!result) {
+        TDAssert(0);
+    }
 }
 
 

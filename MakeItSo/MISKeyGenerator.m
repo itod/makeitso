@@ -85,6 +85,7 @@ static MISKeyGenerator *sInstance = nil;
     
     FMResultSet *rs = nil;
     NSUInteger newNextID = 0;
+    
     @try {
         rs = [_database executeQuery:@"SELECT nextID FROM keys WHERE name = ?", _keyName];
         [rs next];
