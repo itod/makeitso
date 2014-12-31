@@ -13,6 +13,8 @@
 		D30DDD9E1A4F90C300448BB9 /* Team.m in Sources */ = {isa = PBXBuildFile; fileRef = D30DDD961A4F90C300448BB9 /* Team.m */; };
 		D30DDD9F1A4F90C300448BB9 /* TeamMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D30DDD981A4F90C300448BB9 /* TeamMapper.m */; };
 		D30DDDA01A4F90C300448BB9 /* TeamRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = D30DDD9A1A4F90C300448BB9 /* TeamRepository.m */; };
+		D366C1E31A5389CE00D69669 /* MISKeyGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = D366C1E11A5389CE00D69669 /* MISKeyGenerator.h */; };
+		D366C1E41A5389CE00D69669 /* MISKeyGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = D366C1E21A5389CE00D69669 /* MISKeyGenerator.m */; };
 		D3E3D6891A4C6C88004103BD /* MISUnitOfWork.h in Headers */ = {isa = PBXBuildFile; fileRef = D3E3D6871A4C6C88004103BD /* MISUnitOfWork.h */; };
 		D3E3D68A1A4C6C88004103BD /* MISUnitOfWork.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E3D6881A4C6C88004103BD /* MISUnitOfWork.m */; };
 		D3E3D68D1A4C6CA4004103BD /* MISMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = D3E3D68B1A4C6CA4004103BD /* MISMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -208,6 +210,8 @@
 		D30DDD981A4F90C300448BB9 /* TeamMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamMapper.m; sourceTree = "<group>"; };
 		D30DDD991A4F90C300448BB9 /* TeamRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamRepository.h; sourceTree = "<group>"; };
 		D30DDD9A1A4F90C300448BB9 /* TeamRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamRepository.m; sourceTree = "<group>"; };
+		D366C1E11A5389CE00D69669 /* MISKeyGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MISKeyGenerator.h; sourceTree = "<group>"; };
+		D366C1E21A5389CE00D69669 /* MISKeyGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MISKeyGenerator.m; sourceTree = "<group>"; };
 		D3E3D6871A4C6C88004103BD /* MISUnitOfWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MISUnitOfWork.h; sourceTree = "<group>"; };
 		D3E3D6881A4C6C88004103BD /* MISUnitOfWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MISUnitOfWork.m; sourceTree = "<group>"; };
 		D3E3D68B1A4C6CA4004103BD /* MISMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MISMapper.h; sourceTree = "<group>"; };
@@ -340,6 +344,8 @@
 				D3E3D6881A4C6C88004103BD /* MISUnitOfWork.m */,
 				D3E3D68B1A4C6CA4004103BD /* MISMapper.h */,
 				D3E3D68C1A4C6CA4004103BD /* MISMapper.m */,
+				D366C1E11A5389CE00D69669 /* MISKeyGenerator.h */,
+				D366C1E21A5389CE00D69669 /* MISKeyGenerator.m */,
 			);
 			name = Internal;
 			sourceTree = "<group>";
@@ -578,6 +584,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D366C1E31A5389CE00D69669 /* MISKeyGenerator.h in Headers */,
 				D3E3D68D1A4C6CA4004103BD /* MISMapper.h in Headers */,
 				D3E3D6891A4C6C88004103BD /* MISUnitOfWork.h in Headers */,
 				D3F0F4A51A4CF699000F6F62 /* MISQueryParser.h in Headers */,
@@ -866,6 +873,7 @@
 				D3E3D6971A4C6EF1004103BD /* MISQuery.m in Sources */,
 				D3F0F4A01A4CF045000F6F62 /* Repository.m in Sources */,
 				D3F0F55D1A4F2FF8000F6F62 /* FMDatabase.m in Sources */,
+				D366C1E41A5389CE00D69669 /* MISKeyGenerator.m in Sources */,
 				D3F0F55E1A4F2FF8000F6F62 /* FMResultSet.m in Sources */,
 				D3F0F4C81A4CF794000F6F62 /* MISQueryAssembler.m in Sources */,
 				D3E3D6921A4C6CC9004103BD /* DomainObject.m in Sources */,

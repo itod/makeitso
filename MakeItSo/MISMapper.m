@@ -8,6 +8,7 @@
 
 #import "MISMapper.h"
 #import "MISUnitOfWork.h"
+#import "MISKeyGenerator.h"
 
 #import "DomainObject.h"
 
@@ -111,8 +112,19 @@
 #pragma mark INSERT
 
 - (NSNumber *)insert:(DomainObject *)obj {
+    NSNumber *objId = [self nextDatabaseKey];
+    return [self insert:obj withObjectID:objId];
+}
+
+
+- (NSNumber *)insert:(DomainObject *)obj withObjectID:(NSNumber *)objID {
     NSAssert2(0, @"%s is an abstract method and must be implemented in %@", __PRETTY_FUNCTION__, [self class]);
     return nil;
+}
+
+
+- (NSNumber *)nextDatabaseKey {
+    return [[MISKeyGenerator instance] nextKey];
 }
 
 

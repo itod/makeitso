@@ -38,16 +38,18 @@
 }
 
 
-- (NSNumber *)insert:(DomainObject *)obj {
+- (NSNumber *)insert:(DomainObject *)obj withObjectID:(NSNumber *)objID {
     TDAssertDatabaseThread();
-    if (!obj.objectID) return nil;;
+    TDAssert(!obj.objectID);
+    if (!objID) return nil;;
     
     NSString *sql = @"INSERT INTO {{tableName}} ({{selectColumnList}}) VALUES ({{insertColumnList}})";
     
     NSMutableArray *args = [NSMutableArray arrayWithCapacity:[self.columnNames count]];
 {%for field in class.fields %}
     {{%if 'NSString' == field.rawType %}
-        NSString *val = [obj valueForKey:@"{{field.name}}"];
+        obj.objectID = objID;
+        NSString *val = objID;
     {%elif 'NSNumber' == field.rawType %}
         NSNumber *val = [obj valueForKey:@"{{field.name}}"];
     {%elif 'NSDate' == field.rawType %}
@@ -71,7 +73,7 @@
         
     }
     
-    return nil;
+    return obj.objectID;
 }
 
 
