@@ -619,7 +619,7 @@
     self.statusText = msg;
     self.busy = NO;
     
-    [[NSWorkspace sharedWorkspace] selectFile:dbFilePath inFileViewerRootedAtPath:nil];
+    [[NSWorkspace sharedWorkspace] selectFile:dbFilePath inFileViewerRootedAtPath:@""];
 }
 
 
