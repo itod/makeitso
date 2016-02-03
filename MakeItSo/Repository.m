@@ -43,10 +43,14 @@
 
 
 - (DomainObject *)find:(NSNumber *)objID {
+    TDAssert(objID);
+    
     MISQuery *q = [[[MISQuery alloc] init] autorelease];
     [q addCriteria:[MISCriteria criteriaWithType:MISCriteriaTypeAnd lhs:@"objectID" op:MISCriteriaOperatorEqualTo rhs:objID]];
     
+    TDAssert(_unitOfWork);
     NSSet *set = [q execute:_unitOfWork];
+    TDAssert([set count] <= 1);
     
     DomainObject *obj = [set anyObject];
     
@@ -64,7 +68,7 @@
     
     if (!q) {
         if (err) NSLog(@"%@", err);
-        
+        return nil;
     }
     
     NSSet *set = [q execute:_unitOfWork];

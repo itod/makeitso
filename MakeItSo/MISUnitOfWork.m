@@ -172,8 +172,7 @@
     [self updateDirty];
     [self deleteRemoved];
     
-    BOOL result = [_database commit];
-    if (!result) {
+    if (![_database commit]) {
         TDAssert(0);
     }
 }
@@ -184,9 +183,7 @@
     TDAssert(_pristineObjects);
     
     for (DomainObject *obj in _pristineObjects) {
-        MISMapper *mapper = [self mapperForDomainClass:[obj class]];
-        TDAssert(mapper);
-        [mapper insert:obj];
+        [[self mapperForDomainClass:[obj class]] insert:obj];
     }
 }
 
@@ -196,9 +193,7 @@
     TDAssert(_dirtyObjects);
     
     for (DomainObject *obj in _dirtyObjects) {
-        MISMapper *mapper = [self mapperForDomainClass:[obj class]];
-        TDAssert(mapper);
-        [mapper update:obj];
+        [[self mapperForDomainClass:[obj class]] update:obj];
     }
 }
 
@@ -208,9 +203,7 @@
     TDAssert(_removedObjects);
     
     for (DomainObject *obj in _removedObjects) {
-        MISMapper *mapper = [self mapperForDomainClass:[obj class]];
-        TDAssert(mapper);
-        [mapper delete:obj];
+        [[self mapperForDomainClass:[obj class]] delete:obj];
     }
 }
 
@@ -226,7 +219,9 @@
 
 - (DomainObject *)objectForID:(NSNumber *)objID {
     TDAssertDatabaseThread();
+    TDAssert(objID);
     TDAssert(_objectTab);
+    
     DomainObject *obj = _objectTab[objID];
     return obj;
 }

@@ -17,7 +17,8 @@
 @implementation DomainObject
 
 + (NSString *)collectionName {
-    // don't bother making thread safe. harmless if executed multiple times.
+    TDAssertDatabaseThread();
+
     static NSString *sName = nil;
     if (!sName) {
         NSString *clsName = NSStringFromClass(self);
