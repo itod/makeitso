@@ -111,9 +111,13 @@
 - (void)registerPristine:(DomainObject *)obj {
     TDAssertDatabaseThread();
     TDAssert(obj.objectID);
+    TDAssert(_pristineObjects);
+    TDAssert(_dirtyObjects);
+    TDAssert(_removedObjects);
     TDAssert(![_pristineObjects containsObject:obj]);
     TDAssert(![_dirtyObjects containsObject:obj]);
     TDAssert(![_removedObjects containsObject:obj]);
+
     [_pristineObjects addObject:obj];
 }
 
@@ -127,7 +131,11 @@
 - (void)registerDirty:(DomainObject *)obj {
     TDAssertDatabaseThread();
     TDAssert(obj.objectID);
+    TDAssert(_pristineObjects);
+    TDAssert(_dirtyObjects);
+    TDAssert(_removedObjects);
     TDAssert(![_removedObjects containsObject:obj]);
+
     if (![_dirtyObjects containsObject:obj] && ![_pristineObjects containsObject:obj]) {
         [_dirtyObjects addObject:obj];
     }
@@ -137,10 +145,15 @@
 - (void)registerRemoved:(DomainObject *)obj {
     TDAssertDatabaseThread();
     TDAssert(obj.objectID);
+    TDAssert(_pristineObjects);
+    TDAssert(_dirtyObjects);
+    TDAssert(_removedObjects);
+    
     if ([_pristineObjects containsObject:obj]) {
         [_pristineObjects removeObject:obj];
         return;
     }
+    
     [_dirtyObjects removeObject:obj];
     [_removedObjects addObject:obj];
 }
@@ -168,6 +181,8 @@
 
 - (void)insertPristine {
     TDAssertDatabaseThread();
+    TDAssert(_pristineObjects);
+    
     for (DomainObject *obj in _pristineObjects) {
         MISMapper *mapper = [self mapperForDomainClass:[obj class]];
         TDAssert(mapper);
@@ -178,6 +193,8 @@
 
 - (void)updateDirty {
     TDAssertDatabaseThread();
+    TDAssert(_dirtyObjects);
+    
     for (DomainObject *obj in _dirtyObjects) {
         MISMapper *mapper = [self mapperForDomainClass:[obj class]];
         TDAssert(mapper);
@@ -188,6 +205,8 @@
 
 - (void)deleteRemoved {
     TDAssertDatabaseThread();
+    TDAssert(_removedObjects);
+    
     for (DomainObject *obj in _removedObjects) {
         MISMapper *mapper = [self mapperForDomainClass:[obj class]];
         TDAssert(mapper);

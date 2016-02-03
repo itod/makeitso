@@ -10,7 +10,7 @@
 #import "MISGenerator.h"
 
 @interface MISGeneratorTests : MISBaseTestCase
-
+@property (nonatomic, retain) id <MISGeneratorDelegate>mockDelegate;
 @end
 
 @implementation MISGeneratorTests
@@ -22,7 +22,7 @@
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    self.mockDelegate = nil;
     [super tearDown];
 }
 
@@ -33,11 +33,11 @@
     args[KEY_DB_FILENAME] = @"testdb";
     args[KEY_DB_DIR_PATH] = NSTemporaryDirectory();
     args[KEY_OUTPUT_SRC_DIR_PATH] = NSTemporaryDirectory();
-    args[KEY_HEADER_FILE_PATHS] = NSTemporaryDirectory();
+    args[KEY_HEADER_FILE_PATHS] = @[NSTemporaryDirectory()];
     
-    id <MISGeneratorDelegate>mock = [OCMockObject mockForProtocol:@protocol(MISGeneratorDelegate)];
+    self.mockDelegate = [OCMockObject mockForProtocol:@protocol(MISGeneratorDelegate)];
     
-    MISGenerator *gen = [[[MISGenerator alloc] initWithDelegate:mock] autorelease];
+    MISGenerator *gen = [[[MISGenerator alloc] initWithDelegate:_mockDelegate] autorelease];
     [gen execute:args];
     
 }
