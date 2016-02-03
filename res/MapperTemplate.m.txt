@@ -21,6 +21,9 @@
 
 - (void)loadFields:(FMResultSet *)rs inObject:(DomainObject *)obj {
     TDAssertDatabaseThread();
+    TDAssert(rs);
+    TDAssert(obj);
+    TDAssert(self.unitOfWork);
 {%trim%}
     {%for field in class.fields %}
     {%indent%}
@@ -38,7 +41,14 @@
                 {%elif 'NSData' == field.rawType %}
                     NSData *{{field.name}} = [rs dataForColumnName:@"{{field.name}}"];
                 {%else%}
-                    DomainObject *{{field.name}} = [rs objectForColumnName:@"{{field.name}}"];
+                    NSString *objID = [rs objectForColumnName:@"{{field.name}}"];
+                    DomainObject *{{field.name}} = [self.unitOfWork objectForID:objID];
+                    if (!{{field.name}}) {
+                    {%indent%}
+                        Mapper *mapper = [self.unitOfWork mapperForDomainClass:[{{field.rawType}} class]];
+                        {{field.name}} = [mapper findObject:objId];
+                    {%/indent%}
+                    }
                 {%/if%}
             {%elif 1 == field.relationship %}{%comment%} ONE_TO_MANY {%/comment%}
 
@@ -56,6 +66,9 @@
 
 - (void)performInsert:(DomainObject *)obj {
     TDAssertDatabaseThread();
+    TDAssert(rs);
+    TDAssert(obj);
+    TDAssert(self.unitOfWork);
     if (!obj.objectID) return;
     
     NSString *sql = @"INSERT INTO {{tableName}} ({{selectColumnList}}) VALUES ({{insertColumnList}})";
@@ -70,22 +83,26 @@
             {%if 0 == field.relationship %}{%comment%} ONE_TO_ONE {%/comment%}
                 {%if 'NSString' == field.rawType %}
                     NSString *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
+                    [args addObject:{{field.name}}];
                 {%elif 'NSNumber' == field.rawType %}
                     NSNumber *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
+                    [args addObject:{{field.name}}];
                 {%elif 'NSDate' == field.rawType %}
                     NSDate *date = [obj valueForKey:@"{{field.name}}"];
                     NSNumber *{{field.name}} = @([date timeIntervalSince1970]);
+                    [args addObject:{{field.name}}];
                 {%elif 'NSData' == field.rawType %}
                     NSData *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
+                    [args addObject:{{field.name}}];
                 {%else%}
                     DomainObject *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
+                    [args addObject:{{field.name}}.objectID];
                 {%/if%}
             {%elif 1 == field.relationship %}{%comment%} ONE_TO_MANY {%/comment%}
 
             {%elif 2 == field.relationship %}{%comment%} MANY_TO_MANY {%/comment%}
 
             {%/if%}
-            [args addObject:{{field.name}}];
         {%/indent%}
         }
     {%/indent%}
@@ -107,6 +124,9 @@
 
 - (void)update:(DomainObject *)obj {
     TDAssertDatabaseThread();
+    TDAssert(rs);
+    TDAssert(obj);
+    TDAssert(self.unitOfWork);
     if (!obj.objectID) return;
     
     NSString *sql = @"UPDATE {{tableName}} SET {{updateColumnList}} WHERE objectID = ?";
@@ -118,25 +138,29 @@
 
         {
         {%indent%}
-            {%if 0 == field.relationship %}
+            {%if 0 == field.relationship %}{%comment%} ONE_TO_ONE {%/comment%}
                 {%if 'NSString' == field.rawType %}
                     NSString *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
+                    [args addObject:{{field.name}}];
                 {%elif 'NSNumber' == field.rawType %}
                     NSNumber *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
+                    [args addObject:{{field.name}}];
                 {%elif 'NSDate' == field.rawType %}
                     NSDate *date = [obj valueForKey:@"{{field.name}}"];
                     NSNumber *{{field.name}} = @([date timeIntervalSince1970]);
+                    [args addObject:{{field.name}}];
                 {%elif 'NSData' == field.rawType %}
                     NSData *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
+                    [args addObject:{{field.name}}];
                 {%else%}
                     DomainObject *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
+                    [args addObject:{{field.name}}.objectID];
                 {%/if%}
             {%elif 1 == field.relationship %}{%comment%} ONE_TO_MANY {%/comment%}
 
             {%elif 2 == field.relationship %}{%comment%} MANY_TO_MANY {%/comment%}
 
             {%/if%}
-            [args addObject:{{field.name}}];
         {%/indent%}
         }
     {%/indent%}
