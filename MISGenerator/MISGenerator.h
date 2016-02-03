@@ -21,5 +21,5 @@
 
 - (void)execute:(NSDictionary *)args;
 
-@property (nonatomic, assign) id <MISGeneratorDelegate>delegate; // weakfref
+@property (nonatomic, assign) id <MISGeneratorDelegate>delegate; // weakref
 @end
