@@ -23,11 +23,11 @@
     TDAssertDatabaseThread();
 {%trim%}
     {%for field in class.fields %}
-        {%indent%}
+    {%indent%}
 
         {
-            {%indent%}
-            {%if 0 == field.relationship %}
+        {%indent%}
+            {%if 0 == field.relationship %}{%comment%} ONE_TO_ONE {%/comment%}
                 {%if 'NSString' == field.rawType %}
                     NSString *{{field.name}} = [rs stringForColumn:@"{{field.name}}"];
                 {%elif 'NSNumber' == field.rawType %}
@@ -40,11 +40,15 @@
                 {%else%}
                     DomainObject *{{field.name}} = [rs objectForColumnName:@"{{field.name}}"];
                 {%/if%}
-                [obj setValue:{{field.name}} forKey:@"{{field.name}}"];
+            {%elif 1 == field.relationship %}{%comment%} ONE_TO_MANY {%/comment%}
+
+            {%elif 2 == field.relationship %}{%comment%} MANY_TO_MANY {%/comment%}
+
             {%/if%}
-            {%/indent%}
-        }
+            [obj setValue:{{field.name}} forKey:@"{{field.name}}"];
         {%/indent%}
+        }
+    {%/indent%}
     {%/for%}
 {%/trim%}
 }
@@ -59,11 +63,11 @@
     NSMutableArray *args = [NSMutableArray arrayWithCapacity:[self.columnNames count]];
 {%trim%}
     {%for field in class.fields %}
-        {%indent%}
+    {%indent%}
 
         {
-            {%indent%}
-            {%if 0 == field.relationship %}
+        {%indent%}
+            {%if 0 == field.relationship %}{%comment%} ONE_TO_ONE {%/comment%}
                 {%if 'NSString' == field.rawType %}
                     NSString *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
                 {%elif 'NSNumber' == field.rawType %}
@@ -76,11 +80,15 @@
                 {%else%}
                     DomainObject *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
                 {%/if%}
-                [args addObject:{{field.name}}];
+            {%elif 1 == field.relationship %}{%comment%} ONE_TO_MANY {%/comment%}
+
+            {%elif 2 == field.relationship %}{%comment%} MANY_TO_MANY {%/comment%}
+
             {%/if%}
-            {%/indent%}
-        }
+            [args addObject:{{field.name}}];
         {%/indent%}
+        }
+    {%/indent%}
     {%/for%}
 {%/trim%}
 
@@ -106,10 +114,10 @@
     NSMutableArray *args = [NSMutableArray arrayWithCapacity:[self.columnNames count]];
 {%trim%}
     {%for field in class.fields %}
-        {%indent%}
+    {%indent%}
 
         {
-            {%indent%}
+        {%indent%}
             {%if 0 == field.relationship %}
                 {%if 'NSString' == field.rawType %}
                     NSString *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
@@ -123,11 +131,15 @@
                 {%else%}
                     DomainObject *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
                 {%/if%}
-                [args addObject:{{field.name}}];
+            {%elif 1 == field.relationship %}{%comment%} ONE_TO_MANY {%/comment%}
+
+            {%elif 2 == field.relationship %}{%comment%} MANY_TO_MANY {%/comment%}
+
             {%/if%}
-            {%/indent%}
-        }
+            [args addObject:{{field.name}}];
         {%/indent%}
+        }
+    {%/indent%}
     {%/for%}
 {%/trim%}
 
