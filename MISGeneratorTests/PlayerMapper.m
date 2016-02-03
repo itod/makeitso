@@ -1,8 +1,16 @@
 #import "PlayerMapper.h"
 #import "Player.h"
 
+#import "Team.h"
+
+#import "MISUnitOfWork.h"
+
 #import <fmdb/FMResultSet.h>
 #import <fmdb/FMDatabase.h>
+
+@interface MISMapper ()
+@property (nonatomic, retain) MISUnitOfWork *unitOfWork;
+@end
 
 @implementation PlayerMapper
 
@@ -44,11 +52,11 @@
     }
 
     {
-        NSString *objID = [rs objectForColumnName:@"team"];
+        NSNumber *objID = [rs objectForColumnName:@"team"];
         DomainObject *team = [self.unitOfWork objectForID:objID];
         if (!team) {
-            Mapper *mapper = [self.unitOfWork mapperForDomainClass:[Team class]];
-            team = [mapper findObject:objId];
+            MISMapper *mapper = [self.unitOfWork mapperForDomainClass:[Team class]];
+            team = [mapper findObject:objID];
         }
         [obj setValue:team forKey:@"team"];
     }
@@ -58,7 +66,6 @@
 
 - (void)performInsert:(DomainObject *)obj {
     TDAssertDatabaseThread();
-    TDAssert(rs);
     TDAssert(obj);
     TDAssert(self.unitOfWork);
     if (!obj.objectID) return;
@@ -103,7 +110,6 @@
 
 - (void)update:(DomainObject *)obj {
     TDAssertDatabaseThread();
-    TDAssert(rs);
     TDAssert(obj);
     TDAssert(self.unitOfWork);
     if (!obj.objectID) return;

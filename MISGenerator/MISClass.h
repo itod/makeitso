@@ -14,6 +14,8 @@
 @property (nonatomic, copy) NSString *name;
 
 - (void)addField:(MISField *)attr;
+- (void)addRelationshipClassName:(NSString *)str;
 
 @property (nonatomic, retain, readonly) NSArray *fields;
+@property (nonatomic, retain, readonly) NSSet *relationshipClassNames;
 @end

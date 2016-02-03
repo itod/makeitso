@@ -10,6 +10,7 @@
 
 @interface MISClass ()
 @property (nonatomic, retain) NSMutableArray *allFields;
+@property (nonatomic, retain) NSMutableSet *allRelationshipClassNames;
 @end
 
 @implementation MISClass
@@ -18,6 +19,7 @@
     self = [super init];
     if (self) {
         self.allFields = [NSMutableArray array];
+        self.allRelationshipClassNames = [NSMutableSet set];
     }
     return self;
 }
@@ -26,6 +28,7 @@
 - (void)dealloc {
     self.name = nil;
     self.allFields = nil;
+    self.allRelationshipClassNames = nil;
     [super dealloc];
 }
 
@@ -43,8 +46,21 @@
 }
 
 
+- (void)addRelationshipClassName:(NSString *)str {
+    TDAssert(_allRelationshipClassNames);
+    TDAssert(str);
+    
+    [_allRelationshipClassNames addObject:str];
+}
+
+
 - (NSArray *)fields {
     return [[_allFields copy] autorelease];
+}
+
+
+- (NSSet *)relationshipClassNames {
+    return [[_allRelationshipClassNames copy] autorelease];
 }
 
 @end

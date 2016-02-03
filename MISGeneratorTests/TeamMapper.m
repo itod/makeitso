@@ -1,8 +1,16 @@
 #import "TeamMapper.h"
 #import "Team.h"
 
+#import "Player.h"
+
+#import "MISUnitOfWork.h"
+
 #import <fmdb/FMResultSet.h>
 #import <fmdb/FMDatabase.h>
+
+@interface MISMapper ()
+@property (nonatomic, retain) MISUnitOfWork *unitOfWork;
+@end
 
 @implementation TeamMapper
 
@@ -38,7 +46,8 @@
     }
 
     {
-        Mapper *mapper = [self.unitOfWork mapperForDomainClass:[Player class]];
+        MISMapper *mapper = [self.unitOfWork mapperForDomainClass:[Player class]];
+        NSArray *objIDs = nil; // TODO
         NSMutableArray *players = [NSMutableArray array];
         
         for (NSNumber *objID in objIDs) {
@@ -54,7 +63,6 @@
 
 - (void)performInsert:(DomainObject *)obj {
     TDAssertDatabaseThread();
-    TDAssert(rs);
     TDAssert(obj);
     TDAssert(self.unitOfWork);
     if (!obj.objectID) return;
@@ -93,7 +101,6 @@
 
 - (void)update:(DomainObject *)obj {
     TDAssertDatabaseThread();
-    TDAssert(rs);
     TDAssert(obj);
     TDAssert(self.unitOfWork);
     if (!obj.objectID) return;

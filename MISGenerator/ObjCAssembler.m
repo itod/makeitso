@@ -211,6 +211,8 @@
     
     if ([@"MIS_ONE_TO_ONE" isEqualToString:relTok.stringValue]) {
         rel = MISFieldRelationshipOneToOne;
+        TDAssert(_currentClass);
+        [_currentClass addRelationshipClassName:_currentField.className];
     } else if ([@"MIS_ONE_TO_MANY" isEqualToString:relTok.stringValue]) {
         rel = MISFieldRelationshipOneToMany;
     } else if ([@"MIS_MANY_TO_MANY" isEqualToString:relTok.stringValue]) {
@@ -230,9 +232,14 @@
     PKToken *classNameTok = [a pop];
     TDAssertToken(classNameTok);
     TDAssert(classNameTok.isQuotedString);
+    
+    NSString *className = [classNameTok.stringValue stringByTrimmingQuotes];
 
     TDAssert(_currentField);
-    _currentField.className = [classNameTok.stringValue stringByTrimmingQuotes];
+    _currentField.className = className;
+    
+    TDAssert(_currentClass);
+    [_currentClass addRelationshipClassName:className];
 }
 
 

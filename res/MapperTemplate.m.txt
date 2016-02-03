@@ -1,8 +1,16 @@
 #import "{{class.name}}Mapper.h"
 #import "{{class.name}}.h"
+{%for className in class.relationshipClassNames %}
+#import "{{className}}.h"
+{%/for%}
+#import "MISUnitOfWork.h"
 
 #import <fmdb/FMResultSet.h>
 #import <fmdb/FMDatabase.h>
+
+@interface MISMapper ()
+@property (nonatomic, retain) MISUnitOfWork *unitOfWork;
+@end
 
 @implementation {{class.name}}Mapper
 
@@ -41,17 +49,18 @@
                 {%elif 'NSData' == field.className %}
                     NSData *{{field.name}} = [rs dataForColumnName:@"{{field.name}}"];
                 {%else%}
-                    NSString *objID = [rs objectForColumnName:@"{{field.name}}"];
+                    NSNumber *objID = [rs objectForColumnName:@"{{field.name}}"];
                     DomainObject *{{field.name}} = [self.unitOfWork objectForID:objID];
                     if (!{{field.name}}) {
                     {%indent%}
-                        Mapper *mapper = [self.unitOfWork mapperForDomainClass:[{{field.className}} class]];
-                        {{field.name}} = [mapper findObject:objId];
+                        MISMapper *mapper = [self.unitOfWork mapperForDomainClass:[{{field.className}} class]];
+                        {{field.name}} = [mapper findObject:objID];
                     {%/indent%}
                     }
                 {%/if%}
             {%elif 1 == field.relationship %}{%comment%} ONE_TO_MANY {%/comment%}
-                Mapper *mapper = [self.unitOfWork mapperForDomainClass:[{{field.className}} class]];
+                MISMapper *mapper = [self.unitOfWork mapperForDomainClass:[{{field.className}} class]];
+                NSArray *objIDs = nil; // TODO
                 NSMutableArray *{{field.name}} = [NSMutableArray array];
 
                 for (NSNumber *objID in objIDs) {
@@ -75,7 +84,6 @@
 
 - (void)performInsert:(DomainObject *)obj {
     TDAssertDatabaseThread();
-    TDAssert(rs);
     TDAssert(obj);
     TDAssert(self.unitOfWork);
     if (!obj.objectID) return;
@@ -133,7 +141,6 @@
 
 - (void)update:(DomainObject *)obj {
     TDAssertDatabaseThread();
-    TDAssert(rs);
     TDAssert(obj);
     TDAssert(self.unitOfWork);
     if (!obj.objectID) return;
