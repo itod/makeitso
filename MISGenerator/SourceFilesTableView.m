@@ -113,4 +113,29 @@
 //    }
 //}
 
+
+#pragma mark -
+#pragma mark NSDraggingDestination
+
+- (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)dragInfo {
+    NSWindowController *wc = [[self window] windowController];
+    TDAssert(wc);
+    if ([wc respondsToSelector:@selector(draggingEntered:)]) {
+        return [(id)wc draggingEntered:dragInfo];
+    } else {
+        return [[wc document] draggingEntered:dragInfo];
+    }
+}
+
+
+- (BOOL)performDragOperation:(id <NSDraggingInfo>)dragInfo {
+    NSWindowController *wc = [[self window] windowController];
+    TDAssert(wc);
+    if ([wc respondsToSelector:@selector(draggingEntered:)]) {
+        return [(id)wc performDragOperation:dragInfo];
+    } else {
+        return [[wc document] performDragOperation:dragInfo];
+    }
+}
+
 @end

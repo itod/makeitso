@@ -67,6 +67,7 @@
     TDAssert(_tableView);
     [_tableView setTarget:self];
     [_tableView setDoubleAction:@selector(revealSelectedFilePathsInFinder:)];
+    [_tableView registerForDraggedTypes:@[NSFilenamesPboardType]];
     
     TDAssert(_dropTargetView);
     TDAssert(_dropTargetView.hintButton);
