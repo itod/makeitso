@@ -188,4 +188,33 @@
 //    }
 }
 
+
+- (NSArray *)foreignKeysForObject:(DomainObject *)obj fromTable:(NSString *)tableName {
+    TDAssertDatabaseThread();
+    TDAssert(obj.objectID);
+    if (!obj.objectID) return nil;
+    
+    NSMutableArray *memIDs = [NSMutableArray array];
+    
+    NSString *sql = [NSString stringWithFormat:@"SELECT foreignID FROM %@ WHERE objectID = ?", self.tableName];
+    
+    FMResultSet *rs = nil;
+    @try {
+        rs = [self.database executeQuery:sql, obj.objectID];
+        while ([rs hasAnotherRow]) {
+            [rs next];
+            NSString *memID = [rs stringForColumn:@"foreignID"];
+            if (memID) [memIDs addObject:memID];
+        }
+    }
+    @catch (NSException *ex) {
+        NSLog(@"%@", ex);
+    }
+    @finally {
+        
+    }
+    
+    return memIDs;
+}
+
 @end

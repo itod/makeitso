@@ -60,13 +60,13 @@
                 {%/if%}
             {%elif 1 == field.relationship %}{%comment%} ONE_TO_MANY {%/comment%}
                 MISMapper *mapper = [self.unitOfWork mapperForDomainClass:[{{field.className}} class]];
-                NSArray *objIDs = nil; // TODO
+                NSArray *memIDs = [self foreignKeysForObject:obj fromTable:@"{{class.name|lowercase}}_{{field.className|lowercase}}"];
                 NSMutableArray *{{field.name}} = [NSMutableArray array];
 
-                for (NSNumber *objID in objIDs) {
+                for (NSNumber *memID in memIDs) {
                 {%indent%}
-                    DomainObject *obj = [mapper findObject:objID];
-                    if (obj) [{{field.name}} addObject:obj];
+                    DomainObject *member = [mapper findObject:memID];
+                    if (member) [{{field.name}} addObject:member];
                 {%/indent%}
                 }
 

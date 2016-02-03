@@ -26,6 +26,8 @@
 - (DomainObject *)load:(FMResultSet *)rs;
 - (void)loadFields:(FMResultSet *)rs inObject:(DomainObject *)obj;
 
+- (NSArray *)foreignKeysForObject:(DomainObject *)obj fromTable:(NSString *)tableName;
+
 @property (nonatomic, retain) Class domainClass;
 @property (nonatomic, copy) NSString *tableName;
 @property (nonatomic, copy) NSString *selectColumnList;

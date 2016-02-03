@@ -47,12 +47,12 @@
 
     {
         MISMapper *mapper = [self.unitOfWork mapperForDomainClass:[Player class]];
-        NSArray *objIDs = nil; // TODO
+        NSArray *memIDs = [self foreignKeysForObject:obj fromTable:@"team_player"];
         NSMutableArray *players = [NSMutableArray array];
         
-        for (NSNumber *objID in objIDs) {
-            DomainObject *obj = [mapper findObject:objID];
-            if (obj) [players addObject:obj];
+        for (NSNumber *memID in memIDs) {
+            DomainObject *member = [mapper findObject:memID];
+            if (member) [players addObject:member];
         }
         
         [obj setValue:players forKey:@"players"];
