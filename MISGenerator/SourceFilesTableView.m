@@ -120,22 +120,15 @@
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)dragInfo {
     NSWindowController *wc = [[self window] windowController];
     TDAssert(wc);
-    if ([wc respondsToSelector:@selector(draggingEntered:)]) {
-        return [(id)wc draggingEntered:dragInfo];
-    } else {
-        return [[wc document] draggingEntered:dragInfo];
-    }
+    NSDragOperation op = [[wc document] draggingEntered:dragInfo];
+    return op;
 }
 
 
 - (BOOL)performDragOperation:(id <NSDraggingInfo>)dragInfo {
     NSWindowController *wc = [[self window] windowController];
     TDAssert(wc);
-    if ([wc respondsToSelector:@selector(draggingEntered:)]) {
-        return [(id)wc performDragOperation:dragInfo];
-    } else {
-        return [[wc document] performDragOperation:dragInfo];
-    }
+    return [[wc document] performDragOperation:dragInfo];
 }
 
 @end
