@@ -31,26 +31,35 @@
         {
         {%indent%}
             {%if 0 == field.relationship %}{%comment%} ONE_TO_ONE {%/comment%}
-                {%if 'NSString' == field.rawType %}
+                {%if 'NSString' == field.className %}
                     NSString *{{field.name}} = [rs stringForColumn:@"{{field.name}}"];
-                {%elif 'NSNumber' == field.rawType %}
+                {%elif 'NSNumber' == field.className %}
                     NSNumber *{{field.name}} = [rs objectForColumnName:@"{{field.name}}"];
-                {%elif 'NSDate' == field.rawType %}
+                {%elif 'NSDate' == field.className %}
                     long long timestamp = [rs longLongForColumnName:@"{{field.name}}"];
                     NSDate *{{field.name}} = [NSDate dateWithTimeIntervalSince1970:timestamp];
-                {%elif 'NSData' == field.rawType %}
+                {%elif 'NSData' == field.className %}
                     NSData *{{field.name}} = [rs dataForColumnName:@"{{field.name}}"];
                 {%else%}
                     NSString *objID = [rs objectForColumnName:@"{{field.name}}"];
                     DomainObject *{{field.name}} = [self.unitOfWork objectForID:objID];
                     if (!{{field.name}}) {
                     {%indent%}
-                        Mapper *mapper = [self.unitOfWork mapperForDomainClass:[{{field.rawType}} class]];
+                        Mapper *mapper = [self.unitOfWork mapperForDomainClass:[{{field.className}} class]];
                         {{field.name}} = [mapper findObject:objId];
                     {%/indent%}
                     }
                 {%/if%}
             {%elif 1 == field.relationship %}{%comment%} ONE_TO_MANY {%/comment%}
+                Mapper *mapper = [self.unitOfWork mapperForDomainClass:[{{field.className}} class]];
+                NSMutableArray *{{field.name}} = [NSMutableArray array];
+
+                for (NSNumber *objID in objIDs) {
+                {%indent%}
+                    DomainObject *obj = [mapper findObject:objID];
+                    if (obj) [{{field.name}} addObject:obj];
+                {%/indent%}
+                }
 
             {%elif 2 == field.relationship %}{%comment%} MANY_TO_MANY {%/comment%}
 
@@ -81,17 +90,17 @@
         {
         {%indent%}
             {%if 0 == field.relationship %}{%comment%} ONE_TO_ONE {%/comment%}
-                {%if 'NSString' == field.rawType %}
+                {%if 'NSString' == field.className %}
                     NSString *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
                     [args addObject:{{field.name}}];
-                {%elif 'NSNumber' == field.rawType %}
+                {%elif 'NSNumber' == field.className %}
                     NSNumber *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
                     [args addObject:{{field.name}}];
-                {%elif 'NSDate' == field.rawType %}
+                {%elif 'NSDate' == field.className %}
                     NSDate *date = [obj valueForKey:@"{{field.name}}"];
                     NSNumber *{{field.name}} = @([date timeIntervalSince1970]);
                     [args addObject:{{field.name}}];
-                {%elif 'NSData' == field.rawType %}
+                {%elif 'NSData' == field.className %}
                     NSData *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
                     [args addObject:{{field.name}}];
                 {%else%}
@@ -139,17 +148,17 @@
         {
         {%indent%}
             {%if 0 == field.relationship %}{%comment%} ONE_TO_ONE {%/comment%}
-                {%if 'NSString' == field.rawType %}
+                {%if 'NSString' == field.className %}
                     NSString *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
                     [args addObject:{{field.name}}];
-                {%elif 'NSNumber' == field.rawType %}
+                {%elif 'NSNumber' == field.className %}
                     NSNumber *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
                     [args addObject:{{field.name}}];
-                {%elif 'NSDate' == field.rawType %}
+                {%elif 'NSDate' == field.className %}
                     NSDate *date = [obj valueForKey:@"{{field.name}}"];
                     NSNumber *{{field.name}} = @([date timeIntervalSince1970]);
                     [args addObject:{{field.name}}];
-                {%elif 'NSData' == field.rawType %}
+                {%elif 'NSData' == field.className %}
                     NSData *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
                     [args addObject:{{field.name}}];
                 {%else%}

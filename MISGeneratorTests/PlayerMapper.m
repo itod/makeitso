@@ -24,28 +24,43 @@
 
 - (void)loadFields:(FMResultSet *)rs inObject:(DomainObject *)obj {
     TDAssertDatabaseThread();
+    TDAssert(rs);
+    TDAssert(obj);
+    TDAssert(self.unitOfWork);
 
     {
-        NSNumber *val = [rs objectForColumnName:@"objectID"];
-        [obj setValue:val forKey:@"objectID"];
+        NSNumber *objectID = [rs objectForColumnName:@"objectID"];
+        [obj setValue:objectID forKey:@"objectID"];
     }
+
     {
-        NSString *val = [rs stringForColumn:@"firstName"];
-        [obj setValue:val forKey:@"firstName"];
+        NSString *firstName = [rs stringForColumn:@"firstName"];
+        [obj setValue:firstName forKey:@"firstName"];
     }
+
     {
-        NSString *val = [rs stringForColumn:@"lastName"];
-        [obj setValue:val forKey:@"lastName"];
+        NSString *lastName = [rs stringForColumn:@"lastName"];
+        [obj setValue:lastName forKey:@"lastName"];
     }
+
     {
-        DomainObject *val = [rs objectForColumnName:@"team"];
-        [obj setValue:val forKey:@"team"];
+        NSString *objID = [rs objectForColumnName:@"team"];
+        DomainObject *team = [self.unitOfWork objectForID:objID];
+        if (!team) {
+            Mapper *mapper = [self.unitOfWork mapperForDomainClass:[Team class]];
+            team = [mapper findObject:objId];
+        }
+        [obj setValue:team forKey:@"team"];
     }
+
 }
 
 
 - (void)performInsert:(DomainObject *)obj {
     TDAssertDatabaseThread();
+    TDAssert(rs);
+    TDAssert(obj);
+    TDAssert(self.unitOfWork);
     if (!obj.objectID) return;
     
     NSString *sql = @"INSERT INTO player (objectID, firstName, lastName, team) VALUES (?, ?, ?, ?)";
@@ -53,22 +68,26 @@
     NSMutableArray *args = [NSMutableArray arrayWithCapacity:[self.columnNames count]];
 
     {
-        NSNumber *val = [obj valueForKey:@"objectID"];
-        [args addObject:val];
+        NSNumber *objectID = [obj valueForKey:@"objectID"];
+        [args addObject:objectID];
     }
+
     {
-        NSString *val = [obj valueForKey:@"firstName"];
-        [args addObject:val];
+        NSString *firstName = [obj valueForKey:@"firstName"];
+        [args addObject:firstName];
     }
+
     {
-        NSString *val = [obj valueForKey:@"lastName"];
-        [args addObject:val];
+        NSString *lastName = [obj valueForKey:@"lastName"];
+        [args addObject:lastName];
     }
+
     {
-        DomainObject *val = [obj valueForKey:@"team"];
-        [args addObject:val];
+        DomainObject *team = [obj valueForKey:@"team"];
+        [args addObject:team.objectID];
     }
-    
+
+
     BOOL success = NO;
     @try {
         success = [self.database executeUpdate:sql withArgumentsInArray:args];
@@ -84,6 +103,9 @@
 
 - (void)update:(DomainObject *)obj {
     TDAssertDatabaseThread();
+    TDAssert(rs);
+    TDAssert(obj);
+    TDAssert(self.unitOfWork);
     if (!obj.objectID) return;
     
     NSString *sql = @"UPDATE player SET objectID = ?, firstName = ?, lastName = ?, team = ? WHERE objectID = ?";
@@ -91,22 +113,26 @@
     NSMutableArray *args = [NSMutableArray arrayWithCapacity:[self.columnNames count]];
 
     {
-        NSNumber *val = [obj valueForKey:@"objectID"];
-        [args addObject:val];
+        NSNumber *objectID = [obj valueForKey:@"objectID"];
+        [args addObject:objectID];
     }
+
     {
-        NSString *val = [obj valueForKey:@"firstName"];
-        [args addObject:val];
+        NSString *firstName = [obj valueForKey:@"firstName"];
+        [args addObject:firstName];
     }
+
     {
-        NSString *val = [obj valueForKey:@"lastName"];
-        [args addObject:val];
+        NSString *lastName = [obj valueForKey:@"lastName"];
+        [args addObject:lastName];
     }
+
     {
-        DomainObject *val = [obj valueForKey:@"team"];
-        [args addObject:val];
+        DomainObject *team = [obj valueForKey:@"team"];
+        [args addObject:team.objectID];
     }
-    
+
+
     BOOL success = NO;
     @try {
         success = [self.database executeUpdate:sql withArgumentsInArray:args];
@@ -118,6 +144,5 @@
         
     }
 }
-
 
 @end

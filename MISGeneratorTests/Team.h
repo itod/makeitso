@@ -11,5 +11,5 @@
 @interface Team : DomainObject
 
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSArray *players MIS_ONE_TO_MANY;
+@property (nonatomic, copy) NSArray *players MIS_ONE_TO_MANY("Player");
 @end

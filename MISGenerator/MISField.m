@@ -23,7 +23,7 @@
     self.sourceString = nil;
     self.name = nil;
     self.type = nil;
-    self.rawType = nil;
+    self.className = nil;
     [super dealloc];
 }
 

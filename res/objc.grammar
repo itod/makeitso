@@ -105,7 +105,9 @@ scalarIvar = ibOutlet? type identifier semi;
 
 // PROPERTIES
 property = (nonBlockProperty | blockProperty) relationship? semi;
-relationship = 'MIS_ONE_TO_ONE' | 'MIS_ONE_TO_MANY' | 'MIS_MANY_TO_MANY';
+relationship = relationshipType relationshipClassName?;
+relationshipType = 'MIS_ONE_TO_ONE' | 'MIS_ONE_TO_MANY' | 'MIS_MANY_TO_MANY';
+relationshipClassName = '('! QuotedString ')'!;
 
 nonBlockProperty = at 'property' '(' propertySpecList ')' ibOutlet? nonBlockPropertyType propertyName;
 nonBlockPropertyType = type;

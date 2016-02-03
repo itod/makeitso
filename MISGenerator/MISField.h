@@ -29,7 +29,7 @@ typedef NS_ENUM(NSInteger, MISFieldRelationship) {
 @property (nonatomic, copy) NSString *sourceString;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *type;
-@property (nonatomic, copy) NSString *rawType;
+@property (nonatomic, copy) NSString *className;
 
 @property (nonatomic, assign) MISFieldSqlType sqlType;
 @property (nonatomic, copy) NSString *sqlTypeString;

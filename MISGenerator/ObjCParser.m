@@ -39,6 +39,8 @@
 @property (nonatomic, retain) NSMutableDictionary *scalarIvar_memo;
 @property (nonatomic, retain) NSMutableDictionary *property_memo;
 @property (nonatomic, retain) NSMutableDictionary *relationship_memo;
+@property (nonatomic, retain) NSMutableDictionary *relationshipType_memo;
+@property (nonatomic, retain) NSMutableDictionary *relationshipClassName_memo;
 @property (nonatomic, retain) NSMutableDictionary *nonBlockProperty_memo;
 @property (nonatomic, retain) NSMutableDictionary *nonBlockPropertyType_memo;
 @property (nonatomic, retain) NSMutableDictionary *blockProperty_memo;
@@ -200,6 +202,8 @@
         self.scalarIvar_memo = [NSMutableDictionary dictionary];
         self.property_memo = [NSMutableDictionary dictionary];
         self.relationship_memo = [NSMutableDictionary dictionary];
+        self.relationshipType_memo = [NSMutableDictionary dictionary];
+        self.relationshipClassName_memo = [NSMutableDictionary dictionary];
         self.nonBlockProperty_memo = [NSMutableDictionary dictionary];
         self.nonBlockPropertyType_memo = [NSMutableDictionary dictionary];
         self.blockProperty_memo = [NSMutableDictionary dictionary];
@@ -268,6 +272,8 @@
     self.scalarIvar_memo = nil;
     self.property_memo = nil;
     self.relationship_memo = nil;
+    self.relationshipType_memo = nil;
+    self.relationshipClassName_memo = nil;
     self.nonBlockProperty_memo = nil;
     self.nonBlockPropertyType_memo = nil;
     self.blockProperty_memo = nil;
@@ -335,6 +341,8 @@
     [_scalarIvar_memo removeAllObjects];
     [_property_memo removeAllObjects];
     [_relationship_memo removeAllObjects];
+    [_relationshipType_memo removeAllObjects];
+    [_relationshipClassName_memo removeAllObjects];
     [_nonBlockProperty_memo removeAllObjects];
     [_nonBlockPropertyType_memo removeAllObjects];
     [_blockProperty_memo removeAllObjects];
@@ -987,14 +995,9 @@
 
 - (void)__relationship {
     
-    if ([self predicts:OBJCPARSER_TOKEN_KIND_MIS_ONE_TO_ONE, 0]) {
-        [self match:OBJCPARSER_TOKEN_KIND_MIS_ONE_TO_ONE discard:NO]; 
-    } else if ([self predicts:OBJCPARSER_TOKEN_KIND_MIS_ONE_TO_MANY, 0]) {
-        [self match:OBJCPARSER_TOKEN_KIND_MIS_ONE_TO_MANY discard:NO]; 
-    } else if ([self predicts:OBJCPARSER_TOKEN_KIND_MIS_MANY_TO_MANY, 0]) {
-        [self match:OBJCPARSER_TOKEN_KIND_MIS_MANY_TO_MANY discard:NO]; 
-    } else {
-        [self raise:@"No viable alternative found in rule 'relationship'."];
+    [self relationshipType_]; 
+    if ([self predicts:OBJCPARSER_TOKEN_KIND_OPEN_PAREN]) {
+        [self relationshipClassName_]; 
     }
 
     [self fireDelegateSelector:@selector(parser:didMatchRelationship:)];
@@ -1002,6 +1005,38 @@
 
 - (void)relationship_ {
     [self parseRule:@selector(__relationship) withMemo:_relationship_memo];
+}
+
+- (void)__relationshipType {
+    
+    if ([self predicts:OBJCPARSER_TOKEN_KIND_MIS_ONE_TO_ONE, 0]) {
+        [self match:OBJCPARSER_TOKEN_KIND_MIS_ONE_TO_ONE discard:NO]; 
+    } else if ([self predicts:OBJCPARSER_TOKEN_KIND_MIS_ONE_TO_MANY, 0]) {
+        [self match:OBJCPARSER_TOKEN_KIND_MIS_ONE_TO_MANY discard:NO]; 
+    } else if ([self predicts:OBJCPARSER_TOKEN_KIND_MIS_MANY_TO_MANY, 0]) {
+        [self match:OBJCPARSER_TOKEN_KIND_MIS_MANY_TO_MANY discard:NO]; 
+    } else {
+        [self raise:@"No viable alternative found in rule 'relationshipType'."];
+    }
+
+    [self fireDelegateSelector:@selector(parser:didMatchRelationshipType:)];
+}
+
+- (void)relationshipType_ {
+    [self parseRule:@selector(__relationshipType) withMemo:_relationshipType_memo];
+}
+
+- (void)__relationshipClassName {
+    
+    [self match:OBJCPARSER_TOKEN_KIND_OPEN_PAREN discard:YES]; 
+    [self matchQuotedString:NO]; 
+    [self match:OBJCPARSER_TOKEN_KIND_CLOSE_PAREN discard:YES]; 
+
+    [self fireDelegateSelector:@selector(parser:didMatchRelationshipClassName:)];
+}
+
+- (void)relationshipClassName_ {
+    [self parseRule:@selector(__relationshipClassName) withMemo:_relationshipClassName_memo];
 }
 
 - (void)__nonBlockProperty {

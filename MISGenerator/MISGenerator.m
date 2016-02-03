@@ -159,7 +159,7 @@
 //        
 //        for (MISClass *cls in classes) {
 //            for (MISField *field in cls.fields) {
-//                MISClass *foreignClass = classTab[field.rawType];
+//                MISClass *foreignClass = classTab[field.className];
 //                if (foreignClass) {
 //                    field.isForeignKey = YES;
 //                }

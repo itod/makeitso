@@ -12,6 +12,7 @@
 #import "MISField.h"
 
 #import <PEGKit/PEGKit.h>
+#import "NSString+PEGKitAdditions.h"
 
 @interface ObjCAssembler ()
 @property (nonatomic, retain) PKToken *atTok;
@@ -99,7 +100,7 @@
     MISField *field = [[[MISField alloc] init] autorelease];
     field.name = @"objectID";
     field.type = @"NSNumber *";
-    field.rawType = @"NSNumber";
+    field.className = @"NSNumber";
     field.sqlType = MISFieldSqlTypeInteger;
     field.isPrimaryKey = YES;
     field.sourceString = @"@property (nonatomic, copy) NSNumber *objectID";
@@ -113,15 +114,15 @@
 #pragma mark -
 #pragma mark Properties
 
-- (NSString *)rawTypeFromType:(NSString *)type {
-    NSString *rawType = type;
+- (NSString *)classNameFromType:(NSString *)type {
+    NSString *className = type;
     
     NSRange spaceRange = [type rangeOfCharacterFromSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if (spaceRange.length) {
-        rawType = [type substringToIndex:spaceRange.location];
+        className = [type substringToIndex:spaceRange.location];
     }
     
-    return rawType;
+    return className;
 }
 
 
@@ -139,7 +140,7 @@
     }
     
     _currentField.type = [typeBuf stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    _currentField.rawType = [self rawTypeFromType:_currentField.type];
+    _currentField.className = [self classNameFromType:_currentField.type];
     
     MISFieldSqlType sqlType = MISFieldSqlTypeInvalid;
     
@@ -200,7 +201,7 @@
 }
 
 
-- (void)parser:(PKParser *)p didMatchRelationship:(PKAssembly *)a {
+- (void)parser:(PKParser *)p didMatchRelationshipType:(PKAssembly *)a {
     //NSLog(@"%s, %@", __PRETTY_FUNCTION__, a);
     
     PKToken *relTok = [a pop];
@@ -220,6 +221,18 @@
     
     TDAssert(_currentField);
     _currentField.relationship = rel;
+}
+
+
+- (void)parser:(PKParser *)p didMatchRelationshipClassName:(PKAssembly *)a {
+    //NSLog(@"%s, %@", __PRETTY_FUNCTION__, a);
+    
+    PKToken *classNameTok = [a pop];
+    TDAssertToken(classNameTok);
+    TDAssert(classNameTok.isQuotedString);
+
+    TDAssert(_currentField);
+    _currentField.className = [classNameTok.stringValue stringByTrimmingQuotes];
 }
 
 
