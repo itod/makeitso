@@ -624,6 +624,42 @@
 
 
 #pragma mark -
+#pragma mark NSDragginDestination
+
+- (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)dragInfo {
+    
+    NSPasteboard *pboard = [dragInfo draggingPasteboard];
+    NSDragOperation mask = [dragInfo draggingSourceOperationMask];
+    
+    if ([[pboard types] containsObject:NSFilenamesPboardType]) {
+        if (mask & NSDragOperationGeneric) {
+            NSArray *filePaths = [pboard propertyListForType:NSFilenamesPboardType];
+            if ([filePaths count] && [self.allowedHeaderFileExtensions containsObject:[filePaths[0] pathExtension]]) {
+                return NSDragOperationCopy;
+            }
+        }
+    }
+    
+    return NSDragOperationNone;
+}
+
+
+- (BOOL)performDragOperation:(id <NSDraggingInfo>)dragInfo {
+    NSPasteboard *pboard = [dragInfo draggingPasteboard];
+    
+    if ([[pboard types] containsObject:NSFilenamesPboardType]) {
+        NSArray *filePaths = [pboard propertyListForType:NSFilenamesPboardType];
+        TDPerformOnMainThreadAfterDelay(0.0, ^{
+            [self handleAddedFilePaths:filePaths];
+        });
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+
+#pragma mark -
 #pragma mark SourceFilesTableViewDelegate
 
 - (void)resultsTableView:(NSTableView *)tv didReceiveClickOnRow:(NSInteger)row {
