@@ -17,9 +17,13 @@
 @implementation DomainObject
 
 + (NSString *)collectionName {
-    NSString *str = NSStringFromClass(self);
-    str = [NSString stringWithFormat:@"%@%@", [[str substringToIndex:1] lowercaseString], [str substringFromIndex:1]];
-    return str;
+    // don't bother making thread safe. harmless if executed multiple times.
+    static NSString *sName = nil;
+    if (!sName) {
+        NSString *clsName = NSStringFromClass(self);
+        sName = [[NSString alloc] initWithFormat:@"%@%@", [[clsName substringToIndex:1] lowercaseString], [clsName substringFromIndex:1]];
+    }
+    return sName;
 }
 
 
