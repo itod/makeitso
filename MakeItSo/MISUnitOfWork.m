@@ -258,10 +258,6 @@ void MISPerformOnBackgroundThread(void (^block)(void)) {
 - (BOOL)commit:(NSError **)outErr {
     TDAssertDatabaseThread();
     TDAssert(_database);
-    TDAssert(_pristineObjects);
-    TDAssert(_dirtyObjects);
-    TDAssert(_removedObjects);
-    TDAssert(_objectTab);
 
     [_database beginTransaction];
     
