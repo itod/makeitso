@@ -238,6 +238,12 @@ void MISPerformOnBackgroundThread(void (^block)(void)) {
         // do network request
         NSError *err = nil;
         BOOL success = YES;
+        
+        if (!success) {
+            NSString *errMsg = @"";
+            NSDictionary *userInfo = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
+            err = [NSError errorWithDomain:MISErrorDomainRemote code:0 userInfo:userInfo];
+        }
 
         MISPerformOnMainThread(^{
             callback(success, err);
@@ -290,6 +296,9 @@ void MISPerformOnBackgroundThread(void (^block)(void)) {
 
 
 - (NSError *)lastDatabaseError {
+    TDAssertDatabaseThread();
+    TDAssert(_database);
+    
     NSString *errMsg = _database.lastErrorMessage;
     NSDictionary *userInfo = nil;
     if (errMsg) userInfo = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
