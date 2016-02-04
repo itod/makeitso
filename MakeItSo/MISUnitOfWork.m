@@ -211,12 +211,16 @@ void MISPerformOnBackgroundThread(void (^block)(void)) {
     TDAssertMainThread();
     
     [self doRemoteCommit:^(BOOL success, NSError *err) {
+        TDAssertMainThread();
+        
         if (!success) {
             callback(success, err);
             return;
         }
         
         [self doLocalCommit:^(BOOL success, NSError *err) {
+            TDAssertMainThread();
+            
             callback(success, err);
         }];
     }];
@@ -254,7 +258,11 @@ void MISPerformOnBackgroundThread(void (^block)(void)) {
 - (BOOL)commit:(NSError **)outErr {
     TDAssertDatabaseThread();
     TDAssert(_database);
-    
+    TDAssert(_pristineObjects);
+    TDAssert(_dirtyObjects);
+    TDAssert(_removedObjects);
+    TDAssert(_objectTab);
+
     [_database beginTransaction];
     
     [self insertPristine];
