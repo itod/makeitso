@@ -1,20 +1,33 @@
+{%trim%}
 BEGIN TRANSACTION;
 
 CREATE TABLE keys (
+{%indent%}
     nextID INTEGER PRIMARY KEY NOT NULL,
     name TEXT
+{%/indent%}
 );
 INSERT INTO keys (nextID, name) VALUES (0, 'global');
 
 {%for class in classes %}
 CREATE TABLE {{class.name|lowercase}} (
-{%trim%}
 {%indent%}
     {%for field in class.oneToOneFields %}
         {{field.name}} {{field.sqlTypeString}}{%if field.isPrimaryKey %} PRIMARY KEY NOT NULL{%elif field.isForeignKey%}{%/if%}{%if !currentLoop.isLast %},{%/if%}
     {%/for%}
-{%/indent%}
-{%/trim%});
+{%/indent%});
+
+{%for field in class.oneToManyFields %}
+CREATE TABLE {{class.name|lowercase}}_{{field.className|lowercase}} (
+{%indent%}
+    rowID INTEGER PRIMARY KEY NOT NULL,
+    ownerID INTEGER NOT NULL,
+    memberID INTEGER NOT NULL,
+    FOREIGN KEY(ownerID) REFERENCES {{class.name|lowercase}}(objectID),
+    FOREIGN KEY(memberID) REFERENCES {{field.className|lowercase}}(objectID)
+{%/indent%});
 {%/for%}
 
+{%/for%}
 END TRANSACTION;
+{%/trim%}
