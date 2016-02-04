@@ -130,7 +130,7 @@
 
     [_pristineObjects addObject:obj];
 
-    [self wasMade:obj];
+    [self addObject:obj];
 }
 
 
@@ -139,7 +139,7 @@
 
     [_pristineObjects removeObject:obj];
     
-    [self wasMade:obj];
+    [self addObject:obj];
 }
 
 
@@ -163,6 +163,10 @@
     TDAssert(_pristineObjects);
     TDAssert(_dirtyObjects);
     TDAssert(_removedObjects);
+    
+    [[obj retain] autorelease];
+    
+    [_objectTab removeObjectForKey:obj.objectID];
     
     if ([_pristineObjects containsObject:obj]) {
         [_pristineObjects removeObject:obj];
@@ -197,11 +201,8 @@
     [_removedObjects removeAllObjects];
 
     // clear memory cache
-    {
-        for (DomainObject *obj in _objectTab) {
-            [[self mapperForDomainClass:[obj class]] stopObservingObject:obj];
-        }
-        [_objectTab removeAllObjects];
+    for (DomainObject *obj in [[_objectTab copy] autorelease]) {
+        [self removeObject:obj];
     }
 }
 
@@ -255,7 +256,7 @@
 }
 
 
-- (void)wasMade:(DomainObject *)obj {
+- (void)addObject:(DomainObject *)obj {
     TDAssertDatabaseThread();
     TDAssert(obj);
     TDAssert(_objectTab);
@@ -263,6 +264,17 @@
     _objectTab[obj.objectID] = obj;
     
     [[self mapperForDomainClass:[obj class]] startObservingObject:obj];
+}
+
+
+- (void)removeObject:(DomainObject *)obj {
+    TDAssertDatabaseThread();
+    TDAssert(obj);
+    TDAssert(nil != _objectTab[obj.objectID]);
+    
+    [_objectTab removeObjectForKey:obj.objectID];
+    
+    [[self mapperForDomainClass:[obj class]] stopObservingObject:obj];
 }
 
 @end
