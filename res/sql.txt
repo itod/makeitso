@@ -21,10 +21,8 @@ CREATE TABLE {{class.name|lowercase}} (
 CREATE TABLE {{class.name|lowercase}}_{{field.className|lowercase}} (
 {%indent%}
     rowID INTEGER PRIMARY KEY NOT NULL,
-    ownerID INTEGER NOT NULL,
-    memberID INTEGER NOT NULL,
-    FOREIGN KEY(ownerID) REFERENCES {{class.name|lowercase}}(objectID),
-    FOREIGN KEY(memberID) REFERENCES {{field.className|lowercase}}(objectID)
+    ownerID INTEGER NOT NULL REFERENCES {{class.name|lowercase}},
+    memberID INTEGER NOT NULL REFERENCES {{field.className|lowercase}}
 {%/indent%});
 {%/for%}
 

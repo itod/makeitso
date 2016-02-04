@@ -13,10 +13,8 @@ CREATE TABLE team (
 
 CREATE TABLE team_player (
     rowID INTEGER PRIMARY KEY NOT NULL,
-    ownerID INTEGER NOT NULL,
-    memberID INTEGER NOT NULL,
-    FOREIGN KEY(ownerID) REFERENCES team(objectID),
-    FOREIGN KEY(memberID) REFERENCES player(objectID)
+    ownerID INTEGER NOT NULL REFERENCES team,
+    memberID INTEGER NOT NULL REFERENCES player
 );
 
 CREATE TABLE player (
