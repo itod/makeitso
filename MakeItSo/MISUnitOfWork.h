@@ -11,6 +11,9 @@
 @class MISMapper;
 @class DomainObject;
 
+extern NSString *const MISErrorDomainRemote;
+extern NSString *const MISErrorDomainLocal;
+
 @interface MISUnitOfWork : NSObject
 
 + (void)makeCurrent;

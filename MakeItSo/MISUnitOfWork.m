@@ -15,6 +15,9 @@
 
 #define THREAD_LOCAL_KEY @"MISUnitOfWork"
 
+NSString *const MISErrorDomainRemote = @"MISErrorDomainRemote";
+NSString *const MISErrorDomainLocal = @"MISErrorDomainLocal";
+
 //static dispatch_queue_t sDatabaseQueue = NULL;
 //
 //void MISPerformOnDatabaseThread(void (^block)(void)) {
@@ -232,10 +235,12 @@ void MISPerformOnBackgroundThread(void (^block)(void)) {
     
     MISPerformOnBackgroundThread(^{
         
-        // network request
+        // do network request
+        NSError *err = nil;
+        BOOL success = YES;
 
         MISPerformOnMainThread(^{
-            callback(YES, nil);
+            callback(success, err);
         });
     });
 }
@@ -267,7 +272,7 @@ void MISPerformOnBackgroundThread(void (^block)(void)) {
     
     BOOL success = [_database commit];
     if (!success) {
-        if (outErr) *outErr = _database.lastError;
+        if (outErr) *outErr = [self lastDatabaseError];
         return NO; // return early ??
     }
     
@@ -281,6 +286,14 @@ void MISPerformOnBackgroundThread(void (^block)(void)) {
     }
     
     return YES;
+}
+
+
+- (NSError *)lastDatabaseError {
+    NSString *errMsg = _database.lastErrorMessage;
+    NSDictionary *userInfo = nil;
+    if (errMsg) userInfo = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
+    return [NSError errorWithDomain:MISErrorDomainLocal code:_database.lastErrorCode userInfo:userInfo];
 }
 
 
