@@ -134,31 +134,28 @@
 {%trim%}
 {%indent%}
 
-    if (success) {
-        {%for field in class.fields %}
-            {%if 1 == field.relationship %}
+    if (!success) return;
+    {%for field in class.fields %}
+        {%if 1 == field.relationship %}
+
+            {
             {%indent%}
+                NSArray *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
+                NSMutableArray *memIDs = [NSMutableArray arrayWithCapacity:[{{field.name}} count]];
 
-                {
+                for ({{field.className}} *member in {{field.name}}) {
                 {%indent%}
-                    NSArray *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
-                    NSMutableArray *memIDs = [NSMutableArray arrayWithCapacity:[{{field.name}} count]];
-
-                    for ({{field.className}} *member in {{field.name}}) {
-                    {%indent%}
-                        [memIDs addObject:member.objectID];
-                    {%/indent%}
-                    }
-
-                    [self insertForeignKeys:memIDs forObject:obj inTable:@"{{class.name|lowercase}}_{{field.className|lowercase}}"];
+                    [memIDs addObject:member.objectID];
                 {%/indent%}
                 }
-            {%/indent%}
-            {%elif 2 == field.relationship %}
 
-            {%/if%}
-        {%/for%}
-    }
+                [self insertForeignKeys:memIDs forObject:obj inTable:@"{{class.name|lowercase}}_{{field.className|lowercase}}"];
+            {%/indent%}
+            }
+        {%elif 2 == field.relationship %}
+
+        {%/if%}
+    {%/for%}
 {%/indent%}
 {%/trim%}
 }
@@ -216,31 +213,28 @@
 {%trim%}
 {%indent%}
 
-    if (success) {
-        {%for field in class.fields %}
-            {%if 1 == field.relationship %}
+    if (!success) return;
+    {%for field in class.fields %}
+        {%if 1 == field.relationship %}
+
+            {
             {%indent%}
+                NSArray *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
+                NSMutableArray *memIDs = [NSMutableArray arrayWithCapacity:[{{field.name}} count]];
 
-                {
+                for ({{field.className}} *member in {{field.name}}) {
                 {%indent%}
-                    NSArray *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
-                    NSMutableArray *memIDs = [NSMutableArray arrayWithCapacity:[{{field.name}} count]];
-
-                    for ({{field.className}} *member in {{field.name}}) {
-                    {%indent%}
-                        [memIDs addObject:member.objectID];
-                    {%/indent%}
-                    }
-
-                    [self updateForeignKeys:memIDs forObject:obj inTable:@"{{class.name|lowercase}}_{{field.className|lowercase}}"];
+                    [memIDs addObject:member.objectID];
                 {%/indent%}
                 }
-            {%/indent%}
-            {%elif 2 == field.relationship %}
 
-            {%/if%}
-        {%/for%}
-    }
+                [self updateForeignKeys:memIDs forObject:obj inTable:@"{{class.name|lowercase}}_{{field.className|lowercase}}"];
+            {%/indent%}
+            }
+        {%elif 2 == field.relationship %}
+
+        {%/if%}
+    {%/for%}
 {%/indent%}
 {%/trim%}
 }

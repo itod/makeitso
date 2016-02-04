@@ -92,18 +92,17 @@
         
     }
 
-    if (success) {
+    if (!success) return;
+    
+    {
+        NSArray *players = [obj valueForKey:@"players"];
+        NSMutableArray *memIDs = [NSMutableArray arrayWithCapacity:[players count]];
         
-        {
-            NSArray *players = [obj valueForKey:@"players"];
-            NSMutableArray *memIDs = [NSMutableArray arrayWithCapacity:[players count]];
-            
-            for (Player *member in players) {
-                [memIDs addObject:member.objectID];
-            }
-            
-            [self insertForeignKeys:memIDs forObject:obj inTable:@"team_player"];
+        for (Player *member in players) {
+            [memIDs addObject:member.objectID];
         }
+        
+        [self insertForeignKeys:memIDs forObject:obj inTable:@"team_player"];
     }
 
 }
@@ -140,18 +139,17 @@
         
     }
 
-    if (success) {
+    if (!success) return;
+    
+    {
+        NSArray *players = [obj valueForKey:@"players"];
+        NSMutableArray *memIDs = [NSMutableArray arrayWithCapacity:[players count]];
         
-        {
-            NSArray *players = [obj valueForKey:@"players"];
-            NSMutableArray *memIDs = [NSMutableArray arrayWithCapacity:[players count]];
-            
-            for (Player *member in players) {
-                [memIDs addObject:member.objectID];
-            }
-            
-            [self updateForeignKeys:memIDs forObject:obj inTable:@"team_player"];
+        for (Player *member in players) {
+            [memIDs addObject:member.objectID];
         }
+        
+        [self updateForeignKeys:memIDs forObject:obj inTable:@"team_player"];
     }
 
 }

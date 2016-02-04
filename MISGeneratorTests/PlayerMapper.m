@@ -105,8 +105,7 @@
         
     }
 
-    if (success) {
-    }
+    if (!success) return;
 
 }
 
@@ -152,8 +151,7 @@
         
     }
 
-    if (success) {
-    }
+    if (!success) return;
 
 }
 
