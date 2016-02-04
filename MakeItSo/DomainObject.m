@@ -11,6 +11,11 @@
 #import "MISUnitOfWork.h"
 
 @interface DomainObject ()
+- (void)markPristine;
+- (void)markClean;
+- (void)markDirty;
+- (void)markRemoved;
+
 @property (nonatomic, retain, readwrite) NSNumber *objectID;
 @end
 
@@ -40,6 +45,11 @@
 - (void)dealloc {
     self.objectID = nil;
     [super dealloc];
+}
+
+
+- (void)remove {
+    [self markRemoved];
 }
 
 

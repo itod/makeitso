@@ -16,6 +16,11 @@
 #import <fmdb/FMResultSet.h>
 
 @interface DomainObject ()
+- (void)markPristine;
+- (void)markClean;
+- (void)markDirty;
+- (void)markRemoved;
+
 @property (nonatomic, retain, readwrite) NSNumber *objectID;
 @end
 

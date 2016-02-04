@@ -17,11 +17,7 @@
 
 + (NSString *)collectionName;
 
-@property (nonatomic, retain, readonly) NSNumber *objectID;
+- (void)remove;
 
-// Protected
-- (void)markPristine;
-- (void)markClean;
-- (void)markDirty;
-- (void)markRemoved;
+@property (nonatomic, retain, readonly) NSNumber *objectID;
 @end
