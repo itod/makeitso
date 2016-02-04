@@ -235,7 +235,6 @@ void MISPerformOnBackgroundThread(void (^block)(void)) {
     
     MISPerformOnBackgroundThread(^{
         
-        // do network request
         NSError *err = nil;
         BOOL success = [self doRemoteCommit:&err];
         
@@ -249,6 +248,8 @@ void MISPerformOnBackgroundThread(void (^block)(void)) {
 - (BOOL)doRemoteCommit:(NSError **)outErr {
     TDAssertBackgroundThread();
     
+    // do network request
+
     return YES;
 }
 
