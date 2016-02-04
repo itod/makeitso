@@ -84,6 +84,15 @@
 }
 
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)obj change:(NSDictionary *)change context:(void *)ctx {
+    TDAssertDatabaseThread(); // ??
+    TDAssert([obj isKindOfClass:[DomainObject class]]);
+    TDAssert([_persistentPropertyNames containsObject:keyPath]);
+
+    [obj markDirty];
+}
+
+
 #pragma mark -
 #pragma mark SELECT
 
