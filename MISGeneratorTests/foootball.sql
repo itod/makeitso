@@ -16,6 +16,7 @@ CREATE TABLE team_player (
     ownerID INTEGER NOT NULL REFERENCES team,
     memberID INTEGER NOT NULL REFERENCES player
 );
+CREATE INDEX teamindex ON team_player(ownerID);
 
 CREATE TABLE player (
     objectID INTEGER PRIMARY KEY NOT NULL,

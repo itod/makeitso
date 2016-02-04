@@ -24,6 +24,7 @@ CREATE TABLE {{class.name|lowercase}}_{{field.className|lowercase}} (
     ownerID INTEGER NOT NULL REFERENCES {{class.name|lowercase}},
     memberID INTEGER NOT NULL REFERENCES {{field.className|lowercase}}
 {%/indent%});
+CREATE INDEX {{class.name|lowercase}}index ON {{class.name|lowercase}}_{{field.className|lowercase}}(ownerID);
 {%/for%}
 
 {%/for%}
