@@ -94,7 +94,6 @@
     }
 
     if (success) {
-        
         {
             NSArray *players = [obj valueForKey:@"players"];
             NSMutableArray *memIDs = [NSMutableArray arrayWithCapacity:[players count]];
@@ -143,7 +142,6 @@
     }
 
     if (success) {
-        
         {
             NSArray *players = [obj valueForKey:@"players"];
             NSMutableArray *memIDs = [NSMutableArray arrayWithCapacity:[players count]];

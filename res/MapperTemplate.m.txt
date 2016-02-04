@@ -139,7 +139,6 @@
         {%for field in class.fields %}
             {%if 1 == field.relationship %}{%comment%} ONE_TO_MANY {%/comment%}
             {%indent%}
-
                 {
                 {%indent%}
                     NSArray *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
@@ -222,7 +221,6 @@
         {%for field in class.fields %}
             {%if 1 == field.relationship %}{%comment%} ONE_TO_MANY {%/comment%}
             {%indent%}
-
                 {
                 {%indent%}
                     NSArray *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
