@@ -252,7 +252,7 @@ DQ
                         </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="qAm-Gg-aCS">
-                        <rect key="frame" x="18" y="396" width="111" height="14"/>
+                        <rect key="frame" x="8" y="396" width="121" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Output Source Path:" id="QFw-dg-fsF">
                             <font key="font" metaFont="smallSystem"/>
