@@ -60,7 +60,7 @@
                 {%/if%}
             {%elif 1 == field.relationship %}{%comment%} ONE_TO_MANY {%/comment%}
                 MISMapper *mapper = [self.unitOfWork mapperForDomainClass:[{{field.className}} class]];
-                NSArray *memIDs = [self foreignKeysForObject:obj fromTable:@"{{class.name|lowercase}}_{{field.className|lowercase}}"];
+                NSArray *memIDs = [self loadForeignKeysForObject:obj fromTable:@"{{class.name|lowercase}}_{{field.className|lowercase}}"];
                 NSMutableArray *{{field.name}} = [NSMutableArray array];
 
                 for (NSNumber *memID in memIDs) {
@@ -93,11 +93,11 @@
     NSMutableArray *args = [NSMutableArray arrayWithCapacity:[self.columnNames count]];
 {%trim%}
     {%for field in class.fields %}
-    {%indent%}
-
-        {
+        {%if 0 == field.relationship %}{%comment%} ONE_TO_ONE {%/comment%}
         {%indent%}
-            {%if 0 == field.relationship %}{%comment%} ONE_TO_ONE {%/comment%}
+
+            {
+            {%indent%}
                 {%if 'NSString' == field.className %}
                     NSString *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
                     [args addObject:{{field.name}}];
@@ -115,14 +115,10 @@
                     DomainObject *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
                     [args addObject:{{field.name}}.objectID];
                 {%/if%}
-            {%elif 1 == field.relationship %}{%comment%} ONE_TO_MANY {%/comment%}
-
-            {%elif 2 == field.relationship %}{%comment%} MANY_TO_MANY {%/comment%}
-
-            {%/if%}
+            {%/indent%}
+            }
         {%/indent%}
-        }
-    {%/indent%}
+        {%/if%}
     {%/for%}
 {%/trim%}
 
@@ -136,6 +132,37 @@
     @finally {
         
     }
+
+{%trim%}
+    {%indent%}
+    if (success) {
+        {%for field in class.fields %}
+            {%if 1 == field.relationship %}{%comment%} ONE_TO_MANY {%/comment%}
+            {%indent%}
+
+                {
+                {%indent%}
+                    NSArray *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
+                    NSMutableArray *memIDs = [NSMutableArray arrayWithCapacity:[{{field.name}} count]];
+
+                    for ({{field.className}} *member in {{field.name}}) {
+                    {%indent%}
+                        [memIDs addObject:member.objectID];
+                    {%/indent%}
+                    }
+
+                    [self insertForeignKeys:memIDs forObject:obj inTable:@"{{class.name|lowercase}}_{{field.className|lowercase}}"];
+                {%/indent%}
+                }
+            {%/indent%}
+            {%elif 2 == field.relationship %}{%comment%} MANY_TO_MANY {%/comment%}
+
+            {%/if%}
+        {%/for%}
+    }
+    {%/indent%}
+{%/trim%}
+
 }
 
 
@@ -173,7 +200,16 @@
                     [args addObject:{{field.name}}.objectID];
                 {%/if%}
             {%elif 1 == field.relationship %}{%comment%} ONE_TO_MANY {%/comment%}
+                NSArray *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
+                NSMutableArray *memIDs = [NSMutableArray arrayWithCapacity:[{{field.name}} count]];
 
+                for ({{field.className}} *member in {{field.name}}) {
+                {%indent%}
+                    [memIDs addObject:member.objectID];
+                {%/indent%}
+                }
+
+                [self updateForeignKeys:memIDs forObject:obj inTable:@"{{class.name|lowercase}}_{{field.className|lowercase}}"];
             {%elif 2 == field.relationship %}{%comment%} MANY_TO_MANY {%/comment%}
 
             {%/if%}

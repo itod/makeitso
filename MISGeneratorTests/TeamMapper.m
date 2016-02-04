@@ -47,7 +47,7 @@
 
     {
         MISMapper *mapper = [self.unitOfWork mapperForDomainClass:[Player class]];
-        NSArray *memIDs = [self foreignKeysForObject:obj fromTable:@"team_player"];
+        NSArray *memIDs = [self loadForeignKeysForObject:obj fromTable:@"team_player"];
         NSMutableArray *players = [NSMutableArray array];
         
         for (NSNumber *memID in memIDs) {
@@ -81,10 +81,6 @@
         [args addObject:name];
     }
 
-    {
-        
-    }
-
 
     BOOL success = NO;
     @try {
@@ -96,6 +92,22 @@
     @finally {
         
     }
+
+    if (success) {
+        
+        {
+            NSArray *players = [obj valueForKey:@"players"];
+            NSMutableArray *memIDs = [NSMutableArray arrayWithCapacity:[players count]];
+            
+            for (Player *member in players) {
+                [memIDs addObject:member.objectID];
+            }
+            
+            [self insertForeignKeys:memIDs forObject:obj inTable:@"team_player"];
+        }
+    }
+
+
 }
 
 
@@ -120,7 +132,14 @@
     }
 
     {
+        NSArray *players = [obj valueForKey:@"players"];
+        NSMutableArray *memIDs = [NSMutableArray arrayWithCapacity:[players count]];
         
+        for (Player *member in players) {
+            [memIDs addObject:member.objectID];
+        }
+        
+        [self updateForeignKeys:memIDs forObject:obj inTable:@"team_player"];
     }
 
 

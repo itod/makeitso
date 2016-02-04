@@ -108,6 +108,12 @@
 }
 
 
+- (void)updateForeignKeys:(NSArray *)memIDs forObject:(DomainObject *)obj inTable:(NSString *)tableName {
+    [self deleteForeignKeysForObject:obj inTable:tableName];
+    [self insertForeignKeys:memIDs forObject:obj inTable:tableName];
+}
+
+
 #pragma mark -
 #pragma mark INSERT
 
@@ -130,6 +136,32 @@
 }
 
 
+- (void)insertForeignKeys:(NSArray *)memIDs forObject:(DomainObject *)obj inTable:(NSString *)tableName {
+    TDAssertDatabaseThread();
+    TDAssert([memIDs count]);
+    TDAssert(obj);
+    TDAssert([tableName length]);
+    TDAssert(self.unitOfWork);
+    if (!obj.objectID) return;
+    
+    NSString *sql = [NSString stringWithFormat:@"INSERT INTO %@ (ownerID, memberID) VALUES (?, ?)", tableName];
+    
+    BOOL success = NO;
+    @try {
+        for (NSString *memID in memIDs) {
+            NSArray *args = @[obj.objectID, memID];
+            success = [self.database executeUpdate:sql withArgumentsInArray:args];
+        }
+    }
+    @catch (NSException *ex) {
+        NSLog(@"%@", ex);
+    }
+    @finally {
+        
+    }
+}
+
+
 #pragma mark -
 #pragma mark DELETE
 
@@ -139,12 +171,34 @@
     if (!obj.objectID) return;
     
     NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@ WHERE objectID = ?", self.tableName];
+    NSArray *args = @[obj.objectID];
     
-    FMResultSet *rs = nil;
+    BOOL success = NO;
     @try {
-        rs = [self.database executeQuery:sql, obj.objectID];
-        [rs next];
-        obj = [self load:rs];
+        success = [self.database executeUpdate:sql withArgumentsInArray:args];
+    }
+    @catch (NSException *ex) {
+        NSLog(@"%@", ex);
+    }
+    @finally {
+        
+    }
+}
+
+
+- (void)deleteForeignKeysForObject:(DomainObject *)obj inTable:(NSString *)tableName {
+    TDAssertDatabaseThread();
+    TDAssert(obj);
+    TDAssert([tableName length]);
+    TDAssert(self.unitOfWork);
+    if (!obj.objectID) return;
+    
+    NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@ WHERE ownerID = ?", self.tableName];
+    NSArray *args = @[obj.objectID];
+    
+    BOOL success = NO;
+    @try {
+        success = [self.database executeUpdate:sql withArgumentsInArray:args];
     }
     @catch (NSException *ex) {
         NSLog(@"%@", ex);
@@ -189,7 +243,7 @@
 }
 
 
-- (NSArray *)foreignKeysForObject:(DomainObject *)obj fromTable:(NSString *)tableName {
+- (NSArray *)loadForeignKeysForObject:(DomainObject *)obj fromTable:(NSString *)tableName {
     TDAssertDatabaseThread();
     TDAssert(obj.objectID);
     if (!obj.objectID) return nil;

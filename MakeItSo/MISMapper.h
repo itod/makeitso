@@ -26,7 +26,11 @@
 - (DomainObject *)load:(FMResultSet *)rs;
 - (void)loadFields:(FMResultSet *)rs inObject:(DomainObject *)obj;
 
-- (NSArray *)foreignKeysForObject:(DomainObject *)obj fromTable:(NSString *)tableName;
+- (void)updateForeignKeys:(NSArray *)memIDs forObject:(DomainObject *)obj inTable:(NSString *)tableName;
+- (void)insertForeignKeys:(NSArray *)memIDs forObject:(DomainObject *)obj inTable:(NSString *)tableName;
+- (void)deleteForeignKeysForObject:(DomainObject *)obj inTable:(NSString *)tableName;
+
+- (NSArray *)loadForeignKeysForObject:(DomainObject *)obj fromTable:(NSString *)tableName;
 
 @property (nonatomic, retain) Class domainClass;
 @property (nonatomic, copy) NSString *tableName;
