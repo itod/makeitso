@@ -15,6 +15,7 @@
 
 + (void)makeCurrent;
 + (MISUnitOfWork *)current;
++ (void)setCurrent:(MISUnitOfWork *)uow;
 
 - (void)registerMapper:(MISMapper *)mapper forDomainClass:(Class)cls;
 - (MISMapper *)mapperForDomainClass:(Class)cls;

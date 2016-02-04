@@ -37,6 +37,7 @@
 @property (nonatomic, copy) NSString *selectColumnList;
 @property (nonatomic, copy) NSString *udpateColumnList;
 @property (nonatomic, copy) NSArray *columnNames;
+@property (nonatomic, copy) NSArray *persistentPropertyNames;
 
 @property (nonatomic, retain, readonly) FMDatabase *database;
 @end

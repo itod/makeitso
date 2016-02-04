@@ -15,6 +15,11 @@
 
 #define THREAD_LOCAL_KEY @"MISUnitOfWork"
 
+@interface MISMapper ()
+- (void)startObservingObject:(DomainObject *)obj;
+- (void)stopObservingObject:(DomainObject *)obj;
+@end
+
 @interface MISUnitOfWork ()
 @property (nonatomic, retain) FMDatabase *database;
 
@@ -66,11 +71,8 @@
 #pragma mark Setup
 
 + (void)makeCurrent {
-    TDAssertDatabaseThread();
     MISUnitOfWork *uow = [[[MISUnitOfWork alloc] init] autorelease];
-
-    NSThread *thread = [NSThread currentThread];
-    thread.threadDictionary[THREAD_LOCAL_KEY] = uow;
+    [self setCurrent:uow];
 }
 
 
@@ -80,6 +82,14 @@
     MISUnitOfWork *uow = thread.threadDictionary[THREAD_LOCAL_KEY];
     TDAssert(uow);
     return uow;
+}
+
+
++ (void)setCurrent:(MISUnitOfWork *)uow {
+    TDAssertDatabaseThread();
+    TDAssert(uow);
+    NSThread *thread = [NSThread currentThread];
+    thread.threadDictionary[THREAD_LOCAL_KEY] = uow;
 }
 
 
@@ -119,12 +129,17 @@
     TDAssert(![_removedObjects containsObject:obj]);
 
     [_pristineObjects addObject:obj];
+
+    [self wasMade:obj];
 }
 
 
 - (void)registerClean:(DomainObject *)obj {
     TDAssert(obj.objectID);
-    // noop
+
+    [_pristineObjects removeObject:obj];
+    
+    [self wasMade:obj];
 }
 
 
@@ -172,8 +187,21 @@
     [self updateDirty];
     [self deleteRemoved];
     
-    if (![_database commit]) {
+    if ([_database commit]) {
         TDAssert(0);
+        return;
+    }
+    
+    [_pristineObjects removeAllObjects];
+    [_dirtyObjects removeAllObjects];
+    [_removedObjects removeAllObjects];
+
+    // clear memory cache
+    {
+        for (DomainObject *obj in _objectTab) {
+            [[self mapperForDomainClass:[obj class]] stopObservingObject:obj];
+        }
+        [_objectTab removeAllObjects];
     }
 }
 
@@ -224,6 +252,17 @@
     
     DomainObject *obj = _objectTab[objID];
     return obj;
+}
+
+
+- (void)wasMade:(DomainObject *)obj {
+    TDAssertDatabaseThread();
+    TDAssert(obj);
+    TDAssert(_objectTab);
+    
+    _objectTab[obj.objectID] = obj;
+    
+    [[self mapperForDomainClass:[obj class]] startObservingObject:obj];
 }
 
 @end

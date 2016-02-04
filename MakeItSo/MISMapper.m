@@ -20,6 +20,7 @@
 @end
 
 @interface MISUnitOfWork ()
+- (void)wasLoaded:(DomainObject *)obj;
 @property (nonatomic, retain, readonly) FMDatabase *database;
 @end
 
@@ -43,6 +44,7 @@
     self.tableName = nil;
     self.selectColumnList = nil;
     self.columnNames = nil;
+    self.persistentPropertyNames = nil;
     self.unitOfWork = nil;
     [super dealloc];
 }
@@ -54,6 +56,31 @@
     FMDatabase *db = _unitOfWork.database;
     TDAssert(db);
     return db;
+}
+
+
+#pragma mark -
+#pragma mark OBSERVING
+
+- (void)startObservingObject:(DomainObject *)obj {
+    TDAssertDatabaseThread();
+    TDAssert(obj);
+    TDAssert(_persistentPropertyNames);
+    
+    for (NSString *propName in _persistentPropertyNames) {
+        [obj addObserver:self forKeyPath:propName options:0 context:NULL];
+    }
+}
+
+
+- (void)stopObservingObject:(DomainObject *)obj {
+    TDAssertDatabaseThread();
+    TDAssert(obj);
+    TDAssert(_persistentPropertyNames);
+    
+    for (NSString *propName in _persistentPropertyNames) {
+        [obj removeObserver:self forKeyPath:propName];
+    }
 }
 
 
@@ -226,6 +253,8 @@
     obj.objectID = objID;
     
     [self loadFields:rs inObject:obj];
+    
+    [obj markClean];
     
     return obj;
 }

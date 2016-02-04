@@ -28,6 +28,15 @@
 }
 
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        [self markPristine];
+    }
+    return self;
+}
+
+
 - (void)dealloc {
     self.objectID = nil;
     [super dealloc];
