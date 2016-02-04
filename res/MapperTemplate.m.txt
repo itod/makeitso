@@ -33,12 +33,12 @@
     TDAssert(obj);
     TDAssert(self.unitOfWork);
 {%trim%}
+{%indent%}
     {%for field in class.fields %}
-    {%indent%}
 
         {
         {%indent%}
-            {%if 0 == field.relationship %}{%comment%} ONE_TO_ONE {%/comment%}
+            {%if 0 == field.relationship %}
                 {%if 'NSString' == field.className %}
                     NSString *{{field.name}} = [rs stringForColumn:@"{{field.name}}"];
                 {%elif 'NSNumber' == field.className %}
@@ -58,7 +58,7 @@
                     {%/indent%}
                     }
                 {%/if%}
-            {%elif 1 == field.relationship %}{%comment%} ONE_TO_MANY {%/comment%}
+            {%elif 1 == field.relationship %}
                 MISMapper *mapper = [self.unitOfWork mapperForDomainClass:[{{field.className}} class]];
                 NSArray *memIDs = [self loadForeignKeysForObject:obj fromTable:@"{{class.name|lowercase}}_{{field.className|lowercase}}"];
                 NSMutableArray *{{field.name}} = [NSMutableArray array];
@@ -70,14 +70,14 @@
                 {%/indent%}
                 }
 
-            {%elif 2 == field.relationship %}{%comment%} MANY_TO_MANY {%/comment%}
+            {%elif 2 == field.relationship %}
 
             {%/if%}
             [obj setValue:{{field.name}} forKey:@"{{field.name}}"];
         {%/indent%}
         }
-    {%/indent%}
     {%/for%}
+{%/indent%}
 {%/trim%}
 }
 
@@ -92,9 +92,9 @@
     
     NSMutableArray *args = [NSMutableArray arrayWithCapacity:[self.columnNames count]];
 {%trim%}
+{%indent%}
     {%for field in class.fields %}
-        {%if 0 == field.relationship %}{%comment%} ONE_TO_ONE {%/comment%}
-        {%indent%}
+        {%if 0 == field.relationship %}
 
             {
             {%indent%}
@@ -117,11 +117,10 @@
                 {%/if%}
             {%/indent%}
             }
-        {%/indent%}
         {%/if%}
     {%/for%}
+{%/indent%}
 {%/trim%}
-
     BOOL success = NO;
     @try {
         success = [self.database executeUpdate:sql withArgumentsInArray:args];
@@ -133,12 +132,13 @@
         
     }
 {%trim%}
-    {%indent%}
+{%indent%}
 
     if (success) {
         {%for field in class.fields %}
-            {%if 1 == field.relationship %}{%comment%} ONE_TO_MANY {%/comment%}
+            {%if 1 == field.relationship %}
             {%indent%}
+
                 {
                 {%indent%}
                     NSArray *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
@@ -154,12 +154,12 @@
                 {%/indent%}
                 }
             {%/indent%}
-            {%elif 2 == field.relationship %}{%comment%} MANY_TO_MANY {%/comment%}
+            {%elif 2 == field.relationship %}
 
             {%/if%}
         {%/for%}
     }
-    {%/indent%}
+{%/indent%}
 {%/trim%}
 }
 
@@ -174,9 +174,9 @@
     
     NSMutableArray *args = [NSMutableArray arrayWithCapacity:[self.columnNames count]];
 {%trim%}
+{%indent%}
     {%for field in class.fields %}
-        {%if 0 == field.relationship %}{%comment%} ONE_TO_ONE {%/comment%}
-        {%indent%}
+        {%if 0 == field.relationship %}
 
             {
             {%indent%}
@@ -199,11 +199,10 @@
                 {%/if%}
             {%/indent%}
             }
-        {%/indent%}
         {%/if%}
     {%/for%}
+{%/indent%}
 {%/trim%}
-
     BOOL success = NO;
     @try {
         success = [self.database executeUpdate:sql withArgumentsInArray:args];
@@ -215,12 +214,13 @@
         
     }
 {%trim%}
-    {%indent%}
+{%indent%}
 
     if (success) {
         {%for field in class.fields %}
-            {%if 1 == field.relationship %}{%comment%} ONE_TO_MANY {%/comment%}
+            {%if 1 == field.relationship %}
             {%indent%}
+
                 {
                 {%indent%}
                     NSArray *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
@@ -236,12 +236,12 @@
                 {%/indent%}
                 }
             {%/indent%}
-            {%elif 2 == field.relationship %}{%comment%} MANY_TO_MANY {%/comment%}
+            {%elif 2 == field.relationship %}
 
             {%/if%}
         {%/for%}
     }
-    {%/indent%}
+{%/indent%}
 {%/trim%}
 }
 

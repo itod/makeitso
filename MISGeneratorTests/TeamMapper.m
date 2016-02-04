@@ -39,12 +39,12 @@
         NSNumber *objectID = [rs objectForColumnName:@"objectID"];
         [obj setValue:objectID forKey:@"objectID"];
     }
-
+    
     {
         NSString *name = [rs stringForColumn:@"name"];
         [obj setValue:name forKey:@"name"];
     }
-
+    
     {
         MISMapper *mapper = [self.unitOfWork mapperForDomainClass:[Player class]];
         NSArray *memIDs = [self loadForeignKeysForObject:obj fromTable:@"team_player"];
@@ -81,7 +81,6 @@
         [args addObject:name];
     }
 
-
     BOOL success = NO;
     @try {
         success = [self.database executeUpdate:sql withArgumentsInArray:args];
@@ -94,6 +93,7 @@
     }
 
     if (success) {
+        
         {
             NSArray *players = [obj valueForKey:@"players"];
             NSMutableArray *memIDs = [NSMutableArray arrayWithCapacity:[players count]];
@@ -129,7 +129,6 @@
         [args addObject:name];
     }
 
-
     BOOL success = NO;
     @try {
         success = [self.database executeUpdate:sql withArgumentsInArray:args];
@@ -142,6 +141,7 @@
     }
 
     if (success) {
+        
         {
             NSArray *players = [obj valueForKey:@"players"];
             NSMutableArray *memIDs = [NSMutableArray arrayWithCapacity:[players count]];

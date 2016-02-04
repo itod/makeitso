@@ -40,17 +40,17 @@
         NSNumber *objectID = [rs objectForColumnName:@"objectID"];
         [obj setValue:objectID forKey:@"objectID"];
     }
-
+    
     {
         NSString *firstName = [rs stringForColumn:@"firstName"];
         [obj setValue:firstName forKey:@"firstName"];
     }
-
+    
     {
         NSString *lastName = [rs stringForColumn:@"lastName"];
         [obj setValue:lastName forKey:@"lastName"];
     }
-
+    
     {
         NSNumber *objID = [rs objectForColumnName:@"team"];
         DomainObject *team = [self.unitOfWork objectForID:objID];
@@ -93,7 +93,6 @@
         DomainObject *team = [obj valueForKey:@"team"];
         [args addObject:team.objectID];
     }
-
 
     BOOL success = NO;
     @try {
@@ -141,7 +140,6 @@
         DomainObject *team = [obj valueForKey:@"team"];
         [args addObject:team.objectID];
     }
-
 
     BOOL success = NO;
     @try {
