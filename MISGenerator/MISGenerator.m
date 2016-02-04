@@ -219,7 +219,7 @@
         NSMutableString *insertColList = [NSMutableString string];
         NSMutableString *updateColList = [NSMutableString string];
         
-        NSArray *fields = cls.fields;
+        NSArray *fields = cls.oneToOneFields;
         
         NSUInteger i = 0;
         NSUInteger c = [fields count];

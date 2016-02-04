@@ -7,6 +7,7 @@
 //
 
 #import "MISClass.h"
+#import "MISField.h"
 
 @interface MISClass ()
 @property (nonatomic, retain) NSMutableArray *allFields;
@@ -56,6 +57,28 @@
 
 - (NSArray *)fields {
     return [[_allFields copy] autorelease];
+}
+
+
+- (NSArray *)oneToOneFields {
+    NSMutableArray *result = [NSMutableArray array];
+    for (MISField *field in _allFields) {
+        if (MISFieldRelationshipOneToOne == field.relationship) {
+            [result addObject:field];
+        }
+    }
+    return [[result copy] autorelease];
+}
+
+
+- (NSArray *)oneToManyFields {
+    NSMutableArray *result = [NSMutableArray array];
+    for (MISField *field in _allFields) {
+        if (MISFieldRelationshipOneToMany == field.relationship) {
+            [result addObject:field];
+        }
+    }
+    return [[result copy] autorelease];
 }
 
 

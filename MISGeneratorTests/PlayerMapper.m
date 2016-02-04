@@ -35,7 +35,7 @@
     TDAssert(rs);
     TDAssert(obj);
     TDAssert(self.unitOfWork);
-
+    
     {
         NSNumber *objectID = [rs objectForColumnName:@"objectID"];
         [obj setValue:objectID forKey:@"objectID"];
@@ -73,22 +73,22 @@
     NSString *sql = @"INSERT INTO player (objectID, firstName, lastName, team) VALUES (?, ?, ?, ?)";
     
     NSMutableArray *args = [NSMutableArray arrayWithCapacity:[self.columnNames count]];
-
+    
     {
         NSNumber *objectID = [obj valueForKey:@"objectID"];
         [args addObject:objectID];
     }
-
+    
     {
         NSString *firstName = [obj valueForKey:@"firstName"];
         [args addObject:firstName];
     }
-
+    
     {
         NSString *lastName = [obj valueForKey:@"lastName"];
         [args addObject:lastName];
     }
-
+    
     {
         DomainObject *team = [obj valueForKey:@"team"];
         [args addObject:team.objectID];
@@ -104,7 +104,7 @@
     @finally {
         
     }
-
+    
     if (!success) return;
 
 }
@@ -119,22 +119,22 @@
     NSString *sql = @"UPDATE player SET objectID = ?, firstName = ?, lastName = ?, team = ? WHERE objectID = ?";
     
     NSMutableArray *args = [NSMutableArray arrayWithCapacity:[self.columnNames count]];
-
+    
     {
         NSNumber *objectID = [obj valueForKey:@"objectID"];
         [args addObject:objectID];
     }
-
+    
     {
         NSString *firstName = [obj valueForKey:@"firstName"];
         [args addObject:firstName];
     }
-
+    
     {
         NSString *lastName = [obj valueForKey:@"lastName"];
         [args addObject:lastName];
     }
-
+    
     {
         DomainObject *team = [obj valueForKey:@"team"];
         [args addObject:team.objectID];
@@ -150,7 +150,7 @@
     @finally {
         
     }
-
+    
     if (!success) return;
 
 }

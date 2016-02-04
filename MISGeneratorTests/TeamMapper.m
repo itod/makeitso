@@ -18,11 +18,10 @@
     self = [super init];
     if (self) {
         self.tableName = @"team";
-        self.selectColumnList = @"objectID, name, players";
+        self.selectColumnList = @"objectID, name";
         self.columnNames = @[
             @"objectID",
             @"name",
-            @"players",
         ];
     }
     return self;
@@ -34,7 +33,7 @@
     TDAssert(rs);
     TDAssert(obj);
     TDAssert(self.unitOfWork);
-
+    
     {
         NSNumber *objectID = [rs objectForColumnName:@"objectID"];
         [obj setValue:objectID forKey:@"objectID"];
@@ -67,15 +66,15 @@
     TDAssert(self.unitOfWork);
     if (!obj.objectID) return;
     
-    NSString *sql = @"INSERT INTO team (objectID, name, players) VALUES (?, ?, ?)";
+    NSString *sql = @"INSERT INTO team (objectID, name) VALUES (?, ?)";
     
     NSMutableArray *args = [NSMutableArray arrayWithCapacity:[self.columnNames count]];
-
+    
     {
         NSNumber *objectID = [obj valueForKey:@"objectID"];
         [args addObject:objectID];
     }
-
+    
     {
         NSString *name = [obj valueForKey:@"name"];
         [args addObject:name];
@@ -91,7 +90,7 @@
     @finally {
         
     }
-
+    
     if (!success) return;
     
     {
@@ -114,15 +113,15 @@
     TDAssert(self.unitOfWork);
     if (!obj.objectID) return;
     
-    NSString *sql = @"UPDATE team SET objectID = ?, name = ?, players = ? WHERE objectID = ?";
+    NSString *sql = @"UPDATE team SET objectID = ?, name = ? WHERE objectID = ?";
     
     NSMutableArray *args = [NSMutableArray arrayWithCapacity:[self.columnNames count]];
-
+    
     {
         NSNumber *objectID = [obj valueForKey:@"objectID"];
         [args addObject:objectID];
     }
-
+    
     {
         NSString *name = [obj valueForKey:@"name"];
         [args addObject:name];
@@ -138,7 +137,7 @@
     @finally {
         
     }
-
+    
     if (!success) return;
     
     {

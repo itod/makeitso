@@ -19,7 +19,7 @@
     if (self) {
         self.tableName = @"{{tableName}}";
         self.selectColumnList = @"{{selectColumnList}}";
-        self.columnNames = @[{%for field in class.fields%}
+        self.columnNames = @[{%for field in class.oneToOneFields%}
             @"{{field.name}}",{%/for%}
         ];
     }
@@ -34,45 +34,48 @@
     TDAssert(self.unitOfWork);
 {%trim%}
 {%indent%}
-    {%for field in class.fields %}
+    {%for field in class.oneToOneFields %}
 
         {
         {%indent%}
-            {%if 0 == field.relationship %}
-                {%if 'NSString' == field.className %}
-                    NSString *{{field.name}} = [rs stringForColumn:@"{{field.name}}"];
-                {%elif 'NSNumber' == field.className %}
-                    NSNumber *{{field.name}} = [rs objectForColumnName:@"{{field.name}}"];
-                {%elif 'NSDate' == field.className %}
-                    long long timestamp = [rs longLongForColumnName:@"{{field.name}}"];
-                    NSDate *{{field.name}} = [NSDate dateWithTimeIntervalSince1970:timestamp];
-                {%elif 'NSData' == field.className %}
-                    NSData *{{field.name}} = [rs dataForColumnName:@"{{field.name}}"];
-                {%else%}
-                    NSNumber *objID = [rs objectForColumnName:@"{{field.name}}"];
-                    DomainObject *{{field.name}} = [self.unitOfWork objectForID:objID];
-                    if (!{{field.name}}) {
-                    {%indent%}
-                        MISMapper *mapper = [self.unitOfWork mapperForDomainClass:[{{field.className}} class]];
-                        {{field.name}} = [mapper findObject:objID];
-                    {%/indent%}
-                    }
-                {%/if%}
-            {%elif 1 == field.relationship %}
-                MISMapper *mapper = [self.unitOfWork mapperForDomainClass:[{{field.className}} class]];
-                NSArray *memIDs = [self loadForeignKeysForObject:obj fromTable:@"{{class.name|lowercase}}_{{field.className|lowercase}}"];
-                NSMutableArray *{{field.name}} = [NSMutableArray array];
-
-                for (NSNumber *memID in memIDs) {
+            {%if 'NSString' == field.className %}
+                NSString *{{field.name}} = [rs stringForColumn:@"{{field.name}}"];
+            {%elif 'NSNumber' == field.className %}
+                NSNumber *{{field.name}} = [rs objectForColumnName:@"{{field.name}}"];
+            {%elif 'NSDate' == field.className %}
+                long long timestamp = [rs longLongForColumnName:@"{{field.name}}"];
+                NSDate *{{field.name}} = [NSDate dateWithTimeIntervalSince1970:timestamp];
+            {%elif 'NSData' == field.className %}
+                NSData *{{field.name}} = [rs dataForColumnName:@"{{field.name}}"];
+            {%else%}
+                NSNumber *objID = [rs objectForColumnName:@"{{field.name}}"];
+                DomainObject *{{field.name}} = [self.unitOfWork objectForID:objID];
+                if (!{{field.name}}) {
                 {%indent%}
-                    DomainObject *member = [mapper findObject:memID];
-                    if (member) [{{field.name}} addObject:member];
+                    MISMapper *mapper = [self.unitOfWork mapperForDomainClass:[{{field.className}} class]];
+                    {{field.name}} = [mapper findObject:objID];
                 {%/indent%}
                 }
-
-            {%elif 2 == field.relationship %}
-
             {%/if%}
+            [obj setValue:{{field.name}} forKey:@"{{field.name}}"];
+        {%/indent%}
+        }
+    {%/for%}
+    {%for field in class.oneToManyFields %}
+
+        {
+        {%indent%}
+            MISMapper *mapper = [self.unitOfWork mapperForDomainClass:[{{field.className}} class]];
+            NSArray *memIDs = [self loadForeignKeysForObject:obj fromTable:@"{{class.name|lowercase}}_{{field.className|lowercase}}"];
+            NSMutableArray *{{field.name}} = [NSMutableArray array];
+
+            for (NSNumber *memID in memIDs) {
+            {%indent%}
+                DomainObject *member = [mapper findObject:memID];
+                if (member) [{{field.name}} addObject:member];
+            {%/indent%}
+            }
+
             [obj setValue:{{field.name}} forKey:@"{{field.name}}"];
         {%/indent%}
         }
@@ -93,31 +96,29 @@
     NSMutableArray *args = [NSMutableArray arrayWithCapacity:[self.columnNames count]];
 {%trim%}
 {%indent%}
-    {%for field in class.fields %}
-        {%if 0 == field.relationship %}
+    {%for field in class.oneToOneFields %}
 
-            {
-            {%indent%}
-                {%if 'NSString' == field.className %}
-                    NSString *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
-                    [args addObject:{{field.name}}];
-                {%elif 'NSNumber' == field.className %}
-                    NSNumber *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
-                    [args addObject:{{field.name}}];
-                {%elif 'NSDate' == field.className %}
-                    NSDate *date = [obj valueForKey:@"{{field.name}}"];
-                    NSNumber *{{field.name}} = @([date timeIntervalSince1970]);
-                    [args addObject:{{field.name}}];
-                {%elif 'NSData' == field.className %}
-                    NSData *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
-                    [args addObject:{{field.name}}];
-                {%else%}
-                    DomainObject *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
-                    [args addObject:{{field.name}}.objectID];
-                {%/if%}
-            {%/indent%}
-            }
-        {%/if%}
+        {
+        {%indent%}
+            {%if 'NSString' == field.className %}
+                NSString *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
+                [args addObject:{{field.name}}];
+            {%elif 'NSNumber' == field.className %}
+                NSNumber *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
+                [args addObject:{{field.name}}];
+            {%elif 'NSDate' == field.className %}
+                NSDate *date = [obj valueForKey:@"{{field.name}}"];
+                NSNumber *{{field.name}} = @([date timeIntervalSince1970]);
+                [args addObject:{{field.name}}];
+            {%elif 'NSData' == field.className %}
+                NSData *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
+                [args addObject:{{field.name}}];
+            {%else%}
+                DomainObject *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
+                [args addObject:{{field.name}}.objectID];
+            {%/if%}
+        {%/indent%}
+        }
     {%/for%}
 {%/indent%}
 {%/trim%}
@@ -135,26 +136,22 @@
 {%indent%}
 
     if (!success) return;
-    {%for field in class.fields %}
-        {%if 1 == field.relationship %}
+    {%for field in class.oneToManyFields %}
 
-            {
+        {
+        {%indent%}
+            NSArray *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
+            NSMutableArray *memIDs = [NSMutableArray arrayWithCapacity:[{{field.name}} count]];
+
+            for ({{field.className}} *member in {{field.name}}) {
             {%indent%}
-                NSArray *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
-                NSMutableArray *memIDs = [NSMutableArray arrayWithCapacity:[{{field.name}} count]];
-
-                for ({{field.className}} *member in {{field.name}}) {
-                {%indent%}
-                    [memIDs addObject:member.objectID];
-                {%/indent%}
-                }
-
-                [self insertForeignKeys:memIDs forObject:obj inTable:@"{{class.name|lowercase}}_{{field.className|lowercase}}"];
+                [memIDs addObject:member.objectID];
             {%/indent%}
             }
-        {%elif 2 == field.relationship %}
 
-        {%/if%}
+            [self insertForeignKeys:memIDs forObject:obj inTable:@"{{class.name|lowercase}}_{{field.className|lowercase}}"];
+        {%/indent%}
+        }
     {%/for%}
 {%/indent%}
 {%/trim%}
@@ -172,31 +169,29 @@
     NSMutableArray *args = [NSMutableArray arrayWithCapacity:[self.columnNames count]];
 {%trim%}
 {%indent%}
-    {%for field in class.fields %}
-        {%if 0 == field.relationship %}
+    {%for field in class.oneToOneFields %}
 
-            {
-            {%indent%}
-                {%if 'NSString' == field.className %}
-                    NSString *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
-                    [args addObject:{{field.name}}];
-                {%elif 'NSNumber' == field.className %}
-                    NSNumber *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
-                    [args addObject:{{field.name}}];
-                {%elif 'NSDate' == field.className %}
-                    NSDate *date = [obj valueForKey:@"{{field.name}}"];
-                    NSNumber *{{field.name}} = @([date timeIntervalSince1970]);
-                    [args addObject:{{field.name}}];
-                {%elif 'NSData' == field.className %}
-                    NSData *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
-                    [args addObject:{{field.name}}];
-                {%else%}
-                    DomainObject *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
-                    [args addObject:{{field.name}}.objectID];
-                {%/if%}
-            {%/indent%}
-            }
-        {%/if%}
+        {
+        {%indent%}
+            {%if 'NSString' == field.className %}
+                NSString *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
+                [args addObject:{{field.name}}];
+            {%elif 'NSNumber' == field.className %}
+                NSNumber *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
+                [args addObject:{{field.name}}];
+            {%elif 'NSDate' == field.className %}
+                NSDate *date = [obj valueForKey:@"{{field.name}}"];
+                NSNumber *{{field.name}} = @([date timeIntervalSince1970]);
+                [args addObject:{{field.name}}];
+            {%elif 'NSData' == field.className %}
+                NSData *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
+                [args addObject:{{field.name}}];
+            {%else%}
+                DomainObject *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
+                [args addObject:{{field.name}}.objectID];
+            {%/if%}
+        {%/indent%}
+        }
     {%/for%}
 {%/indent%}
 {%/trim%}
@@ -214,26 +209,22 @@
 {%indent%}
 
     if (!success) return;
-    {%for field in class.fields %}
-        {%if 1 == field.relationship %}
+    {%for field in class.oneToManyFields %}
 
-            {
+        {
+        {%indent%}
+            NSArray *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
+            NSMutableArray *memIDs = [NSMutableArray arrayWithCapacity:[{{field.name}} count]];
+
+            for ({{field.className}} *member in {{field.name}}) {
             {%indent%}
-                NSArray *{{field.name}} = [obj valueForKey:@"{{field.name}}"];
-                NSMutableArray *memIDs = [NSMutableArray arrayWithCapacity:[{{field.name}} count]];
-
-                for ({{field.className}} *member in {{field.name}}) {
-                {%indent%}
-                    [memIDs addObject:member.objectID];
-                {%/indent%}
-                }
-
-                [self updateForeignKeys:memIDs forObject:obj inTable:@"{{class.name|lowercase}}_{{field.className|lowercase}}"];
+                [memIDs addObject:member.objectID];
             {%/indent%}
             }
-        {%elif 2 == field.relationship %}
 
-        {%/if%}
+            [self updateForeignKeys:memIDs forObject:obj inTable:@"{{class.name|lowercase}}_{{field.className|lowercase}}"];
+        {%/indent%}
+        }
     {%/for%}
 {%/indent%}
 {%/trim%}

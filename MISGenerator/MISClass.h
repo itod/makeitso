@@ -17,5 +17,7 @@
 - (void)addRelationshipClassName:(NSString *)str;
 
 @property (nonatomic, retain, readonly) NSArray *fields;
+@property (nonatomic, retain, readonly) NSArray *oneToOneFields;
+@property (nonatomic, retain, readonly) NSArray *oneToManyFields;
 @property (nonatomic, retain, readonly) NSSet *relationshipClassNames;
 @end

@@ -7,15 +7,12 @@ CREATE TABLE keys (
 INSERT INTO keys (nextID, name) VALUES (0, 'global');
 
 
-CREATE TABLE team
-(
+CREATE TABLE team (
     objectID INTEGER PRIMARY KEY NOT NULL,
-    name TEXT,
-    players INTEGER
+    name TEXT
 );
 
-CREATE TABLE player
-(
+CREATE TABLE player (
     objectID INTEGER PRIMARY KEY NOT NULL,
     firstName TEXT,
     lastName TEXT,

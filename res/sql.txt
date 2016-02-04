@@ -7,10 +7,14 @@ CREATE TABLE keys (
 INSERT INTO keys (nextID, name) VALUES (0, 'global');
 
 {%for class in classes %}
-CREATE TABLE {{class.name|lowercase}}
-({%for field in class.fields %}
-    {{field.name}} {{field.sqlTypeString}}{%if field.isPrimaryKey %} PRIMARY KEY NOT NULL{%elif field.isForeignKey%}{%/if%}{%if !currentLoop.isLast %},{%/if%}{%/for%}
-);
+CREATE TABLE {{class.name|lowercase}} (
+{%trim%}
+{%indent%}
+    {%for field in class.oneToOneFields %}
+        {{field.name}} {{field.sqlTypeString}}{%if field.isPrimaryKey %} PRIMARY KEY NOT NULL{%elif field.isForeignKey%}{%/if%}{%if !currentLoop.isLast %},{%/if%}
+    {%/for%}
+{%/indent%}
+{%/trim%});
 {%/for%}
 
 END TRANSACTION;
