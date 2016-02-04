@@ -210,10 +210,10 @@ void MISPerformOnBackgroundThread(void (^block)(void)) {
 #pragma mark -
 #pragma mark Commiting
 
-- (void)commitWithCompletion:(void (^)(BOOL success, NSError *err))callback {
+- (void)commit:(void (^)(BOOL success, NSError *err))callback {
     TDAssertMainThread();
     
-    [self doRemoteCommit:^(BOOL success, NSError *err) {
+    [self remoteCommit:^(BOOL success, NSError *err) {
         TDAssertMainThread();
         
         if (!success) {
@@ -221,7 +221,7 @@ void MISPerformOnBackgroundThread(void (^block)(void)) {
             return;
         }
         
-        [self doLocalCommit:^(BOOL success, NSError *err) {
+        [self localCommit:^(BOOL success, NSError *err) {
             TDAssertMainThread();
             
             callback(success, err);
@@ -230,21 +230,15 @@ void MISPerformOnBackgroundThread(void (^block)(void)) {
 }
 
 
-- (void)doRemoteCommit:(void (^)(BOOL success, NSError *err))callback {
+- (void)remoteCommit:(void (^)(BOOL success, NSError *err))callback {
     TDAssertMainThread();
     
     MISPerformOnBackgroundThread(^{
         
         // do network request
         NSError *err = nil;
-        BOOL success = YES;
+        BOOL success = [self doRemoteCommit:&err];
         
-        if (!success) {
-            NSString *errMsg = @"";
-            NSDictionary *userInfo = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
-            err = [NSError errorWithDomain:MISErrorDomainRemote code:0 userInfo:userInfo];
-        }
-
         MISPerformOnMainThread(^{
             callback(success, err);
         });
@@ -252,12 +246,19 @@ void MISPerformOnBackgroundThread(void (^block)(void)) {
 }
 
 
-- (void)doLocalCommit:(void (^)(BOOL success, NSError *err))callback {
+- (BOOL)doRemoteCommit:(NSError **)outErr {
+    TDAssertBackgroundThread();
+    
+    return YES;
+}
+
+
+- (void)localCommit:(void (^)(BOOL success, NSError *err))callback {
     TDAssertMainThread();
     
     MISPerformOnDatabaseThread(^{
         NSError *err = nil;
-        BOOL success = [self commit:&err];
+        BOOL success = [self doLocalCommit:&err];
         
         MISPerformOnMainThread(^{
             callback(success, err);
@@ -266,7 +267,7 @@ void MISPerformOnBackgroundThread(void (^block)(void)) {
 }
 
 
-- (BOOL)commit:(NSError **)outErr {
+- (BOOL)doLocalCommit:(NSError **)outErr {
     TDAssertDatabaseThread();
     TDAssert(_database);
 

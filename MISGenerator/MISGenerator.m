@@ -91,7 +91,7 @@
 
 
 - (void)failWithError:(NSError *)err {
-    TDAssertNotMainThread();
+    TDAssertBackgroundThread();
     TDPerformOnMainThread(^{
         TDAssert(_delegate);
         [_delegate generator:self didFail:err];
@@ -100,7 +100,7 @@
 
 
 - (void)succeedWithMessage:(NSString *)msg databaseFilePath:dbFilePath {
-    TDAssertNotMainThread();
+    TDAssertBackgroundThread();
     TDPerformOnMainThread(^{
         TDAssert(_delegate);
         [_delegate generator:self didSucceed:msg databaseFilePath:dbFilePath];
@@ -109,7 +109,7 @@
 
 
 - (NSArray *)classesForHeaderFiles:(NSDictionary *)args error:(NSError **)outErr {
-    TDAssertNotMainThread();
+    TDAssertBackgroundThread();
     NSMutableArray *classes = [NSMutableArray array];
     
     // parse headers
@@ -172,7 +172,7 @@
 
 
 - (BOOL)generateOutputSourceForClasses:(NSArray *)classes args:(NSDictionary *)args error:(NSError **)outErr {
-    TDAssertNotMainThread();
+    TDAssertBackgroundThread();
     
     NSString *mapHeaderPath = [[NSBundle mainBundle] pathForResource:@"MapperTemplate.h" ofType:@"txt"];
     NSString *mapImplPath = [[NSBundle mainBundle] pathForResource:@"MapperTemplate.m" ofType:@"txt"];
@@ -283,7 +283,7 @@
 
 
 - (NSString *)generateSqlForClasses:(NSArray *)classes args:(NSDictionary *)args error:(NSError **)outErr {
-    TDAssertNotMainThread();
+    TDAssertBackgroundThread();
     
     NSString *templateFilePath = [[NSBundle mainBundle] pathForResource:@"sql" ofType:@"txt"];
     
@@ -320,7 +320,7 @@
 
 
 - (NSString *)createDatabaseForSqlFilePath:(NSString *)sqlFilePath args:(NSDictionary *)args error:(NSError **)outErr {
-    TDAssertNotMainThread();
+    TDAssertBackgroundThread();
 
     NSError *err = nil;
     NSString *sql = [NSString stringWithContentsOfFile:sqlFilePath encoding:NSUTF8StringEncoding error:&err];
