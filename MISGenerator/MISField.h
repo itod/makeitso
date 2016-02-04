@@ -26,6 +26,9 @@ typedef NS_ENUM(NSInteger, MISFieldRelationship) {
 };
 
 @interface MISField : NSObject
+
+- (NSComparisonResult)compare:(MISField *)field;
+
 @property (nonatomic, copy) NSString *sourceString;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *type;

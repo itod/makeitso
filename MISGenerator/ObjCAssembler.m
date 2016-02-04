@@ -195,8 +195,6 @@
     _currentField.sourceString = srcBuf;
     _currentField.name = name;
     
-    [_currentClass addField:_currentField];
-    
     // don't set -currentField to nil here. wait for relationship
 }
 
@@ -209,7 +207,9 @@
     
     MISFieldRelationship rel = MISFieldRelationshipOneToOne;
     
-    if ([@"MIS_ONE_TO_ONE" isEqualToString:relTok.stringValue]) {
+    if ([@"MIS_PROPERTY" isEqualToString:relTok.stringValue]) {
+        rel = MISFieldRelationshipOneToOne;
+    } else if ([@"MIS_ONE_TO_ONE" isEqualToString:relTok.stringValue]) {
         rel = MISFieldRelationshipOneToOne;
         TDAssert(_currentClass);
         [_currentClass addRelationshipClassName:_currentField.className];
@@ -223,6 +223,8 @@
     
     TDAssert(_currentField);
     _currentField.relationship = rel;
+
+    [_currentClass addField:_currentField];
 }
 
 

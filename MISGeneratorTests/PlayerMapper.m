@@ -25,6 +25,12 @@
             @"lastName",
             @"team",
         ];
+        self.persistentPropertyNames = @[
+            @"objectID",
+            @"firstName",
+            @"lastName",
+            @"team",
+        ];
     }
     return self;
 }

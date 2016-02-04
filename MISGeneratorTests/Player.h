@@ -12,8 +12,8 @@
 
 @interface Player : DomainObject
 
-@property (nonatomic, copy) NSString *firstName;
-@property (nonatomic, copy) NSString *lastName;
+@property (nonatomic, copy) NSString *firstName MIS_PROPERTY;
+@property (nonatomic, copy) NSString *lastName MIS_PROPERTY;
 
 @property (nonatomic, retain) Team *team MIS_ONE_TO_ONE;
 @end

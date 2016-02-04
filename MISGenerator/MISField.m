@@ -33,6 +33,11 @@
 }
 
 
+- (NSComparisonResult)compare:(MISField *)field {
+    return [_name caseInsensitiveCompare:field.name];
+}
+
+
 - (NSString *)sqlTypeString {
     NSString *str = nil;
     

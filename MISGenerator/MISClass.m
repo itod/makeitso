@@ -44,6 +44,7 @@
     TDAssert(field);
     
     [_allFields addObject:field];
+    //[_allFields sortedArrayUsingSelector:@selector(compare:)];
 }
 
 
@@ -82,8 +83,10 @@
 }
 
 
-- (NSSet *)relationshipClassNames {
-    return [[_allRelationshipClassNames copy] autorelease];
+- (NSArray *)relationshipClassNames {
+    NSMutableArray *v = [[[_allRelationshipClassNames allObjects] mutableCopy] autorelease];
+    [v sortUsingSelector:@selector(caseInsensitiveCompare:)];
+    return [[v copy] autorelease];
 }
 
 @end

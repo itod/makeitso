@@ -102,10 +102,11 @@
         self.tokenKindTab[@"static"] = @(OBJCPARSER_TOKEN_KIND_STATIC);
         self.tokenKindTab[@"("] = @(OBJCPARSER_TOKEN_KIND_OPEN_PAREN);
         self.tokenKindTab[@")"] = @(OBJCPARSER_TOKEN_KIND_CLOSE_PAREN);
-        self.tokenKindTab[@"@"] = @(OBJCPARSER_TOKEN_KIND_AT);
+        self.tokenKindTab[@"MIS_PROPERTY"] = @(OBJCPARSER_TOKEN_KIND_MIS_PROPERTY);
         self.tokenKindTab[@"MIS_ONE_TO_ONE"] = @(OBJCPARSER_TOKEN_KIND_MIS_ONE_TO_ONE);
         self.tokenKindTab[@"*"] = @(OBJCPARSER_TOKEN_KIND_STAR);
         self.tokenKindTab[@"strong"] = @(OBJCPARSER_TOKEN_KIND_STRONG);
+        self.tokenKindTab[@"@"] = @(OBJCPARSER_TOKEN_KIND_AT);
         self.tokenKindTab[@"+"] = @(OBJCPARSER_TOKEN_KIND_PLUS);
         self.tokenKindTab[@"["] = @(OBJCPARSER_TOKEN_KIND_OPEN_BRACKET);
         self.tokenKindTab[@","] = @(OBJCPARSER_TOKEN_KIND_COMMA);
@@ -147,10 +148,11 @@
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_STATIC] = @"static";
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_OPEN_PAREN] = @"(";
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_CLOSE_PAREN] = @")";
-        self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_AT] = @"@";
+        self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_MIS_PROPERTY] = @"MIS_PROPERTY";
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_MIS_ONE_TO_ONE] = @"MIS_ONE_TO_ONE";
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_STAR] = @"*";
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_STRONG] = @"strong";
+        self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_AT] = @"@";
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_PLUS] = @"+";
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_OPEN_BRACKET] = @"[";
         self.tokenKindNameTab[OBJCPARSER_TOKEN_KIND_COMMA] = @",";
@@ -981,7 +983,7 @@
     } else {
         [self raise:@"No viable alternative found in rule 'property'."];
     }
-    if ([self predicts:OBJCPARSER_TOKEN_KIND_MIS_MANY_TO_MANY, OBJCPARSER_TOKEN_KIND_MIS_ONE_TO_MANY, OBJCPARSER_TOKEN_KIND_MIS_ONE_TO_ONE, 0]) {
+    if ([self predicts:OBJCPARSER_TOKEN_KIND_MIS_PROPERTY, OBJCPARSER_TOKEN_KIND_MIS_MANY_TO_MANY, OBJCPARSER_TOKEN_KIND_MIS_ONE_TO_MANY, OBJCPARSER_TOKEN_KIND_MIS_ONE_TO_ONE, 0]) {
         [self relationship_]; 
     }
     [self semi_]; 
@@ -1009,7 +1011,9 @@
 
 - (void)__relationshipType {
     
-    if ([self predicts:OBJCPARSER_TOKEN_KIND_MIS_ONE_TO_ONE, 0]) {
+    if ([self predicts:OBJCPARSER_TOKEN_KIND_MIS_PROPERTY, 0]) {
+        [self match:OBJCPARSER_TOKEN_KIND_MIS_PROPERTY discard:NO]; 
+    } else if ([self predicts:OBJCPARSER_TOKEN_KIND_MIS_ONE_TO_ONE, 0]) {
         [self match:OBJCPARSER_TOKEN_KIND_MIS_ONE_TO_ONE discard:NO]; 
     } else if ([self predicts:OBJCPARSER_TOKEN_KIND_MIS_ONE_TO_MANY, 0]) {
         [self match:OBJCPARSER_TOKEN_KIND_MIS_ONE_TO_MANY discard:NO]; 
