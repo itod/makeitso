@@ -11,6 +11,8 @@
 @class MISMapper;
 @class DomainObject;
 
+typedef void(^MISCommitCompletion) (BOOL success, NSError *err);
+
 extern NSString *const MISErrorDomainRemote;
 extern NSString *const MISErrorDomainLocal;
 
@@ -28,7 +30,7 @@ extern NSString *const MISErrorDomainLocal;
 - (void)registerDirty:(DomainObject *)obj;
 - (void)registerRemoved:(DomainObject *)obj;
 
-- (void)commit:(void (^)(BOOL success, NSError *err))callback;
+- (void)commit:(MISCommitCompletion)completion;
 
 - (BOOL)isLoaded:(NSNumber *)objID;
 - (DomainObject *)objectForID:(NSNumber *)objID;

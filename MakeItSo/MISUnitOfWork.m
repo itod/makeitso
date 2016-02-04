@@ -210,27 +210,27 @@ void MISPerformOnBackgroundThread(void (^block)(void)) {
 #pragma mark -
 #pragma mark Commiting
 
-- (void)commit:(void (^)(BOOL success, NSError *err))callback {
+- (void)commit:(MISCommitCompletion)completion {
     TDAssertMainThread();
     
     [self remoteCommit:^(BOOL success, NSError *err) {
         TDAssertMainThread();
         
         if (!success) {
-            callback(success, err);
+            completion(success, err);
             return;
         }
         
         [self localCommit:^(BOOL success, NSError *err) {
             TDAssertMainThread();
             
-            callback(success, err);
+            completion(success, err);
         }];
     }];
 }
 
 
-- (void)remoteCommit:(void (^)(BOOL success, NSError *err))callback {
+- (void)remoteCommit:(MISCommitCompletion)completion {
     TDAssertMainThread();
     
     MISPerformOnBackgroundThread(^{
@@ -240,7 +240,7 @@ void MISPerformOnBackgroundThread(void (^block)(void)) {
         BOOL success = [self doRemoteCommit:&err];
         
         MISPerformOnMainThread(^{
-            callback(success, err);
+            completion(success, err);
         });
     });
 }
@@ -253,7 +253,7 @@ void MISPerformOnBackgroundThread(void (^block)(void)) {
 }
 
 
-- (void)localCommit:(void (^)(BOOL success, NSError *err))callback {
+- (void)localCommit:(MISCommitCompletion)completion {
     TDAssertMainThread();
     
     MISPerformOnDatabaseThread(^{
@@ -261,7 +261,7 @@ void MISPerformOnBackgroundThread(void (^block)(void)) {
         BOOL success = [self doLocalCommit:&err];
         
         MISPerformOnMainThread(^{
-            callback(success, err);
+            completion(success, err);
         });
     });
 }
