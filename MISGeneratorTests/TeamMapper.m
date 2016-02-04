@@ -107,7 +107,6 @@
         }
     }
 
-
 }
 
 
@@ -131,17 +130,6 @@
         [args addObject:name];
     }
 
-    {
-        NSArray *players = [obj valueForKey:@"players"];
-        NSMutableArray *memIDs = [NSMutableArray arrayWithCapacity:[players count]];
-        
-        for (Player *member in players) {
-            [memIDs addObject:member.objectID];
-        }
-        
-        [self updateForeignKeys:memIDs forObject:obj inTable:@"team_player"];
-    }
-
 
     BOOL success = NO;
     @try {
@@ -153,6 +141,21 @@
     @finally {
         
     }
+
+    if (success) {
+        
+        {
+            NSArray *players = [obj valueForKey:@"players"];
+            NSMutableArray *memIDs = [NSMutableArray arrayWithCapacity:[players count]];
+            
+            for (Player *member in players) {
+                [memIDs addObject:member.objectID];
+            }
+            
+            [self updateForeignKeys:memIDs forObject:obj inTable:@"team_player"];
+        }
+    }
+
 }
 
 @end
