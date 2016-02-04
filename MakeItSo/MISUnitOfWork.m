@@ -164,9 +164,7 @@
     TDAssert(_dirtyObjects);
     TDAssert(_removedObjects);
     
-    [[obj retain] autorelease];
-    
-    [_objectTab removeObjectForKey:obj.objectID];
+    [self removeObject:obj];
     
     if ([_pristineObjects containsObject:obj]) {
         [_pristineObjects removeObject:obj];
@@ -272,9 +270,11 @@
     TDAssert(obj);
     TDAssert(nil != _objectTab[obj.objectID]);
     
-    [_objectTab removeObjectForKey:obj.objectID];
+    [[obj retain] autorelease];
     
     [[self mapperForDomainClass:[obj class]] stopObservingObject:obj];
+
+    [_objectTab removeObjectForKey:obj.objectID];
 }
 
 @end
