@@ -25,7 +25,7 @@
             @"lastName",
             @"team",
         ];
-        self.persistentPropertyNames = @[
+        self.persistentFieldNames = @[
             @"objectID",
             @"firstName",
             @"lastName",

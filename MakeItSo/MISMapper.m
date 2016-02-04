@@ -16,10 +16,8 @@
 #import <fmdb/FMResultSet.h>
 
 @interface DomainObject ()
-- (void)markPristine;
 - (void)markClean;
 - (void)markDirty;
-- (void)markRemoved;
 
 @property (nonatomic, retain, readwrite) NSNumber *objectID;
 @end
@@ -49,7 +47,7 @@
     self.tableName = nil;
     self.selectColumnList = nil;
     self.columnNames = nil;
-    self.persistentPropertyNames = nil;
+    self.persistentFieldNames = nil;
     self.unitOfWork = nil;
     [super dealloc];
 }
@@ -70,9 +68,9 @@
 - (void)startObservingObject:(DomainObject *)obj {
     TDAssertDatabaseThread();
     TDAssert(obj);
-    TDAssert(_persistentPropertyNames);
+    TDAssert(_persistentFieldNames);
     
-    for (NSString *propName in _persistentPropertyNames) {
+    for (NSString *propName in _persistentFieldNames) {
         [obj addObserver:self forKeyPath:propName options:0 context:NULL];
     }
 }
@@ -81,9 +79,9 @@
 - (void)stopObservingObject:(DomainObject *)obj {
     TDAssertDatabaseThread();
     TDAssert(obj);
-    TDAssert(_persistentPropertyNames);
+    TDAssert(_persistentFieldNames);
     
-    for (NSString *propName in _persistentPropertyNames) {
+    for (NSString *propName in _persistentFieldNames) {
         [obj removeObserver:self forKeyPath:propName];
     }
 }
@@ -92,7 +90,7 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)obj change:(NSDictionary *)change context:(void *)ctx {
     TDAssertDatabaseThread(); // ??
     TDAssert([obj isKindOfClass:[DomainObject class]]);
-    TDAssert([_persistentPropertyNames containsObject:keyPath]);
+    TDAssert([_persistentFieldNames containsObject:keyPath]);
 
     [obj markDirty];
 }

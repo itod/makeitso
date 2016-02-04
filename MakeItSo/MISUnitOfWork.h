@@ -25,7 +25,8 @@
 - (void)registerDirty:(DomainObject *)obj;
 - (void)registerRemoved:(DomainObject *)obj;
 
-- (void)commit;
+- (BOOL)commit:(NSError **)outErr;
+- (void)commitWithCompletion:(void (^)(BOOL success, NSError *err))callback;
 
 - (BOOL)isLoaded:(NSNumber *)objID;
 - (DomainObject *)objectForID:(NSNumber *)objID;

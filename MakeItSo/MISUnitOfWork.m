@@ -15,6 +15,34 @@
 
 #define THREAD_LOCAL_KEY @"MISUnitOfWork"
 
+//static dispatch_queue_t sDatabaseQueue = NULL;
+//
+//void MISPerformOnDatabaseThread(void (^block)(void)) {
+//    //assert(block);
+//    
+//    static dispatch_once_t once;
+//    dispatch_once(&once, ^{
+//        sDatabaseQueue = dispatch_queue_create("com.celestialteapot.MakeItSo", 0);
+//    });
+//    
+//    dispatch_async(sDatabaseQueue, block);
+//}
+
+void MISPerformOnDatabaseThread(void (^block)(void)) {
+    //assert(block);
+    dispatch_async(dispatch_get_main_queue(), block);
+}
+
+void MISPerformOnMainThread(void (^block)(void)) {
+    //assert(block);
+    dispatch_async(dispatch_get_main_queue(), block);
+}
+
+void MISPerformOnBackgroundThread(void (^block)(void)) {
+    //assert(block);
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block);
+}
+
 @interface MISMapper ()
 - (void)startObservingObject:(DomainObject *)obj;
 - (void)stopObservingObject:(DomainObject *)obj;
@@ -179,7 +207,51 @@
 #pragma mark -
 #pragma mark Commiting
 
-- (void)commit {
+- (void)commitWithCompletion:(void (^)(BOOL success, NSError *err))callback {
+    TDAssertMainThread();
+    
+    [self doRemoteCommit:^(BOOL success, NSError *err) {
+        if (!success) {
+            callback(success, err);
+            return;
+        }
+        
+        [self doLocalCommit:^(BOOL success, NSError *err) {
+            callback(success, err);
+        }];
+    }];
+}
+
+
+- (void)doRemoteCommit:(void (^)(BOOL success, NSError *err))callback {
+    TDAssertMainThread();
+    
+    MISPerformOnBackgroundThread(^{
+        
+        // network request
+
+        MISPerformOnMainThread(^{
+            callback(YES, nil);
+        });
+    });
+}
+
+
+- (void)doLocalCommit:(void (^)(BOOL success, NSError *err))callback {
+    TDAssertMainThread();
+    
+    MISPerformOnDatabaseThread(^{
+        NSError *err = nil;
+        BOOL success = [self commit:&err];
+        
+        MISPerformOnMainThread(^{
+            callback(success, err);
+        });
+    });
+}
+
+
+- (BOOL)commit:(NSError **)outErr {
     TDAssertDatabaseThread();
     TDAssert(_database);
     
@@ -189,9 +261,10 @@
     [self updateDirty];
     [self deleteRemoved];
     
-    if ([_database commit]) {
-        TDAssert(0);
-        return;
+    BOOL success = [_database commit];
+    if (!success) {
+        if (outErr) *outErr = _database.lastError;
+        return NO; // return early ??
     }
     
     [_pristineObjects removeAllObjects];
@@ -202,6 +275,8 @@
     for (DomainObject *obj in [[_objectTab copy] autorelease]) {
         [self removeObject:obj];
     }
+    
+    return YES;
 }
 
 

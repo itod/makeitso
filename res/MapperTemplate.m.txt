@@ -22,7 +22,7 @@
         self.columnNames = @[{%for field in class.oneToOneFields%}
             @"{{field.name}}",{%/for%}
         ];
-        self.persistentPropertyNames = @[{%for field in class.fields%}
+        self.persistentFieldNames = @[{%for field in class.fields%}
             @"{{field.name}}",{%/for%}
         ];
     }
