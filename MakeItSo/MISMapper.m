@@ -157,6 +157,9 @@
 #pragma mark INSERT
 
 - (NSNumber *)insert:(DomainObject *)obj {
+    TDAssertDatabaseThread();
+    TDAssert(obj);
+
     NSNumber *objID = [self nextDatabaseKey];
     obj.objectID = objID;
     [self performInsert:obj];
@@ -274,13 +277,6 @@
 
 - (void)loadFields:(FMResultSet *)rs inObject:(DomainObject *)obj {
     NSAssert2(0, @"%s is an abstract method and must be implemented in %@", __PRETTY_FUNCTION__, [self class]);
-//    TDAssertDatabaseThread();
-//    TDAssert(_columnNames);
-//    
-//    for (NSString *colName in self.columnNames) {
-//        id val = [rs objectForColumnName:colName];
-//        [obj setValue:val forKey:colName];
-//    }
 }
 
 
