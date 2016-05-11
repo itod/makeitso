@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+@class MISQuery;
+
 @interface MISQueryAssembler : NSObject
 
+@property (nonatomic, retain) MISQuery *query;
 @end

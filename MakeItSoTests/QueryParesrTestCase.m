@@ -13,6 +13,8 @@
 #import "MISQuery.h"
 #import "MISCriteria.h"
 
+#import "DomainObject.h"
+
 @interface QueryParesrTestCase : MISBaseTestCase
 @property (nonatomic, retain) MISQueryAssembler *assembler;
 @property (nonatomic, retain) MISQueryParser *parser;
@@ -24,6 +26,10 @@
     [super setUp];
 
     self.assembler = [[[MISQueryAssembler alloc] init] autorelease];
+    
+    Class cls = [DomainObject class];
+    _assembler.query = [[[MISQuery alloc] initWithDomainClass:cls] autorelease];
+
     self.parser = [[[MISQueryParser alloc] initWithDelegate:_assembler] autorelease];
 }
 
@@ -39,18 +45,18 @@
     MISQuery *q = [_parser parseString:queryStr error:&err];
     TDNotNil(q);
     
-//    MISCriteria *crit0 = q.criteria[0];
-//    TDEquals(MISCriteriaTypeAnd, crit0.type);
-//    TDEquals(MISCriteriaOperatorEqualTo, crit0.op);
-//    TDEqualObjects(@"foo", crit0.lhs);
-//    TDEqualObjects(@"'bar'", crit0.rhs);
+    MISCriteria *crit0 = q.criteria[0];
+    TDEquals(MISCriteriaTypeAnd, crit0.type);
+    TDEquals(MISCriteriaOperatorEqualTo, crit0.op);
+    TDEqualObjects(@"foo", crit0.lhs);
+    TDEqualObjects(@"bar", crit0.rhs);
 }
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
-}
+//- (void)testPerformanceExample {
+//    // This is an example of a performance test case.
+//    [self measureBlock:^{
+//        // Put the code you want to measure the time of here.
+//    }];
+//}
 
 @end

@@ -214,11 +214,11 @@
     } else if ([self predicts:MISQUERYPARSER_TOKEN_KIND_LT, 0]) {
         [self lt_]; 
     } else if ([self predicts:MISQUERYPARSER_TOKEN_KIND_GE_SYM, MISQUERYPARSER_TOKEN_KIND_HASH_ROCKET, 0]) {
-        [self gtEq_]; 
+        [self ge_];
     } else if ([self predicts:MISQUERYPARSER_TOKEN_KIND_EL_SYM, MISQUERYPARSER_TOKEN_KIND_LE_SYM, 0]) {
-        [self ltEq_]; 
+        [self le_];
     } else if ([self predicts:MISQUERYPARSER_TOKEN_KIND_NOT_EQUAL, MISQUERYPARSER_TOKEN_KIND_NOT_EQUALS, 0]) {
-        [self notEq_]; 
+        [self ne_];
     } else if ([self predicts:MISQUERYPARSER_TOKEN_KIND_BEGINSWITH, 0]) {
         [self beginswith_]; 
     } else if ([self predicts:MISQUERYPARSER_TOKEN_KIND_CONTAINS, 0]) {
@@ -239,9 +239,9 @@
 - (void)eq_ {
     
     if ([self predicts:MISQUERYPARSER_TOKEN_KIND_EQUALS, 0]) {
-        [self match:MISQUERYPARSER_TOKEN_KIND_EQUALS discard:NO]; 
+        [self match:MISQUERYPARSER_TOKEN_KIND_EQUALS discard:YES];
     } else if ([self predicts:MISQUERYPARSER_TOKEN_KIND_DOUBLE_EQUALS, 0]) {
-        [self match:MISQUERYPARSER_TOKEN_KIND_DOUBLE_EQUALS discard:NO]; 
+        [self match:MISQUERYPARSER_TOKEN_KIND_DOUBLE_EQUALS discard:YES];
     } else {
         [self raise:@"No viable alternative found in rule 'eq'."];
     }
@@ -251,88 +251,88 @@
 
 - (void)gt_ {
     
-    [self match:MISQUERYPARSER_TOKEN_KIND_GT discard:NO]; 
+    [self match:MISQUERYPARSER_TOKEN_KIND_GT discard:YES];
 
     [self fireDelegateSelector:@selector(parser:didMatchGt:)];
 }
 
 - (void)lt_ {
     
-    [self match:MISQUERYPARSER_TOKEN_KIND_LT discard:NO]; 
+    [self match:MISQUERYPARSER_TOKEN_KIND_LT discard:YES];
 
     [self fireDelegateSelector:@selector(parser:didMatchLt:)];
 }
 
-- (void)gtEq_ {
+- (void)ge_ {
     
     if ([self predicts:MISQUERYPARSER_TOKEN_KIND_GE_SYM, 0]) {
-        [self match:MISQUERYPARSER_TOKEN_KIND_GE_SYM discard:NO]; 
+        [self match:MISQUERYPARSER_TOKEN_KIND_GE_SYM discard:YES];
     } else if ([self predicts:MISQUERYPARSER_TOKEN_KIND_HASH_ROCKET, 0]) {
-        [self match:MISQUERYPARSER_TOKEN_KIND_HASH_ROCKET discard:NO]; 
+        [self match:MISQUERYPARSER_TOKEN_KIND_HASH_ROCKET discard:YES];
     } else {
         [self raise:@"No viable alternative found in rule 'gtEq'."];
     }
 
-    [self fireDelegateSelector:@selector(parser:didMatchGtEq:)];
+    [self fireDelegateSelector:@selector(parser:didMatchGe:)];
 }
 
-- (void)ltEq_ {
+- (void)le_ {
     
     if ([self predicts:MISQUERYPARSER_TOKEN_KIND_LE_SYM, 0]) {
-        [self match:MISQUERYPARSER_TOKEN_KIND_LE_SYM discard:NO]; 
+        [self match:MISQUERYPARSER_TOKEN_KIND_LE_SYM discard:YES];
     } else if ([self predicts:MISQUERYPARSER_TOKEN_KIND_EL_SYM, 0]) {
-        [self match:MISQUERYPARSER_TOKEN_KIND_EL_SYM discard:NO]; 
+        [self match:MISQUERYPARSER_TOKEN_KIND_EL_SYM discard:YES];
     } else {
         [self raise:@"No viable alternative found in rule 'ltEq'."];
     }
 
-    [self fireDelegateSelector:@selector(parser:didMatchLtEq:)];
+    [self fireDelegateSelector:@selector(parser:didMatchLe:)];
 }
 
-- (void)notEq_ {
+- (void)ne_ {
     
     if ([self predicts:MISQUERYPARSER_TOKEN_KIND_NOT_EQUAL, 0]) {
-        [self match:MISQUERYPARSER_TOKEN_KIND_NOT_EQUAL discard:NO]; 
+        [self match:MISQUERYPARSER_TOKEN_KIND_NOT_EQUAL discard:YES];
     } else if ([self predicts:MISQUERYPARSER_TOKEN_KIND_NOT_EQUALS, 0]) {
-        [self match:MISQUERYPARSER_TOKEN_KIND_NOT_EQUALS discard:NO]; 
+        [self match:MISQUERYPARSER_TOKEN_KIND_NOT_EQUALS discard:YES];
     } else {
         [self raise:@"No viable alternative found in rule 'notEq'."];
     }
 
-    [self fireDelegateSelector:@selector(parser:didMatchNotEq:)];
+    [self fireDelegateSelector:@selector(parser:didMatchNe:)];
 }
 
 - (void)beginswith_ {
     
-    [self match:MISQUERYPARSER_TOKEN_KIND_BEGINSWITH discard:NO]; 
+    [self match:MISQUERYPARSER_TOKEN_KIND_BEGINSWITH discard:YES];
 
     [self fireDelegateSelector:@selector(parser:didMatchBeginswith:)];
 }
 
 - (void)contains_ {
     
-    [self match:MISQUERYPARSER_TOKEN_KIND_CONTAINS discard:NO]; 
+    [self match:MISQUERYPARSER_TOKEN_KIND_CONTAINS discard:YES];
 
     [self fireDelegateSelector:@selector(parser:didMatchContains:)];
 }
 
 - (void)endswith_ {
     
-    [self match:MISQUERYPARSER_TOKEN_KIND_ENDSWITH discard:NO]; 
+    [self match:MISQUERYPARSER_TOKEN_KIND_ENDSWITH discard:YES];
 
     [self fireDelegateSelector:@selector(parser:didMatchEndswith:)];
 }
 
 - (void)like_ {
     
-    [self match:MISQUERYPARSER_TOKEN_KIND_LIKE discard:NO]; 
+    [self match:MISQUERYPARSER_TOKEN_KIND_LIKE discard:YES];
 
     [self fireDelegateSelector:@selector(parser:didMatchLike:)];
 }
 
 - (void)matches_ {
     
-    [self match:MISQUERYPARSER_TOKEN_KIND_MATCHES discard:NO]; 
+    [self match:MISQUERYPARSER_TOKEN_KIND_MATCHES discard:YES];
 
     [self fireDelegateSelector:@selector(parser:didMatchMatches:)];
 }

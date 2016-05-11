@@ -31,20 +31,20 @@ compoundExpr         = '('! expr ')'!;
 comparisonExpr       = atom operatorAtom*;
 operatorAtom         = comparisonOperator atom;
 
-comparisonOperator   = eq | gt | lt | gtEq | ltEq | notEq | beginswith | contains | endswith | like | matches;
+comparisonOperator   = eq | gt | lt | ge | le | ne | beginswith | contains | endswith | like | matches;
 
-eq      = '=' | '==';
-gt      = '>';
-lt      = '<';
-gtEq    = '>=' | '=>';
-ltEq    = '<=' | '=<';
-notEq   = '!=' | '<>';
+eq      = '='! | '=='!;
+gt      = '>'!;
+lt      = '<'!;
+ge      = '>='! | '=>'!;
+le      = '<='! | '=<'!;
+ne      = '!='! | '<>'!;
 
-beginswith  = 'BEGINSWITH';
-contains    = 'CONTAINS';
-endswith    = 'ENDSWITH';
-like        = 'LIKE';
-matches     = 'MATCHES';
+beginswith  = 'BEGINSWITH'!;
+contains    = 'CONTAINS'!;
+endswith    = 'ENDSWITH'!;
+like        = 'LIKE'!;
+matches     = 'MATCHES'!;
 
 andKeyword = 'AND'! | '&&'!;
 orKeyword  = 'OR'!  | '||'!;
