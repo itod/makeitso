@@ -3,6 +3,11 @@
 
 @implementation {{class.name}}Repository
 
+- (Class)domainClass {
+    return [{{class.name}} class];
+}
+
+
 - ({{class.name}} *)find{{class.name}}:(NSNumber *)objID {
     return ({{class.name}} *)[self find:objID];
 }

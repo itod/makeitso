@@ -42,6 +42,12 @@
 }
 
 
+- (Class)domainClass {
+    NSAssert2(0, @"%s is an abstract method and must be implemented in %@", __PRETTY_FUNCTION__, [self class]);
+    return Nil;
+}
+
+
 - (DomainObject *)find:(NSNumber *)objID {
     TDAssert(objID);
     
@@ -63,8 +69,11 @@
     TDAssert(_assembler);
     TDAssert(_parser);
     
+    MISQuery *q = [MISQuery queryWithDomainClass:[self domainClass]];
+    _assembler.query = q;
+    
     NSError *err = nil;
-    MISQuery *q = [_parser parseString:queryStr error:&err];
+    [_parser parseString:queryStr error:&err];
     
     if (!q) {
         if (err) NSLog(@"%@", err);

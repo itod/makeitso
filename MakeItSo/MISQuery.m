@@ -28,8 +28,13 @@
 }
 
 
+- (instancetype)init {
+    return [self initWithDomainClass:Nil];
+}
+
+
 - (instancetype)initWithDomainClass:(Class)cls {
-    TDAssert([cls isSubclassOfClass:[DomainObject class]]);
+    TDAssert(!cls || [cls isSubclassOfClass:[DomainObject class]]);
     self = [super init];
     if (self) {
         self.domainClass = cls;

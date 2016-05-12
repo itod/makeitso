@@ -13,8 +13,6 @@
 #import "MISQuery.h"
 #import "MISCriteria.h"
 
-#import "DomainObject.h"
-
 @interface QueryParesrTestCase : MISBaseTestCase
 @property (nonatomic, retain) MISQueryAssembler *assembler;
 @property (nonatomic, retain) MISQueryParser *parser;
@@ -27,8 +25,7 @@
 
     self.assembler = [[[MISQueryAssembler alloc] init] autorelease];
     
-    Class cls = [DomainObject class];
-    _assembler.query = [[[MISQuery alloc] initWithDomainClass:cls] autorelease];
+    _assembler.query = [[[MISQuery alloc] init] autorelease];
 
     self.parser = [[[MISQueryParser alloc] initWithDelegate:_assembler] autorelease];
 }
@@ -38,7 +35,7 @@
     [super tearDown];
 }
 
-- (void)testExample {
+- (void)testFooEqBar {
     NSString *queryStr = @"foo == 'bar'";
     
     NSError *err = nil;
@@ -50,6 +47,27 @@
     TDEquals(MISCriteriaOperatorEqualTo, crit0.op);
     TDEqualObjects(@"foo", crit0.lhs);
     TDEqualObjects(@"bar", crit0.rhs);
+}
+
+
+- (void)testFooNeBarAndBazEqBat {
+    NSString *queryStr = @"foo != 'bar' AND baz == 'bat'";
+    
+    NSError *err = nil;
+    MISQuery *q = [_parser parseString:queryStr error:&err];
+    TDNotNil(q);
+    
+    MISCriteria *crit0 = q.criteria[0];
+    TDEquals(MISCriteriaTypeAnd, crit0.type);
+    TDEquals(MISCriteriaOperatorNotEqualTo, crit0.op);
+    TDEqualObjects(@"foo", crit0.lhs);
+    TDEqualObjects(@"bar", crit0.rhs);
+
+    MISCriteria *crit1 = q.criteria[1];
+    TDEquals(MISCriteriaTypeAnd, crit1.type);
+    TDEquals(MISCriteriaOperatorEqualTo, crit1.op);
+    TDEqualObjects(@"baz", crit1.lhs);
+    TDEqualObjects(@"bat", crit1.rhs);
 }
 
 //- (void)testPerformanceExample {

@@ -11,6 +11,7 @@
 @class DomainObject;
 
 @interface Repository : NSObject
+- (Class)domainClass;
 - (DomainObject *)find:(NSNumber *)objID;
 - (NSSet *)findAll:(NSString *)queryStr;
 @end
