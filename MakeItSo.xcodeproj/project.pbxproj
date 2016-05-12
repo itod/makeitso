@@ -13,9 +13,9 @@
 		D30DDD9E1A4F90C300448BB9 /* Team.m in Sources */ = {isa = PBXBuildFile; fileRef = D30DDD961A4F90C300448BB9 /* Team.m */; };
 		D30DDD9F1A4F90C300448BB9 /* TeamMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D30DDD981A4F90C300448BB9 /* TeamMapper.m */; };
 		D30DDDA01A4F90C300448BB9 /* TeamRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = D30DDD9A1A4F90C300448BB9 /* TeamRepository.m */; };
+		D3155D521CE5334600508B08 /* PEGKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3155D501CE5334600508B08 /* PEGKit.framework */; };
+		D3155D531CE5334600508B08 /* TDTemplateEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3155D511CE5334600508B08 /* TDTemplateEngine.framework */; };
 		D332D4051A545109005D7BE5 /* MISKeyGeneratorTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = D332D4041A545109005D7BE5 /* MISKeyGeneratorTestCase.m */; };
-		D35463EC1CE52BEA006C23FF /* PEGKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D35463EA1CE52BEA006C23FF /* PEGKit.framework */; };
-		D35463ED1CE52BEA006C23FF /* TDTemplateEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D35463EB1CE52BEA006C23FF /* TDTemplateEngine.framework */; };
 		D366C1E31A5389CE00D69669 /* MISKeyGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = D366C1E11A5389CE00D69669 /* MISKeyGenerator.h */; };
 		D366C1E41A5389CE00D69669 /* MISKeyGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = D366C1E21A5389CE00D69669 /* MISKeyGenerator.m */; };
 		D366C1EB1A544BD500D69669 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D366C1EA1A544BD500D69669 /* OCMock.framework */; };
@@ -154,9 +154,9 @@
 		D30DDD981A4F90C300448BB9 /* TeamMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamMapper.m; sourceTree = "<group>"; };
 		D30DDD991A4F90C300448BB9 /* TeamRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamRepository.h; sourceTree = "<group>"; };
 		D30DDD9A1A4F90C300448BB9 /* TeamRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamRepository.m; sourceTree = "<group>"; };
+		D3155D501CE5334600508B08 /* PEGKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PEGKit.framework; path = "../../../Library/Developer/Xcode/DerivedData/MakeItSo-ddngnhqbjvuoqxbbvvytgnpjyixw/Build/Products/Debug/PEGKit.framework"; sourceTree = "<group>"; };
+		D3155D511CE5334600508B08 /* TDTemplateEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TDTemplateEngine.framework; path = lib/TDTemplateEngine/build/Debug/TDTemplateEngine.framework; sourceTree = "<group>"; };
 		D332D4041A545109005D7BE5 /* MISKeyGeneratorTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MISKeyGeneratorTestCase.m; sourceTree = "<group>"; };
-		D35463EA1CE52BEA006C23FF /* PEGKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PEGKit.framework; path = "../../../Library/Developer/Xcode/DerivedData/MakeItSo-ddngnhqbjvuoqxbbvvytgnpjyixw/Build/Products/Debug/PEGKit.framework"; sourceTree = "<group>"; };
-		D35463EB1CE52BEA006C23FF /* TDTemplateEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TDTemplateEngine.framework; path = lib/TDTemplateEngine/build/Debug/TDTemplateEngine.framework; sourceTree = "<group>"; };
 		D366C1E11A5389CE00D69669 /* MISKeyGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MISKeyGenerator.h; sourceTree = "<group>"; };
 		D366C1E21A5389CE00D69669 /* MISKeyGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MISKeyGenerator.m; sourceTree = "<group>"; };
 		D366C1EA1A544BD500D69669 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = lib/OCMock/OSX/OCMock.framework; sourceTree = "<group>"; };
@@ -266,8 +266,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D35463EC1CE52BEA006C23FF /* PEGKit.framework in Frameworks */,
-				D35463ED1CE52BEA006C23FF /* TDTemplateEngine.framework in Frameworks */,
+				D3155D521CE5334600508B08 /* PEGKit.framework in Frameworks */,
+				D3155D531CE5334600508B08 /* TDTemplateEngine.framework in Frameworks */,
 				D3F0F4D81A4D9EAF000F6F62 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -328,6 +328,8 @@
 			isa = PBXGroup;
 			children = (
 				D3F0F4D71A4D9EAF000F6F62 /* libsqlite3.dylib */,
+				D3155D501CE5334600508B08 /* PEGKit.framework */,
+				D3155D511CE5334600508B08 /* TDTemplateEngine.framework */,
 				D366C1EA1A544BD500D69669 /* OCMock.framework */,
 			);
 			name = Libraries;
@@ -441,8 +443,6 @@
 		D3F4B0231A4C6ADD001ACB0E = {
 			isa = PBXGroup;
 			children = (
-				D35463EA1CE52BEA006C23FF /* PEGKit.framework */,
-				D35463EB1CE52BEA006C23FF /* TDTemplateEngine.framework */,
 				D3F4B02F1A4C6ADE001ACB0E /* MakeItSo */,
 				D3F4B03C1A4C6ADE001ACB0E /* MakeItSoTests */,
 				D3F0F4D91A4D9EC4000F6F62 /* Libraries */,
