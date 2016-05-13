@@ -368,6 +368,9 @@
 		D3F0F4D91A4D9EC4000F6F62 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				D3A392061CE561EA001FA335 /* PEGKit.framework */,
+				D3A392071CE561EA001FA335 /* TDTemplateEngine.framework */,
+				D3A392041CE5619F001FA335 /* libsqlite3.tbd */,
 				D3F0F4D71A4D9EAF000F6F62 /* libsqlite3.dylib */,
 				D3155D501CE5334600508B08 /* PEGKit.framework */,
 				D3155D511CE5334600508B08 /* TDTemplateEngine.framework */,
@@ -484,9 +487,6 @@
 		D3F4B0231A4C6ADD001ACB0E = {
 			isa = PBXGroup;
 			children = (
-				D3A392061CE561EA001FA335 /* PEGKit.framework */,
-				D3A392071CE561EA001FA335 /* TDTemplateEngine.framework */,
-				D3A392041CE5619F001FA335 /* libsqlite3.tbd */,
 				D3F4B02F1A4C6ADE001ACB0E /* MakeItSo */,
 				D3F4B03C1A4C6ADE001ACB0E /* MakeItSoTests */,
 				D3F0F4D91A4D9EC4000F6F62 /* Libraries */,
