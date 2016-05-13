@@ -11,7 +11,6 @@
 #import "MISCriteria.h"
 
 #import <PEGKit/PEGKit.h>
-#import "NSString+PEGKitAdditions.h"
 
 @implementation MISQueryAssembler
 
@@ -49,7 +48,7 @@
 - (void)parser:(PKParser *)p didMatchString:(PKAssembly *)a {
     //NSLog(@"%s", __PRETTY_FUNCTION__);
     PKToken *tok = [a pop];
-    [a push:[tok.stringValue stringByTrimmingQuotes]];
+    [a push:tok.stringValue];
 }
 
 
