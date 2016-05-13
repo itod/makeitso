@@ -24,6 +24,32 @@
 		D366C1F21A544D8300D69669 /* MISBaseTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = D366C1EF1A544D4900D69669 /* MISBaseTestCase.m */; };
 		D366C1F41A544F4100D69669 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D366C1EA1A544BD500D69669 /* OCMock.framework */; };
 		D366C1F61A544F5900D69669 /* OCMock.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D366C1EA1A544BD500D69669 /* OCMock.framework */; };
+		D3A391ED1CE56016001FA335 /* MakeItSo.h in Headers */ = {isa = PBXBuildFile; fileRef = D3F4B0321A4C6ADE001ACB0E /* MakeItSo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D3A391EE1CE56016001FA335 /* DomainObject.h in Headers */ = {isa = PBXBuildFile; fileRef = D3E3D68F1A4C6CC9004103BD /* DomainObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D3A391EF1CE56016001FA335 /* Repository.h in Headers */ = {isa = PBXBuildFile; fileRef = D3F0F49D1A4CF045000F6F62 /* Repository.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D3A391F01CE56029001FA335 /* MISQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = D3E3D6941A4C6EF1004103BD /* MISQuery.h */; };
+		D3A391F11CE56029001FA335 /* MISCriteria.h in Headers */ = {isa = PBXBuildFile; fileRef = D3E3D6981A4C6EFE004103BD /* MISCriteria.h */; };
+		D3A391F21CE56029001FA335 /* MISQueryParser.h in Headers */ = {isa = PBXBuildFile; fileRef = D3F0F4A31A4CF699000F6F62 /* MISQueryParser.h */; };
+		D3A391F31CE56029001FA335 /* MISQueryAssembler.h in Headers */ = {isa = PBXBuildFile; fileRef = D3F0F4C51A4CF794000F6F62 /* MISQueryAssembler.h */; };
+		D3A391F41CE56029001FA335 /* MISUnitOfWork.h in Headers */ = {isa = PBXBuildFile; fileRef = D3E3D6871A4C6C88004103BD /* MISUnitOfWork.h */; };
+		D3A391F51CE56029001FA335 /* MISMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = D3E3D68B1A4C6CA4004103BD /* MISMapper.h */; };
+		D3A391F61CE56029001FA335 /* MISKeyGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = D366C1E11A5389CE00D69669 /* MISKeyGenerator.h */; };
+		D3A391F71CE56036001FA335 /* FMDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = D3F0F4CF1A4D9E97000F6F62 /* FMDatabase.h */; };
+		D3A391F81CE56036001FA335 /* FMResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = D3F0F4D11A4D9E97000F6F62 /* FMResultSet.h */; };
+		D3A391F91CE5609D001FA335 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F4D01A4D9E97000F6F62 /* FMDatabase.m */; };
+		D3A391FA1CE5609D001FA335 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F4D21A4D9E97000F6F62 /* FMResultSet.m */; };
+		D3A391FB1CE5609D001FA335 /* DomainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E3D6901A4C6CC9004103BD /* DomainObject.m */; };
+		D3A391FC1CE5609D001FA335 /* Repository.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F49E1A4CF045000F6F62 /* Repository.m */; };
+		D3A391FD1CE5609D001FA335 /* MISQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E3D6951A4C6EF1004103BD /* MISQuery.m */; };
+		D3A391FE1CE5609D001FA335 /* MISCriteria.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E3D6991A4C6EFE004103BD /* MISCriteria.m */; };
+		D3A391FF1CE5609D001FA335 /* MISQueryParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F4A41A4CF699000F6F62 /* MISQueryParser.m */; settings = {COMPILER_FLAGS = "-Wno-undeclared-selector"; }; };
+		D3A392001CE5609D001FA335 /* MISQueryAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F4C61A4CF794000F6F62 /* MISQueryAssembler.m */; };
+		D3A392011CE5609D001FA335 /* MISUnitOfWork.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E3D6881A4C6C88004103BD /* MISUnitOfWork.m */; };
+		D3A392021CE5609D001FA335 /* MISMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E3D68C1A4C6CA4004103BD /* MISMapper.m */; };
+		D3A392031CE5609D001FA335 /* MISKeyGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = D366C1E21A5389CE00D69669 /* MISKeyGenerator.m */; };
+		D3A392051CE5619F001FA335 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A392041CE5619F001FA335 /* libsqlite3.tbd */; };
+		D3A392081CE561EA001FA335 /* PEGKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A392061CE561EA001FA335 /* PEGKit.framework */; };
+		D3A392091CE561EA001FA335 /* TDTemplateEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A392071CE561EA001FA335 /* TDTemplateEngine.framework */; };
 		D3E3D6891A4C6C88004103BD /* MISUnitOfWork.h in Headers */ = {isa = PBXBuildFile; fileRef = D3E3D6871A4C6C88004103BD /* MISUnitOfWork.h */; };
 		D3E3D68A1A4C6C88004103BD /* MISUnitOfWork.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E3D6881A4C6C88004103BD /* MISUnitOfWork.m */; };
 		D3E3D68D1A4C6CA4004103BD /* MISMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = D3E3D68B1A4C6CA4004103BD /* MISMapper.h */; };
@@ -163,6 +189,11 @@
 		D366C1EF1A544D4900D69669 /* MISBaseTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MISBaseTestCase.m; sourceTree = "<group>"; };
 		D366C1F11A544D7C00D69669 /* MISBaseTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MISBaseTestCase.h; sourceTree = "<group>"; };
 		D3A391DE1CE55EBF001FA335 /* MakeItSo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "MakeItSo-Info.plist"; path = "res/MakeItSo-Info.plist"; sourceTree = SOURCE_ROOT; };
+		D3A391E41CE55FD6001FA335 /* MakeItSo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MakeItSo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3A391EC1CE56001001FA335 /* MakeItSoiOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "MakeItSoiOS-Info.plist"; path = "res/MakeItSoiOS-Info.plist"; sourceTree = SOURCE_ROOT; };
+		D3A392041CE5619F001FA335 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/usr/lib/libsqlite3.tbd; sourceTree = DEVELOPER_DIR; };
+		D3A392061CE561EA001FA335 /* PEGKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PEGKit.framework; path = "lib/PEGKit/build/Debug-iphoneos/PEGKit.framework"; sourceTree = "<group>"; };
+		D3A392071CE561EA001FA335 /* TDTemplateEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TDTemplateEngine.framework; path = "lib/TDTemplateEngine/build/Debug-iphoneos/TDTemplateEngine.framework"; sourceTree = "<group>"; };
 		D3E3D6871A4C6C88004103BD /* MISUnitOfWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MISUnitOfWork.h; path = ../src/MISUnitOfWork.h; sourceTree = "<group>"; };
 		D3E3D6881A4C6C88004103BD /* MISUnitOfWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MISUnitOfWork.m; path = ../src/MISUnitOfWork.m; sourceTree = "<group>"; };
 		D3E3D68B1A4C6CA4004103BD /* MISMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MISMapper.h; path = ../src/MISMapper.h; sourceTree = "<group>"; };
@@ -243,6 +274,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D3A391E01CE55FD6001FA335 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3A392081CE561EA001FA335 /* PEGKit.framework in Frameworks */,
+				D3A392091CE561EA001FA335 /* TDTemplateEngine.framework in Frameworks */,
+				D3A392051CE5619F001FA335 /* libsqlite3.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D3F0F4DB1A4DC165000F6F62 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -443,6 +484,9 @@
 		D3F4B0231A4C6ADD001ACB0E = {
 			isa = PBXGroup;
 			children = (
+				D3A392061CE561EA001FA335 /* PEGKit.framework */,
+				D3A392071CE561EA001FA335 /* TDTemplateEngine.framework */,
+				D3A392041CE5619F001FA335 /* libsqlite3.tbd */,
 				D3F4B02F1A4C6ADE001ACB0E /* MakeItSo */,
 				D3F4B03C1A4C6ADE001ACB0E /* MakeItSoTests */,
 				D3F0F4D91A4D9EC4000F6F62 /* Libraries */,
@@ -459,6 +503,7 @@
 				D3F4B0381A4C6ADE001ACB0E /* MakeItSoTests.xctest */,
 				D3F0F4DE1A4DC165000F6F62 /* MISGenerator.app */,
 				D3F0F4F61A4DC165000F6F62 /* MISGeneratorTests.xctest */,
+				D3A391E41CE55FD6001FA335 /* MakeItSo.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -483,6 +528,7 @@
 			children = (
 				D3E3D69C1A4C709D004103BD /* MakeItSo-Prefix.pch */,
 				D3A391DE1CE55EBF001FA335 /* MakeItSo-Info.plist */,
+				D3A391EC1CE56001001FA335 /* MakeItSoiOS-Info.plist */,
 				D3F0F4A11A4CF0E2000F6F62 /* query.grammar */,
 			);
 			name = "Supporting Files";
@@ -511,6 +557,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		D3A391E11CE55FD6001FA335 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3A391ED1CE56016001FA335 /* MakeItSo.h in Headers */,
+				D3A391EE1CE56016001FA335 /* DomainObject.h in Headers */,
+				D3A391EF1CE56016001FA335 /* Repository.h in Headers */,
+				D3A391F01CE56029001FA335 /* MISQuery.h in Headers */,
+				D3A391F11CE56029001FA335 /* MISCriteria.h in Headers */,
+				D3A391F21CE56029001FA335 /* MISQueryParser.h in Headers */,
+				D3A391F31CE56029001FA335 /* MISQueryAssembler.h in Headers */,
+				D3A391F41CE56029001FA335 /* MISUnitOfWork.h in Headers */,
+				D3A391F51CE56029001FA335 /* MISMapper.h in Headers */,
+				D3A391F61CE56029001FA335 /* MISKeyGenerator.h in Headers */,
+				D3A391F71CE56036001FA335 /* FMDatabase.h in Headers */,
+				D3A391F81CE56036001FA335 /* FMResultSet.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D3F4B02A1A4C6ADE001ACB0E /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -533,6 +598,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		D3A391E31CE55FD6001FA335 /* MakeItSoiOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D3A391E91CE55FD6001FA335 /* Build configuration list for PBXNativeTarget "MakeItSoiOS" */;
+			buildPhases = (
+				D3A391DF1CE55FD6001FA335 /* Sources */,
+				D3A391E01CE55FD6001FA335 /* Frameworks */,
+				D3A391E11CE55FD6001FA335 /* Headers */,
+				D3A391E21CE55FD6001FA335 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MakeItSoiOS;
+			productName = MakeItSoiOS;
+			productReference = D3A391E41CE55FD6001FA335 /* MakeItSo.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		D3F0F4DD1A4DC165000F6F62 /* MISGenerator */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D3F0F4FE1A4DC165000F6F62 /* Build configuration list for PBXNativeTarget "MISGenerator" */;
@@ -617,6 +700,9 @@
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Todd Ditchendorf";
 				TargetAttributes = {
+					D3A391E31CE55FD6001FA335 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
 					D3F0F4DD1A4DC165000F6F62 = {
 						CreatedOnToolsVersion = 6.1;
 					};
@@ -646,6 +732,7 @@
 			projectRoot = "";
 			targets = (
 				D3F4B02C1A4C6ADE001ACB0E /* MakeItSo */,
+				D3A391E31CE55FD6001FA335 /* MakeItSoiOS */,
 				D3F4B0371A4C6ADE001ACB0E /* MakeItSoTests */,
 				D3F0F4DD1A4DC165000F6F62 /* MISGenerator */,
 				D3F0F4F51A4DC165000F6F62 /* MISGeneratorTests */,
@@ -654,6 +741,13 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D3A391E21CE55FD6001FA335 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D3F0F4DC1A4DC165000F6F62 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -695,6 +789,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D3A391DF1CE55FD6001FA335 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3A391F91CE5609D001FA335 /* FMDatabase.m in Sources */,
+				D3A391FA1CE5609D001FA335 /* FMResultSet.m in Sources */,
+				D3A391FB1CE5609D001FA335 /* DomainObject.m in Sources */,
+				D3A391FC1CE5609D001FA335 /* Repository.m in Sources */,
+				D3A391FD1CE5609D001FA335 /* MISQuery.m in Sources */,
+				D3A391FE1CE5609D001FA335 /* MISCriteria.m in Sources */,
+				D3A391FF1CE5609D001FA335 /* MISQueryParser.m in Sources */,
+				D3A392001CE5609D001FA335 /* MISQueryAssembler.m in Sources */,
+				D3A392011CE5609D001FA335 /* MISUnitOfWork.m in Sources */,
+				D3A392021CE5609D001FA335 /* MISMapper.m in Sources */,
+				D3A392031CE5609D001FA335 /* MISKeyGenerator.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D3F0F4DA1A4DC165000F6F62 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -802,6 +914,75 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		D3A391EA1CE55FD6001FA335 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/src/MakeItSo-Prefix.pch";
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Volumes/Macintosh\\ HD/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					lib/FMDB/src,
+					lib/PEGKit/src,
+					lib,
+				);
+				INFOPLIST_FILE = "$(PROJECT_DIR)/res/MakeItSoiOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.celestialteapot.MakeItSoiOS;
+				PRODUCT_NAME = MakeItSo;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D3A391EB1CE55FD6001FA335 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/src/MakeItSo-Prefix.pch";
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Volumes/Macintosh\\ HD/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					lib/FMDB/src,
+					lib/PEGKit/src,
+					lib,
+				);
+				INFOPLIST_FILE = "$(PROJECT_DIR)/res/MakeItSoiOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.celestialteapot.MakeItSoiOS;
+				PRODUCT_NAME = MakeItSo;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		D3F0F4FF1A4DC165000F6F62 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1004,7 +1185,15 @@
 					"$(PROJECT_DIR)/lib/OCMock/OSX",
 				);
 				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/src/MakeItSo-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Volumes/Macintosh\\ HD/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					lib/FMDB/src,
+					lib/PEGKit/src,
+					lib,
+				);
 				INFOPLIST_FILE = "$(PROJECT_DIR)/res/MakeItSo-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
@@ -1027,7 +1216,15 @@
 					"$(PROJECT_DIR)/lib/OCMock/OSX",
 				);
 				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/src/MakeItSo-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Volumes/Macintosh\\ HD/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					lib/FMDB/src,
+					lib/PEGKit/src,
+					lib,
+				);
 				INFOPLIST_FILE = "$(PROJECT_DIR)/res/MakeItSo-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
@@ -1076,6 +1273,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D3A391E91CE55FD6001FA335 /* Build configuration list for PBXNativeTarget "MakeItSoiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D3A391EA1CE55FD6001FA335 /* Debug */,
+				D3A391EB1CE55FD6001FA335 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D3F0F4FE1A4DC165000F6F62 /* Build configuration list for PBXNativeTarget "MISGenerator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
