@@ -260,7 +260,7 @@
     TDAssert(_unitOfWork);
     TDAssert(_domainClass);
     
-    NSNumber *objID = [rs objectForColumnName:@"objectID"];
+    NSNumber *objID = [rs objectForColumn:@"objectID"];
     DomainObject *obj = [_unitOfWork objectForID:objID];
     if (obj) return obj;
 
