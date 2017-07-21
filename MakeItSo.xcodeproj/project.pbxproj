@@ -43,7 +43,6 @@
 		D31579471CE566B700B0D3D9 /* MISUnitOfWork.h in Headers */ = {isa = PBXBuildFile; fileRef = D315793C1CE566B700B0D3D9 /* MISUnitOfWork.h */; };
 		D31579481CE566B700B0D3D9 /* MISUnitOfWork.m in Sources */ = {isa = PBXBuildFile; fileRef = D315793D1CE566B700B0D3D9 /* MISUnitOfWork.m */; };
 		D31579491CE566B700B0D3D9 /* MISUnitOfWork.m in Sources */ = {isa = PBXBuildFile; fileRef = D315793D1CE566B700B0D3D9 /* MISUnitOfWork.m */; };
-		D332D4051A545109005D7BE5 /* MISKeyGeneratorTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = D332D4041A545109005D7BE5 /* MISKeyGeneratorTestCase.m */; };
 		D366C1EB1A544BD500D69669 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D366C1EA1A544BD500D69669 /* OCMock.framework */; };
 		D366C1EE1A544CAB00D69669 /* OCMock.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D366C1EA1A544BD500D69669 /* OCMock.framework */; };
 		D366C1F01A544D4900D69669 /* MISBaseTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = D366C1EF1A544D4900D69669 /* MISBaseTestCase.m */; };
@@ -62,9 +61,11 @@
 		D3A392051CE5619F001FA335 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A392041CE5619F001FA335 /* libsqlite3.tbd */; };
 		D3A392081CE561EA001FA335 /* PEGKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A392061CE561EA001FA335 /* PEGKit.framework */; };
 		D3A392091CE561EA001FA335 /* TDTemplateEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A392071CE561EA001FA335 /* TDTemplateEngine.framework */; };
+		D3E218081F22B34700247A4F /* MISKeyGeneratorTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E218051F22B34700247A4F /* MISKeyGeneratorTestCase.m */; };
+		D3E218091F22B34700247A4F /* MISTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E218061F22B34700247A4F /* MISTestCase.m */; };
+		D3E2180A1F22B34700247A4F /* QueryParesrTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E218071F22B34700247A4F /* QueryParesrTestCase.m */; };
 		D3E3D6911A4C6CC9004103BD /* DomainObject.h in Headers */ = {isa = PBXBuildFile; fileRef = D3E3D68F1A4C6CC9004103BD /* DomainObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3E3D6921A4C6CC9004103BD /* DomainObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E3D6901A4C6CC9004103BD /* DomainObject.m */; };
-		D3F0F49C1A4CEFE1000F6F62 /* QueryParesrTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F49B1A4CEFE1000F6F62 /* QueryParesrTestCase.m */; };
 		D3F0F49F1A4CF045000F6F62 /* Repository.h in Headers */ = {isa = PBXBuildFile; fileRef = D3F0F49D1A4CF045000F6F62 /* Repository.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3F0F4A01A4CF045000F6F62 /* Repository.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F0F49E1A4CF045000F6F62 /* Repository.m */; };
 		D3F0F4D31A4D9E97000F6F62 /* FMDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = D3F0F4CF1A4D9E97000F6F62 /* FMDatabase.h */; };
@@ -106,7 +107,6 @@
 		D3F0F5781A4F5778000F6F62 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F0F4D71A4D9EAF000F6F62 /* libsqlite3.dylib */; };
 		D3F4B0331A4C6ADE001ACB0E /* MakeItSo.h in Headers */ = {isa = PBXBuildFile; fileRef = D3F4B0321A4C6ADE001ACB0E /* MakeItSo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3F4B0391A4C6ADE001ACB0E /* MakeItSo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F4B02D1A4C6ADE001ACB0E /* MakeItSo.framework */; };
-		D3F4B0401A4C6ADE001ACB0E /* MISTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F4B03F1A4C6ADE001ACB0E /* MISTestCase.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -196,7 +196,6 @@
 		D315793B1CE566B700B0D3D9 /* MISMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MISMapper.m; path = src/MISMapper.m; sourceTree = SOURCE_ROOT; };
 		D315793C1CE566B700B0D3D9 /* MISUnitOfWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MISUnitOfWork.h; path = src/MISUnitOfWork.h; sourceTree = SOURCE_ROOT; };
 		D315793D1CE566B700B0D3D9 /* MISUnitOfWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MISUnitOfWork.m; path = src/MISUnitOfWork.m; sourceTree = SOURCE_ROOT; };
-		D332D4041A545109005D7BE5 /* MISKeyGeneratorTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MISKeyGeneratorTestCase.m; path = ../test/MISKeyGeneratorTestCase.m; sourceTree = "<group>"; };
 		D366C1EA1A544BD500D69669 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = lib/OCMock/OSX/OCMock.framework; sourceTree = "<group>"; };
 		D366C1EF1A544D4900D69669 /* MISBaseTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MISBaseTestCase.m; sourceTree = "<group>"; };
 		D366C1F11A544D7C00D69669 /* MISBaseTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MISBaseTestCase.h; sourceTree = "<group>"; };
@@ -206,14 +205,16 @@
 		D3A392041CE5619F001FA335 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/usr/lib/libsqlite3.tbd; sourceTree = DEVELOPER_DIR; };
 		D3A392061CE561EA001FA335 /* PEGKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PEGKit.framework; path = "lib/PEGKit/build/Debug-iphoneos/PEGKit.framework"; sourceTree = "<group>"; };
 		D3A392071CE561EA001FA335 /* TDTemplateEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TDTemplateEngine.framework; path = "lib/TDTemplateEngine/build/Debug-iphoneos/TDTemplateEngine.framework"; sourceTree = "<group>"; };
+		D3E218041F22B34700247A4F /* MakeItSoTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MakeItSoTests.h; path = test/MakeItSoTests.h; sourceTree = SOURCE_ROOT; };
+		D3E218051F22B34700247A4F /* MISKeyGeneratorTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MISKeyGeneratorTestCase.m; path = test/MISKeyGeneratorTestCase.m; sourceTree = SOURCE_ROOT; };
+		D3E218061F22B34700247A4F /* MISTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MISTestCase.m; path = test/MISTestCase.m; sourceTree = SOURCE_ROOT; };
+		D3E218071F22B34700247A4F /* QueryParesrTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QueryParesrTestCase.m; path = test/QueryParesrTestCase.m; sourceTree = SOURCE_ROOT; };
 		D3E3D68F1A4C6CC9004103BD /* DomainObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DomainObject.h; path = include/MakeItSo/DomainObject.h; sourceTree = SOURCE_ROOT; };
 		D3E3D6901A4C6CC9004103BD /* DomainObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DomainObject.m; path = src/DomainObject.m; sourceTree = SOURCE_ROOT; };
 		D3E3D69C1A4C709D004103BD /* MakeItSo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MakeItSo-Prefix.pch"; path = "src/MakeItSo-Prefix.pch"; sourceTree = SOURCE_ROOT; };
-		D3F0F49B1A4CEFE1000F6F62 /* QueryParesrTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QueryParesrTestCase.m; path = ../test/QueryParesrTestCase.m; sourceTree = "<group>"; };
 		D3F0F49D1A4CF045000F6F62 /* Repository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Repository.h; path = include/MakeItSo/Repository.h; sourceTree = SOURCE_ROOT; };
 		D3F0F49E1A4CF045000F6F62 /* Repository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Repository.m; path = src/Repository.m; sourceTree = SOURCE_ROOT; };
 		D3F0F4A11A4CF0E2000F6F62 /* query.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = query.grammar; path = res/query.grammar; sourceTree = SOURCE_ROOT; };
-		D3F0F4CD1A4D0465000F6F62 /* MakeItSoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MakeItSoTests.h; path = ../test/MakeItSoTests.h; sourceTree = "<group>"; };
 		D3F0F4CF1A4D9E97000F6F62 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabase.h; path = lib/FMDB/src/fmdb/FMDatabase.h; sourceTree = SOURCE_ROOT; };
 		D3F0F4D01A4D9E97000F6F62 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabase.m; path = lib/FMDB/src/fmdb/FMDatabase.m; sourceTree = SOURCE_ROOT; };
 		D3F0F4D11A4D9E97000F6F62 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMResultSet.h; path = lib/FMDB/src/fmdb/FMResultSet.h; sourceTree = SOURCE_ROOT; };
@@ -270,7 +271,6 @@
 		D3F4B0321A4C6ADE001ACB0E /* MakeItSo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MakeItSo.h; path = include/MakeItSo/MakeItSo.h; sourceTree = SOURCE_ROOT; };
 		D3F4B0381A4C6ADE001ACB0E /* MakeItSoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MakeItSoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3F4B03E1A4C6ADE001ACB0E /* MakeItSoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "MakeItSoTests-Info.plist"; path = "../test/MakeItSoTests-Info.plist"; sourceTree = "<group>"; };
-		D3F4B03F1A4C6ADE001ACB0E /* MISTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MISTestCase.m; path = ../test/MISTestCase.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -537,10 +537,10 @@
 		D3F4B03C1A4C6ADE001ACB0E /* MakeItSoTests */ = {
 			isa = PBXGroup;
 			children = (
-				D3F0F4CD1A4D0465000F6F62 /* MakeItSoTests.h */,
-				D3F4B03F1A4C6ADE001ACB0E /* MISTestCase.m */,
-				D332D4041A545109005D7BE5 /* MISKeyGeneratorTestCase.m */,
-				D3F0F49B1A4CEFE1000F6F62 /* QueryParesrTestCase.m */,
+				D3E218041F22B34700247A4F /* MakeItSoTests.h */,
+				D3E218051F22B34700247A4F /* MISKeyGeneratorTestCase.m */,
+				D3E218061F22B34700247A4F /* MISTestCase.m */,
+				D3E218071F22B34700247A4F /* QueryParesrTestCase.m */,
 				D3F4B03D1A4C6ADE001ACB0E /* Supporting Files */,
 			);
 			path = MakeItSoTests;
@@ -867,10 +867,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3F4B0401A4C6ADE001ACB0E /* MISTestCase.m in Sources */,
-				D332D4051A545109005D7BE5 /* MISKeyGeneratorTestCase.m in Sources */,
-				D3F0F49C1A4CEFE1000F6F62 /* QueryParesrTestCase.m in Sources */,
 				D366C1F21A544D8300D69669 /* MISBaseTestCase.m in Sources */,
+				D3E218091F22B34700247A4F /* MISTestCase.m in Sources */,
+				D3E218081F22B34700247A4F /* MISKeyGeneratorTestCase.m in Sources */,
+				D3E2180A1F22B34700247A4F /* QueryParesrTestCase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
